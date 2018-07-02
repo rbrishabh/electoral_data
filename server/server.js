@@ -18,7 +18,7 @@ const fs = require('fs');
 
 
 const app = express();
-const port = 3000 || process.env.PORT;
+const port =  process.env.PORT;
 
 app.set('view engine', 'hbs');
 
