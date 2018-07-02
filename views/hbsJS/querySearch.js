@@ -165,7 +165,7 @@ function print(printData) {
         + "<th>" + "District"+ "</th>"
         + "<th>" + "State"+ "</th>"
         + "<th>" + "Mobile"+ "</th>"
-        + "<th>" + "Checkbox</b>"+ "</th></tr>"
+    + "</b></tr>"
     for (var x in printData.civilian) {
 
         txt = txt + "<tr>"+ "<th>" + i + "</th>"+
@@ -180,7 +180,7 @@ function print(printData) {
             + "<th>" + printData.civilian[x].district+ "</th>"
             + "<th>" + printData.civilian[x].state+ "</th>"
             + "<th id='num'>" + printData.civilian[x].mobile + "</th>"
-            + "<th>" + "<input type='checkbox'>" + "</th>"+"</tr><br><br><input type='button' name='checkbox' id='messagebtn' class='btn btn-success center-block' value='Send Message'>";
+            +"</tr>";
 
         i++
     }
