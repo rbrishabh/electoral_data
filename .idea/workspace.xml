@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="08b0d45d-fc30-493e-b719-7478e6d82225" name="Default" comment="" />
+    <list default="true" id="08b0d45d-fc30-493e-b719-7478e6d82225" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -50,11 +53,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
             <state>
               <caret column="13" selection-start-column="13" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="package.json" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/package.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="114">
+              <caret line="6" column="37" selection-start-line="6" selection-start-column="37" selection-end-line="6" selection-end-column="37" />
             </state>
           </provider>
         </entry>
@@ -143,7 +155,6 @@
         <option value="$PROJECT_DIR$/views/assets/css/style.css" />
         <option value="$PROJECT_DIR$/views/assets/style.hbs" />
         <option value="$PROJECT_DIR$/views/partial/head.hbs" />
-        <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/views/partials/yo.hbs" />
         <option value="$PROJECT_DIR$/../../front end internship/Deploy/add_data.html" />
         <option value="$PROJECT_DIR$/request_handler/query_add.js" />
@@ -191,6 +202,7 @@
         <option value="$PROJECT_DIR$/views/querySearch1.hbs" />
         <option value="$PROJECT_DIR$/views/hbsJS/querySearch.js" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/package.json" />
       </list>
     </option>
   </component>
@@ -346,25 +358,25 @@
       <workItem from="1530424533792" duration="5113000" />
       <workItem from="1530489204709" duration="5485000" />
       <workItem from="1530495282731" duration="14267000" />
-      <workItem from="1530524830787" duration="3679000" />
+      <workItem from="1530524830787" duration="4479000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="245436000" />
+    <option name="totallyTimeSpent" value="246236000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1376" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.8057554" visible="true" weight="0.19955157" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.8057554" visible="true" weight="0.19955157" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32838285" />
       <window_info id="Structure" order="1" sideWeight="0.19424461" side_tool="true" weight="0.15695067" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.28877887" />
+      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.28877887" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -541,13 +553,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="27" selection-start-line="27" selection-end-line="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/partials/style.hbs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="437">
@@ -672,6 +677,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="13" selection-start-column="13" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="6" column="37" selection-start-line="6" selection-start-column="37" selection-end-line="6" selection-end-column="37" />
         </state>
       </provider>
     </entry>
