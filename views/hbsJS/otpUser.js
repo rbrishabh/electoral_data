@@ -3,7 +3,7 @@ document.getElementById('otp').disabled = true;
 document.getElementById('otpbtn').disabled = true;
 
 function sendOTP(value) {
-    var url = 'http://localhost:3000/getOTP1/' + value;
+    var url = 'http://localhost:80/getOTP1/' + value;
 
     var ourRequest = new XMLHttpRequest();
     ourRequest.open('GET',url, true);
@@ -22,7 +22,7 @@ function sendOTP(value) {
 
 }
 function validateOTP(value) {
-    var url = 'http://localhost:3000/checkOTP/' + value;
+    var url = 'http://localhost:80/checkOTP/' + value;
     var ourRequest = new XMLHttpRequest();
     ourRequest.open('GET', url, true);
     ourRequest.onload = function () {

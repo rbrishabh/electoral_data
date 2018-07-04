@@ -31,47 +31,47 @@ function showCivilian(str,id,num) {
 
     function http(urlString, num) {
     if (num===0){
-        var url = 'http://localhost:3000/querysearch0/' + urlString;
+        var url = 'http://localhost:80/querysearch0/' + urlString;
         
     }
         if (num===1){
-            var url = 'http://localhost:3000/querysearch1/' + urlString;
+            var url = 'http://localhost:80/querysearch1/' + urlString;
             
         }
         if (num===2){
-            var url = 'http://localhost:3000/querysearch2/' + urlString;
+            var url = 'http://localhost:80/querysearch2/' + urlString;
             
         }
         if (num===3){
-            var url = 'http://localhost:3000/querysearch3/' + urlString;
+            var url = 'http://localhost:80/querysearch3/' + urlString;
             
         }
         if (num===4){
-            var url = 'http://localhost:3000/querysearch4/' + urlString;
+            var url = 'http://localhost:80/querysearch4/' + urlString;
             
         }
         if (num===5){
-            var url = 'http://localhost:3000/querysearch5/' + urlString;
+            var url = 'http://localhost:80/querysearch5/' + urlString;
             
         }
         if (num===6){
-            var url = 'http://localhost:3000/querysearch6/' + urlString;
+            var url = 'http://localhost:80/querysearch6/' + urlString;
             
         }
         if (num===7){
-            var url = 'http://localhost:3000/querysearch7/' + urlString;
+            var url = 'http://localhost:80/querysearch7/' + urlString;
             
         }
         if (num===8){
-            var url = 'http://localhost:3000/querysearch8/' + urlString;
+            var url = 'http://localhost:80/querysearch8/' + urlString;
             
         }
         if (num===9){
-            var url = 'http://localhost:3000/querysearch9/' + urlString;
+            var url = 'http://localhost:80/querysearch9/' + urlString;
             
         }
         if (num===10){
-            var url = 'http://localhost:3000/querysearch10/' + urlString;
+            var url = 'http://localhost:80/querysearch10/' + urlString;
             
         }
 
