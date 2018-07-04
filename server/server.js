@@ -22,7 +22,6 @@ const port = process.env.PORT || 3000;
 
 app.set('view engine', 'hbs');
 
-hbs.registerPartials(__dirname+'./../views/partials');
 app.use(express.static(__dirname+'./../views/img'));
 app.use(express.static(__dirname+'./../views/hbsJS'));
 app.use(bodyParser.urlencoded({ extended: false }));
