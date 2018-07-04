@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="08b0d45d-fc30-493e-b719-7478e6d82225" name="Default" comment="" />
+    <list default="true" id="08b0d45d-fc30-493e-b719-7478e6d82225" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/server.js" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -26,13 +29,13 @@
       <file leaf-file-name="forgotPass.hbs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/forgotPass.hbs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3287">
+            <state relative-caret-position="3420">
               <caret line="180" selection-start-line="180" selection-end-line="180" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mongoose.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="mongoose.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/db/mongoose.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="38">
@@ -44,8 +47,8 @@
       <file leaf-file-name="querySearch1.hbs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/querySearch1.hbs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="217" column="105" selection-start-line="217" selection-start-column="105" selection-end-line="217" selection-end-column="105" />
+            <state relative-caret-position="2432">
+              <caret line="175" column="25" selection-start-line="175" selection-start-column="25" selection-end-line="175" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -71,7 +74,7 @@
       <file leaf-file-name="queryAdd.hbs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/queryAdd.hbs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-8">
+            <state relative-caret-position="4009">
               <caret line="211" column="24" selection-start-line="211" selection-start-column="23" selection-end-line="211" selection-end-column="24" />
             </state>
           </provider>
@@ -95,11 +98,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="server.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="server.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="33">
-              <caret line="208" column="38" selection-start-line="208" selection-start-column="27" selection-end-line="208" selection-end-column="38" />
+            <state relative-caret-position="118">
+              <caret line="27" column="3" lean-forward="true" selection-start-line="27" selection-start-column="3" selection-end-line="27" selection-end-column="3" />
             </state>
           </provider>
         </entry>
@@ -108,10 +111,8 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>jwt</find>
       <find>to</find>
       <find>token</find>
-      <find>header</find>
       <find>elec</find>
       <find>redirect</find>
       <find>home</find>
@@ -138,6 +139,8 @@
       <find>login</find>
       <find>querysearch1</find>
       <find>querysearch</find>
+      <find>registration</find>
+      <find>header</find>
     </findStrings>
     <replaceStrings>
       <replace>onchange=&quot;showCivilian(value,this.id</replace>
@@ -358,12 +361,12 @@
       <workItem from="1530495282731" duration="14267000" />
       <workItem from="1530524830787" duration="7741000" />
       <workItem from="1530595817647" duration="1187000" />
-      <workItem from="1530669561915" duration="9827000" />
+      <workItem from="1530669561915" duration="11265000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="260512000" />
+    <option name="totallyTimeSpent" value="261950000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1376" height="744" extended-state="6" />
@@ -376,7 +379,7 @@
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32838285" />
       <window_info id="Structure" order="1" sideWeight="0.19424461" side_tool="true" weight="0.15695067" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.3349835" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.4768977" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -719,27 +722,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/forgotPass.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3287">
-          <caret line="180" selection-start-line="180" selection-end-line="180" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/queryAdd.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8">
-          <caret line="211" column="24" selection-start-line="211" selection-start-column="23" selection-end-line="211" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/querySearch1.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="217" column="105" selection-start-line="217" selection-start-column="105" selection-end-line="217" selection-end-column="105" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/hbsJS/querySearch.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="109">
@@ -747,10 +729,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/server.js">
+    <entry file="file://$PROJECT_DIR$/views/queryAdd.hbs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="33">
-          <caret line="208" column="38" selection-start-line="208" selection-start-column="27" selection-end-line="208" selection-end-column="38" />
+        <state relative-caret-position="4009">
+          <caret line="211" column="24" selection-start-line="211" selection-start-column="23" selection-end-line="211" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/querySearch1.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2432">
+          <caret line="175" column="25" selection-start-line="175" selection-start-column="25" selection-end-line="175" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -758,6 +747,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="38">
           <caret line="2" column="32" selection-start-line="2" selection-start-column="32" selection-end-line="2" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/forgotPass.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3420">
+          <caret line="180" selection-start-line="180" selection-end-line="180" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="118">
+          <caret line="27" column="3" lean-forward="true" selection-start-line="27" selection-start-column="3" selection-end-line="27" selection-end-column="3" />
         </state>
       </provider>
     </entry>
