@@ -1,18 +1,17 @@
-<script>
 /*!
-    
+
  =========================================================
  * Material Kit - v1.1.1.0
  =========================================================
- 
+
  * Product Page: http://www.creative-tim.com/product/material-kit
  * Copyright 2017 Creative Tim (http://www.creative-tim.com)
  * Licensed under MIT (https://github.com/timcreative/material-kit/blob/master/LICENSE.md)
- 
+
  =========================================================
- 
+
  * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
- 
+
  */
 
 var transparent = true;
@@ -33,7 +32,7 @@ $(document).ready(function(){
     // Activate Datepicker
     if($('.datepicker').length != 0){
         $('.datepicker').datepicker({
-             weekStart:1
+            weekStart:1
         });
     }
 
@@ -46,8 +45,8 @@ $(document).ready(function(){
     $('[data-toggle="popover"]').popover();
 
     // Active Carousel
-	$('.carousel').carousel({
-      interval: 400000
+    $('.carousel').carousel({
+        interval: 400000
     });
 
 });
@@ -58,17 +57,17 @@ materialKit = {
     },
 
     checkScrollForTransparentNavbar: debounce(function() {
-            if($(document).scrollTop() > 260 ) {
-                if(transparent) {
-                    transparent = false;
-                    $('.navbar-color-on-scroll').removeClass('navbar-transparent');
-                }
-            } else {
-                if( !transparent ) {
-                    transparent = true;
-                    $('.navbar-color-on-scroll').addClass('navbar-transparent');
-                }
+        if($(document).scrollTop() > 260 ) {
+            if(transparent) {
+                transparent = false;
+                $('.navbar-color-on-scroll').removeClass('navbar-transparent');
             }
+        } else {
+            if( !transparent ) {
+                transparent = true;
+                $('.navbar-color-on-scroll').addClass('navbar-transparent');
+            }
+        }
     }, 17),
 
     initSliders: function(){
@@ -117,15 +116,14 @@ materialKitDemo = {
 // leading edge, instead of the trailing.
 
 function debounce(func, wait, immediate) {
-	var timeout;
-	return function() {
-		var context = this, args = arguments;
-		clearTimeout(timeout);
-		timeout = setTimeout(function() {
-			timeout = null;
-			if (!immediate) func.apply(context, args);
-		}, wait);
-		if (immediate && !timeout) func.apply(context, args);
-	};
+    var timeout;
+    return function() {
+        var context = this, args = arguments;
+        clearTimeout(timeout);
+        timeout = setTimeout(function() {
+            timeout = null;
+            if (!immediate) func.apply(context, args);
+        }, wait);
+        if (immediate && !timeout) func.apply(context, args);
+    };
 };
-</script>
