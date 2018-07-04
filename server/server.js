@@ -319,7 +319,7 @@ app.get('/querysearch3/:age', (req,res)=>{
 
 });
 
-app.get('/querysearch4/:gender',authenticate,(req,res)=>{
+app.get('/querysearch4/:gender',(req,res)=>{
 
 
     var gender = req.params.gender;
