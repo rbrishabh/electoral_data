@@ -1,7 +1,7 @@
 const express = require('express');
 const hbs = require('hbs');
 const bodyParser = require('body-parser');
-// // var {mongoose,db} = require('./db/mongoose');
+ var {mongoose,db} = require('./db/mongoose');
  var {civilian} = require('./models/civilian');
 const bcrypt = require('bcryptjs');
 const _ = require('lodash');
@@ -33,14 +33,14 @@ app.use(function(req, res, next) {
     next();
 });
 
-// app.use(session({
-//     secret: 'work hard',
-//     resave: true,
-//     saveUninitialized: false,
-//     store: new MongoStore({
-//         mongooseConnection: db
-//     })
-// }));
+app.use(session({
+    secret: 'work hard',
+    resave: true,
+    saveUninitialized: false,
+    store: new MongoStore({
+        mongooseConnection: db
+    })
+}));
 
 app.get('/',authenticated, (req,res)=> {
     res.render('login.hbs', {
