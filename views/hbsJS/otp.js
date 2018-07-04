@@ -18,7 +18,7 @@ function otpShow(value){
     if ($('#checkboxLogin').is(':checked')) {
 
 
-        var url = 'http://localhost:80/getNumber/' + value;
+        var url = 'https://safe-dawn-33571.herokuapp.com/getNumber/' + value;
 
         var ourRequest = new XMLHttpRequest();
         ourRequest.open('GET',url, true);
