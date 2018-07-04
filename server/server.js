@@ -34,14 +34,14 @@ app.use(function(req, res, next) {
     next();
 });
 
-app.use(session({
-    secret: 'work hard',
-    resave: true,
-    saveUninitialized: false,
-    store: new MongoStore({
-        mongooseConnection: db
-    })
-}));
+// app.use(session({
+//     secret: 'work hard',
+//     resave: true,
+//     saveUninitialized: false,
+//     store: new MongoStore({
+//         mongooseConnection: db
+//     })
+// }));
 
 app.get('/',authenticated, (req,res)=> {
     res.render('login.hbs', {
