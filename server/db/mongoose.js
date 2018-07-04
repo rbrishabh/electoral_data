@@ -1,8 +1,8 @@
 
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
 
-const database = "mongodb://localhost:27017/electoralDatabase";
-var db = mongoose.connection;
+// const database = "mongodb://localhost:27017/electoralDatabase";
+// var db = mongoose.connection;
 
 //handle mongo error
 // db.on('error', console.error.bind(console, 'connection error:'));
