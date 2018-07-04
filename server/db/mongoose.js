@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const database = process.env.MONGODB_URI;
+const database = process.env.URI;
 var db = mongoose.connection;
 
 //handle mongo error
