@@ -245,7 +245,7 @@ console.log(email);
 
 });
 
-app.get('/querysearch0/:name',authenticate, (req,res)=>{
+app.get('/querysearch0/:name', (req,res)=>{
 
 
     var name = req.params.name;
@@ -264,7 +264,7 @@ app.get('/querysearch0/:name',authenticate, (req,res)=>{
     });
 
 });
-app.get('/querysearch1/:mobile',authenticate, (req,res)=>{
+app.get('/querysearch1/:mobile', (req,res)=>{
 
 
     var mobile = req.params.mobile;
@@ -283,7 +283,7 @@ app.get('/querysearch1/:mobile',authenticate, (req,res)=>{
     });
 
 });
-app.get('/querysearch2/:fatherName',authenticate, (req,res)=>{
+app.get('/querysearch2/:fatherName', (req,res)=>{
 
 
     var fatherName = req.params.fatherName;
@@ -303,7 +303,7 @@ app.get('/querysearch2/:fatherName',authenticate, (req,res)=>{
 
 });
 
-app.get('/querysearch3/:age',authenticate, (req,res)=>{
+app.get('/querysearch3/:age', (req,res)=>{
 
 
     var age= req.params.age;
@@ -323,7 +323,7 @@ app.get('/querysearch3/:age',authenticate, (req,res)=>{
 
 });
 
-app.get('/querysearch4/:gender', authenticate,(req,res)=>{
+app.get('/querysearch4/:gender',(req,res)=>{
 
 
     var gender = req.params.gender;
@@ -343,7 +343,7 @@ app.get('/querysearch4/:gender', authenticate,(req,res)=>{
 
 });
 
-app.get('/querysearch5/:profession',authenticate, (req,res)=>{
+app.get('/querysearch5/:profession', (req,res)=>{
 
 
     var profession = req.params.profession;
@@ -363,7 +363,7 @@ app.get('/querysearch5/:profession',authenticate, (req,res)=>{
 
 });
 
-app.get('/querysearch6/:village', authenticate,(req,res)=>{
+app.get('/querysearch6/:village', (req,res)=>{
 
 
     var village = req.params.village;
@@ -383,7 +383,7 @@ app.get('/querysearch6/:village', authenticate,(req,res)=>{
 
 });
 
-app.get('/querysearch7/:block',authenticate, (req,res)=>{
+app.get('/querysearch7/:block', (req,res)=>{
 
 
     var block = req.params.block;
@@ -403,7 +403,7 @@ app.get('/querysearch7/:block',authenticate, (req,res)=>{
 
 });
 
-app.get('/querysearch8/:district',authenticate, (req,res)=>{
+app.get('/querysearch8/:district', (req,res)=>{
 
 
     var district = req.params.district;
@@ -423,7 +423,7 @@ app.get('/querysearch8/:district',authenticate, (req,res)=>{
 
 });
 
-app.get('/querysearch9/:state', authenticate,(req,res)=>{
+app.get('/querysearch9/:state', (req,res)=>{
 
 
     var state = req.params.state;
@@ -443,7 +443,7 @@ app.get('/querysearch9/:state', authenticate,(req,res)=>{
 
 });
 
-app.get('/querysearch10/:mark',authenticate, (req,res)=>{
+app.get('/querysearch10/:mark', (req,res)=>{
 
 
     var mark = req.params.mark;
