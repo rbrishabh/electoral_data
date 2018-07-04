@@ -285,7 +285,7 @@ app.get('/querysearch1/:mobile', (req,res)=>{
     });
 
 });
-app.get('/querysearch2/:fatherName', authenticate,(req,res)=>{
+app.get('/querysearch2/:fatherName',  (req,res)=>{
 
 
     var fatherName = req.params.fatherName;
