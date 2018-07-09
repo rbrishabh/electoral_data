@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    var url = 'http://localhost:80/state/Uttarakhand';
+    var url = 'http://safe-dawn-33571.herokuapp.com/state/Uttarakhand';
 
     var ourRequest = new XMLHttpRequest();
     ourRequest.open('GET',url, true);
@@ -16,7 +16,7 @@ $(document).ready(function() {
 
 
 function getBlock(valueDistrict, valueState) {
-    var url = 'http://localhost:80/district/' + valueDistrict+'/state/'+valueState;
+    var url = 'http://safe-dawn-33571.herokuapp.com/district/' + valueDistrict+'/state/'+valueState;
     var ourRequest = new XMLHttpRequest();
     ourRequest.open('GET',url, true);
     ourRequest.onload = function() {
@@ -28,7 +28,7 @@ function getBlock(valueDistrict, valueState) {
 
 }
 function getVillage(valueDistrict, valueState, valueBlock) {
-    var url = 'http://localhost:80/district/' + valueDistrict+'/state/'+valueState+'/block/'+valueBlock;
+    var url = 'http://safe-dawn-33571.herokuapp.com/district/' + valueDistrict+'/state/'+valueState+'/block/'+valueBlock;
     var ourRequest = new XMLHttpRequest();
     ourRequest.open('GET',url, true);
     ourRequest.onload = function() {
