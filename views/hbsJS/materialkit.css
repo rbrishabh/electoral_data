@@ -1,29 +1,67 @@
 /*!
 
-=========================================================
-* Material Kit - v1.1.1.0
-=========================================================
+ =========================================================
+ * Material Kit - v1.1.1.0
+ =========================================================
 
-* Product Page: http://www.creative-tim.com/product/material-kit
-* Copyright 2017 Creative Tim (http://www.creative-tim.com)
-* Licensed under MIT (https://github.com/timcreative/material-kit/blob/master/LICENSE.md)
+ * Product Page: http://www.creative-tim.com/product/material-kit
+ * Copyright 2017 Creative Tim (http://www.creative-tim.com)
+ * Licensed under MIT (https://github.com/timcreative/material-kit/blob/master/LICENSE.md)
 
-=========================================================
+ =========================================================
 
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-*/
+ */
 
 /* ANIMATION */
 /* SHADOWS */
 /* Shadows (from mdl http://www.getmdl.io/) */
 
-#dataAdd {
-    color: #ac2925;
+.labelh{
+    display: block;
+    margin-top: 10px;
+    color: #068CD4;
+    font-size: 14px;
 }
+.boxrow{
+    border: 1px solid #ddd; border-radius: 4px; padding: 10px;
+    margin: 0px !important;
+    margin-bottom: 20px !important;
+}
+.bgblack{
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+    top: 0;
+    left: 0;
 
+    display: none;
+}
+.model{
+    height: 140px;
+    line-height: 70px;
+    width: 400px;
 
+    position: fixed;
+    z-index: 999;
+    background-color: #fff;
+    color: forestgreen;
+    text-align: center;
 
+    box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.8);
+    border-radius: 5px;
+
+    font-weight: 700;
+    font-size: 20px;
+
+    top: 50%;
+    left: 50%;
+    margin-left: -200px;
+    margin-top: -70px;
+}
 
 .errmsg{
     height: 20px;
@@ -2377,9 +2415,9 @@ legend {
 @media (max-width: 1199px) {
     .navbar {
         /*
-        .navbar-form {
-        margin-top: 10px;
-        }
+            .navbar-form {
+              margin-top: 10px;
+            }
         */
     }
     .navbar .navbar-brand {
@@ -3339,19 +3377,19 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
 }
 
 /*!
-* Datepicker for Bootstrap
-*
-* Copyright 2012 Stefan Petre
-* Licensed under the Apache License v2.0
-* http://www.apache.org/licenses/LICENSE-2.0
-*
-*/
+ * Datepicker for Bootstrap
+ *
+ * Copyright 2012 Stefan Petre
+ * Licensed under the Apache License v2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ */
 /*
-*
-*   SCSS by Creative Tim
-*   http://www.creative-tim.com
-*
-*/
+ *
+ *   SCSS by Creative Tim
+ *   http://www.creative-tim.com
+ *
+ */
 .datepicker {
     top: 0;
     left: 0;

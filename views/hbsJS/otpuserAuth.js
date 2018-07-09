@@ -1,4 +1,3 @@
-document.getElementById("submit").disabled = true;
 document.getElementById('otp').disabled = true;
 document.getElementById('otpbtn').disabled = true;
 document.getElementById('otherOcc').disabled = true;
@@ -14,16 +13,16 @@ $(document).ready(function(){
     $("input[type='radio']").on('change', function () {
         var isChecked = $("[name='optionsRadios']:checked").val() ?true:false;
 
-console.log(isChecked, 'adsahsdasgd')
-    if(isChecked) {
-        console.log('if is runnininnn')
-        document.getElementById('relationLast').disabled = false;
-        document.getElementById('relationMiddle').disabled = false;
-        document.getElementById('relationFirst').disabled = false;
-        document.getElementById('titleAdd').disabled = false;
+        console.log(isChecked, 'adsahsdasgd')
+        if(isChecked) {
+            console.log('if is runnininnn')
+            document.getElementById('relationLast').disabled = false;
+            document.getElementById('relationMiddle').disabled = false;
+            document.getElementById('relationFirst').disabled = false;
+            document.getElementById('titleAdd').disabled = false;
 
         }
-});
+    });
 });
 
 
@@ -44,13 +43,13 @@ function sendOTP(value) {
     var ourRequest = new XMLHttpRequest();
     ourRequest.open('GET', urlCheckMobile, true);
     ourRequest.onload = function () {
-         goStop = ourRequest.responseText;
-         if(goStop == 'go'){
-             sendOTPNow(value);
-         }
-         else{
-             document.getElementById('wrongmobile').style.display = "block"
-         }
+        goStop = ourRequest.responseText;
+        if(goStop == 'go'){
+            sendOTPNow(value);
+        }
+        else{
+            document.getElementById('wrongmobile').style.display = "block"
+        }
     }
     ourRequest.send();
 
@@ -100,7 +99,6 @@ function otpVerify(boolean) {
         document.getElementById("otpbtn").disabled = true;
         document.getElementById("otpbutton").disabled = true;
         $("#mobile").prop("readonly", true);
-        document.getElementById("submit").disabled = false;
         document.getElementById('otperror').style.display = "none"
         $("#validaitonCheck").val('true');
     }

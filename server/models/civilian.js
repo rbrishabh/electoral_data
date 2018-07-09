@@ -2,11 +2,43 @@ const mongoose = require('mongoose');
 const civilModel = 'civilian'
 
 var civilian = mongoose.model(civilModel, {
+    title: {
+        type: String,
+        trim:true
+    },
     name: {
         type: String,
         required: true,
         trim:true,
         minlength:1
+    },
+    lastName: {
+        type: String,
+        trim:true
+    },
+    middleName: {
+        type: String,
+        trim:true
+    },
+    relation: {
+        type: String,
+        trim:true
+    },
+    relationTitle: {
+        type: String,
+        trim:true
+    },
+    relationName: {
+        type: String,
+        trim:true
+    },
+    relationMiddle: {
+        type: String,
+        trim:true
+    },
+    relationLast: {
+        type: String,
+        trim:true
     },
     mobile: {
         type: Number,
@@ -14,8 +46,12 @@ var civilian = mongoose.model(civilModel, {
         trim:true,
         unique:true
     },
-    fatherName: {
-        type: String,
+    secondMobile: {
+        type: Number,
+        trim:true
+    },
+    thirdMobile: {
+        type: Number,
         trim:true
     },
     age: {
@@ -38,6 +74,10 @@ var civilian = mongoose.model(civilModel, {
 
         trim:true
     },
+    professionOther: {
+        type: String,
+        trim:true
+    },
     village: {
         type: String,
 
@@ -58,9 +98,21 @@ var civilian = mongoose.model(civilModel, {
         required: true,
         trim:true
     },
+    pin: {
+        type: Number,
+        trim:true
+    },
+    dob: {
+        type: String,
+        trim:true
+    },
     mark: {
         type: String,
 
+        trim:true
+    },
+    validationCheck: {
+        type: String,
         trim:true
     }
 });
