@@ -572,16 +572,14 @@
     $(".maxLengthFilter").maxlength();
 </script>
 <script>
-    try{
-        if({{pageReturn}}=="1")
-        {
-            console.log('submit running');
-            document.getElementById("model").style.display = "block";
+        if({{pageReturn}}){
+            if({{pageReturn}}=="1")
+            {
+                console.log('submit running');
+                document.getElementById("model").style.display = "block";
+            }
         }
-    }
-    catch (e) {
-        //do nothing
-    }
+
 
 </script>
 <script type="text/javascript">

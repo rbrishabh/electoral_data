@@ -244,15 +244,15 @@ i=1;
         + "</b></tr>"
     for (var x in printData.civilian) {
 
-        txt = txt + "<tr>"+ "<th>" + i + "</th>"+
-            "<th>" + printData.civilian[x].name + "</th>"
-       + "<th>" + printData.civilian[x].middleName + "</th>"
-        +"<th>" + printData.civilian[x].lastName + "</th>"
-       + "<th>" + printData.civilian[x].relation + "</th>"
-       + "<th>" + printData.civilian[x].relationName + "</th>"
-      +  "<th>" + printData.civilian[x].relationMiddle + "</th>"
-       + "<th>" + printData.civilian[x].relationLast + "</th>"
-        + "<th>" + printData.civilian[x].mark + "</th>"
+        txt = txt + "<tr>"+ "<th>" + i + "</th>"
+            +"<th>" + printData.civilian[x].name + "</th>"
+            + "<th>" + printData.civilian[x].middleName + "</th>"
+            +"<th>" + printData.civilian[x].lastName + "</th>"
+            + "<th>" + printData.civilian[x].relation + "</th>"
+            + "<th>" + printData.civilian[x].relationName + "</th>"
+            +  "<th>" + printData.civilian[x].relationMiddle + "</th>"
+            + "<th>" + printData.civilian[x].relationLast + "</th>"
+            + "<th>" + printData.civilian[x].mark + "</th>"
             + "<th>" + printData.civilian[x].age + "</th>"
             + "<th>" + printData.civilian[x].gender + "</th>"
             + "<th>" + printData.civilian[x].profession+ "</th>"
@@ -266,7 +266,7 @@ i=1;
             + "<th>" + printData.civilian[x].secondMobile + "</th>"
             + "<th>" + printData.civilian[x].thirdMobile + "</th>"
             + "<th>" + printData.civilian[x].email + "</th>"
-            + "<th>" + "<input type='checkbox'>" + "</th>"
+            + "<th>" + "<input type='checkbox' data-value = "+ printData.civilian[x].mobile + "-"+ printData.civilian[x].name+ "-"+ printData.civilian[x].middleName+ "-"+ printData.civilian[x].lastName +">" + "</th>"
 
             +"</tr>";
 
@@ -274,13 +274,29 @@ i=1;
     }
 
     txt += "</tbody></table></div>"
-
     document.getElementById("opTable").innerHTML = txt;
-    document.getElementById("messageButton").innerHTML = '<button>Message</button>';
-
-
-
-
+    document.getElementById("messageButton").innerHTML = '<button class="btn btn-success pull-right" data-toggle="modal" data-target="#myModal" id="msgbtn">Message</button>';
+    $(document).ready(function () {
+        var listInput = [];
+        $('#msgsend').click(function (e) {
+            if ($('input[type=checkbox]').is(':checked')) {
+                $('input[type=checkbox]').each(function () {
+                    if ($(this).is(':checked')) {
+                        listInput.push($(this).attr('data-value'));
+                    }
+                });
+                var stringify = JSON.stringify(listInput)
+                var text = $('#comment').val();
+                var url = 'https://safe-dawn-33571.herokuapp.com/message?array='+listInput+'&message='+text;
+                console.log(url)
+                var ourRequest = new XMLHttpRequest();
+                ourRequest.open('GET', url, true);
+                ourRequest.send();
+                listInput= [];
+            }
+            e.preventDefault();
+        });
+    });
 }
 
 

@@ -76,7 +76,7 @@
 
                                        <div class="form-group label-floating">
                                         <label class="control-label">Email-Id</label>
-                                        <input type="email" id="email" name="email" class="form-control" autocomplete="on" required>
+                                        <input type="email" id="email" name="email" class="form-control" autocomplete="off" required>
                                            <div id="otperror" class="errmsg">Wrong E-mail!</div>
 
                                        </div>
@@ -84,7 +84,7 @@
                                     <div class="form-group label-floating">
 
                                         <label class="control-label">Password</label>
-                                        <input type="password" autocomplete="off" id="password" name="password" class="form-control" required>
+                                        <input type="password" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');" id="password" name="password" class="form-control" required>
                                     </div>
 
     <hr><h4 class="text-center" style="font-weight: 500; margin-top: -34px; margin-bottom: 0px; ">OR</h4>

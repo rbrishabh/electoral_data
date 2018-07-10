@@ -296,6 +296,29 @@ app.get('/getNumber/:email', (req,res)=>{
     });
 
 });
+
+app.get('/message', (req,res)=>{
+    console.log('sending starts!')
+    var message = req.query.message
+    var arr = req.query.array.split(",")
+    var arr1 = [];
+    for(var x in arr){
+        arr1.push(arr[x].split("-"))
+    }
+    for( var x in arr1){
+        var url = 'http://bhashsms.com/api/sendmsg.php?user=genesissms&pass=123456&sender=GENSIS&phone=' + arr1[x][0] + '&text=' + arr1[x][1] +' '+ arr1[x][2] +' '+ arr1[x][3] + '%0D%0A'+ message +'&priority=ndnd&stype=normal'
+        request(url);
+        console.log(url)
+    }
+
+
+     console.log(arr1, message);
+});
+
+
+
+
+
 app.get('/checkMobile/:mobile', (req,res)=> {
     console.log('started running afadaf')
 var mobile = req.params.mobile;
