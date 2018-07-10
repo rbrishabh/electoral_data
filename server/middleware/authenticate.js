@@ -12,7 +12,6 @@ function authenticate(req, res, next) {
 function authenticated(req, res, next) {
     if (req.session && req.session.userId) {
         res.redirect('/home');
-        next();
     } else {
         next();
     }
