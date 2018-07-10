@@ -216,7 +216,7 @@ function sort(str,num) {
 
 function print(printData) {
 i=1;
-    var txt = "<table class='table table-bordered' border='1'><tbody>" +
+    var txt = "<table class='table table-bordered' id='result' border='1'><tbody>" +
         "<tr>"+"<th>" + "<b>S No.</b>" + "</th>"+
         "<th>" + "<b>First Name</b>" + "</th>"
         +"<th>" + "<b>Middle Name</b>" + "</th>"
@@ -275,7 +275,8 @@ i=1;
 
     txt += "</tbody></table></div>"
     document.getElementById("opTable").innerHTML = txt;
-    document.getElementById("messageButton").innerHTML = '<button class="btn btn-success pull-right" data-toggle="modal" data-target="#myModal" id="msgbtn">Message</button>';
+    document.getElementById("messageButton").innerHTML = '<button class="btn btn-success pull-right" data-toggle="modal" data-target="#myModal" id="msgbtn">Message</button>' +
+        '<button class="btn btn-success pull-right" onclick="printData()">Print</button>';
     $(document).ready(function () {
         var listInput = [];
         $('#msgsend').click(function (e) {
@@ -299,6 +300,30 @@ i=1;
     });
 }
 
+function printData() {
+    var divToPrint = document.getElementById('opTable');
+    var htmlToPrint = '' +
+        '<style type="text/css">' +
+
+      '  #opTable {'+
+        ' border-collapse: collapse;' +
+    '}'
+    +
+        'table th, table td {' +
+
+
+    'border:1px solid #000;' +
+        'padding;0.5em;' +
+        '}' +
+        'table td:last-child {display:none}'+
+    'table th:last-child {display:none}'+
+        '</style>';
+    htmlToPrint += divToPrint.outerHTML;
+    newWin = window.open("");
+    newWin.document.write(htmlToPrint);
+    newWin.print();
+    newWin.close();
+}
 
 
 

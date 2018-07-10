@@ -84,6 +84,18 @@ app.get('/querySearch',authenticate,(req,res)=> {
 
 app.post('/queryAddedCivil', function (req, res) {
     var dob = req.body.dob;
+    console.log(req.body.otp)
+
+    var otpNew = req.body.otp;
+    console.log(otpNew);
+    tokenValidates = speakeasy.totp.verify({
+        secret: secret.base32,
+        encoding: 'base32',
+        token: otpNew,
+        window: 6
+    });
+
+
     if(req.body.age == undefined || req.body.age == "" || req.body.age == null){
         try {
 
@@ -162,8 +174,7 @@ app.post('/queryAddedCivil', function (req, res) {
     else {
         age = req.body.age;
     }
-
-console.log(req.body.validationCheck,'123123');
+if(tokenValidates) {
     var newCivilian = new civilian({
         title : req.body.title,
         name: req.body.firstName,
@@ -188,7 +199,7 @@ console.log(req.body.validationCheck,'123123');
         state: req.body.state,
         pin: req.body.pin,
         mark: req.body.mark,
-        validationCheck : req.body.validationCheck
+        validationCheck :  'true'
     });
 
     newCivilian.save().then((doc)=>{
@@ -203,11 +214,38 @@ console.log(req.body.validationCheck,'123123');
             message:"Something went wrong. Please try again."
 
         });
+    }).catch((e)=>{
+        res.render('newCivilAdd.hbs', {
+            pageReturn: "1",
+            message:"Something went wrong. Please try again."
+
+        });
     });
+
+}
+else {
+    res.render('newCivilAdd.hbs', {
+        pageReturn: "1",
+        message: "The OTP you entered was incorrect!"
+    });
+    }
 
 
 });
-app.post('/queryAddedCivilAuth', function (req, res) {
+app.post('/queryAddedCivilAuth', authenticate, function (req, res) {
+    var otpNew = req.body.otp;
+    console.log(otpNew);
+    tokenValidates = speakeasy.totp.verify({
+        secret: secret.base32,
+        encoding: 'base32',
+        token: otpNew,
+        window: 6
+    });
+if(tokenValidates) {
+    req.body.validationCheck = 'true';
+}
+
+
     var dob = req.body.dob;
     if(req.body.age == undefined || req.body.age == "" || req.body.age == null){
 
@@ -247,7 +285,7 @@ app.post('/queryAddedCivilAuth', function (req, res) {
         state: req.body.state,
         pin: req.body.pin,
         mark: req.body.mark,
-        validationCheck : req.body.validationCheck
+        validationCheck :  req.body.validationCheck
     });
 
     newCivilian.save().then((doc)=>{
@@ -352,21 +390,6 @@ app.get('/getOTP1/:mobile', (req,res)=>{
     console.log(url);
     res.send({'message':'OTP sending'});
 });
-
-
-app.get('/checkOTP/:otp', (req,res)=>{
-    var otpNew = req.params.otp;
-    console.log(otpNew);
-    tokenValidates = speakeasy.totp.verify({
-        secret: secret.base32,
-        encoding: 'base32',
-        token: otpNew,
-        window: 6
-    });
-
-    res.send(tokenValidates);
-});
-
 
 
 

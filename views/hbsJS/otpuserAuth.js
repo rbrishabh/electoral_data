@@ -1,5 +1,4 @@
 document.getElementById('otp').disabled = true;
-document.getElementById('otpbtn').disabled = true;
 document.getElementById('otherOcc').disabled = true;
 document.getElementById('relationLast').disabled = true;
 document.getElementById('relationMiddle').disabled = true;
@@ -69,42 +68,11 @@ function sendOTPNow(value) {
         document.getElementById('otpbutton').disabled = true;
         document.getElementById('otp').disabled = false;
         document.getElementById('otpbtn').disabled = false;
+        $("#mobile").prop("readonly", true);
 
         setTimeout("document.getElementById('otpbutton').disabled = false;", 60000);
 
 
     }
     ourRequest.send();
-}
-
-function validateOTP(value) {
-    var url = 'https://safe-dawn-33571.herokuapp.com/checkOTP/' + value;
-    var ourRequest = new XMLHttpRequest();
-    ourRequest.open('GET', url, true);
-    ourRequest.onload = function () {
-        var bool = ourRequest.responseText;
-        console.log(bool)
-
-        otpVerify(bool);
-
-    }
-    ourRequest.send();
-}
-
-function otpVerify(boolean) {
-    if(boolean === 'true'){
-        console.log('if running!')
-
-        document.getElementById("otp").disabled = true;
-        document.getElementById("otpbtn").disabled = true;
-        document.getElementById("otpbutton").disabled = true;
-        $("#mobile").prop("readonly", true);
-        document.getElementById('otperror').style.display = "none"
-        $("#validaitonCheck").val('true');
-    }
-    else{
-        document.getElementById('otperror').style.display = "block"
-
-    }
-
 }
