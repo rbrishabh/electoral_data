@@ -83,97 +83,34 @@ app.get('/querySearch',authenticate,(req,res)=> {
 
 
 app.post('/queryAddedCivil', function (req, res) {
-    var dob = req.body.dob;
     console.log(req.body.otp)
 
     var otpNew = req.body.otp;
     console.log(otpNew);
-    tokenValidates = speakeasy.totp.verify({
-        secret: secret.base32,
-        encoding: 'base32',
-        token: otpNew,
-        window: 6
-    });
+    if(req.body.otp){
+        tokenValidates = speakeasy.totp.verify({
+            secret: secret.base32,
+            encoding: 'base32',
+            token: otpNew,
+            window: 6
+        });
+    }
 
-
+    var dob = req.body.dob;
     if(req.body.age == undefined || req.body.age == "" || req.body.age == null){
-        try {
 
-            handleDOBChanged(dob)
-        }
-        catch (e) {
-            console.log(e);
-        }
-        function handleDOBChanged(date) {
-
-
-             age = calculateAge(parseDate(date), new Date());
-
-
-        }
-
-//convert the date string in the format of dd/mm/yyyy into a JS date object
-        function parseDate(dateStr) {
-            var dateParts = dateStr.split("/");
-            return new Date(dateParts[2], (dateParts[1] - 1), dateParts[0]);
-        }
-
-//is valid date format
-        function calculateAge (dateOfBirth, dateToCalculate) {
-            var calculateYear = dateToCalculate.getFullYear();
-            var calculateMonth = dateToCalculate.getMonth();
-            var calculateDay = dateToCalculate.getDate();
-
-            var birthYear = dateOfBirth.getFullYear();
-            var birthMonth = dateOfBirth.getMonth();
-            var birthDay = dateOfBirth.getDate();
-
-            var age = calculateYear - birthYear;
-            var ageMonth = calculateMonth - birthMonth;
-            var ageDay = calculateDay - birthDay;
-
-            if (ageMonth < 0 || (ageMonth == 0 && ageDay < 0)) {
-                age = parseInt(age) - 1;
-            }
-            return age;
-        }
-
-        function isDate(txtDate) {
-            var currVal = txtDate;
-            if (currVal == '')
-                return true;
-
-            //Declare Regex
-            var rxDatePattern = /^(\d{1,2})(\/|-)(\d{1,2})(\/|-)(\d{4})$/;
-            var dtArray = currVal.match(rxDatePattern); // is format OK?
-
-            if (dtArray == null)
-                return false;
-
-            //Checks for dd/mm/yyyy format.
-            var dtDay = dtArray[1];
-            var dtMonth = dtArray[3];
-            var dtYear = dtArray[5];
-
-            if (dtMonth < 1 || dtMonth > 12)
-                return false;
-            else if (dtDay < 1 || dtDay > 31)
-                return false;
-            else if ((dtMonth == 4 || dtMonth == 6 || dtMonth == 9 || dtMonth == 11) && dtDay == 31)
-                return false;
-            else if (dtMonth == 2) {
-                var isleap = (dtYear % 4 == 0 && (dtYear % 100 != 0 || dtYear % 400 == 0));
-                if (dtDay > 29 || (dtDay == 29 && !isleap))
-                    return false;
-            }
-
-            return true;
-        }
-
+        var date = new Date(dob).getDate()
+        var month = new Date(dob).getMonth();
+        var year = new Date(dob).getFullYear();
+        var newDate = "";
+        newDate = year +'-' + (month+1) + '-' + date;
+        var age = getAge(newDate)
     }
     else {
         age = req.body.age;
     }
+
+
 if(tokenValidates) {
     var newCivilian = new civilian({
         title : req.body.title,
@@ -235,15 +172,20 @@ else {
 app.post('/queryAddedCivilAuth', authenticate, function (req, res) {
     var otpNew = req.body.otp;
     console.log(otpNew);
+
+if(req.body.otp){
     tokenValidates = speakeasy.totp.verify({
         secret: secret.base32,
         encoding: 'base32',
         token: otpNew,
         window: 6
     });
-if(tokenValidates) {
-    req.body.validationCheck = 'true';
+    if(tokenValidates) {
+        req.body.validationCheck = 'true';
+    }
 }
+
+
 
 
     var dob = req.body.dob;
