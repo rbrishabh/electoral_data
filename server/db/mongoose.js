@@ -11,4 +11,5 @@ db.once('open', function () {
 mongoose.Promise = global.Promise;
 mongoose.connect(database);
 
+
 module.exports = {mongoose,db};
