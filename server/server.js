@@ -57,7 +57,7 @@ app.get('/superAdmin',authenticate,(req,res)=> {
     })
 });
 
-app.get('/registration',authenticated,(req,res)=> {
+app.get('/registrationElectoral',authenticated,(req,res)=> {
     res.render('registration.hbs', {
         pageTitle : "registration page"
     })
@@ -666,7 +666,7 @@ app.post('/passwordChanged',authenticate, (req,res)=>{
 
 });
 
-app.post('/registrationS', authenticated , (req, res) => {
+app.post('/registrationElectoralData' , (req, res) => {
     var body = _.pick(req.body, ['email', 'password', 'name', 'mobile','age','gender','mark', 'occupation','state','district','block','village','notes']);
     var user = new Users(body);
 
