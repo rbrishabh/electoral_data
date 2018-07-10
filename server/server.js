@@ -57,7 +57,8 @@ app.get('/superAdmin',authenticate,(req,res)=> {
     })
 });
 
-app.get('/registrationElectoral',authenticated,(req,res)=> {
+app.get('/registrationElectoral'
+    ,(req,res)=> {
     res.render('registration.hbs', {
         pageTitle : "registration page"
     })
