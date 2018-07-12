@@ -265,7 +265,11 @@ app.get('/getNumber/:email', (req,res)=>{
             encoding: 'base32'
         });
         var url = 'http://bhashsms.com/api/sendmsg.php?user=genesissms&pass=123456&sender=GENSIS&phone=' + mobileNumber.number + '&text=' + token + ' is your One Time Password for authenticating Electoral System.&priority=ndnd&stype=normal'
-        request(url);
+        request({url:url}, (error, response, body)=>{
+            if(error) {
+
+            }
+        });
         console.log(url);
         res.send({'message':'OTP sending'});
     },
@@ -288,8 +292,11 @@ app.get('/message', (req,res)=>{
     }
     for( var x in arr1){
         var url = 'http://bhashsms.com/api/sendmsg.php?user=genesissms&pass=123456&sender=GENSIS&phone=' + arr1[x][0] + '&text=' + arr1[x][1] +' '+ arr1[x][2] +' '+ arr1[x][3] + '%0D%0A'+ message +'&priority=ndnd&stype=normal'
-        request(url);
-        console.log(url)
+        request({url:url}, (error, response, body)=>{
+            if(error) {
+
+            }
+        });        console.log(url)
     }
 
 
@@ -329,8 +336,11 @@ app.get('/getOTP1/:mobile', (req,res)=>{
         encoding: 'base32'
     });
     var url = 'http://bhashsms.com/api/sendmsg.php?user=genesissms&pass=123456&sender=GENSIS&phone=' + mobile + '&text=' + token + ' is your One Time Password for authenticating Electoral System.&priority=ndnd&stype=normal'
-    request(url);
-    console.log(url);
+    request({url:url}, (error, response, body)=>{
+        if(error) {
+
+        }
+    });    console.log(url);
     res.send({'message':'OTP sending'});
 });
 
