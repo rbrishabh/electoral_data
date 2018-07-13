@@ -605,7 +605,7 @@ app.get('/state/:state', (req,res)=>{
 
    console.log(req.params.state);
     var state = req.params.state;
-    address.distinct("district",{state:state}).then((address)=>{
+    address.distinct("district",{state:state}).sort({district:1}).then((address)=>{
         if(!address){
             res.send();
         } else {
