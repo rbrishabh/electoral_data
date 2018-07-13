@@ -1,7 +1,7 @@
 xlsxj = require("xlsx-to-json");
 xlsxj({
-    input: "chamoli.xlsx",
-    output: "chamoli output 2.json"
+    input: "data2.xlsx",
+    output: "DATA-2.json"
 }, function(err, result) {
     if(err) {
         console.error(err);

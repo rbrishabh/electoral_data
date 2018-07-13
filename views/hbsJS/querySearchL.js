@@ -22,7 +22,7 @@ console.log(village)
     if(village==="" || village == null){
        village="00"
     }
-    var url = 'https://safe-dawn-33571.herokuapp.com/initialSearch/state/' + state + '/district/' + district + '/block/' + block + '/village/' + village;
+    var url = 'http://localhost:80/initialSearch/state/' + state + '/district/' + district + '/block/' + block + '/village/' + village;
 console.log(url)
     var ourRequest = new XMLHttpRequest();
     ourRequest.open('GET', url, true);
@@ -99,7 +99,7 @@ function querySearch(state, district, block, village, pin, firstName, middleName
     if(mark==="" || mark == null){
         mark = "00"
     }
-    var url = 'https://safe-dawn-33571.herokuapp.com/buttonSearch/' + state + '/' + district + '/' + block + '/' + village + '/' + pin + '/' + firstName + '/' + middleName + '/' + lastName + '/' + relationName + '/' + relationMiddle + '/' + relationLast + '/' + minage + '/' + maxage + '/' + occ + '/' + occother + '/' + mobile + '/' + email + '/' + gender + '/' + mark;
+    var url = 'http://localhost:80/buttonSearch/' + state + '/' + district + '/' + block + '/' + village + '/' + pin + '/' + firstName + '/' + middleName + '/' + lastName + '/' + relationName + '/' + relationMiddle + '/' + relationLast + '/' + minage + '/' + maxage + '/' + occ + '/' + occother + '/' + mobile + '/' + email + '/' + gender + '/' + mark;
     console.log(url)
     var ourRequest = new XMLHttpRequest();
     ourRequest.open('GET', url, true);
@@ -243,7 +243,69 @@ i=1;
 
         + "</b></tr>"
     for (var x in printData.civilian) {
-
+if(printData.civilian[x].name== undefined){
+    printData.civilian[x].name ="";
+}
+        if(printData.civilian[x].middleName== undefined){
+            printData.civilian[x].middleName ="";
+        }
+        if(printData.civilian[x].lastName== undefined){
+            printData.civilian[x].lastName ="";
+        }
+        if(printData.civilian[x].relation== undefined){
+            printData.civilian[x].relation ="";
+        }
+        if(printData.civilian[x].relationName== undefined){
+            printData.civilian[x].relationName ="";
+        }
+        if(printData.civilian[x].relationMiddle== undefined){
+            printData.civilian[x].relationMiddle ="";
+        }
+        if(printData.civilian[x].relationLast== undefined){
+            printData.civilian[x].relationLast ="";
+        }
+        if(printData.civilian[x].mark== undefined){
+            printData.civilian[x].mark ="";
+        }
+        if(printData.civilian[x].age== undefined || printData.civilian[x].age== null){
+            printData.civilian[x].age ="";
+        }
+        if(printData.civilian[x].gender== undefined){
+            printData.civilian[x].gender ="";
+        }
+        if(printData.civilian[x].profession== undefined){
+            printData.civilian[x].profession ="";
+        }
+        if(printData.civilian[x].occother== undefined){
+            printData.civilian[x].occother ="";
+        }
+        if(printData.civilian[x].village== undefined){
+            printData.civilian[x].village ="";
+        }
+        if(printData.civilian[x].block== undefined){
+            printData.civilian[x].block ="";
+        }
+        if(printData.civilian[x].district== undefined){
+            printData.civilian[x].district ="";
+        }
+        if(printData.civilian[x].state== undefined){
+            printData.civilian[x].state ="";
+        }
+        if(printData.civilian[x].pin== undefined || printData.civilian[x].pin== null){
+            printData.civilian[x].pin ="";
+        }
+        if(printData.civilian[x].mobile== undefined || printData.civilian[x].mobile== null){
+            printData.civilian[x].mobile ="";
+        }
+        if(printData.civilian[x].secondMobile== undefined || printData.civilian[x].secondMobile== null){
+            printData.civilian[x].secondMobile ="";
+        }
+        if(printData.civilian[x].thirdMobile== undefined || printData.civilian[x].thirdMobile== null){
+            printData.civilian[x].thirdMobile ="";
+        }
+        if(printData.civilian[x].email== undefined){
+            printData.civilian[x].email ="";
+        }
         txt = txt + "<tr>"+ "<th>" + i + "</th>"
             +"<th>" + printData.civilian[x].name + "</th>"
             + "<th>" + printData.civilian[x].middleName + "</th>"
@@ -288,7 +350,7 @@ i=1;
                 });
                 var stringify = JSON.stringify(listInput)
                 var text = $('#comment').val();
-                var url = 'https://safe-dawn-33571.herokuapp.com/message?array='+listInput+'&message='+text;
+                var url = 'http://localhost:80/message?array='+listInput+'&message='+text;
                 console.log(url)
                 var ourRequest = new XMLHttpRequest();
                 ourRequest.open('GET', url, true);
