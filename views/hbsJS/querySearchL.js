@@ -22,7 +22,7 @@ console.log(village)
     if(village==="" || village == null){
        village="00"
     }
-    var url = 'http://localhost:80/initialSearch/state/' + state + '/district/' + district + '/block/' + block + '/village/' + village;
+    var url = 'https://safe-dawn-33571.herokuapp.com/initialSearch/state/' + state + '/district/' + district + '/block/' + block + '/village/' + village;
 console.log(url)
     var ourRequest = new XMLHttpRequest();
     ourRequest.open('GET', url, true);
@@ -99,7 +99,7 @@ function querySearch(state, district, block, village, pin, firstName, middleName
     if(mark==="" || mark == null){
         mark = "00"
     }
-    var url = 'http://localhost:80/buttonSearch/' + state + '/' + district + '/' + block + '/' + village + '/' + pin + '/' + firstName + '/' + middleName + '/' + lastName + '/' + relationName + '/' + relationMiddle + '/' + relationLast + '/' + minage + '/' + maxage + '/' + occ + '/' + occother + '/' + mobile + '/' + email + '/' + gender + '/' + mark;
+    var url = 'https://safe-dawn-33571.herokuapp.com/buttonSearch/' + state + '/' + district + '/' + block + '/' + village + '/' + pin + '/' + firstName + '/' + middleName + '/' + lastName + '/' + relationName + '/' + relationMiddle + '/' + relationLast + '/' + minage + '/' + maxage + '/' + occ + '/' + occother + '/' + mobile + '/' + email + '/' + gender + '/' + mark;
     console.log(url)
     var ourRequest = new XMLHttpRequest();
     ourRequest.open('GET', url, true);
@@ -350,7 +350,7 @@ if(printData.civilian[x].name== undefined){
                 });
                 var stringify = JSON.stringify(listInput)
                 var text = $('#comment').val();
-                var url = 'http://localhost:80/message?array='+listInput+'&message='+text;
+                var url = 'https://safe-dawn-33571.herokuapp.com/message?array='+listInput+'&message='+text;
                 console.log(url)
                 var ourRequest = new XMLHttpRequest();
                 ourRequest.open('GET', url, true);
