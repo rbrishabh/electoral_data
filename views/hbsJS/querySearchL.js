@@ -243,68 +243,76 @@ i=1;
 
         + "</b></tr>"
     for (var x in printData.civilian) {
+        
+        
+        for(var key in printData.civilian[x]){
+            if(!printData.civilian[x][key])
+                printData.civilian[x][key] = "-"
+        }
+        
+        
 if(printData.civilian[x].name== undefined){
-    printData.civilian[x].name ="";
+    printData.civilian[x].name ="-";
 }
         if(printData.civilian[x].middleName== undefined){
-            printData.civilian[x].middleName ="";
+            printData.civilian[x].middleName ="-";
         }
         if(printData.civilian[x].lastName== undefined){
-            printData.civilian[x].lastName ="";
+            printData.civilian[x].lastName ="-";
         }
         if(printData.civilian[x].relation== undefined){
-            printData.civilian[x].relation ="";
+            printData.civilian[x].relation ="-";
         }
         if(printData.civilian[x].relationName== undefined){
-            printData.civilian[x].relationName ="";
+            printData.civilian[x].relationName ="-";
         }
         if(printData.civilian[x].relationMiddle== undefined){
-            printData.civilian[x].relationMiddle ="";
+            printData.civilian[x].relationMiddle ="-";
         }
         if(printData.civilian[x].relationLast== undefined){
-            printData.civilian[x].relationLast ="";
+            printData.civilian[x].relationLast ="-";
         }
         if(printData.civilian[x].mark== undefined){
-            printData.civilian[x].mark ="";
+            printData.civilian[x].mark ="-";
         }
         if(printData.civilian[x].age== undefined || printData.civilian[x].age== null){
-            printData.civilian[x].age ="";
+            printData.civilian[x].age ="-";
         }
         if(printData.civilian[x].gender== undefined){
-            printData.civilian[x].gender ="";
+            printData.civilian[x].gender ="-";
         }
         if(printData.civilian[x].profession== undefined){
-            printData.civilian[x].profession ="";
+            printData.civilian[x].profession ="-";
         }
         if(printData.civilian[x].occother== undefined){
-            printData.civilian[x].occother ="";
+            printData.civilian[x].occother ="-";
         }
         if(printData.civilian[x].village== undefined){
-            printData.civilian[x].village ="";
+            printData.civilian[x].village ="-";
         }
         if(printData.civilian[x].block== undefined){
-            printData.civilian[x].block ="";
+            printData.civilian[x].block ="-";
         }
         if(printData.civilian[x].district== undefined){
-            printData.civilian[x].district ="";
+            printData.civilian[x].district ="-";
         }
         if(printData.civilian[x].state== undefined){
-            printData.civilian[x].state ="";
+            printData.civilian[x].state ="-";
         }
         if(printData.civilian[x].pin== undefined || printData.civilian[x].pin== null){
-            printData.civilian[x].pin ="";
+            printData.civilian[x].pin ="-";
         }
         if(printData.civilian[x].mobile== undefined || printData.civilian[x].mobile== null){
-            printData.civilian[x].mobile ="";
+            printData.civilian[x].mobile ="-";
         }
         if(printData.civilian[x].secondMobile== undefined || printData.civilian[x].secondMobile== null){
-            printData.civilian[x].secondMobile ="";
+            printData.civilian[x].secondMobile ="-";
         }
         if(printData.civilian[x].thirdMobile== undefined || printData.civilian[x].thirdMobile== null){
-            printData.civilian[x].thirdMobile ="";
+            printData.civilian[x].thirdMobile ="-";
         }
         if(printData.civilian[x].email== undefined){
-            printData.civilian[x].email ="";
+            printData.civilian[x].email ="-";
         }
         txt = txt + "<tr>"+ "<th>" + i + "</th>"
             +"<th>" + printData.civilian[x].name + "</th>"

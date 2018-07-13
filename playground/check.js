@@ -27,11 +27,19 @@ var {address} = require('./../server/models/address');
 //     res.status(400).send(e);
 // });
 
-address.distinct("Block",{state:'Uttarakhand', district:'Nainital'}).then((address)=>{
-    if(!address){
-    } else {
-        console.log(address)
-    }
-},(e)=>{
-}).catch((e)=>{
-});
+// address.distinct("Block",{state:'Uttarakhand', district:'Nainital'}).then((address)=>{
+//     if(!address){
+//     } else {
+//         console.log(address)
+//     }
+// },(e)=>{
+// }).catch((e)=>{
+// });
+
+address.aggregate([
+    { $sort : { district : 1 } },
+    { $group : { s:"Nainital" }}
+]).then((address)=>{
+console.log(address)
+}
+);
