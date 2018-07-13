@@ -1,5 +1,6 @@
 $(document).ready(function() {
-    var url = 'https://safe-dawn-33571.herokuapp.com/state/Uttarakhand';
+    var valueState = $("#state option:selected").val();
+    var url = 'https://safe-dawn-33571.herokuapp.com/state/'+valueState;
 
     var ourRequest = new XMLHttpRequest();
     ourRequest.open('GET',url, true);
@@ -15,7 +16,10 @@ $(document).ready(function() {
 
 
 
-function getBlock(valueDistrict, valueState) {
+function getBlock() {
+var valueState = $("#state option:selected").val();
+var valueDistrict = $("#district option:selected").text();
+console.log(valueDistrict)
     var url = 'https://safe-dawn-33571.herokuapp.com/district/' + valueDistrict+'/state/'+valueState;
     var ourRequest = new XMLHttpRequest();
     ourRequest.open('GET',url, true);
@@ -27,7 +31,11 @@ function getBlock(valueDistrict, valueState) {
     ourRequest.send();
 
 }
-function getVillage(valueDistrict, valueState, valueBlock) {
+function getVillage() {
+    var valueState = $("#state option:selected").val();
+    var valueDistrict = $("#district option:selected").text();
+    var valueBlock = $("#block option:selected").text();
+
     var url = 'https://safe-dawn-33571.herokuapp.com/district/' + valueDistrict+'/state/'+valueState+'/block/'+valueBlock;
     var ourRequest = new XMLHttpRequest();
     ourRequest.open('GET',url, true);
@@ -42,9 +50,9 @@ function getVillage(valueDistrict, valueState, valueBlock) {
 function addDataToDropdown(data) {
     text = "";
 
-    text = '<option value="" selected"></option>'
+    text = '<option selected"></option>'
     for(var x in data){
-        text = text + '<option value='+data[x]+'>'+data[x]+'</option>'
+        text = text + '<option>'+data[x]+'</option>'
     }
     document.getElementById("district").innerHTML = text
 
@@ -52,9 +60,9 @@ function addDataToDropdown(data) {
 function addDataToDropdownBlock(data) {
     text = "";
 
-    text = '<option value="" selected"></option>'
+    text = '<option selected"></option>'
     for(var x in data){
-        text = text + '<option value='+data[x]+'>'+data[x]+'</option>'
+        text = text + '<option>'+data[x]+'</option>'
     }
     document.getElementById("block").innerHTML = text
 
@@ -63,9 +71,9 @@ function addDataToDropdownBlock(data) {
 function addDataToDropdownVillage(data) {
     text = "";
 
-    text = '<option value="" selected"></option>'
+    text = '<option selected"></option>'
     for(var x in data){
-        text = text + '<option value='+data[x]+'>'+data[x]+'</option>'
+        text = text + '<option>'+data[x]+'</option>'
     }
     document.getElementById("village").innerHTML = text
 

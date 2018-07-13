@@ -23,7 +23,8 @@
     "mongoose": "^4.5.9",
     "request": "^2.87.0",
     "speakeasy": "^2.0.0",
-    "validator": "^10.4.0"
+    "validator": "^10.4.0",
+    "xlsx-to-json": "^0.3.0"
   },
   "devDependencies": {
     "nodemon": "^1.17.5"
