@@ -5,9 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="08b0d45d-fc30-493e-b719-7478e6d82225" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/views/hbsJS/otpForOther.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/hbsJS/otpForOther.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/hbsJS/otpUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/hbsJS/otpUser.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/hbsJS/otpuserAuth.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/hbsJS/otpuserAuth.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/newCivilAdd.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/newCivilAdd.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/queryAdd.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/queryAdd.hbs" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -39,16 +39,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="otpForOther.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/hbsJS/otpForOther.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1425">
-              <caret line="75" lean-forward="true" selection-start-line="75" selection-end-line="75" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="queryAdd.hbs" pinned="false" current-in-tab="true">
+      <file leaf-file-name="queryAdd.hbs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/queryAdd.hbs">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="133">
@@ -75,17 +66,17 @@
       <file leaf-file-name="otpuserAuth.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/hbsJS/otpuserAuth.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="69" selection-start-line="69" selection-end-line="69" />
+            <state relative-caret-position="323">
+              <caret line="157" selection-start-line="157" selection-end-line="157" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="otpUser.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="otpUser.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/hbsJS/otpUser.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1102">
-              <caret line="58" column="38" selection-start-line="58" selection-start-column="38" selection-end-line="58" selection-end-column="38" />
+            <state relative-caret-position="266">
+              <caret line="154" lean-forward="true" selection-start-line="154" selection-end-line="154" />
             </state>
           </provider>
         </entry>
@@ -130,9 +121,9 @@
       <find>http</find>
       <find>local</find>
       <find>http://localhost:80/</find>
-      <find>safe-dawn-33571</find>
       <find>otpbtn</find>
       <find>otpbutton2</find>
+      <find>safe-dawn-33571</find>
     </findStrings>
     <replaceStrings>
       <replace>onchange=&quot;showCivilian(value,this.id</replace>
@@ -202,12 +193,12 @@
         <option value="$PROJECT_DIR$/views/querySearchNew.hbs" />
         <option value="$PROJECT_DIR$/views/hbsJS/querySearchL.js" />
         <option value="$PROJECT_DIR$/views/hbsJS/address.js" />
-        <option value="$PROJECT_DIR$/views/hbsJS/otpUser.js" />
         <option value="$PROJECT_DIR$/views/hbsJS/otp.js" />
-        <option value="$PROJECT_DIR$/views/hbsJS/otpForOther.js" />
-        <option value="$PROJECT_DIR$/views/hbsJS/otpuserAuth.js" />
         <option value="$PROJECT_DIR$/views/queryAdd.hbs" />
         <option value="$PROJECT_DIR$/views/newCivilAdd.hbs" />
+        <option value="$PROJECT_DIR$/views/hbsJS/otpForOther.js" />
+        <option value="$PROJECT_DIR$/views/hbsJS/otpuserAuth.js" />
+        <option value="$PROJECT_DIR$/views/hbsJS/otpUser.js" />
       </list>
     </option>
   </component>
@@ -376,12 +367,12 @@
       <workItem from="1531394228602" duration="3912000" />
       <workItem from="1531459690711" duration="2264000" />
       <workItem from="1531462129303" duration="12301000" />
-      <workItem from="1531562149737" duration="2986000" />
+      <workItem from="1531562149737" duration="3149000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="403925000" />
+    <option name="totallyTimeSpent" value="404088000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -663,13 +654,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/hbsJS/address.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-38">
-          <caret line="38" column="38" selection-start-line="38" selection-start-column="38" selection-end-line="38" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/hbsJS/otp.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-13">
@@ -681,13 +665,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="328">
           <caret line="276" column="41" lean-forward="true" selection-start-line="276" selection-start-column="41" selection-end-line="276" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/hbsJS/otpUser.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1102">
-          <caret line="58" column="38" selection-start-line="58" selection-start-column="38" selection-end-line="58" selection-end-column="38" />
         </state>
       </provider>
     </entry>
@@ -704,17 +681,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/hbsJS/otpForOther.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1425">
-          <caret line="75" lean-forward="true" selection-start-line="75" selection-end-line="75" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/hbsJS/otpuserAuth.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="69" selection-start-line="69" selection-end-line="69" />
+        <state relative-caret-position="323">
+          <caret line="157" selection-start-line="157" selection-end-line="157" />
         </state>
       </provider>
     </entry>
@@ -722,6 +692,23 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
           <caret line="201" column="82" selection-start-line="201" selection-start-column="82" selection-end-line="201" selection-end-column="82" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/hbsJS/otpForOther.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/hbsJS/address.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-38">
+          <caret line="38" column="38" selection-start-line="38" selection-start-column="38" selection-end-line="38" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/hbsJS/otpUser.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="154" lean-forward="true" selection-start-line="154" selection-end-line="154" />
         </state>
       </provider>
     </entry>
