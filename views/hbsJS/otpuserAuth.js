@@ -67,7 +67,6 @@ function sendOTPNow(value) {
         console.log(otpR);
         document.getElementById('otpbutton').disabled = true;
         document.getElementById('otp').disabled = false;
-        document.getElementById('otpbtn').disabled = false;
         $("#mobile").prop("readonly", true);
 
         setTimeout("document.getElementById('otpbutton').disabled = false;", 60000);

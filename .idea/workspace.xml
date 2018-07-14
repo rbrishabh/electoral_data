@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="08b0d45d-fc30-493e-b719-7478e6d82225" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/views/hbsJS/otpuserAuth.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/hbsJS/otpuserAuth.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/newCivilAdd.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/newCivilAdd.hbs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/queryAdd.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/queryAdd.hbs" afterDir="false" />
     </list>
@@ -47,20 +48,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="queryAdd.hbs" pinned="false" current-in-tab="false">
+      <file leaf-file-name="queryAdd.hbs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/queryAdd.hbs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1398">
-              <caret line="279" column="30" lean-forward="true" selection-start-line="279" selection-start-column="30" selection-end-line="279" selection-end-column="30" />
+            <state relative-caret-position="133">
+              <caret line="201" column="82" selection-start-line="201" selection-start-column="82" selection-end-line="201" selection-end-column="82" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="newCivilAdd.hbs" pinned="false" current-in-tab="true">
+      <file leaf-file-name="newCivilAdd.hbs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/newCivilAdd.hbs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="252" column="58" selection-start-line="252" selection-start-column="58" selection-end-line="252" selection-end-column="58" />
+            <state relative-caret-position="57">
+              <caret line="235" column="102" selection-start-line="235" selection-start-column="102" selection-end-line="235" selection-end-column="102" />
               <folding>
                 <element signature="n#style#0;n#div#2;n#div#0;n#div#2;n#div#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#input#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#div#2;n#div#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -74,8 +75,8 @@
       <file leaf-file-name="otpuserAuth.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/hbsJS/otpuserAuth.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret lean-forward="true" />
+            <state relative-caret-position="209">
+              <caret line="69" selection-start-line="69" selection-end-line="69" />
             </state>
           </provider>
         </entry>
@@ -201,10 +202,10 @@
         <option value="$PROJECT_DIR$/views/querySearchNew.hbs" />
         <option value="$PROJECT_DIR$/views/hbsJS/querySearchL.js" />
         <option value="$PROJECT_DIR$/views/hbsJS/address.js" />
-        <option value="$PROJECT_DIR$/views/hbsJS/otpuserAuth.js" />
         <option value="$PROJECT_DIR$/views/hbsJS/otpUser.js" />
         <option value="$PROJECT_DIR$/views/hbsJS/otp.js" />
         <option value="$PROJECT_DIR$/views/hbsJS/otpForOther.js" />
+        <option value="$PROJECT_DIR$/views/hbsJS/otpuserAuth.js" />
         <option value="$PROJECT_DIR$/views/queryAdd.hbs" />
         <option value="$PROJECT_DIR$/views/newCivilAdd.hbs" />
       </list>
@@ -375,12 +376,12 @@
       <workItem from="1531394228602" duration="3912000" />
       <workItem from="1531459690711" duration="2264000" />
       <workItem from="1531462129303" duration="12301000" />
-      <workItem from="1531562149737" duration="2518000" />
+      <workItem from="1531562149737" duration="2986000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="403457000" />
+    <option name="totallyTimeSpent" value="403925000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -395,14 +396,14 @@
     <frame x="-8" y="-8" width="1376" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.8057554" visible="true" weight="0.16890882" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.8057554" visible="true" weight="0.16890882" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32838285" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32838285" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32838285" />
       <window_info id="Structure" order="1" sideWeight="0.19424461" side_tool="true" weight="0.15695067" />
-      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.3250825" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.3250825" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -690,10 +691,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/hbsJS/otpuserAuth.js">
+    <entry file="file://$PROJECT_DIR$/views/newCivilAdd.hbs">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret lean-forward="true" />
+        <state relative-caret-position="57">
+          <caret line="235" column="102" selection-start-line="235" selection-start-column="102" selection-end-line="235" selection-end-column="102" />
+          <folding>
+            <element signature="n#style#0;n#div#2;n#div#0;n#div#2;n#div#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#div#2;n#div#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#3;n#div#0;n#div#2;n#div#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#1;n#div#0;n#div#0;n#div#3;n#div#0;n#div#2;n#div#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -704,23 +711,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/queryAdd.hbs">
+    <entry file="file://$PROJECT_DIR$/views/hbsJS/otpuserAuth.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1398">
-          <caret line="279" column="30" lean-forward="true" selection-start-line="279" selection-start-column="30" selection-end-line="279" selection-end-column="30" />
+        <state relative-caret-position="209">
+          <caret line="69" selection-start-line="69" selection-end-line="69" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/newCivilAdd.hbs">
+    <entry file="file://$PROJECT_DIR$/views/queryAdd.hbs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="252" column="58" selection-start-line="252" selection-start-column="58" selection-end-line="252" selection-end-column="58" />
-          <folding>
-            <element signature="n#style#0;n#div#2;n#div#0;n#div#2;n#div#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#div#2;n#div#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#3;n#div#0;n#div#2;n#div#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#div#1;n#div#0;n#div#0;n#div#3;n#div#0;n#div#2;n#div#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="133">
+          <caret line="201" column="82" selection-start-line="201" selection-start-column="82" selection-end-line="201" selection-end-column="82" />
         </state>
       </provider>
     </entry>
