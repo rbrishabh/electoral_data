@@ -1,6 +1,6 @@
 $(document).ready(function() {
     var valueState = $("#state option:selected").val();
-    var url = 'https://safe-dawn-33571.herokuapp.com/state/'+valueState;
+    var url = 'https://ems-data.herokuapp.com/state/'+valueState;
 
     var ourRequest = new XMLHttpRequest();
     ourRequest.open('GET',url, true);
@@ -20,7 +20,7 @@ function getBlock() {
 var valueState = $("#state option:selected").val();
 var valueDistrict = $("#district option:selected").text();
 console.log(valueDistrict)
-    var url = 'https://safe-dawn-33571.herokuapp.com/district/' + valueDistrict+'/state/'+valueState;
+    var url = 'https://ems-data.herokuapp.com/district/' + valueDistrict+'/state/'+valueState;
     var ourRequest = new XMLHttpRequest();
     ourRequest.open('GET',url, true);
     ourRequest.onload = function() {
@@ -36,7 +36,7 @@ function getVillage() {
     var valueDistrict = $("#district option:selected").text();
     var valueBlock = $("#block option:selected").text();
 
-    var url = 'https://safe-dawn-33571.herokuapp.com/district/' + valueDistrict+'/state/'+valueState+'/block/'+valueBlock;
+    var url = 'https://ems-data.herokuapp.com/district/' + valueDistrict+'/state/'+valueState+'/block/'+valueBlock;
     var ourRequest = new XMLHttpRequest();
     ourRequest.open('GET',url, true);
     ourRequest.onload = function() {
