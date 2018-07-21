@@ -32,7 +32,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 
 app.use(cors({
-    origin: 'https://ems-data.herokuapp.com'
+    origin: 'https://ems-data.herokuapp.com/*/*/*/*/*/*/*/*/*'
 }));
 
 app.use(session({
