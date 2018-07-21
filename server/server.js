@@ -355,6 +355,8 @@ console.log(email);
     if(password){
         Users.findByCredentials(email, password).then((user) => {
             req.session.userId = user._id;
+            console.log(user._id, '23123');
+
             res.redirect('/querySearch')
         }).catch((e) => {
             res.render('login.hbs', {
@@ -378,6 +380,8 @@ console.log(email);
             }).then((user) => {
                 console.log('user',user);
                 req.session.userId = user[0]._id;
+                console.log(user[0]._id, 'otp sgn in');
+
                 res.redirect('/querySearch')
             }).catch((e) => {
                 res.render('login.hbs', {
@@ -473,7 +477,7 @@ app.get('/querysearch9/:state', (req,res)=>{
 
 });
 
-app.get('/initialSearch/state/:state/district/:district/block/:block/village/:village', (req,res)=>{
+app.get('/initialSearch/state/:state/district/:district/block/:block/village/:village', authenticate, (req,res)=>{
  console.log('reached here');
  var query = {};
 
@@ -506,7 +510,7 @@ app.get('/initialSearch/state/:state/district/:district/block/:block/village/:vi
 
 });
 
-app.get('/buttonSearch/:state/:district/:block/:village/:pin/:firstName/:middleName/:lastName/:relationName/:relationMiddle/:relationLast/:minage/:maxage/:occ/:occother/:mobile/:email/:gender/:mark', (req,res)=>{
+app.get('/buttonSearch/:state/:district/:block/:village/:pin/:firstName/:middleName/:lastName/:relationName/:relationMiddle/:relationLast/:minage/:maxage/:occ/:occother/:mobile/:email/:gender/:mark',authenticate, (req,res)=>{
     console.log('search botton reached server');
     var query = {};
     var age = {};

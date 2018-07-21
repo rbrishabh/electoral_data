@@ -34,6 +34,8 @@ console.log(url)
         mainObj = ourData;
 
     }
+    ourRequest.withCredentials = true;
+
     ourRequest.send();
 
 });
@@ -110,6 +112,8 @@ function querySearch(state, district, block, village, pin, firstName, middleName
         outputObj = ourData;
         mainObj = ourData;
     }
+    ourRequest.withCredentials = true;
+
     ourRequest.send();
 
 }
