@@ -31,9 +31,7 @@ app.use(express.static(__dirname+'./../views/hbsJS'));
 app.use(bodyParser.urlencoded({ extended: false }));
 
 
-app.use(cors({
-    origin: 'https://ems-data.herokuapp.com/initialSearch/state/Uttarakhand/district/00/block/00/village/00'
-}));
+app.use(cors);
 
 app.use(session({
     secret: 'work hard',

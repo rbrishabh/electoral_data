@@ -23,7 +23,7 @@ console.log(village)
        village="00"
     }
     var url = urlFinal + 'initialSearch/state/' + state + '/district/' + district + '/block/' + block + '/village/' + village;
-console.log(url)
+console.log(urlFinal)
     var ourRequest = new XMLHttpRequest();
     ourRequest.open('GET', url, true);
     ourRequest.onload = function () {
