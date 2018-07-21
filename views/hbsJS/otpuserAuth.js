@@ -38,7 +38,7 @@ jQuery(function ($) {
 
 
 function sendOTP(value) {
-    var urlCheckMobile = 'https://ems-data.herokuapp.com/checkMobile/' + value;
+    var urlCheckMobile = urlFinal+'checkMobile/' + value;
     var ourRequest = new XMLHttpRequest();
     ourRequest.open('GET', urlCheckMobile, true);
     ourRequest.onload = function () {
@@ -58,7 +58,7 @@ function sendOTP(value) {
 function sendOTPNow(value) {
     document.getElementById('wrongmobile').style.display = "none"
 
-    var url = 'https://ems-data.herokuapp.com/getOTP1/' + value;
+    var url = urlFinal+'getOTP1/' + value;
 
     var ourRequest = new XMLHttpRequest();
     ourRequest.open('GET', url, true);

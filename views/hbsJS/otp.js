@@ -18,7 +18,7 @@ function otpShow(value){
     if ($('#checkboxLogin').is(':checked')) {
 
 
-        var url = 'https://ems-data.herokuapp.com/getNumber/' + value;
+        var url = urlFinal+ 'getNumber/' + value;
 
         var ourRequest = new XMLHttpRequest();
         ourRequest.open('GET',url, true);

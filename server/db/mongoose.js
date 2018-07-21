@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const urlLocal = 'mongodb://localhost:27017/electoralDatabase';
-const database =  process.env.URI;
+const urlDeploy = process.env.URI;
+const database =  urlDeploy;
 var db = mongoose.connection;
 
 //handle mongo error

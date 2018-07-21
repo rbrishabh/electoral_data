@@ -22,7 +22,7 @@ console.log(village)
     if(village==="" || village == null){
        village="00"
     }
-    var url = 'https://ems-data.herokuapp.com/initialSearch/state/' + state + '/district/' + district + '/block/' + block + '/village/' + village;
+    var url = urlFinal + 'initialSearch/state/' + state + '/district/' + district + '/block/' + block + '/village/' + village;
 console.log(url)
     var ourRequest = new XMLHttpRequest();
     ourRequest.open('GET', url, true);
@@ -99,7 +99,7 @@ function querySearch(state, district, block, village, pin, firstName, middleName
     if(mark==="" || mark == null){
         mark = "00"
     }
-    var url = 'https://ems-data.herokuapp.com/buttonSearch/' + state + '/' + district + '/' + block + '/' + village + '/' + pin + '/' + firstName + '/' + middleName + '/' + lastName + '/' + relationName + '/' + relationMiddle + '/' + relationLast + '/' + minage + '/' + maxage + '/' + occ + '/' + occother + '/' + mobile + '/' + email + '/' + gender + '/' + mark;
+    var url = urlFinal +'buttonSearch/' + state + '/' + district + '/' + block + '/' + village + '/' + pin + '/' + firstName + '/' + middleName + '/' + lastName + '/' + relationName + '/' + relationMiddle + '/' + relationLast + '/' + minage + '/' + maxage + '/' + occ + '/' + occother + '/' + mobile + '/' + email + '/' + gender + '/' + mark;
     console.log(url)
     var ourRequest = new XMLHttpRequest();
     ourRequest.open('GET', url, true);
@@ -358,7 +358,7 @@ if(printData.civilian[x].name== undefined){
                 });
                 var stringify = JSON.stringify(listInput)
                 var text = $('#comment').val();
-                var url = 'https://ems-data.herokuapp.com/message?array='+listInput+'&message='+text;
+                var url = urlFinal + 'message?array='+listInput+'&message='+text;
                 console.log(url)
                 var ourRequest = new XMLHttpRequest();
                 ourRequest.open('GET', url, true);

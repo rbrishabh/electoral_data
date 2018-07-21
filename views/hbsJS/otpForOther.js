@@ -3,7 +3,7 @@ document.getElementById('otp3').disabled = true;
 
 
 function sendOTP1(value) {
-    var urlCheckMobile = 'https://ems-data.herokuapp.com/checkMobile/' + value;
+    var urlCheckMobile = urlFinal + 'checkMobile/' + value;
     var ourRequest = new XMLHttpRequest();
     ourRequest.open('GET', urlCheckMobile, true);
     ourRequest.onload = function () {
@@ -20,7 +20,7 @@ function sendOTP1(value) {
 
 }
 function sendOTP2(value) {
-    var urlCheckMobile = 'https://ems-data.herokuapp.com/checkMobile/' + value;
+    var urlCheckMobile = urlFinal+'checkMobile/' + value;
     var ourRequest = new XMLHttpRequest();
     ourRequest.open('GET', urlCheckMobile, true);
     ourRequest.onload = function () {
@@ -40,7 +40,7 @@ function sendOTP2(value) {
 function sendOTPNow1(value) {
     document.getElementById('wrongmobile').style.display = "none"
 
-    var url = 'https://ems-data.herokuapp.com/getOTP1/' + value;
+    var url = urlFinal + 'getOTP1/' + value;
 
     var ourRequest = new XMLHttpRequest();
     ourRequest.open('GET', url, true);
@@ -60,7 +60,7 @@ function sendOTPNow1(value) {
 function sendOTPNow2(value) {
     document.getElementById('wrongmobile').style.display = "none"
 
-    var url = 'https://ems-data.herokuapp.com/getOTP1/' + value;
+    var url = urlFinal+'getOTP1/' + value;
 
     var ourRequest = new XMLHttpRequest();
     ourRequest.open('GET', url, true);
