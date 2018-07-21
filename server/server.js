@@ -477,7 +477,7 @@ app.get('/querysearch9/:state', (req,res)=>{
 
 });
 
-app.get('/initialSearch/state/:state/district/:district/block/:block/village/:village', authenticate, (req,res)=>{
+app.get('/initialSearch/state/:state/district/:district/block/:block/village/:village', (req,res)=>{
  console.log('reached here');
  var query = {};
 
@@ -510,7 +510,7 @@ app.get('/initialSearch/state/:state/district/:district/block/:block/village/:vi
 
 });
 
-app.get('/buttonSearch/:state/:district/:block/:village/:pin/:firstName/:middleName/:lastName/:relationName/:relationMiddle/:relationLast/:minage/:maxage/:occ/:occother/:mobile/:email/:gender/:mark',authenticate, (req,res)=>{
+app.get('/buttonSearch/:state/:district/:block/:village/:pin/:firstName/:middleName/:lastName/:relationName/:relationMiddle/:relationLast/:minage/:maxage/:occ/:occother/:mobile/:email/:gender/:mark', (req,res)=>{
     console.log('search botton reached server');
     var query = {};
     var age = {};
