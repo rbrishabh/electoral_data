@@ -5,10 +5,11 @@ sortArray= {};
 i=1;
 ageSort = {};
 ageArray = [];
-start= 0;
-end = 20;
+
 
 $(document).ready(function() {
+    start= 0;
+    end = start+20;
    var state =  $("[name='state']").val()
    var district =  $("[name='district']").val()
    var block =  $("[name='block']").val()
@@ -108,7 +109,10 @@ function querySearch(state, district, block, village, pin, firstName, middleName
     ourRequest.onload = function () {
         var ourData = JSON.parse(ourRequest.responseText);
         console.log('button')
+        start= 0;
+        end = ourData.civilian.length;
         print(ourData);
+
         outputObj = ourData;
         mainObj = ourData;
     }
@@ -210,6 +214,8 @@ function sort(str,num) {
 
 
     outputObj.civilian = civilianData;
+    start= 0;
+    end = outputObj.civilian.length;
     print(outputObj);
 
 }
@@ -246,15 +252,15 @@ function print(printData) {
 
         + "</b></tr>"
 
-    for (var x = start ; x< end; x++) {
+    for (var x=start ;x < end; x++) {
 
-        
+
         for(var key in printData.civilian[x]){
             if(!printData.civilian[x][key])
                 printData.civilian[x][key] = "-"
         }
-        
-        
+
+
 if(printData.civilian[x].name== undefined){
     printData.civilian[x].name ="-";
 }
