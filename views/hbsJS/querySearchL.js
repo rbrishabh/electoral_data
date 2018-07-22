@@ -110,9 +110,15 @@ function querySearch(state, district, block, village, pin, firstName, middleName
         var ourData = JSON.parse(ourRequest.responseText);
         console.log('button')
         start= 0;
-        end = ourData.civilian.length;
-        print(ourData);
+        if(ourData.civilian.length>=20){
+            end = start + 20;
+            print(ourData);
+        }
+        else{
+            end = ourData.civilian.length;
+            print(ourData);
 
+        }
         outputObj = ourData;
         mainObj = ourData;
     }
@@ -215,8 +221,15 @@ function sort(str,num) {
 
     outputObj.civilian = civilianData;
     start= 0;
-    end = outputObj.civilian.length;
-    print(outputObj);
+    if(outputObj.civilian.length>=20){
+     end = start + 20;
+        print(outputObj);
+    }
+    else{
+        end = outputObj.civilian.length;
+        print(outputObj);
+
+    }
 
 }
 
