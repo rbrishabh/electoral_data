@@ -5,7 +5,8 @@ sortArray= {};
 i=1;
 ageSort = {};
 ageArray = [];
-
+start= 0;
+end = 20;
 
 $(document).ready(function() {
    var state =  $("[name='state']").val()
@@ -217,7 +218,7 @@ function sort(str,num) {
 
 
 function print(printData) {
-i=1;
+
     var txt = "<table class='table table-bordered' id='result' border='1'><tbody>" +
         "<tr>"+"<th>" + "<b>S No.</b>" + "</th>"+
         "<th>" + "<b>First Name</b>" + "</th>"
@@ -244,8 +245,9 @@ i=1;
         + "<th>" + "<b>Select</b>" + "</th>"
 
         + "</b></tr>"
-    for (var x in printData.civilian) {
-        
+
+    for (var x = start ; x< end; x++) {
+
         
         for(var key in printData.civilian[x]){
             if(!printData.civilian[x][key])
@@ -316,7 +318,7 @@ if(printData.civilian[x].name== undefined){
         if(printData.civilian[x].email== undefined){
             printData.civilian[x].email ="-";
         }
-        txt = txt + "<tr>"+ "<th>" + i + "</th>"
+        txt = txt + "<tr>"+ "<th>" + (x+1) + "</th>"
             +"<th>" + printData.civilian[x].name + "</th>"
             + "<th>" + printData.civilian[x].middleName + "</th>"
             +"<th>" + printData.civilian[x].lastName + "</th>"
@@ -347,7 +349,16 @@ if(printData.civilian[x].name== undefined){
 
     txt += "</tbody></table></div>"
     document.getElementById("opTable").innerHTML = txt;
-    document.getElementById("messageButton").innerHTML = '<button class="btn btn-success pull-right" data-toggle="modal" data-target="#myModal" id="msgbtn">Message</button>' +
+    document.getElementById("messageButton").innerHTML =
+
+
+'<ul class="pager">'+
+        '<li class="previous"><a onClick="prevIt();">Previous</a></li>'+
+   '<li class="next"><a onClick="nextIt();">Next</a></li>'+
+    '</ul>'
+        +
+
+        '<button class="btn btn-success pull-right" data-toggle="modal" data-target="#myModal" id="msgbtn">Message</button>' +
         '<button class="btn btn-success pull-right" onclick="printData()">Print</button>';
     $(document).ready(function () {
         var listInput = [];
@@ -370,6 +381,35 @@ if(printData.civilian[x].name== undefined){
             e.preventDefault();
         });
     });
+}
+
+function prevIt()
+{
+    if(start>0){
+
+        end = start
+        start -= 20;
+        console.log(end, start)
+        print(outputObj)
+    }
+}
+
+function nextIt()
+{
+    if(end+20<outputObj.civilian.length){
+        start = end;
+        end += 20;
+        console.log(end, start)
+       print(outputObj);
+    }
+else if(end!=outputObj.civilian.length){
+        console.log('else r')
+        start = end;
+        end = outputObj.civilian.length;
+        print(outputObj);
+        console.log(end, start)
+
+    }
 }
 
 function printData() {
