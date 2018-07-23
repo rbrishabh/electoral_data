@@ -626,7 +626,7 @@ app.get('/district/:district/state/:state', (req,res)=>{
     var state1 = req.params.state;
     var district1 = req.params.district;
     console.log(state1, district1);
-    address.distinct("Block",{district:district1,state:state1 }).then((address)=>{
+    address.distinct("block",{district:district1,state:state1 }).then((address)=>{
         if(!address){
             res.send();
         } else {
@@ -645,7 +645,7 @@ app.get('/district/:district/state/:state/block/:block', (req,res)=>{
     var district1 = req.params.district;
     var block1 = req.params.block;
     console.log(state1, district1, block1);
-    address.distinct("Village",{district:district1,state:state1, Block:block1 }).then((address)=>{
+    address.distinct("village",{district:district1,state:state1, block:block1 }).then((address)=>{
         if(!address){
             res.send();
         } else {

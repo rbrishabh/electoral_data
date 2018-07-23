@@ -6,7 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="08b0d45d-fc30-493e-b719-7478e6d82225" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/hbsJS/querySearchL.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/hbsJS/querySearchL.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/playground/convert.js" beforeDir="false" afterPath="$PROJECT_DIR$/playground/convert.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/server.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -20,20 +21,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="querySearchL.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/views/hbsJS/querySearchL.js">
+      <file leaf-file-name="maxlength.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/hbsJS/maxlength.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="113" column="8" selection-start-line="113" selection-start-column="8" selection-end-line="113" selection-end-column="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="querySearchNew.hbs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/querySearchNew.hbs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="554">
-              <caret line="346" column="61" selection-start-line="346" selection-start-column="61" selection-end-line="346" selection-end-column="61" />
+            <state relative-caret-position="285">
+              <caret line="9" column="26" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
+              <caret line="15" column="10" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -41,13 +34,13 @@
       <file leaf-file-name="mongoose.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/db/mongoose.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="36">
+            <state relative-caret-position="57">
               <caret line="3" column="27" selection-start-line="3" selection-start-column="27" selection-end-line="3" selection-end-column="27" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="configjs.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="configjs.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/hbsJS/configjs.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="57">
@@ -56,11 +49,69 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="otp.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/playground/otp.js">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file leaf-file-name="check.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/playground/check.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="209">
+              <caret line="11" column="22" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="final now.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../final now.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="349980">
+              <caret line="18420" column="39" selection-end-line="18458" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="bootstrap.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/hbsJS/bootstrap.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119909">
+              <caret line="6311" column="32" selection-start-line="6311" selection-start-column="32" selection-end-line="6311" selection-end-column="32" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="address.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/hbsJS/address.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="589">
+              <caret line="31" selection-start-line="31" selection-end-line="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="authenticate.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/middleware/authenticate.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="152">
+              <caret line="8" column="25" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="server.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/server.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="19">
+              <caret line="584" column="34" selection-start-line="584" selection-start-column="34" selection-end-line="584" selection-end-column="34" />
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>mobile</find>
       <find>n</find>
       <find>checkmo</find>
       <find>registration</find>
@@ -74,7 +125,6 @@
       <find>District</find>
       <find>&quot;district&quot;:&quot;Utta</find>
       <find>yamkes</find>
-      <find>},{</find>
       <find>https://safe-dawn-33571.herokuapp.com/</find>
       <find>http</find>
       <find>local</find>
@@ -90,6 +140,8 @@
       <find>block</find>
       <find>initialSearch</find>
       <find>doct</find>
+      <find>},{</find>
+      <find>Block</find>
     </findStrings>
     <replaceStrings>
       <replace>onchange=&quot;showCivilian(value,this.id</replace>
@@ -102,11 +154,12 @@
       <replace>Pauri</replace>
       <replace>Pauri Garhwal</replace>
       <replace>district</replace>
-      <replace>}{</replace>
       <replace>http://localhost:80/</replace>
       <replace>https://safe-dawn-33571.herokuapp.com/</replace>
       <replace>ems-data</replace>
       <replace>urlFinal</replace>
+      <replace>}{</replace>
+      <replace>block</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -115,11 +168,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/views/partials/inputtype.hbs" />
-        <option value="$PROJECT_DIR$/views/hbsJS/inputtype.css" />
-        <option value="$PROJECT_DIR$/views/partials/style.hbs" />
-        <option value="$PROJECT_DIR$/views/hbsJS/style.css" />
-        <option value="$PROJECT_DIR$/views/thankYou.hbs" />
         <option value="$PROJECT_DIR$/../new ui/add_data.html" />
         <option value="$PROJECT_DIR$/playground/dob.js" />
         <option value="$PROJECT_DIR$/server/models/address.js" />
@@ -144,7 +192,6 @@
         <option value="$PROJECT_DIR$/playground/yo.json" />
         <option value="$PROJECT_DIR$/complete.json" />
         <option value="$PROJECT_DIR$/complete1.json" />
-        <option value="$PROJECT_DIR$/playground/convert.js" />
         <option value="$PROJECT_DIR$/DATA-2.json" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/playground/check.js" />
@@ -161,11 +208,17 @@
         <option value="$PROJECT_DIR$/views/hbsJS/otpUser.js" />
         <option value="$PROJECT_DIR$/views/hbsJS/otpuserAuth.js" />
         <option value="$PROJECT_DIR$/views/hbsJS/address.js" />
-        <option value="$PROJECT_DIR$/server/server.js" />
         <option value="$PROJECT_DIR$/views/querySearchNew.hbs" />
+        <option value="$PROJECT_DIR$/views/hbsJS/querySearchL.js" />
+        <option value="$PROJECT_DIR$/neweer.json" />
+        <option value="$PROJECT_DIR$/playground/convert.js" />
+        <option value="$PROJECT_DIR$/newasasd.json" />
+        <option value="$PROJECT_DIR$/playground/updating database.js" />
+        <option value="$PROJECT_DIR$/../../final now.json" />
+        <option value="$PROJECT_DIR$/server/server.js" />
+        <option value="$PROJECT_DIR$/playground/update.js" />
         <option value="$PROJECT_DIR$/server/db/mongoose.js" />
         <option value="$PROJECT_DIR$/views/hbsJS/configjs.js" />
-        <option value="$PROJECT_DIR$/views/hbsJS/querySearchL.js" />
       </list>
     </option>
   </component>
@@ -184,8 +237,8 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="108" />
-    <option name="y" value="23" />
+    <option name="x" value="-139" />
+    <option name="y" value="43" />
     <option name="width" value="1340" />
     <option name="height" value="667" />
   </component>
@@ -206,6 +259,11 @@
             <path>
               <item name="electoral-data" type="b2602c69:ProjectViewProjectNode" />
               <item name="electoral-data" type="462c0819:PsiDirectoryNode" />
+              <item name="playground" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="electoral-data" type="b2602c69:ProjectViewProjectNode" />
+              <item name="electoral-data" type="462c0819:PsiDirectoryNode" />
               <item name="server" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -213,6 +271,12 @@
               <item name="electoral-data" type="462c0819:PsiDirectoryNode" />
               <item name="server" type="462c0819:PsiDirectoryNode" />
               <item name="db" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="electoral-data" type="b2602c69:ProjectViewProjectNode" />
+              <item name="electoral-data" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="middleware" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="electoral-data" type="b2602c69:ProjectViewProjectNode" />
@@ -234,7 +298,7 @@
   <component name="PropertiesComponent">
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://C:/Users/Rishabh/Desktop/Node completed/electoral-data/views/css/style.css" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../convert" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -334,12 +398,15 @@
       <workItem from="1532163888157" duration="5607000" />
       <workItem from="1532184828351" duration="3289000" />
       <workItem from="1532239734833" duration="7424000" />
-      <workItem from="1532261589839" duration="3205000" />
+      <workItem from="1532261589839" duration="3366000" />
+      <workItem from="1532320688503" duration="6825000" />
+      <workItem from="1532339152631" duration="3185000" />
+      <workItem from="1532342418386" duration="339000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="428940000" />
+    <option name="totallyTimeSpent" value="439450000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -354,14 +421,14 @@
     <frame x="-8" y="-8" width="1376" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.8057554" visible="true" weight="0.16890882" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.8057554" visible="true" weight="0.16890882" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32838285" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32838285" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32838285" />
       <window_info id="Structure" order="1" sideWeight="0.19424461" side_tool="true" weight="0.15695067" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.26567656" />
+      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.26567656" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -377,20 +444,20 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.8057554" visible="true" weight="0.16890882" />
       <window_info id="Structure" order="1" sideWeight="0.19424461" side_tool="true" weight="0.15695067" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32838285" />
+      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32838285" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32838285" />
       <window_info anchor="bottom" id="Inspection Results" order="11" weight="0.32838285" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.3250825" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32838285" />
-      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32838285" />
-      <window_info anchor="bottom" id="Message" order="0" />
       <window_info id="Favorites" order="2" side_tool="true" />
     </layout-to-restore>
   </component>
@@ -412,35 +479,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/views/hbsJS/bootstrap-datepicker.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-29">
-          <caret line="475" column="4" lean-forward="true" selection-start-line="475" selection-start-column="4" selection-end-line="475" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/models/civilian.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="817">
-          <caret line="43" column="20" selection-start-line="43" selection-start-column="14" selection-end-line="43" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/models/users.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="30" column="20" selection-start-line="30" selection-start-column="14" selection-end-line="30" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/playground/addresses.json" />
-    <entry file="file://$PROJECT_DIR$/server/models/address.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="13" column="19" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/playground/data1.json" />
     <entry file="file://$PROJECT_DIR$/Nainital output.json" />
     <entry file="file://$PROJECT_DIR$/output.json" />
@@ -454,13 +492,6 @@
     <entry file="file://$PROJECT_DIR$/complete1.json" />
     <entry file="file://$PROJECT_DIR$/complete.json" />
     <entry file="file://$PROJECT_DIR$/DATA-1.json" />
-    <entry file="file://$PROJECT_DIR$/playground/convert.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="10" column="3" selection-start-line="10" selection-start-column="3" selection-end-line="10" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -482,37 +513,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/playground/name.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/playground/dob.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" column="3" lean-forward="true" selection-start-line="2" selection-start-column="3" selection-end-line="6" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/playground/otp.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/playground/checkmobile.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="19">
           <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/playground/check.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="722">
-          <caret line="38" selection-start-line="38" selection-end-line="44" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/hbsJS/bootstrap.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9348">
-          <caret line="6311" column="32" selection-start-line="6311" selection-start-column="32" selection-end-line="6311" selection-end-column="32" />
         </state>
       </provider>
     </entry>
@@ -561,27 +565,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/hbsJS/materialkitjs.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="112" column="70" lean-forward="true" selection-start-line="112" selection-start-column="70" selection-end-line="112" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/hbsJS/maxlength.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" column="26" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/hbsJS/numeric.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2698">
-          <caret line="11" column="51" selection-start-line="11" selection-start-column="51" selection-end-line="11" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.dom.d.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -596,31 +579,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/hbsJS/otpForOther.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1178">
-          <caret line="62" column="22" selection-start-line="62" selection-start-column="14" selection-end-line="62" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/hbsJS/otpUser.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1102">
-          <caret line="58" column="22" selection-start-line="58" selection-start-column="14" selection-end-line="58" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/hbsJS/otpuserAuth.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1140">
           <caret line="60" column="22" selection-start-line="60" selection-start-column="14" selection-end-line="60" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/hbsJS/address.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="589">
-          <caret line="31" selection-start-line="31" selection-end-line="31" />
         </state>
       </provider>
     </entry>
@@ -644,20 +606,6 @@
     <entry file="file://$PROJECT_DIR$/views/hbsJS/styleLogin.css">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/middleware/authenticate.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="8" column="25" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="512" column="198" selection-start-line="512" selection-start-column="198" selection-end-line="512" selection-end-column="198" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/forgotPass.hbs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="19">
@@ -665,23 +613,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/hbsJS/configjs.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" column="19" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/db/mongoose.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="3" column="27" selection-start-line="3" selection-start-column="27" selection-end-line="3" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/querySearchNew.hbs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="554">
+        <state relative-caret-position="6574">
           <caret line="346" column="61" selection-start-line="346" selection-start-column="61" selection-end-line="346" selection-end-column="61" />
         </state>
       </provider>
@@ -690,6 +624,140 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
           <caret line="113" column="8" selection-start-line="113" selection-start-column="8" selection-end-line="113" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/hbsJS/otpUser.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="382">
+          <caret line="58" column="22" selection-start-line="58" selection-start-column="14" selection-end-line="58" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/hbsJS/otpForOther.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="382">
+          <caret line="62" column="22" selection-start-line="62" selection-start-column="14" selection-end-line="62" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/hbsJS/numeric.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="11" column="51" selection-start-line="11" selection-start-column="51" selection-end-line="11" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/hbsJS/materialkitjs.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="112" column="70" lean-forward="true" selection-start-line="112" selection-start-column="70" selection-end-line="112" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/neweer.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="302">
+          <caret column="15653" selection-end-column="15653" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/playground/convert.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="3" column="21" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/playground/name.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/playground/dob.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" column="3" selection-start-line="2" selection-start-column="3" selection-end-line="6" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/playground/otp.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/playground/updating database.js" />
+    <entry file="file://$PROJECT_DIR$/views/hbsJS/maxlength.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="9" column="26" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
+          <caret line="15" column="10" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newasasd.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="95" selection-start-column="95" selection-end-column="95" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/middleware/authenticate.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="8" column="25" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../final now.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="349980">
+          <caret line="18420" column="39" selection-end-line="18458" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/hbsJS/bootstrap.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119909">
+          <caret line="6311" column="32" selection-start-line="6311" selection-start-column="32" selection-end-line="6311" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/hbsJS/address.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="589">
+          <caret line="31" selection-start-line="31" selection-end-line="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/playground/update.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="29" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/playground/check.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="11" column="22" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="584" column="34" selection-start-line="584" selection-start-column="34" selection-end-line="584" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/db/mongoose.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="3" column="27" selection-start-line="3" selection-start-column="27" selection-end-line="3" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/hbsJS/configjs.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="3" column="19" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
         </state>
       </provider>
     </entry>
