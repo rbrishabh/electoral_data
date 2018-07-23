@@ -372,8 +372,8 @@ if(printData.civilian[x].name== undefined){
 
 
 '<ul class="pager">'+
-        '<li class="previous"><a onClick="prevIt();">Previous</a></li>'+
-   '<li class="next"><a onClick="nextIt();">Next</a></li>'+
+        '<li class="previous" id="prevIt"><a class="btn btn-default" onClick="prevIt();">Previous</a></li>'+
+   '<li class="next" id="nextIt"><a class="btn btn-default"  onClick="nextIt();">Next</a></li>'+
     '</ul>'
         +
 
@@ -400,6 +400,18 @@ if(printData.civilian[x].name== undefined){
             e.preventDefault();
         });
     });
+if(end>=printData.civilian.length-1){
+    $("#nextIt").hide();
+} else {
+    $("#nextIt").show();
+}
+
+if(start == 0) {
+    $("#prevIt").hide();
+
+} else {
+    $("#prevIt").show();
+}
 }
 
 function prevIt()
@@ -427,7 +439,6 @@ else if(end!=outputObj.civilian.length){
         end = outputObj.civilian.length;
         print(outputObj);
         console.log(end, start)
-
     }
 }
 
