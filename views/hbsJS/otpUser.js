@@ -3,7 +3,7 @@ document.getElementById('otherOcc').disabled = true;
 document.getElementById('relationLast').disabled = true;
 document.getElementById('relationMiddle').disabled = true;
 document.getElementById('relationFirst').disabled = true;
-document.getElementById('titleAdd').disabled = true;
+document.getElementById('titleRel').disabled = true;
 
 
 
@@ -18,7 +18,7 @@ console.log(isChecked, 'adsahsdasgd')
         document.getElementById('relationLast').disabled = false;
         document.getElementById('relationMiddle').disabled = false;
         document.getElementById('relationFirst').disabled = false;
-        document.getElementById('titleAdd').disabled = false;
+        document.getElementById('titleRel').disabled = false;
 
         }
 });
