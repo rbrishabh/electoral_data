@@ -6,7 +6,6 @@ i=1;
 ageSort = {};
 ageArray = [];
 
-
 $(document).ready(function() {
     start= 0;
     end = start+20;
@@ -31,6 +30,7 @@ console.log(urlFinal)
     ourRequest.onload = function () {
         var ourData = JSON.parse(ourRequest.responseText);
         console.log('started uttarakhand')
+        y=1;
         print(ourData);
         outputObj = ourData;
         mainObj = ourData;
@@ -112,10 +112,12 @@ function querySearch(state, district, block, village, pin, firstName, middleName
         start= 0;
         if(ourData.civilian.length>=20){
             end = start + 20;
+            y=1;
             print(ourData);
         }
         else{
             end = ourData.civilian.length;
+            y=1;
             print(ourData);
 
         }
@@ -222,11 +224,13 @@ function sort(str,num) {
     outputObj.civilian = civilianData;
     start= 0;
     if(outputObj.civilian.length>=20){
+        y=1;
      end = start + 20;
         print(outputObj);
     }
     else{
         end = outputObj.civilian.length;
+        y=1;
         print(outputObj);
 
     }
@@ -237,7 +241,10 @@ function sort(str,num) {
 
 
 function print(printData) {
+var totalPages=  printData.civilian.length/20;
+var pages = Math.ceil(totalPages);
 
+console.log(pages)
     var txt = "<table class='table table-bordered' id='result' border='1'><tbody>" +
         "<tr>"+"<th>" + "<b>S No.</b>" + "</th>"+
         "<th>" + "<b>First Name</b>" + "</th>"
@@ -372,6 +379,7 @@ if(printData.civilian[x].name== undefined){
 
 
 '<ul class="pager">'+
+        '<span class="text-center" id="pageno"><b>Page '+y+' of ' +pages+'</b></span>'+
         '<li class="previous" id="prevIt"><a class="btn btn-default" onClick="prevIt();">Previous</a></li>'+
    '<li class="next" id="nextIt"><a class="btn btn-default"  onClick="nextIt();">Next</a></li>'+
     '</ul>'
@@ -417,7 +425,7 @@ if(start == 0) {
 function prevIt()
 {
     if(start>0){
-
+        y--;
         end = start
         start -= 20;
         console.log(end, start)
@@ -428,19 +436,23 @@ function prevIt()
 function nextIt()
 {
     if(end+20<outputObj.civilian.length){
+        y++;
         start = end;
         end += 20;
         console.log(end, start)
        print(outputObj);
     }
 else if(end!=outputObj.civilian.length){
+        y++
         console.log('else r')
         start = end;
         end = outputObj.civilian.length;
         print(outputObj);
         console.log(end, start)
     }
+
 }
+
 
 function printData() {
     var divToPrint = document.getElementById('opTable');

@@ -56,7 +56,7 @@ function sendOTP(value) {
 function sendOTPNow(value) {
     document.getElementById('wrongmobile').style.display = "none"
 
-    var url = urlFinal_+'getOTP1/' + value;
+    var url = urlFinal+'getOTP1/' + value;
 
     var ourRequest = new XMLHttpRequest();
     ourRequest.open('GET', url, true);
