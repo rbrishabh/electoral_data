@@ -1,3 +1,32 @@
+
+$(document).ready(function() {
+    console.log("here i am")
+    var countURL = urlFinal + "civilCount"
+    console.log(countURL)
+    var ourRequest = new XMLHttpRequest();
+    ourRequest.open('GET', countURL, true);
+    ourRequest.onload = function () {
+        var number = ourRequest.responseText;
+        console.log(typeof number);
+        printIt(number);
+    }
+    ourRequest.send();
+
+    function printIt(data){
+
+document.getElementById('liveCounter').innerHTML = "<b>"+data+"</b>"
+    }
+
+
+
+
+
+
+});
+
+
+
+
 jQuery(function ($) {
     var $inputs = $('input[name=password],input[name=enterotp]');
     $inputs.on('input', function () {
@@ -51,9 +80,3 @@ if(otpR.message == "Incorrect Email!"){
     function ResendOTP() {
      otpShow();
  }
-
-
-
-
-
-

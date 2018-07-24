@@ -51,6 +51,15 @@ app.get('/',authenticated, (req,res)=> {
     })
 });
 
+app.get('/civilCount', authenticated, (req,res)=> {
+    civilian.count().then((counter)=>{
+         var countCivil =  `Live Civilian Counter: ${counter}`
+        res.send(countCivil);
+    });
+
+});
+
+
 app.get('/superAdmin',authenticate,(req,res)=> {
     res.render('superAdmin.hbs', {
         pageTitle : "Settings page"
