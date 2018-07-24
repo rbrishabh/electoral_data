@@ -59,6 +59,50 @@ app.get('/civilCount', authenticated, (req,res)=> {
 
 });
 
+app.get('/addressSettings', authenticate, (req,res)=>{
+    res.render('addressSettings.hbs', {
+        pageTitle : "Address Settings Page"
+    })
+});
+
+app.post('/addBlock/:block/:dist/:state', authenticate, (req,res)=>{
+
+    var district = req.params.dist;
+    var state = req.params.state;
+    var block = req.params.block;
+var blockAddress = new address ({
+    state: state,
+    block:block,
+    district:district
+});
+blockAddress.save().then((doc)=>{
+    res.send("1")
+}, (e)=>{
+    res.send("0");
+}).catch((e)=>{
+    res.send("0");
+});
+});
+
+app.post('/addVillage/:village/:block/:dist/:state', authenticate, (req,res)=>{
+    var village = req.params.village;
+    var district = req.params.dist;
+    var state = req.params.state;
+    var block = req.params.block;
+    var blockAddress = new address ({
+        village : village,
+        state: state,
+        block:block,
+        district:district
+    });
+    blockAddress.save().then((doc)=>{
+        res.send("1")
+    }, (e)=>{
+        res.send("0");
+    }).catch((e)=>{
+        res.send("0");
+    });
+});
 
 app.get('/superAdmin',authenticate,(req,res)=> {
     res.render('superAdmin.hbs', {

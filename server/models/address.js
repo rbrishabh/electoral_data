@@ -17,6 +17,10 @@ var address = mongoose.model(addressModel, {
     district: {
         type: String,
         trim:true
+    },
+    pin: {
+        type: String,
+        trim:true
     }
 });
 
