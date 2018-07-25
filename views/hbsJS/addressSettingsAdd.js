@@ -43,7 +43,7 @@ function addBlock(block, dist, state) {
 
 }
 
-function getBlock() {
+function getABlock() {
     var valueState = $("#stateAdd option:selected").val();
     var valueDistrict = $("#districtAdd option:selected").text();
     console.log(valueDistrict);

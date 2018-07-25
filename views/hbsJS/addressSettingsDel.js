@@ -79,7 +79,7 @@ function delBlock(block, dist, state) {
 
 }
 
-function getVillage() {
+function getDVillage() {
     var valueState = $("#stateDel option:selected").val();
     var valueDistrict = $("#districtDel option:selected").text();
     var valueBlock = $("#blockDel2 option:selected").text();

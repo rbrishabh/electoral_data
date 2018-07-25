@@ -117,7 +117,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a class="btn btn-primary btn-sm" style="margin-top: 10px;" href="#">Logout</a>
+                            <a class="btn btn-primary btn-sm" style="margin-top: 10px;" href="/logout">Logout</a>
                         </li>
 
                     </ul>
@@ -241,7 +241,7 @@
                                             <div class="col-md-6" style="margin: 0px !important;">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">District</label>
-                                                    <select  name="districtAdd" id="districtAdd" onchange="getBlock(value,document.getElementById('stateAdd').value);" required  class="form-control">
+                                                    <select  name="districtAdd" id="districtAdd" onchange="getABlock(value,document.getElementById('stateAdd').value);" required  class="form-control">
                                                     </select>
                                                 </div>
                                             </div>
@@ -405,7 +405,7 @@
                                                             <div class="col-md-12" style="margin: 0px !important;">
                                                                 <div class="form-group label-floating">
                                                                     <label class="control-label">Block/Nagar palika</label>
-                                                                    <select  name="block" id="blockEdit2" onchange="getVillage(document.getElementById('districtEdit').value,document.getElementById('stateEdit').value,value);" class="form-control">
+                                                                    <select  name="block" id="blockEdit2" onchange="getEVillage(document.getElementById('districtEdit').value,document.getElementById('stateEdit').value,value);" class="form-control">
                                                                     </select>
                                                                 </div>
                                                             </div>
@@ -539,7 +539,7 @@
                                                             <div class="col-md-12" style="margin: 0px !important;">
                                                                 <div class="form-group label-floating">
                                                                     <label class="control-label">Block/Nagar palika</label>
-                                                                    <select  name="block" id="blockDel2" onchange="getVillage(document.getElementById('districtEdit').value,document.getElementById('stateEdit').value,value);" class="form-control">
+                                                                    <select  name="block" id="blockDel2" onchange="getDVillage(document.getElementById('districtEdit').value,document.getElementById('stateEdit').value,value);" class="form-control">
                                                                     </select>
                                                                 </div>
                                                             </div>

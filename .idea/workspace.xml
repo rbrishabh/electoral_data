@@ -6,10 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="08b0d45d-fc30-493e-b719-7478e6d82225" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/server/db/mongoose.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/db/mongoose.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/server.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/addressSettings.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/addressSettings.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/hbsJS/addressSettingsAdd.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/hbsJS/addressSettingsAdd.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/hbsJS/addressSettingsDel.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/hbsJS/addressSettingsDel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/hbsJS/addressSettingsEdit.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/hbsJS/addressSettingsEdit.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/hbsJS/configjs.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/hbsJS/configjs.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/queryAdd.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/queryAdd.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/querySearchNew.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/querySearchNew.hbs" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -26,7 +29,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="server.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="server.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/server.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="114">
@@ -35,29 +38,29 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="mongoose.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/db/mongoose.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="57">
+              <caret line="3" column="26" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="configjs.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/hbsJS/configjs.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="57">
+              <caret line="3" column="19" lean-forward="true" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="update.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/playground/update.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="95">
-              <caret line="5" selection-start-line="5" selection-end-line="8" selection-end-column="3" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="addressSettingsDel.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/hbsJS/addressSettingsDel.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-828">
-              <caret line="62" column="52" lean-forward="true" selection-start-line="62" selection-start-column="52" selection-end-line="62" selection-end-column="52" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="addressSettingsEdit.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/hbsJS/addressSettingsEdit.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="179">
-              <caret line="118" column="25" selection-start-line="118" selection-start-column="25" selection-end-line="118" selection-end-column="25" />
+            <state relative-caret-position="152">
+              <caret line="8" column="3" lean-forward="true" selection-start-line="8" selection-start-column="3" selection-end-line="8" selection-end-column="3" />
             </state>
           </provider>
         </entry>
@@ -66,7 +69,7 @@
         <entry file="file://$PROJECT_DIR$/views/addressSettings.hbs">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="209">
-              <caret line="557" column="316" selection-start-line="557" selection-start-column="316" selection-end-line="557" selection-end-column="316" />
+              <caret line="119" column="94" lean-forward="true" selection-start-line="119" selection-start-column="94" selection-end-line="119" selection-end-column="101" />
               <folding>
                 <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -109,11 +112,29 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="queryAdd.hbs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/queryAdd.hbs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="247">
+              <caret line="86" column="101" selection-start-line="86" selection-start-column="101" selection-end-line="86" selection-end-column="101" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="querySearchNew.hbs" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/views/querySearchNew.hbs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="152">
+              <caret line="80" column="101" selection-start-line="80" selection-start-column="101" selection-end-line="80" selection-end-column="101" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="addressSettingsAdd.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/hbsJS/addressSettingsAdd.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="57">
-              <caret line="31" column="23" lean-forward="true" selection-start-line="31" selection-start-column="23" selection-end-line="31" selection-end-column="23" />
+            <state relative-caret-position="38">
+              <caret line="45" column="13" selection-start-line="45" selection-start-column="13" selection-end-line="45" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -228,16 +249,16 @@
         <option value="$PROJECT_DIR$/views/login.hbs" />
         <option value="$PROJECT_DIR$/views/hbsJS/otp.js" />
         <option value="$PROJECT_DIR$/server/models/civilian.js" />
-        <option value="$PROJECT_DIR$/views/querySearchNew.hbs" />
         <option value="$PROJECT_DIR$/server/models/address.js" />
-        <option value="$PROJECT_DIR$/views/queryAdd.hbs" />
-        <option value="$PROJECT_DIR$/views/hbsJS/addressSettingsAdd.js" />
-        <option value="$PROJECT_DIR$/views/hbsJS/addressSettingsEdit.js" />
+        <option value="$PROJECT_DIR$/server/server.js" />
         <option value="$PROJECT_DIR$/views/hbsJS/configjs.js" />
         <option value="$PROJECT_DIR$/server/db/mongoose.js" />
+        <option value="$PROJECT_DIR$/views/hbsJS/addressSettingsEdit.js" />
+        <option value="$PROJECT_DIR$/views/hbsJS/addressSettingsAdd.js" />
         <option value="$PROJECT_DIR$/views/hbsJS/addressSettingsDel.js" />
         <option value="$PROJECT_DIR$/views/addressSettings.hbs" />
-        <option value="$PROJECT_DIR$/server/server.js" />
+        <option value="$PROJECT_DIR$/views/queryAdd.hbs" />
+        <option value="$PROJECT_DIR$/views/querySearchNew.hbs" />
       </list>
     </option>
   </component>
@@ -423,12 +444,12 @@
       <workItem from="1532342418386" duration="5574000" />
       <workItem from="1532349728956" duration="3429000" />
       <workItem from="1532402871930" duration="19313000" />
-      <workItem from="1532490562302" duration="10624000" />
+      <workItem from="1532490562302" duration="12040000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="478051000" />
+    <option name="totallyTimeSpent" value="479467000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -443,14 +464,14 @@
     <frame x="-8" y="-8" width="1376" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.8057554" visible="true" weight="0.16890882" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.8057554" visible="true" weight="0.16890882" />
       <window_info anchor="bottom" id="TODO" order="7" weight="0.32838285" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.10911809" side_tool="true" weight="0.4108911" />
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.32838285" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32838285" />
       <window_info id="Structure" order="1" sideWeight="0.19424461" side_tool="true" weight="0.15695067" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.8908819" visible="true" weight="0.37458745" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.8908819" visible="true" weight="0.37458745" />
       <window_info anchor="bottom" id="Favorites" order="6" sideWeight="0.49925262" side_tool="true" weight="0.32838285" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -713,13 +734,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/queryAdd.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="321">
-          <caret line="214" column="72" selection-start-line="214" selection-start-column="61" selection-end-line="214" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/login.hbs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="77">
@@ -734,17 +748,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/playground/update.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" selection-start-line="5" selection-end-line="8" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/hbsJS/address.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="46">
           <caret line="71" lean-forward="true" selection-start-line="71" selection-end-line="80" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/lodash/fp/_mapping.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="118">
+          <caret line="72" column="2" selection-start-line="72" selection-start-column="2" selection-end-line="72" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="130" column="38" selection-start-line="130" selection-start-column="38" selection-end-line="130" selection-end-column="38" />
         </state>
       </provider>
     </entry>
@@ -762,38 +783,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/querySearchNew.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9">
-          <caret line="170" column="41" lean-forward="true" selection-start-line="170" selection-start-column="41" selection-end-line="170" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/hbsJS/addressSettingsAdd.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="31" column="23" lean-forward="true" selection-start-line="31" selection-start-column="23" selection-end-line="31" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/hbsJS/addressSettingsEdit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="118" column="25" selection-start-line="118" selection-start-column="25" selection-end-line="118" selection-end-column="25" />
+        <state relative-caret-position="38">
+          <caret line="45" column="13" selection-start-line="45" selection-start-column="13" selection-end-line="45" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/hbsJS/addressSettingsDel.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-828">
-          <caret line="62" column="52" lean-forward="true" selection-start-line="62" selection-start-column="52" selection-end-line="62" selection-end-column="52" />
+        <state relative-caret-position="1539">
+          <caret line="81" column="13" selection-start-line="81" selection-start-column="13" selection-end-line="81" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/hbsJS/addressSettingsEdit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-562">
+          <caret line="82" column="13" selection-start-line="82" selection-start-column="13" selection-end-line="82" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/playground/update.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="8" column="3" lean-forward="true" selection-start-line="8" selection-start-column="3" selection-end-line="8" selection-end-column="3" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/addressSettings.hbs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
-          <caret line="557" column="316" selection-start-line="557" selection-start-column="316" selection-end-line="557" selection-end-column="316" />
+          <caret line="119" column="94" lean-forward="true" selection-start-line="119" selection-start-column="94" selection-end-line="119" selection-end-column="101" />
           <folding>
             <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -835,17 +856,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/lodash/fp/_mapping.js">
+    <entry file="file://$PROJECT_DIR$/views/queryAdd.hbs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="72" column="2" selection-start-line="72" selection-start-column="2" selection-end-line="72" selection-end-column="2" />
+        <state relative-caret-position="247">
+          <caret line="86" column="101" selection-start-line="86" selection-start-column="101" selection-end-line="86" selection-end-column="101" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/server.js">
+    <entry file="file://$PROJECT_DIR$/views/querySearchNew.hbs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="130" column="38" selection-start-line="130" selection-start-column="38" selection-end-line="130" selection-end-column="38" />
+        <state relative-caret-position="152">
+          <caret line="80" column="101" selection-start-line="80" selection-start-column="101" selection-end-line="80" selection-end-column="101" />
         </state>
       </provider>
     </entry>

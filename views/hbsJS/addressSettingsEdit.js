@@ -80,7 +80,7 @@ function editBlock(dist, state, block, editedBlock) {
 
 }
 
-function getVillage() {
+function getEVillage() {
     var valueState = $("#stateEdit option:selected").val();
     var valueDistrict = $("#districtEdit option:selected").text();
     var valueBlock = $("#blockEdit2 option:selected").text();
