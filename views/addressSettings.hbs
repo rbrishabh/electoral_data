@@ -24,7 +24,6 @@
     <script src="/addressSettingsEdit.js"></script>
     <script src="/addressSettingsDel.js"></script>
 
-
     <style>
         .seting_button{
             font-weight: 500;
@@ -250,7 +249,7 @@
 
                                                     <ul class="nav nav-pills">
                                                         <li class="active"><a data-toggle="pill" href="#home">Add Block/ Nagar Palika</a></li>
-                                                        <li><a data-toggle="pill" href="#menu1">Add Village and Pin Code</a></li>
+                                                        <li><a data-toggle="pill" href="#menu1">Add Village</a></li>
                                                     </ul>
 
                                                     <div class="tab-content">
@@ -264,7 +263,7 @@
 
                                                             <div class="row">
                                                                 <div class="col-md-12">
-                                                                    <button type="submit" class="btn btn-primary pull-right"  onclick="addBlock(document.getElementById('blockAdd1').value,document.getElementById('districtAdd').value,document.getElementById('stateAdd').value)">Add</button>
+                                                                    <button type="submit" id="addBlockButton" class="btn btn-primary pull-right"  onclick="addBlock(document.getElementById('blockAdd1').value,document.getElementById('districtAdd').value,document.getElementById('stateAdd').value)">Add</button>
                                                                     <div id="success" class="errmsg">Succesfully Added!</div>
 
                                                                 </div>
@@ -286,15 +285,9 @@
                                                                 </div>
                                                             </div>
 
-                                                            <div class="col-md-12" style="margin: 0px !important;">
-                                                                <div class="form-group label-floating">
-                                                                    <label class="control-label">Enter Pin Code</label>
-                                                                    <input  type="number" name="pin" id="pinAdd" class="form-control">
-                                                                </div>
-                                                            </div>
 
                                                             <div class="col-md-12">
-                                                                <button type="submit" class="btn btn-primary pull-right" onclick="addVillage(document.getElementById('villageAdd').value,document.getElementById('blockAdd2').value,document.getElementById('districtAdd').value,document.getElementById('stateAdd').value)">Add</button>
+                                                                <button type="submit" id="addVillageButton" class="btn btn-primary pull-right" onclick="addVillage(document.getElementById('villageAdd').value,document.getElementById('blockAdd2').value,document.getElementById('districtAdd').value,document.getElementById('stateAdd').value)">Add</button>
                                                                 <div id="success1" class="errmsg">Succesfully Added!</div>
                                                             </div>
                                                         </div>
@@ -374,7 +367,7 @@
 
                                                     <ul class="nav nav-pills">
                                                         <li class="active"><a data-toggle="pill" href="#editblock">Edit Block/ Nagar Palika</a></li>
-                                                        <li><a data-toggle="pill" href="#editvill">Edit Village and Pin Code</a></li>
+                                                        <li><a data-toggle="pill" href="#editvill">Edit Village</a></li>
                                                     </ul>
 
                                                     <div class="tab-content">
@@ -395,7 +388,7 @@
 
                                                             <div class="row">
                                                                 <div class="col-md-12">
-                                                                    <button type="submit" class="btn btn-primary pull-right" onclick="editBlock(document.getElementById('districtEdit').value,document.getElementById('stateEdit').value,document.getElementById('blockEdit1').value,document.getElementById('blockEdited1').value)" >Edit</button>
+                                                                    <button type="submit" id="editBlockButton" class="btn btn-primary pull-right" onclick="editBlock(document.getElementById('districtEdit').value,document.getElementById('stateEdit').value,document.getElementById('blockEdit1').value,document.getElementById('blockEdited1').value)" >Edit</button>
                                                                     <div id="success2" class="errmsg">Succesfully Edited!</div>
 
                                                                 </div>
@@ -425,15 +418,10 @@
                                                                 </div>
                                                             </div>
 
-                                                            <div class="col-md-12" style="margin: 0px !important;">
-                                                                <div class="form-group label-floating">
-                                                                    <label class="control-label">Edit Pin Code</label>
-                                                                    <input  type="number" name="pin" id="editedPin" class="form-control">
-                                                                </div>
-                                                            </div>
+
 
                                                             <div class="col-md-12">
-                                                                <button type="submit" class="btn btn-primary pull-right" onclick="editVillage(document.getElementById('districtEdit').value,document.getElementById('stateEdit').value,document.getElementById('blockEdit2').value,document.getElementById('villageEdit').value,document.getElementById('editedVillage').value)">Edit</button>
+                                                                <button type="submit" id="editVillageButton" class="btn btn-primary pull-right" onclick="editVillage(document.getElementById('districtEdit').value,document.getElementById('stateEdit').value,document.getElementById('blockEdit2').value,document.getElementById('villageEdit').value,document.getElementById('editedVillage').value)">Edit</button>
                                                                 <div id="success3" class="errmsg">Succesfully Edited!</div>
 
                                                             </div>
@@ -441,6 +429,9 @@
 
                                                     </div>
                                                 </div>
+                                            </div>
+                                            <div>
+                                                <h6><b><span style="color: #ac2925">Warning:</span> Editing address data will also edit corresponding civilian data.</b></h6>
                                             </div>
                                         </div>
 
@@ -529,9 +520,11 @@
 
                                                             <div class="row">
                                                                 <div class="col-md-12">
-                                                                    <button type="submit" class="btn btn-primary pull-right" onclick="delBlock(document.getElementById('blockDel1').value,document.getElementById('districtDel').value,document.getElementById('stateDel').value)" >Delete</button>
+                                                                    <button type="submit" id="deleteBlockButton" class="btn btn-primary pull-right" onclick="delBlock(document.getElementById('blockDel1').value,document.getElementById('districtDel').value,document.getElementById('stateDel').value)" >Delete</button>
                                                                     <div id="success4" class="errmsg">Succesfully Deleted!</div>
-
+                                                                    <div>
+                                                                        <p><span style="color: #ac2925">*</span>Deleting blocks will also delete all corresponding villages.</p>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -555,7 +548,7 @@
 
 
                                                             <div class="col-md-12">
-                                                                <button type="submit" class="btn btn-primary pull-right" onclick="delVillage(document.getElementById('blockDel2').value,document.getElementById('districtDel').value,document.getElementById('stateDel').value, document.getElementById('villageDel').value)"  >Delete</button>
+                                                                <button id="deleteVillageButton" type="submit" href="#" class="btn btn-primary pull-right" onclick="delVillage(document.getElementById('blockDel2').value,document.getElementById('districtDel').value,document.getElementById('stateDel').value, document.getElementById('villageDel').value)"  >Delete</button>
                                                                 <div id="success5" class="errmsg">Succesfully Deleted!</div>
 
                                                             </div>
@@ -563,6 +556,9 @@
 
                                                     </div>
                                                 </div>
+                                            </div>
+                                            <div>
+                                                <h6><b><span style="color: #ac2925">Warning:</span> Deleting address data will also delete corresponding civilian data.</b></h6>
                                             </div>
                                         </div>
 

@@ -53,7 +53,7 @@ app.get('/',authenticated, (req,res)=> {
 
 app.get('/civilCount', authenticated, (req,res)=> {
     civilian.count().then((counter)=>{
-         var countCivil =  `Live Civilian Counter: ${counter}`
+         var countCivil =  `Number of Civilians Registered: ${counter}`
         res.send(countCivil);
     });
 
