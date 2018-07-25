@@ -84,6 +84,27 @@ blockAddress.save().then((doc)=>{
 });
 });
 
+app.post('/delBlock/:block/:dist/:state', authenticate, (req,res)=>{
+
+    var district = req.params.dist;
+    var state = req.params.state;
+    var block = req.params.block;
+
+    civilian.remove({'district': district, 'state':state, 'block':block}).then((deletedDocs)=>{
+    }, (e)=>{
+        res.send("0");
+    }).catch((e)=>{
+        res.send("0");
+    });
+    address.remove({'district': district, 'state':state, 'block':block}).then((deletedDocs)=>{
+        res.send('1');
+    }, (e)=>{
+        res.send("0");
+    }).catch((e)=>{
+        res.send("0");
+    });
+});
+
 app.post('/addVillage/:village/:block/:dist/:state', authenticate, (req,res)=>{
     var village = req.params.village;
     var district = req.params.dist;
@@ -104,6 +125,31 @@ app.post('/addVillage/:village/:block/:dist/:state', authenticate, (req,res)=>{
     });
 });
 
+app.post('/delVillage/:district/:state/:block/:village', authenticate, (req,res)=>{
+    console.log('this is rb')
+    var village = req.params.village;
+    var district = req.params.district;
+    var state = req.params.state;
+    var block = req.params.block;
+    console.log(village, district, state, block)
+    // address.remove({'district': district, 'state':state, 'block':block, 'village':village}).then((ok)=>{
+    //     res.send('1');
+    // }, (e)=>{
+    //     res.send("0");
+    // }).catch((e)=>{
+    //     res.send("0");
+    // });
+    address.remove({'district': district, 'state':state, 'block':block, 'village':village}).then((a)=>{
+    res.send('1');
+        }, (e)=>{
+        res.send("0");
+    }).catch((e)=>{
+        res.send("0");
+    });
+
+});
+
+
 app.post('/editBlock/:dist/:state/:block/:editedBlock', authenticate, (req,res)=>{
     var block = req.params.block;
     var district = req.params.dist;
@@ -111,7 +157,6 @@ app.post('/editBlock/:dist/:state/:block/:editedBlock', authenticate, (req,res)=
     var editedBlock = req.params.editedBlock;
     civilian.update({"block": block, "district": district, "state":state},
         {$set:{ "block" : editedBlock}}, {multi: true}).then((address)=>{
-       res.send('1')
     }, (e)=>{
             res.send('0');
     }).catch((e)=>{
@@ -145,7 +190,6 @@ app.post('/editVillage/:dist/:state/:block/:village/:editedVillage', authenticat
 
     civilian.update({"block": block, "district": district, "state":state, "village":village},
         {$set:{ "village" : editedVillage}}, {multi: true}).then((address)=>{
-        res.send('1')
     }, (e)=>{
         res.send('0');
     }).catch((e)=>{

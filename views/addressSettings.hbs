@@ -22,6 +22,7 @@
     <script src="/configjs.js"></script>
     <script src="/addressSettingsAdd.js"></script>
     <script src="/addressSettingsEdit.js"></script>
+    <script src="/addressSettingsDel.js"></script>
 
 
     <style>
@@ -364,7 +365,7 @@
                                             <div class="col-md-6" style="margin: 0px !important;">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">District</label>
-                                                    <select  name="districtEdit" id="districtEdit" onchange="getEBlock(value,document.getElementById('stateAdd').value);" required  class="form-control">
+                                                    <select  name="districtEdit" id="districtEdit" onchange="getEBlock(value,document.getElementById('stateEdit').value);" required  class="form-control">
                                                     </select>
                                                 </div>
                                             </div>
@@ -457,7 +458,7 @@
                                             <div class="col-md-6" style="margin: 0px !important;">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Select State</label>
-                                                    <select  name="state" class="form-control">
+                                                    <select  name="state" id="stateDel" class="form-control">
 
                                                         <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
                                                         <option value="Andhra Pradesh">Andhra Pradesh</option>
@@ -502,8 +503,9 @@
                                             </div>
                                             <div class="col-md-6" style="margin: 0px !important;">
                                                 <div class="form-group label-floating">
-                                                    <label class="control-label">Select District</label>
-                                                    <input  type="text" name="district" class="form-control">
+                                                    <label class="control-label">District</label>
+                                                    <select  name="districtDel" id="districtDel" onchange="getDBlock(value,document.getElementById('stateDel').value);" required  class="form-control">
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-12" style="margin: 0px !important;">
@@ -518,37 +520,44 @@
                                                         <div id="deleteblock" class="tab-pane fade in active">
                                                             <div class="col-md-12" style="margin: 0px !important;">
                                                                 <div class="form-group label-floating">
-                                                                    <label class="control-label">Select Block/Nagar palika to Delete</label>
-                                                                    <input  type="text" name="block" class="form-control">
+                                                                    <label class="control-label">Block/Nagar palika</label>
+                                                                    <select  name="block" id="blockDel1" class="form-control">
+                                                                    </select>
                                                                 </div>
                                                             </div>
 
 
                                                             <div class="row">
                                                                 <div class="col-md-12">
-                                                                    <button type="submit" class="btn btn-primary pull-right"  >Delete</button>
+                                                                    <button type="submit" class="btn btn-primary pull-right" onclick="delBlock(document.getElementById('blockDel1').value,document.getElementById('districtDel').value,document.getElementById('stateDel').value)" >Delete</button>
+                                                                    <div id="success4" class="errmsg">Succesfully Deleted!</div>
+
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div id="deletevill" class="tab-pane fade">
                                                             <div class="col-md-12" style="margin: 0px !important;">
                                                                 <div class="form-group label-floating">
-                                                                    <label class="control-label">Select Block/Nagar palika</label>
-                                                                    <input  type="text" name="block" class="form-control">
+                                                                    <label class="control-label">Block/Nagar palika</label>
+                                                                    <select  name="block" id="blockDel2" onchange="getVillage(document.getElementById('districtEdit').value,document.getElementById('stateEdit').value,value);" class="form-control">
+                                                                    </select>
                                                                 </div>
                                                             </div>
 
                                                             <div class="col-md-12" style="margin: 0px !important;">
                                                                 <div class="form-group label-floating">
                                                                     <label class="control-label">Select Village to Delete</label>
-                                                                    <input  type="text" name="block" class="form-control">
+                                                                    <select name="village" id="villageDel" class="form-control">
+                                                                    </select>
                                                                 </div>
                                                             </div>
 
 
 
                                                             <div class="col-md-12">
-                                                                <button type="submit" class="btn btn-primary pull-right"  >Delete</button>
+                                                                <button type="submit" class="btn btn-primary pull-right" onclick="delVillage(document.getElementById('blockDel2').value,document.getElementById('districtDel').value,document.getElementById('stateDel').value, document.getElementById('villageDel').value)"  >Delete</button>
+                                                                <div id="success5" class="errmsg">Succesfully Deleted!</div>
+
                                                             </div>
                                                         </div>
 
