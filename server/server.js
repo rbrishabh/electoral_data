@@ -65,7 +65,7 @@ app.get('/addressSettings', authenticate, (req,res)=>{
     })
 });
 
-app.post('/addBlock/:block/:dist/:state', authenticate, (req,res)=>{
+app.post('/addBlock/:block/:dist/:state', (req,res)=>{
 
     var district = req.params.dist;
     var state = req.params.state;
@@ -84,7 +84,7 @@ blockAddress.save().then((doc)=>{
 });
 });
 
-app.post('/delBlock/:block/:dist/:state', authenticate, (req,res)=>{
+app.post('/delBlock/:block/:dist/:state', (req,res)=>{
 
     var district = req.params.dist;
     var state = req.params.state;
@@ -105,7 +105,7 @@ app.post('/delBlock/:block/:dist/:state', authenticate, (req,res)=>{
     });
 });
 
-app.post('/addVillage/:village/:block/:dist/:state', authenticate, (req,res)=>{
+app.post('/addVillage/:village/:block/:dist/:state', (req,res)=>{
     var village = req.params.village;
     var district = req.params.dist;
     var state = req.params.state;
@@ -125,7 +125,7 @@ app.post('/addVillage/:village/:block/:dist/:state', authenticate, (req,res)=>{
     });
 });
 
-app.post('/delVillage/:district/:state/:block/:village', authenticate, (req,res)=>{
+app.post('/delVillage/:district/:state/:block/:village', (req,res)=>{
     console.log('this is rb')
     var village = req.params.village;
     var district = req.params.district;
@@ -150,7 +150,7 @@ app.post('/delVillage/:district/:state/:block/:village', authenticate, (req,res)
 });
 
 
-app.post('/editBlock/:dist/:state/:block/:editedBlock', authenticate, (req,res)=>{
+app.post('/editBlock/:dist/:state/:block/:editedBlock', (req,res)=>{
     var block = req.params.block;
     var district = req.params.dist;
     var state = req.params.state;
@@ -173,7 +173,7 @@ app.post('/editBlock/:dist/:state/:block/:editedBlock', authenticate, (req,res)=
 
 });
 
-app.post('/editVillage/:dist/:state/:block/:village/:editedVillage', authenticate, (req,res)=>{
+app.post('/editVillage/:dist/:state/:block/:village/:editedVillage', (req,res)=>{
     var block = req.params.block;
     var district = req.params.dist;
     var state = req.params.state;
