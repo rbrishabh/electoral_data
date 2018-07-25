@@ -104,6 +104,58 @@ app.post('/addVillage/:village/:block/:dist/:state', authenticate, (req,res)=>{
     });
 });
 
+app.post('/editBlock/:dist/:state/:block/:editedBlock', authenticate, (req,res)=>{
+    var block = req.params.block;
+    var district = req.params.dist;
+    var state = req.params.state;
+    var editedBlock = req.params.editedBlock;
+    civilian.update({"block": block, "district": district, "state":state},
+        {$set:{ "block" : editedBlock}}, {multi: true}).then((address)=>{
+       res.send('1')
+    }, (e)=>{
+            res.send('0');
+    }).catch((e)=>{
+        res.send('0');
+    });
+    address.update({"block": block, "district": district, "state":state},
+        {$set:{ "block" : editedBlock}}, {multi: true}).then((address)=>{
+        res.send('1')
+    }, (e)=>{
+        res.send('0');
+    }).catch((e)=>{
+        res.send('0');
+    });
+
+});
+
+app.post('/editVillage/:dist/:state/:block/:village/:editedVillage', authenticate, (req,res)=>{
+    var block = req.params.block;
+    var district = req.params.dist;
+    var state = req.params.state;
+    var editedVillage = req.params.editedVillage;
+    var village = req.params.village;
+    address.update({"block": block, "district": district, "state":state, "village": village},
+        {$set:{ "village" : editedVillage}}, {multi: true}).then((address)=>{
+        res.send('1')
+    }, (e)=>{
+        res.send('0');
+    }).catch((e)=>{
+        res.send('0');
+    });
+
+    civilian.update({"block": block, "district": district, "state":state, "village":village},
+        {$set:{ "village" : editedVillage}}, {multi: true}).then((address)=>{
+        res.send('1')
+    }, (e)=>{
+        res.send('0');
+    }).catch((e)=>{
+        res.send('0');
+    });
+
+
+});
+
+
 app.get('/superAdmin',authenticate,(req,res)=> {
     res.render('superAdmin.hbs', {
         pageTitle : "Settings page"
