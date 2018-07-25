@@ -36,6 +36,7 @@ function addBlock(block, dist, state) {
     ourRequest.onload = function() {
          var ourData = ourRequest.responseText;
         if(ourData === '1') {
+            getABlock();
             document.getElementById('success').style.display = "block"
         }
     }
@@ -77,6 +78,7 @@ function addVillage(village, block, dist, state) {
     ourRequest.onload = function() {
         var ourData = ourRequest.responseText;
       if(ourData === '1') {
+          getABlock();
           document.getElementById('success1').style.display = "block"
       }
       }

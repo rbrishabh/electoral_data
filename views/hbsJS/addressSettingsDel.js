@@ -72,6 +72,7 @@ function delBlock(block, dist, state) {
     ourRequest.onload = function() {
         var ourData = ourRequest.responseText;
         if(ourData === '1') {
+            getDBlock();
             document.getElementById('success4').style.display = "block"
         }
     }
@@ -116,6 +117,8 @@ function delVillage(block, dist, state , village) {
         var ourData = ourRequest.responseText;
         if(ourData === '1') {
             console.log('reached here')
+            getDBlock();
+            getDVillage();
             document.getElementById('success5').style.display = "block"
         }
     }
