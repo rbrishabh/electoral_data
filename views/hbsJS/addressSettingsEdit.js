@@ -74,6 +74,9 @@ function editBlock(dist, state, block, editedBlock) {
         var ourData = ourRequest.responseText;
         if(ourData === '1') {
             getEBlock();
+            getABlock();
+            getDBlock();
+
             document.getElementById('success2').style.display = "block"
         }
     }
@@ -119,6 +122,10 @@ function editVillage(dist, state, block, village, editedVillage) {
         if(ourData === '1') {
             getEBlock();
             getEVillage();
+            getDVillage();
+            getABlock();
+            getDBlock();
+
             document.getElementById('success3').style.display = "block"
         }
     }
