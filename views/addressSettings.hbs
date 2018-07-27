@@ -23,6 +23,7 @@
     <script src="/addressSettingsAdd.js"></script>
     <script src="/addressSettingsEdit.js"></script>
     <script src="/addressSettingsDel.js"></script>
+    <script src="/addressSettingsCommon.js"></script>
 
     <style>
         .seting_button{
@@ -240,7 +241,7 @@
                                             <div class="col-md-6" style="margin: 0px !important;">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">District</label>
-                                                    <select  name="districtAdd" id="districtAdd" onchange="getABlock(value,document.getElementById('stateAdd').value);" required  class="form-control">
+                                                    <select  name="districtAdd" id="districtAdd" onchange="getABlock(value,document.getElementById('stateAdd').value); disableCheckAB(); disableCheckAV();" required  class="form-control">
                                                     </select>
                                                 </div>
                                             </div>
@@ -257,7 +258,7 @@
                                                             <div class="col-md-12" style="margin: 0px !important;">
                                                                 <div class="form-group label-floating">
                                                                     <label class="control-label">Add New Block/Nagar palika</label>
-                                                                    <input  type="text" name="block"  required id="blockAdd1" class="form-control">
+                                                                    <input  type="text" name="block"  required id="blockAdd1" onkeyup="disableCheckAB();" class="form-control">
                                                                 </div>
                                                             </div>
 
@@ -273,7 +274,7 @@
                                                             <div class="col-md-12" style="margin: 0px !important;">
                                                                 <div class="form-group label-floating">
                                                                     <label class="control-label">Block/Nagar palika</label>
-                                                                    <select  name="block" id="blockAdd2" class="form-control">
+                                                                    <select  name="block" id="blockAdd2" onchange="disableCheckAV()" class="form-control">
                                                                     </select>
                                                                 </div>
                                                             </div>
@@ -281,7 +282,7 @@
                                                             <div class="col-md-12" style="margin: 0px !important;">
                                                                 <div class="form-group label-floating">
                                                                     <label class="control-label">Add Village</label>
-                                                                    <input  type="text" name="village" id="villageAdd" class="form-control">
+                                                                    <input  type="text" name="village" id="villageAdd" onkeyup="disableCheckAV()" class="form-control">
                                                                 </div>
                                                             </div>
 
@@ -358,7 +359,7 @@
                                             <div class="col-md-6" style="margin: 0px !important;">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">District</label>
-                                                    <select  name="districtEdit" id="districtEdit" onchange="getEBlock(value,document.getElementById('stateEdit').value);" required  class="form-control">
+                                                    <select  name="districtEdit" id="districtEdit" onchange="getEBlock(value,document.getElementById('stateEdit').value); disableCheckEB(); disableCheckEV();" required  class="form-control">
                                                     </select>
                                                 </div>
                                             </div>
@@ -375,14 +376,14 @@
                                                             <div class="col-md-6" style="margin: 0px !important;">
                                                                 <div class="form-group label-floating">
                                                                     <label class="control-label">Block/Nagar palika</label>
-                                                                    <select  name="block" id="blockEdit1" class="form-control">
+                                                                    <select  name="block" id="blockEdit1" onchange="disableCheckEB()" class="form-control">
                                                                     </select>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6" style="margin: 0px !important;">
                                                                 <div class="form-group label-floating">
                                                                     <label class="control-label">Edit Block/Nagar palika</label>
-                                                                    <input  type="text" name="block" id="blockEdited1" class="form-control">
+                                                                    <input  type="text" name="block" id="blockEdited1" onkeyup="disableCheckEB()" class="form-control">
                                                                 </div>
                                                             </div>
 
@@ -398,7 +399,7 @@
                                                             <div class="col-md-12" style="margin: 0px !important;">
                                                                 <div class="form-group label-floating">
                                                                     <label class="control-label">Block/Nagar palika</label>
-                                                                    <select  name="block" id="blockEdit2" onchange="getEVillage(document.getElementById('districtEdit').value,document.getElementById('stateEdit').value,value);" class="form-control">
+                                                                    <select  name="block" id="blockEdit2" onchange="getEVillage(document.getElementById('districtEdit').value,document.getElementById('stateEdit').value,value); disableCheckEV()" class="form-control">
                                                                     </select>
                                                                 </div>
                                                             </div>
@@ -406,7 +407,7 @@
                                                             <div class="col-md-6" style="margin: 0px !important;">
                                                                 <div class="form-group label-floating">
                                                                     <label class="control-label">Village</label>
-                                                                    <select name="village" id="villageEdit" class="form-control">
+                                                                    <select name="village" id="villageEdit" onchange="disableCheckEV()" class="form-control">
                                                                     </select>
                                                                 </div>
                                                             </div>
@@ -414,7 +415,7 @@
                                                             <div class="col-md-6" style="margin: 0px !important;">
                                                                 <div class="form-group label-floating">
                                                                     <label class="control-label">Edit Village</label>
-                                                                    <input  type="text" name="village" id="editedVillage" class="form-control">
+                                                                    <input  type="text" name="village" id="editedVillage" onkeyup="disableCheckEV()" class="form-control">
                                                                 </div>
                                                             </div>
 
@@ -495,7 +496,7 @@
                                             <div class="col-md-6" style="margin: 0px !important;">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">District</label>
-                                                    <select  name="districtDel" id="districtDel" onchange="getDBlock(value,document.getElementById('stateDel').value);" required  class="form-control">
+                                                    <select  name="districtDel" id="districtDel" onchange="getDBlock(value,document.getElementById('stateDel').value); disableCheckDB(); disableCheckDV();" required  class="form-control">
                                                     </select>
                                                 </div>
                                             </div>
@@ -512,7 +513,7 @@
                                                             <div class="col-md-12" style="margin: 0px !important;">
                                                                 <div class="form-group label-floating">
                                                                     <label class="control-label">Block/Nagar palika</label>
-                                                                    <select  name="block" id="blockDel1" class="form-control">
+                                                                    <select  name="block" id="blockDel1" onchange="disableCheckDB()" class="form-control">
                                                                     </select>
                                                                 </div>
                                                             </div>
@@ -532,7 +533,7 @@
                                                             <div class="col-md-12" style="margin: 0px !important;">
                                                                 <div class="form-group label-floating">
                                                                     <label class="control-label">Block/Nagar palika</label>
-                                                                    <select  name="block" id="blockDel2" onchange="getDVillage(document.getElementById('districtEdit').value,document.getElementById('stateEdit').value,value);" class="form-control">
+                                                                    <select  name="block" id="blockDel2" onchange="getDVillage(document.getElementById('districtEdit').value,document.getElementById('stateEdit').value,value); disableCheckDV()" class="form-control">
                                                                     </select>
                                                                 </div>
                                                             </div>
@@ -540,7 +541,7 @@
                                                             <div class="col-md-12" style="margin: 0px !important;">
                                                                 <div class="form-group label-floating">
                                                                     <label class="control-label">Select Village to Delete</label>
-                                                                    <select name="village" id="villageDel" class="form-control">
+                                                                    <select name="village" id="villageDel" onchange="disableCheckDV()" class="form-control">
                                                                     </select>
                                                                 </div>
                                                             </div>
