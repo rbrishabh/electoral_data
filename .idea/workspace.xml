@@ -6,9 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="08b0d45d-fc30-493e-b719-7478e6d82225" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/addressSettings.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/addressSettings.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/queryAdd.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/queryAdd.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/querySearchNew.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/querySearchNew.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/registrationS.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/registrationS.hbs" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -43,11 +41,29 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="addressSettings.hbs" pinned="false" current-in-tab="true">
+      <file leaf-file-name="addressSettings.hbs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/addressSettings.hbs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="99">
-              <caret line="117" column="33" lean-forward="true" selection-start-line="117" selection-start-column="33" selection-end-line="117" selection-end-column="33" />
+            <state relative-caret-position="190">
+              <caret line="68" lean-forward="true" selection-start-line="68" selection-end-line="128" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="registration.hbs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/registration.hbs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="23">
+              <caret line="60" column="29" selection-start-line="60" selection-start-column="29" selection-end-line="60" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="registrationS.hbs" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/views/registrationS.hbs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="76">
+              <caret line="63" column="31" selection-start-line="63" selection-start-column="31" selection-end-line="63" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -133,8 +149,6 @@
         <option value="$PROJECT_DIR$/playground/check.js" />
         <option value="$PROJECT_DIR$/views/change_password.hbs" />
         <option value="$PROJECT_DIR$/views/forgotPass.hbs" />
-        <option value="$PROJECT_DIR$/views/registration.hbs" />
-        <option value="$PROJECT_DIR$/views/registrationS.hbs" />
         <option value="$PROJECT_DIR$/views/superAdmin.hbs" />
         <option value="$PROJECT_DIR$/views/hbsJS/otpForOther.js" />
         <option value="$PROJECT_DIR$/views/hbsJS/address.js" />
@@ -163,6 +177,8 @@
         <option value="$PROJECT_DIR$/views/querySearchNew.hbs" />
         <option value="$PROJECT_DIR$/views/queryAdd.hbs" />
         <option value="$PROJECT_DIR$/views/addressSettings.hbs" />
+        <option value="$PROJECT_DIR$/views/registration.hbs" />
+        <option value="$PROJECT_DIR$/views/registrationS.hbs" />
       </list>
     </option>
   </component>
@@ -345,12 +361,12 @@
       <workItem from="1532402871930" duration="19313000" />
       <workItem from="1532490562302" duration="12517000" />
       <workItem from="1532513621338" duration="5853000" />
-      <workItem from="1532575616310" duration="5104000" />
+      <workItem from="1532575616310" duration="5556000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="490901000" />
+    <option name="totallyTimeSpent" value="491353000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -423,20 +439,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/views/registration.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="19" selection-start-line="19" selection-end-line="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/registrationS.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="19" selection-start-line="19" selection-end-line="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/hbsJS/inputtype.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
@@ -714,8 +716,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/addressSettings.hbs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="99">
-          <caret line="117" column="33" lean-forward="true" selection-start-line="117" selection-start-column="33" selection-end-line="117" selection-end-column="33" />
+        <state relative-caret-position="190">
+          <caret line="68" lean-forward="true" selection-start-line="68" selection-end-line="128" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/registration.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23">
+          <caret line="60" column="29" selection-start-line="60" selection-start-column="29" selection-end-line="60" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/registrationS.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="63" column="31" selection-start-line="63" selection-start-column="31" selection-end-line="63" selection-end-column="31" />
         </state>
       </provider>
     </entry>
