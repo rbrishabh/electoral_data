@@ -27,6 +27,16 @@ var userSchema = new mongoose.Schema({
         trim:true,
         minlength:1
     },
+    middleName: {
+        type: String,
+        trim:true,
+        minlength:1
+    },
+    lastName: {
+        type: String,
+        trim:true,
+        minlength:1
+    },
     mobile: {
         type: Number,
         required: true,
@@ -47,34 +57,32 @@ var userSchema = new mongoose.Schema({
         required: true,
         trim:true
     },
+    occother:{
+        type: String,
+        trim: true
+    },
     village: {
         type: String,
-        required: true,
         trim:true
     },
     block: {
         type: String,
-        required: true,
         trim:true
     },
     district: {
         type: String,
-        required: true,
         trim:true
     },
     state: {
         type: String,
-        required: true,
         trim:true
     },
     mark: {
         type: String,
-        required: true,
         trim:true
     },
     notes: {
         type: String,
-        required: true,
         trim:true
     }});
 
