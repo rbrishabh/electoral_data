@@ -24,18 +24,16 @@ var userSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
-        trim:true,
-        minlength:1
+        trim:true
+
     },
     middleName: {
         type: String,
-        trim:true,
-        minlength:1
+        trim:true
     },
     lastName: {
         type: String,
-        trim:true,
-        minlength:1
+        trim:true
     },
     mobile: {
         type: Number,

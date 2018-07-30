@@ -473,7 +473,44 @@ var mobile = req.params.mobile;
         res.status(400).send();
     });
 });
+
+app.get('/checkMobileReg/:mobile', (req,res)=> {
+    console.log('started running afadaf')
+    var mobile = req.params.mobile;
+    civilian.find({mobile:mobile}).count().then((count)=>{
+        if(count>0){
+            console.log('its more than 0')
+            var string = "dont"
+            res.send(string);
+        } else {
+            console.log('its okkkkk')
+            res.send('go');
+        }
+    },(e)=>{
+        res.status(400).send();
+    }).catch((e)=>{
+        res.status(400).send();
+    });
+});
 app.get('/getOTP1/:mobile', (req,res)=>{
+
+    var mobile = req.params.mobile;
+    console.log(mobile);
+    secret = speakeasy.generateSecret({length: 6});
+
+    var token = speakeasy.totp({
+        secret: secret.base32,
+        encoding: 'base32'
+    });
+    var url = 'http://bhashsms.com/api/sendmsg.php?user=genesissms&pass=123456&sender=GENSIS&phone=' + mobile + '&text=' + token + ' is your One Time Password for authenticating Electoral System.&priority=ndnd&stype=normal'
+    request({url:url}, (error, response, body)=>{
+        if(error) {
+
+        }
+    });    console.log(url);
+    res.send({'message':'OTP sending'});
+});
+app.get('/getOTPReg/:mobile', (req,res)=>{
 
     var mobile = req.params.mobile;
     console.log(mobile);
@@ -830,18 +867,40 @@ app.post('/passwordChanged',authenticate, (req,res)=>{
 });
 
 app.post('/registrationElectoralData' , (req, res) => {
-    var body = _.pick(req.body, ['email', 'password', 'name', 'mobile','age','gender','mark', 'occupation','state','district','block','village','notes']);
-    var user = new Users(body);
-
-    user.save().then(() => {
-        res.render('registrationS.hbs', {
-            pageTitle: "Registration Successful.",
-            pageReturn: "Succesfully Registered"
+var otp = req.body.otp;
+    console.log(otp);
+    tokenValidates = speakeasy.totp.verify({
+        secret: secret.base32,
+        encoding: 'base32',
+        token: otp,
+        window: 6
+    });
+if(!tokenValidates){
+    res.render('registration.hbs', {
+        pageTitle: "Registration unuccessful.",
+        message: "Incorrect OTP!"
+    });
+}
+  else if(req.body.password !== req.body.confirm){
+        res.render('registration.hbs', {
+            pageTitle: "Registration unuccessful.",
+            message: "Incorrect Password!"
         });
+    } else{
+        var body = _.pick(req.body, ['email', 'name', 'middleName', 'mobile', 'lastName','age','gender','mark', 'occupation','occother','notes', 'password']);
+        var user = new Users(body);
 
-    }).catch((e) => {
-        res.status(400).send(e);
-    })
+        user.save().then(() => {
+            res.render('registrationS.hbs', {
+                pageTitle: "Registration Successful.",
+                pageReturn: "Succesfully Registered"
+            });
+
+        }).catch((e) => {
+            res.status(400).send(e);
+        })
+    }
+
 });
 
 app.get('/home', authenticate, (req,res)=>{

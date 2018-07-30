@@ -19,12 +19,14 @@
     <script src="/jquery.js"></script>
 
     <script src="/configjs.js"></script>
+    <link rel="stylesheet" href="/styleLogin.css">
 
     <link rel="stylesheet" href="/bootstrap.css">
     <link rel="stylesheet" href="/inputtype.css">
 
     <link rel="stylesheet" href="/materialkit.css">
     <script src="/numeric.js"></script>
+    <script src="/otpuserAuthReg.js"></script>
 
     <!--js files-->
     <script>
@@ -156,20 +158,19 @@
                                     </div>
                                 </div>
                             <div class="col-xs-3">
-                                    <a href="#" class="btn btn-simple btn-primary btn-md pull-right" style="margin-top: 25px; margin-right: -15px;  ">Send OTP</a>
-                                </div>
+                                <input type="button" id="otpbutton" onclick="sendOTP(document.getElementById('mobile').value)" class="btn btn-simple btn-primary btn-md pull-right" style="margin-top: 25px; margin-right: -25px;  " value="Send OTP">
+
+                            </div>
 	                        </div>
                             </div>
 	                        <div class="col-md-4">
-                            <div class="col-xs-9">
+
 	                            <div class="form-group label-floating">
                                         <label class="control-label">Enter OTP</label>
                                         <input type="number" required name="otp" class="form-control">
                                     </div>
-                                </div>
-                                <div class="col-xs-3">
-                                    <a href="#" class="btn btn-simple btn-primary btn-md pull-right" style="margin-top: 25px; margin-right: -15px;  ">Validate</a>
-                                </div>
+
+
 
 	                        </div>
 	                        <div class="col-md-4">
@@ -223,14 +224,14 @@
                            <div class="col-md-6">
 	                            <div class="form-group label-floating">
                                         <label class="control-label">Confirm Password</label>
-                                        <input type="Password" required class="form-control">
+                                        <input type="Password" name="confirm" required class="form-control">
                                     </div>
 	                        </div>
                                 <div class="col-md-6">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Occupation</label>
 
-                                        <select required name="occ" class="form-control" onchange="otherBox()" id="otherselect">
+                                        <select required name="occupation" class="form-control" onchange="otherBox()" id="otherselect">
                                             <option value="doctor">Doctor</option>
                                             <option value="advocate">Advocate</option>
                                             <option value="teacher">Teacher</option>
@@ -339,7 +340,8 @@
                     </form>
 	            </div>
 	        </div>
-	    </div>
+            <div class="text-center" id="wrong"><h5><b>{{message}}</b></h5></div>
+        </div>
 	</div>
 
 </div>
