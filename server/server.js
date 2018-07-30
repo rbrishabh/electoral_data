@@ -477,12 +477,15 @@ var mobile = req.params.mobile;
 app.get('/checkMobileReg/:mobile', (req,res)=> {
     console.log('started running afadaf')
     var mobile = req.params.mobile;
-    civilian.find({mobile:mobile}).count().then((count)=>{
+    Users.find({mobile:mobile}).count().then((count)=>{
         if(count>0){
+            console.log(count)
             console.log('its more than 0')
             var string = "dont"
             res.send(string);
         } else {
+            console.log(count)
+
             console.log('its okkkkk')
             res.send('go');
         }

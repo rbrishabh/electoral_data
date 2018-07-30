@@ -10,7 +10,7 @@ $(document).ready(function () {
 
 
 
-function sendOTP(value) {
+function sendOTPReg(value) {
     var urlCheckMobile = urlFinal+'checkMobileReg/' + value;
     var ourRequest = new XMLHttpRequest();
     ourRequest.open('GET', urlCheckMobile, true);
@@ -19,6 +19,10 @@ function sendOTP(value) {
         if(goStop == 'go'){
             console.log('yo babe')
             sendOTPNowReg(value);
+
+        }
+        else{
+            document.getElementById('wrongmobile').style.display = "block"
 
         }
 
@@ -30,6 +34,7 @@ function sendOTP(value) {
 
 function sendOTPNowReg(value) {
 
+    document.getElementById('wrongmobile').style.display = "none"
 
     var url = urlFinal+'getOTPReg/' + value;
 

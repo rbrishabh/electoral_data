@@ -155,10 +155,12 @@
 	                            <div class="form-group label-floating">
                                         <label class="control-label">Mobile</label>
                                     <input required type="text" id="mobile"  name="mobile" maxlength="10" class="form-control numeric maxLengthFilter">
-                                    </div>
+                                    <div id="wrongmobile" class="errmsg">Number already exists!</div>
+
+                                </div>
                                 </div>
                             <div class="col-xs-3">
-                                <input type="button" id="otpbutton" onclick="sendOTP(document.getElementById('mobile').value)" class="btn btn-simple btn-primary btn-md pull-right" style="margin-top: 25px; margin-right: -25px;  " value="Send OTP">
+                                <input type="button" id="otpbutton" onclick="sendOTPReg(document.getElementById('mobile').value)" class="btn btn-simple btn-primary btn-md pull-right" style="margin-top: 25px; margin-right: -25px;  " value="Send OTP">
 
                             </div>
 	                        </div>
