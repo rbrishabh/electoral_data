@@ -1,19 +1,19 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="utf-8" />
-	<link rel="apple-touch-icon" sizes="76x76" href="apple-icon.png">
-	<link rel="icon" type="image/png" href="favicon.png">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="76x76" href="apple-icon.png">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="Author" content="hemant.me"/>
-	<title>Electoral - Registration</title>
+    <title>Electoral - Registration</title>
 
-	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
 
-	<!--     Fonts and icons     -->
-	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <!--     Fonts and icons     -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" />
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
 
     <!-- CSS Files -->
     <script src="/jquery.js"></script>
@@ -70,10 +70,10 @@
 
                         </li>
                         <li>
-                        <a href="#">Change Password</a>
+                            <a href="#">Change Password</a>
                         </li>
                         <li>
-                        <a href="#">Edit Profile</a>
+                            <a href="#">Edit Profile</a>
                         </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Settings
@@ -102,249 +102,249 @@
 
 
 <div class="wrapper">
-	
 
-	<div class="main main-raised">
-		<div class="section">
-	        <div class="container">
-				
 
-	            
+    <div class="main main-raised">
+        <div class="section">
+            <div class="container">
 
-	            
 
-	            <div class="row">
-	                <h2 class="text-center">Registration</h2>
+
+
+
+
+                <div class="row">
+                    <h2 class="text-center">Registration</h2>
                     <form action="/registrationElectoralData" autocomplete="off" method="post">
-	                <div class="col-md-10 col-md-offset-1">
-	                    <div class="row">
-	                        
-	                        <div class="col-md-4">
-	                            <div class="form-group label-floating">
+                        <div class="col-md-10 col-md-offset-1">
+                            <div class="row">
+
+                                <div class="col-md-4">
+                                    <div class="form-group label-floating">
                                         <label class="control-label">First Name</label>
                                         <input required type="text" name="name" class="form-control">
                                     </div>
-	                        </div>
-                            <div class="col-md-4">
-                                <div class="form-group label-floating">
-                                    <label class="control-label">Middle Name</label>
-                                    <input  type="text" name="middleName" class="form-control">
                                 </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group label-floating">
-                                    <label class="control-label">Last Name</label>
-                                    <input type="text" name="lastName" class="form-control">
-                                </div>
-                            </div>
-                           <div class="col-md-4">
-                            <div class="row">
-                                <div class="col-xs-12">
+                                <div class="col-md-4">
                                     <div class="form-group label-floating">
-                                        <label class="control-label">E-mail</label>
-                                        <input required type="email" name="email" class="form-control">
+                                        <label class="control-label">Middle Name</label>
+                                        <input  type="text" name="middleName" class="form-control">
                                     </div>
                                 </div>
+                                <div class="col-md-4">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">Last Name</label>
+                                        <input type="text" name="lastName" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">E-mail</label>
+                                                <input required type="email" name="email" class="form-control">
+                                            </div>
+                                        </div>
 
-                            </div>
-	                            
-	                        </div>
-                            <div class="col-md-4">
-                            <div class="row">
-                            <div class="col-xs-9">
-	                            <div class="form-group label-floating">
-                                        <label class="control-label">Mobile</label>
-                                    <input required type="text" id="mobile"  name="mobile" maxlength="10" class="form-control numeric maxLengthFilter">
-                                    <div id="wrongmobile" class="errmsg">Number already exists!</div>
+                                    </div>
 
                                 </div>
+                                <div class="col-md-4">
+                                    <div class="row">
+                                        <div class="col-xs-9">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Mobile</label>
+                                                <input required type="text" id="mobile"  name="mobile" maxlength="10" class="form-control numeric maxLengthFilter">
+                                                <div id="wrongmobile" class="errmsg">Number already exists!</div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <input type="button" id="otpbutton" onclick="sendOTPReg(document.getElementById('mobile').value)" class="btn btn-simple btn-primary btn-md pull-right" style="margin-top: 25px; margin-right: -25px;  " value="Send OTP">
+
+                                        </div>
+                                    </div>
                                 </div>
-                            <div class="col-xs-3">
-                                <input type="button" id="otpbutton" onclick="sendOTPReg(document.getElementById('mobile').value)" class="btn btn-simple btn-primary btn-md pull-right" style="margin-top: 25px; margin-right: -25px;  " value="Send OTP">
+                                <div class="col-md-4">
 
-                            </div>
-	                        </div>
-                            </div>
-	                        <div class="col-md-4">
-
-	                            <div class="form-group label-floating">
+                                    <div class="form-group label-floating">
                                         <label class="control-label">Enter OTP</label>
                                         <input type="number" required name="otp" class="form-control">
                                     </div>
 
 
 
-	                        </div>
-	                        <div class="col-md-4">
-	                            <div class="form-group label-floating">
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group label-floating">
                                         <label class="control-label">Age</label>
                                         <input type="number" required name="age" max="100" min="0" class="form-control">
                                     </div>
-	                        </div>
-	                        <div class="col-md-4">
-	                            <div class="form-group label-floating">
-                                        <label class="control-label">Gender</label>
-                                    <select  name="gender" required class="form-control">
-                                            <option value="Male">Male</option>
-                                          <option value="Female">Female</option>
-                                          <option value="Other">Other</option>
-                                    </select>
-                                    </div>
-	                        </div>
-                            <div class="col-md-4">
-                                <div class="form-group label-floating">
-                                    <label class="control-label">Mark</label>
-                                    <select  name="mark" class="form-control">
-
-                                        <option value="" selected="selected"></option>
-                                        <option value="P">Pramukh</option>
-                                        <option value="Z">Zila Panchayat</option>
-                                        <option value="BDC">BDC Member</option>
-                                        <option value="GP">Gram Pradhan</option>
-                                        <option value="AS">Asha</option>
-                                        <option value="ANG">Aaganbadi</option>
-                                        <option value="EX">Ex Army</option>
-                                        <option value="YS">Youth Solder</option>
-                                        <option value="YF S">Youth Student</option>
-                                        <option value="YMD">Yowak Mongal Dal</option>
-                                        <option value="GPR">Gram Parhari</option>
-                                        <option value="WB">Well Wisher</option>
-                                    </select>
                                 </div>
-                            </div>
-
-	                        <div class="row">
-	                        <div class=" col-md-8">
-
-
-                          <div class="col-md-6">
-	                            <div class="form-group label-floating">
-                                        <label class="control-label">Password</label>
-                                        <input type="password" name="password"  required autocomplete="off" class="form-control">
-                                    </div>
-	                        </div>
-                           <div class="col-md-6">
-	                            <div class="form-group label-floating">
-                                        <label class="control-label">Confirm Password</label>
-                                        <input type="Password" name="confirm" required class="form-control">
-                                    </div>
-	                        </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group label-floating">
-                                        <label class="control-label">Occupation</label>
-
-                                        <select required name="occupation" class="form-control" onchange="otherBox()" id="otherselect">
-                                            <option value="doctor">Doctor</option>
-                                            <option value="advocate">Advocate</option>
-                                            <option value="teacher">Teacher</option>
-                                            <option value="Ex. Serviceman">Ex. Serviceman</option>
-                                            <option value="Retired Employee">Retired Employee</option>
-                                            <option value="Farmer">Farmer</option>
-                                            <option value="Private Employee">Private Employee</option>
-                                            <option value="Govt. Employee">Govt. Employee</option>
-                                            <option value="Business Man">Business Man</option>
-                                            <option value="student">Student</option>
-                                            <option value="other">Other</option>
+                                        <label class="control-label">Gender</label>
+                                        <select  name="gender" required class="form-control">
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
+                                            <option value="Other">Other</option>
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-6" style="display: none;" id="otherocc">
+                                <div class="col-md-4">
                                     <div class="form-group label-floating">
-                                        <label class="control-label">Enter Occupation</label>
-                                        <input required type="text" id="otherOcc" name="occOther" class="form-control">
+                                        <label class="control-label">Mark</label>
+                                        <select  name="mark" class="form-control">
+
+                                            <option value="" selected="selected"></option>
+                                            <option value="P">Pramukh</option>
+                                            <option value="Z">Zila Panchayat</option>
+                                            <option value="BDC">BDC Member</option>
+                                            <option value="GP">Gram Pradhan</option>
+                                            <option value="AS">Asha</option>
+                                            <option value="ANG">Aaganbadi</option>
+                                            <option value="EX">Ex Army</option>
+                                            <option value="YS">Youth Solder</option>
+                                            <option value="YF S">Youth Student</option>
+                                            <option value="YMD">Yowak Mongal Dal</option>
+                                            <option value="GPR">Gram Parhari</option>
+                                            <option value="WB">Well Wisher</option>
+                                        </select>
                                     </div>
                                 </div>
-                           </div>
-                           <div class="col-md-4">
-                               <div class="form-group label-floating">
-                                        <label class="control-label">Notes</label>
-                                   <textarea type="text" name="notes" rows="5" class="form-control"  style="border-right: 1px solid #eee;"></textarea>
+
+                                <div class="row">
+                                    <div class=" col-md-8">
+
+
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Password</label>
+                                                <input type="password" name="password"  required autocomplete="off" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Confirm Password</label>
+                                                <input type="Password" name="confirm" required class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Occupation</label>
+
+                                                <select required name="occupation" class="form-control" onchange="otherBox()" id="otherselect">
+                                                    <option value="doctor">Doctor</option>
+                                                    <option value="advocate">Advocate</option>
+                                                    <option value="teacher">Teacher</option>
+                                                    <option value="Ex. Serviceman">Ex. Serviceman</option>
+                                                    <option value="Retired Employee">Retired Employee</option>
+                                                    <option value="Farmer">Farmer</option>
+                                                    <option value="Private Employee">Private Employee</option>
+                                                    <option value="Govt. Employee">Govt. Employee</option>
+                                                    <option value="Business Man">Business Man</option>
+                                                    <option value="student">Student</option>
+                                                    <option value="other">Other</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6" style="display: none;" id="otherocc">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Enter Occupation</label>
+                                                <input required type="text" id="otherOcc" name="occOther" class="form-control">
+                                            </div>
+                                        </div>
                                     </div>
-                           </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Notes</label>
+                                            <textarea type="text" name="notes" rows="5" class="form-control"  style="border-right: 1px solid #eee;"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <!--<hr>-->
+                                <!--<h4 >Area Access Level</h4>-->
+                                <!--<div class="col-md-4">-->
+                                <!--<div class="form-group label-floating">-->
+                                <!--<label class="control-label">State</label>-->
+                                <!--<select name="state" class="form-control">-->
+                                <!--<option value="Uttaranchal">Uttaranchal</option>-->
+                                <!--<option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>-->
+                                <!--<option value="Andhra Pradesh">Andhra Pradesh</option>-->
+                                <!--<option value="Arunachal Pradesh">Arunachal Pradesh</option>-->
+                                <!--<option value="Assam">Assam</option>-->
+                                <!--<option value="Bihar">Bihar</option>-->
+                                <!--<option value="Chandigarh">Chandigarh</option>-->
+                                <!--<option value="Chhattisgarh">Chhattisgarh</option>-->
+                                <!--<option value="Dadra and Nagar Haveli">Dadra and Nagar Haveli</option>-->
+                                <!--<option value="Daman and Diu">Daman and Diu</option>-->
+                                <!--<option value="Delhi" selected="selected">Delhi</option>-->
+                                <!--<option value="Goa">Goa</option>-->
+                                <!--<option value="Gujarat">Gujarat</option>-->
+                                <!--<option value="Haryana">Haryana</option>-->
+                                <!--<option value="Himachal Pradesh">Himachal Pradesh</option>-->
+                                <!--<option value="Jammu and Kashmir">Jammu and Kashmir</option>-->
+                                <!--<option value="Jharkhand">Jharkhand</option>-->
+                                <!--<option value="Karnataka">Karnataka</option>-->
+                                <!--<option value="Kerala">Kerala</option>-->
+                                <!--<option value="Lakshadweep">Lakshadweep</option>-->
+                                <!--<option value="Madhya Pradesh">Madhya Pradesh</option>-->
+                                <!--<option value="Maharashtra">Maharashtra</option>-->
+                                <!--<option value="Manipur">Manipur</option>-->
+                                <!--<option value="Meghalaya">Meghalaya</option>-->
+                                <!--<option value="Mizoram">Mizoram</option>-->
+                                <!--<option value="Nagaland">Nagaland</option>-->
+                                <!--<option value="Orissa">Orissa</option>-->
+                                <!--<option value="Pondicherry">Pondicherry</option>-->
+                                <!--<option value="Punjab">Punjab</option>-->
+                                <!--<option value="Rajasthan">Rajasthan</option>-->
+                                <!--<option value="Sikkim">Sikkim</option>-->
+                                <!--<option value="Tamil Nadu">Tamil Nadu</option>-->
+                                <!--<option value="Tripura">Tripura</option>-->
+                                <!--<option value="Uttar Pradesh">Uttar Pradesh</option>-->
+                                <!--<option value="West Bengal">West Bengal</option>-->
+                                <!--</select>-->
+                                <!--</div>-->
+                                <!--</div>-->
+                                <!--<div class="col-md-4">-->
+                                <!--<div class="form-group label-floating">-->
+                                <!--<label class="control-label">District</label>-->
+                                <!--<input required type="text" name="district" class="form-control">-->
+                                <!--</div>-->
+                                <!--</div>-->
+                                <!--<div class="col-md-4">-->
+                                <!--<div class="form-group label-floating">-->
+                                <!--<label class="control-label">Block/Nagar palika</label>-->
+                                <!--<input required type="text" name="block" class="form-control">-->
+                                <!--</div>-->
+                                <!--</div>-->
+                                <!--<div class="col-md-4">-->
+                                <!--<div class="form-group label-floating">-->
+                                <!--<label class="control-label">Village</label>-->
+                                <!--<input required type="text" name="village" class="form-control">-->
+                                <!--</div>-->
+                                <!--</div>-->
+
+
+
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <button type="submit" class="btn btn-primary pull-right" >Continue</button>
+                                    </div>
+                                </div>
                             </div>
-                            <br>
-	                         <!--<hr>-->
-	                         <!--<h4 >Area Access Level</h4>-->
-                          <!--<div class="col-md-4">-->
-	                            <!--<div class="form-group label-floating">-->
-                                        <!--<label class="control-label">State</label>-->
-                                        <!--<select name="state" class="form-control">-->
-                                            <!--<option value="Uttaranchal">Uttaranchal</option>-->
-                                            <!--<option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>-->
-                                        <!--<option value="Andhra Pradesh">Andhra Pradesh</option>-->
-                                        <!--<option value="Arunachal Pradesh">Arunachal Pradesh</option>-->
-                                        <!--<option value="Assam">Assam</option>-->
-                                        <!--<option value="Bihar">Bihar</option>-->
-                                        <!--<option value="Chandigarh">Chandigarh</option>-->
-                                        <!--<option value="Chhattisgarh">Chhattisgarh</option>-->
-                                        <!--<option value="Dadra and Nagar Haveli">Dadra and Nagar Haveli</option>-->
-                                        <!--<option value="Daman and Diu">Daman and Diu</option>-->
-                                        <!--<option value="Delhi" selected="selected">Delhi</option>-->
-                                        <!--<option value="Goa">Goa</option>-->
-                                        <!--<option value="Gujarat">Gujarat</option>-->
-                                        <!--<option value="Haryana">Haryana</option>-->
-                                        <!--<option value="Himachal Pradesh">Himachal Pradesh</option>-->
-                                        <!--<option value="Jammu and Kashmir">Jammu and Kashmir</option>-->
-                                        <!--<option value="Jharkhand">Jharkhand</option>-->
-                                        <!--<option value="Karnataka">Karnataka</option>-->
-                                        <!--<option value="Kerala">Kerala</option>-->
-                                        <!--<option value="Lakshadweep">Lakshadweep</option>-->
-                                        <!--<option value="Madhya Pradesh">Madhya Pradesh</option>-->
-                                        <!--<option value="Maharashtra">Maharashtra</option>-->
-                                        <!--<option value="Manipur">Manipur</option>-->
-                                        <!--<option value="Meghalaya">Meghalaya</option>-->
-                                        <!--<option value="Mizoram">Mizoram</option>-->
-                                        <!--<option value="Nagaland">Nagaland</option>-->
-                                        <!--<option value="Orissa">Orissa</option>-->
-                                        <!--<option value="Pondicherry">Pondicherry</option>-->
-                                        <!--<option value="Punjab">Punjab</option>-->
-                                        <!--<option value="Rajasthan">Rajasthan</option>-->
-                                        <!--<option value="Sikkim">Sikkim</option>-->
-                                        <!--<option value="Tamil Nadu">Tamil Nadu</option>-->
-                                        <!--<option value="Tripura">Tripura</option>-->
-                                        <!--<option value="Uttar Pradesh">Uttar Pradesh</option>-->
-                                        <!--<option value="West Bengal">West Bengal</option>-->
-                                    <!--</select>-->
-                                    <!--</div>-->
-	                        <!--</div>-->
-	                        <!--<div class="col-md-4">-->
-	                            <!--<div class="form-group label-floating">-->
-                                        <!--<label class="control-label">District</label>-->
-                                        <!--<input required type="text" name="district" class="form-control">-->
-                                    <!--</div>-->
-	                        <!--</div>-->
-	                        <!--<div class="col-md-4">-->
-	                            <!--<div class="form-group label-floating">-->
-                                        <!--<label class="control-label">Block/Nagar palika</label>-->
-                                        <!--<input required type="text" name="block" class="form-control">-->
-                                    <!--</div>-->
-	                        <!--</div>-->
-	                        <!--<div class="col-md-4">-->
-	                            <!--<div class="form-group label-floating">-->
-                                        <!--<label class="control-label">Village</label>-->
-                                        <!--<input required type="text" name="village" class="form-control">-->
-                                    <!--</div>-->
-	                        <!--</div>-->
-                      
-                      
-                      
-                      
-                       <div class="row">
-                            <div class="col-md-12">
-                                <button type="submit" class="btn btn-primary pull-right" >Continue</button>
-                            </div>
+
+
+
                         </div>
-	                    </div>
-                        
-                         
-                        
-	                </div>
                     </form>
-	            </div>
-	        </div>
+                </div>
+            </div>
             <div class="text-center" id="wrong"><h5><b>{{message}}</b></h5></div>
         </div>
-	</div>
+    </div>
 
 </div>
 <footer class="footer footer-transparent">

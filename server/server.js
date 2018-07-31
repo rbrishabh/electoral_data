@@ -590,7 +590,7 @@ app.get('/querysearch6/:village', (req,res)=>{
 
     var village = req.params.village;
     civilian.find({
-        village:village,
+        village:village
     }).then((civilian)=>{
         if(!civilian){
             res.send();
@@ -610,7 +610,7 @@ app.get('/querysearch7/:block', (req,res)=>{
 
     var block = req.params.block;
     civilian.find({
-        block:block,
+        block:block
     }).then((civilian)=>{
         if(!civilian){
             res.send();
@@ -630,7 +630,7 @@ app.get('/querysearch8/:district', (req,res)=>{
 
     var district = req.params.district;
     civilian.find({
-        district:district,
+        district:district
     }).then((civilian)=>{
         if(!civilian){
             res.send();
@@ -650,7 +650,7 @@ app.get('/querysearch9/:state', (req,res)=>{
 
     var state = req.params.state;
     civilian.find({
-        state:state,
+        state:state
     }).then((civilian)=>{
         if(!civilian){
             res.send();
@@ -869,7 +869,50 @@ app.post('/passwordChanged',authenticate, (req,res)=>{
 
 });
 
-app.post('/registrationElectoralData' , (req, res) => {
+
+app.post('/addedAdmin', authenticate, (req,res)=>{
+    var obj = {};
+    if(req.body.state){
+        obj.state = req.body.state
+    }
+    if(req.body.district){
+        obj.district = req.body.district
+    }
+    if(req.body.block){
+        obj.block = req.body.block
+    }
+    if(req.body.village){
+        obj.village = req.body.village
+    }
+    if(req.body.citizenAdd){
+        obj.citizenAdd = req.body.citizenAdd
+    }
+    if(req.body.citizenEdit){
+        obj.citizenEdit = req.body.citizenEdit
+    }
+    if(req.body.adminAdd){
+        obj.adminAdd = req.body.adminAdd
+    }
+    if(req.body.messageRights){
+        obj.messageRights = req.body.messageRights
+    }
+    if(req.body.printRights){
+        obj.printRights = req.body.printRights
+    }
+    if(req.body.optionsRadio){
+        obj.level = req.body.optionsRadio
+    }
+    Users.update({"email": req.body.email},
+        {$set:obj}).then((user)=>{
+    res.render('querySearchNew.hbs');
+            }, (e)=>{
+        res.send('0');
+    }).catch((e)=>{
+        res.send('0');
+    });
+});
+
+app.post('/registrationElectoralData' , authenticate, (req, res) => {
 var otp = req.body.otp;
     console.log(otp);
     tokenValidates = speakeasy.totp.verify({
@@ -886,17 +929,17 @@ if(!tokenValidates){
 }
   else if(req.body.password !== req.body.confirm){
         res.render('registration.hbs', {
-            pageTitle: "Registration unuccessful.",
-            message: "Incorrect Password!"
+            pageTitle: "Registration unsuccessful.",
+            message: "Passwords do not match! Please try again."
         });
     } else{
-        var body = _.pick(req.body, ['email', 'name', 'middleName', 'mobile', 'lastName','age','gender','mark', 'occupation','occother','notes', 'password']);
+        var body = _.pick(req.body, ['email', 'name', 'middleName', 'mobile', 'lastName','age','gender','mark', 'occupation','occOther','notes', 'password']);
         var user = new Users(body);
 
         user.save().then(() => {
             res.render('registrationS.hbs', {
-                pageTitle: "Registration Successful.",
-                pageReturn: "Succesfully Registered"
+                name: req.body.name,
+                email: req.body.email
             });
 
         }).catch((e) => {

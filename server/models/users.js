@@ -55,7 +55,7 @@ var userSchema = new mongoose.Schema({
         required: true,
         trim:true
     },
-    occother:{
+    occOther:{
         type: String,
         trim: true
     },
@@ -79,10 +79,35 @@ var userSchema = new mongoose.Schema({
         type: String,
         trim:true
     },
+    citizenAdd: {
+        type: String,
+        trim:true
+    },
+    citizenEdit: {
+        type: String,
+        trim:true
+    },
+    adminAdd: {
+        type: String,
+        trim:true
+    },
     notes: {
         type: String,
         trim:true
-    }});
+    },
+    printRights: {
+        type: String,
+        trim:true
+    },
+    messageRights: {
+        type: String,
+        trim:true
+    },
+    level: {
+        type: String,
+        trim:true
+    }
+});
 
 
 userSchema.methods.toJSON = function () {
