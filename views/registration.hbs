@@ -161,7 +161,7 @@
                                         </div>
                                         <div class="col-xs-3">
                                             <input type="button" id="otpbutton" onclick="sendOTPReg(document.getElementById('mobile').value)" class="btn btn-simple btn-primary btn-md pull-right" style="margin-top: 25px; margin-right: -25px;  " value="Send OTP">
-
+                                            <input type="hidden" name="verifiedMobile" value="false">
                                         </div>
                                     </div>
                                 </div>
@@ -169,7 +169,7 @@
 
                                     <div class="form-group label-floating">
                                         <label class="control-label">Enter OTP</label>
-                                        <input type="text" required name="otp" class="form-control numeric maxlengthfilter">
+                                        <input type="text" name="otp" class="form-control numeric maxlengthfilter">
                                     </div>
 
 

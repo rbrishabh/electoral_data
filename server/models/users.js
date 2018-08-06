@@ -95,6 +95,10 @@ var userSchema = new mongoose.Schema({
         type: String,
         trim:true
     },
+    verifiedMobile: {
+        type: String,
+        trim:true
+    },
     mark: {
         type: String,
         trim:true

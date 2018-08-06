@@ -12,6 +12,7 @@ $(document).ready(function() {
     $("#blockS").hide();
     $("#districtS").hide();
 
+
     start= 0;
     end = start+20;
     if(document.getElementById('state').disabled == true && document.getElementById('district').disabled == true && document.getElementById('block').disabled == true && document.getElementById('village').disabled == true){
@@ -462,7 +463,7 @@ if(printData.civilian[x].name== undefined){
             + "<th>" + printData.civilian[x].thirdMobile + "</th>"
             + "<th>" + printData.civilian[x].email + "</th>"
             + "<th>" + "<input type='checkbox' data-value = "+ printData.civilian[x].mobile + "-"+ printData.civilian[x].name+ "-"+ printData.civilian[x].middleName+ "-"+ printData.civilian[x].lastName +">" + "</th>"
-            + "<th>" + "<button class='btn btn-default btn-xs'>Edit</button>" + "</th>"
+            + "<th>" + "<button class='btn btn-default btn-xs disableButton'>Edit</button>" + "</th>"
 
             +"</tr>";
 
@@ -504,7 +505,13 @@ if(printData.civilian[x].name== undefined){
             e.preventDefault();
         });
     });
-if(end>=printData.civilian.length-1){
+
+    if(document.getElementById('forMessage').disabled == true){
+        $('.disableButton').prop('disabled', true);
+    }
+
+
+    if(end>=printData.civilian.length-1){
     $("#nextIt").hide();
 } else {
     $("#nextIt").show();

@@ -1001,26 +1001,28 @@ app.post('/addedAdmin', authenticate, (req,res)=>{
 app.post('/registrationElectoralData' , authenticate, (req, res) => {
 var otp = req.body.otp;
     console.log(otp);
-    tokenValidates = speakeasy.totp.verify({
-        secret: secret.base32,
-        encoding: 'base32',
-        token: otp,
-        window: 6
-    });
-if(!tokenValidates){
-    res.render('registration.hbs', {
-        pageTitle: "Registration unuccessful.",
-        message: "Incorrect OTP!"
-    });
-}
-  else if(req.body.password !== req.body.confirm){
+    if(req.body.otp){
+        tokenValidates = speakeasy.totp.verify({
+            secret: secret.base32,
+            encoding: 'base32',
+            token: otp,
+            window: 6
+        });
+        if(tokenValidates){
+            req.body.verifiedMobile = 'true';
+        }
+
+    }
+
+
+if(req.body.password !== req.body.confirm){
         res.render('registration.hbs', {
             pageTitle: "Registration unsuccessful.",
             message: "Passwords do not match! Please try again."
         });
     } else {
-    var body = _.pick(req.body, ['email', 'name', 'middleName', 'mobile', 'lastName', 'age', 'gender', 'mark', 'occupation', 'occOther', 'notes', 'password', 'stateOwn', 'districtOwn', 'blockOwn', 'villageOwn', 'pinOwn']);
-    var user = new Users(body);
+     var body = _.pick(req.body, ['email', 'name', 'middleName', 'mobile', 'lastName', 'age', 'gender', 'mark', 'occupation', 'occOther', 'notes', 'password', 'stateOwn', 'districtOwn', 'blockOwn', 'villageOwn', 'pinOwn', 'verifiedMobile']);
+     var user = new Users(body);
 
     user.save().then(() => {
         var user1 = req.session.userId;
