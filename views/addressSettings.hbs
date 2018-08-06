@@ -24,6 +24,7 @@
     <script src="/addressSettingsEdit.js"></script>
     <script src="/addressSettingsDel.js"></script>
     <script src="/addressSettingsCommon.js"></script>
+    <script src="/areaAccessSettings.js"></script>
 
     <style>
         .seting_button{
@@ -140,9 +141,6 @@
             <div class="row">
 
 
-
-
-
                 <div class="col-md-12" style="margin: 0px !important;">
 
 
@@ -189,9 +187,17 @@
                                                     <strong class="labelh pull-left" >Add New Address</strong>
                                                 </div>
                                             </div>
+                                            <div class="col-md-6" id="stateAddS" style="margin: 0px !important;">
 
-                                            <div class="col-md-6" style="margin: 0px !important;">
                                                 <div class="form-group label-floating">
+                                                    <label class="control-label">State</label>
+                                                    <input type="text" required readonly name="state" id="stateAddL" value="" class="form-control">
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-md-6" id="stateAddH" style="margin: 0px !important;">
+                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Select State</label>
                                                     <select id="stateAdd" name="state" class="form-control">
 
@@ -236,7 +242,17 @@
 
                                                 </div>
                                             </div>
-                                            <div class="col-md-6" style="margin: 0px !important;">
+
+                                            <div class="col-md-6" id="districtAddS" style="margin: 0px !important;">
+
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">District</label>
+                                                    <input type="text" readonly required name="district" id="districtAddL" value="" class="form-control">
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-md-6" id="districtAddH" style="margin: 0px !important;">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">District</label>
                                                     <select  name="districtAdd" id="districtAdd" onchange="getABlock(value,document.getElementById('stateAdd').value); disableCheckAB(); disableCheckAV();" required  class="form-control">
@@ -253,7 +269,15 @@
 
                                                     <div class="tab-content">
                                                         <div id="home" class="tab-pane fade in active">
-                                                            <div class="col-md-12" style="margin: 0px !important;">
+                                                            <div class="col-md-12" id="blockAddS" style="margin: 0px !important;">
+
+                                                                <div class="form-group label-floating">
+                                                                    <label class="control-label">Block</label>
+                                                                    <input type="text" readonly name="block"  required id="blockAddL" value="" class="form-control">
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="col-md-12" id="blockAddH" style="margin: 0px !important;">
                                                                 <div class="form-group label-floating">
                                                                     <label class="control-label">Add New Block/Nagar palika</label>
                                                                     <input  type="text" name="block"  required id="blockAdd1" onkeyup="disableCheckAB();" class="form-control">
@@ -262,22 +286,37 @@
 
                                                             <div class="row">
                                                                 <div class="col-md-12">
-                                                                    <button type="submit" id="addBlockButton" class="btn btn-primary pull-right"  onclick="addBlock(document.getElementById('blockAdd1').value,document.getElementById('districtAdd').value,document.getElementById('stateAdd').value)">Add</button>
+                                                                    <button type="submit" id="addBlockButton" class="btn btn-primary pull-right"  onclick="addBlock(document.getElementById('blockAdd1').value)">Add</button>
                                                                     <div id="success" class="errmsg">Succesfully Added!</div>
 
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div id="menu1" class="tab-pane fade">
-                                                            <div class="col-md-12" style="margin: 0px !important;">
+                                                            <div class="col-md-12" id="blockAddS1" style="margin: 0px !important;">
+
+                                                                <div class="form-group label-floating">
+                                                                    <label class="control-label">Block</label>
+                                                                    <input type="text" readonly name="block"  required id="blockAddL1" value="" class="form-control">
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="col-md-12" id="blockAddH1" style="margin: 0px !important;">
                                                                 <div class="form-group label-floating">
                                                                     <label class="control-label">Block/Nagar palika</label>
                                                                     <select  name="block" id="blockAdd2" onchange="disableCheckAV()" class="form-control">
                                                                     </select>
                                                                 </div>
                                                             </div>
+                                                            <div class="col-md-12" id="villageAddS" style="margin: 0px !important;">
 
-                                                            <div class="col-md-12" style="margin: 0px !important;">
+                                                                <div class="form-group label-floating">
+                                                                    <label class="control-label">Village</label>
+                                                                    <input type="text" readonly name="village" required id="villageAddL" value="" class="form-control">
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="col-md-12" id="villageAddH" style="margin: 0px !important;">
                                                                 <div class="form-group label-floating">
                                                                     <label class="control-label">Add Village</label>
                                                                     <input  type="text" name="village" id="villageAdd" onkeyup="disableCheckAV()" class="form-control">
@@ -286,7 +325,7 @@
 
 
                                                             <div class="col-md-12">
-                                                                <button type="submit" id="addVillageButton" class="btn btn-primary pull-right" onclick="addVillage(document.getElementById('villageAdd').value,document.getElementById('blockAdd2').value,document.getElementById('districtAdd').value,document.getElementById('stateAdd').value)">Add</button>
+                                                                <button type="submit" id="addVillageButton" class="btn btn-primary pull-right" onclick="addVillage(document.getElementById('villageAdd').value)">Add</button>
                                                                 <div id="success1" class="errmsg">Succesfully Added!</div>
                                                             </div>
                                                         </div>
@@ -307,8 +346,15 @@
                                                     <strong class="labelh pull-left" >Edit Address</strong>
                                                 </div>
                                             </div>
+                                            <div class="col-md-6" id="stateEditS" style="margin: 0px !important;">
 
-                                            <div class="col-md-6" style="margin: 0px !important;">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">State</label>
+                                                    <input type="text" required readonly name="state" id="stateEditL" value="" class="form-control">
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-6" id="stateEditH" style="margin: 0px !important;">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Select State</label>
                                                     <select  name="state" id="stateEdit" class="form-control">
@@ -354,7 +400,15 @@
 
                                                 </div>
                                             </div>
-                                            <div class="col-md-6" style="margin: 0px !important;">
+                                            <div class="col-md-6" id="districtEditS" style="margin: 0px !important;">
+
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">District</label>
+                                                    <input type="text" readonly required name="district" id="districtEditL" value="" class="form-control">
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-6" id="districtEditH" style="margin: 0px !important;">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">District</label>
                                                     <select  name="districtEdit" id="districtEdit" onchange="getEBlock(value,document.getElementById('stateEdit').value); disableCheckEB(); disableCheckEV();" required  class="form-control">
@@ -371,13 +425,22 @@
 
                                                     <div class="tab-content">
                                                         <div id="editblock" class="tab-pane fade in active">
-                                                            <div class="col-md-6" style="margin: 0px !important;">
+                                                            <div class="col-md-6" id="blockEditS" style="margin: 0px !important;">
+
+                                                                <div class="form-group label-floating">
+                                                                    <label class="control-label">Block</label>
+                                                                    <input type="text" readonly name="block"  required id="blockEditL" value="" class="form-control">
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="col-md-6" id="blockEditH" style="margin: 0px !important;">
                                                                 <div class="form-group label-floating">
                                                                     <label class="control-label">Block/Nagar palika</label>
                                                                     <select  name="block" id="blockEdit1" onchange="disableCheckEB()" class="form-control">
                                                                     </select>
                                                                 </div>
                                                             </div>
+
                                                             <div class="col-md-6" style="margin: 0px !important;">
                                                                 <div class="form-group label-floating">
                                                                     <label class="control-label">Edit Block/Nagar palika</label>
@@ -387,22 +450,38 @@
 
                                                             <div class="row">
                                                                 <div class="col-md-12">
-                                                                    <button type="submit" id="editBlockButton" class="btn btn-primary pull-right" onclick="editBlock(document.getElementById('districtEdit').value,document.getElementById('stateEdit').value,document.getElementById('blockEdit1').value,document.getElementById('blockEdited1').value)" >Edit</button>
+                                                                    <button type="submit" id="editBlockButton" class="btn btn-primary pull-right" onclick="editBlock(document.getElementById('blockEdited1').value)" >Edit</button>
                                                                     <div id="success2" class="errmsg">Succesfully Edited!</div>
 
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div id="editvill" class="tab-pane fade">
-                                                            <div class="col-md-12" style="margin: 0px !important;">
+                                                            <div class="col-md-12" id="blockEditS1" style="margin: 0px !important;">
+
+                                                                <div class="form-group label-floating">
+                                                                    <label class="control-label">Block</label>
+                                                                    <input type="text" readonly name="block"  required id="blockEditL1" value="" class="form-control">
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="col-md-12" id="blockEditH1" style="margin: 0px !important;">
                                                                 <div class="form-group label-floating">
                                                                     <label class="control-label">Block/Nagar palika</label>
                                                                     <select  name="block" id="blockEdit2" onchange="getEVillage(document.getElementById('districtEdit').value,document.getElementById('stateEdit').value,value); disableCheckEV()" class="form-control">
                                                                     </select>
                                                                 </div>
                                                             </div>
+                                                            <div class="col-md-6" id="villageEditS" style="margin: 0px !important;">
 
-                                                            <div class="col-md-6" style="margin: 0px !important;">
+                                                                <div class="form-group label-floating">
+                                                                    <label class="control-label">Village</label>
+                                                                    <input type="text" readonly name="village" required id="villageEditL" value="" class="form-control">
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div class="col-md-6" id="villageEditH" style="margin: 0px !important;">
                                                                 <div class="form-group label-floating">
                                                                     <label class="control-label">Village</label>
                                                                     <select name="village" id="villageEdit" onchange="disableCheckEV()" class="form-control">
@@ -420,7 +499,7 @@
 
 
                                                             <div class="col-md-12">
-                                                                <button type="submit" id="editVillageButton" class="btn btn-primary pull-right" onclick="editVillage(document.getElementById('districtEdit').value,document.getElementById('stateEdit').value,document.getElementById('blockEdit2').value,document.getElementById('villageEdit').value,document.getElementById('editedVillage').value)">Edit</button>
+                                                                <button type="submit" id="editVillageButton" class="btn btn-primary pull-right" onclick="editVillage(document.getElementById('editedVillage').value)">Edit</button>
                                                                 <div id="success3" class="errmsg">Succesfully Edited!</div>
 
                                                             </div>
@@ -444,8 +523,16 @@
                                                     <strong class="labelh pull-left" >Delete Address</strong>
                                                 </div>
                                             </div>
+                                            <div class="col-md-6" id="stateDelS" style="margin: 0px !important;">
 
-                                            <div class="col-md-6" style="margin: 0px !important;">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">State</label>
+                                                    <input type="text" required readonly name="state" id="stateDelL" value="" class="form-control">
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-md-6" id="stateDelH" style="margin: 0px !important;">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Select State</label>
                                                     <select  name="state" id="stateDel" class="form-control">
@@ -491,7 +578,16 @@
 
                                                 </div>
                                             </div>
-                                            <div class="col-md-6" style="margin: 0px !important;">
+                                            <div class="col-md-6" id="districtDelS" style="margin: 0px !important;">
+
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">District</label>
+                                                    <input type="text" readonly required name="district" id="districtDelL" value="" class="form-control">
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-md-6" id="districtDelH" style="margin: 0px !important;">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">District</label>
                                                     <select  name="districtDel" id="districtDel" onchange="getDBlock(value,document.getElementById('stateDel').value); disableCheckDB(); disableCheckDV();" required  class="form-control">
@@ -508,7 +604,15 @@
 
                                                     <div class="tab-content">
                                                         <div id="deleteblock" class="tab-pane fade in active">
-                                                            <div class="col-md-12" style="margin: 0px !important;">
+                                                            <div class="col-md-12" id="blockDelS" style="margin: 0px !important;">
+
+                                                                <div class="form-group label-floating">
+                                                                    <label class="control-label">Block</label>
+                                                                    <input type="text" readonly name="block"  required id="blockDelL" value="" class="form-control">
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="col-md-12" id="blockDelH" style="margin: 0px !important;">
                                                                 <div class="form-group label-floating">
                                                                     <label class="control-label">Block/Nagar palika</label>
                                                                     <select  name="block" id="blockDel1" onchange="disableCheckDB()" class="form-control">
@@ -519,7 +623,7 @@
 
                                                             <div class="row">
                                                                 <div class="col-md-12">
-                                                                    <button type="submit" id="deleteBlockButton" class="btn btn-primary pull-right" onclick="delBlock(document.getElementById('blockDel1').value,document.getElementById('districtDel').value,document.getElementById('stateDel').value)" >Delete</button>
+                                                                    <button type="submit" id="deleteBlockButton" class="btn btn-primary pull-right" onclick="delBlock()" >Delete</button>
                                                                     <div id="success4" class="errmsg">Succesfully Deleted!</div>
                                                                     <div>
                                                                         <p><span style="color: #ac2925">*</span>Deleting a block will also delete all corresponding villages.</p>
@@ -528,15 +632,30 @@
                                                             </div>
                                                         </div>
                                                         <div id="deletevill" class="tab-pane fade">
-                                                            <div class="col-md-12" style="margin: 0px !important;">
+                                                            <div class="col-md-12" id="blockDelS1" style="margin: 0px !important;">
+
+                                                                <div class="form-group label-floating">
+                                                                    <label class="control-label">Block</label>
+                                                                    <input type="text" readonly name="block"  required id="blockDelL1" value="" class="form-control">
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="col-md-12" id="blockDelH1" style="margin: 0px !important;">
                                                                 <div class="form-group label-floating">
                                                                     <label class="control-label">Block/Nagar palika</label>
                                                                     <select  name="block" id="blockDel2" onchange="getDVillage(document.getElementById('districtEdit').value,document.getElementById('stateEdit').value,value); disableCheckDV()" class="form-control">
                                                                     </select>
                                                                 </div>
                                                             </div>
+                                                            <div class="col-md-12" id="villageDelS" style="margin: 0px !important;">
 
-                                                            <div class="col-md-12" style="margin: 0px !important;">
+                                                                <div class="form-group label-floating">
+                                                                    <label class="control-label">Village</label>
+                                                                    <input type="text" readonly name="village" required id="villageDelL" value="" class="form-control">
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="col-md-12" id="villageDelH" style="margin: 0px !important;">
                                                                 <div class="form-group label-floating">
                                                                     <label class="control-label">Select Village to Delete</label>
                                                                     <select name="village" id="villageDel" onchange="disableCheckDV()" class="form-control">
@@ -547,7 +666,7 @@
 
 
                                                             <div class="col-md-12">
-                                                                <button id="deleteVillageButton" type="submit" href="#" class="btn btn-primary pull-right" onclick="delVillage(document.getElementById('blockDel2').value,document.getElementById('districtDel').value,document.getElementById('stateDel').value, document.getElementById('villageDel').value)"  >Delete</button>
+                                                                <button id="deleteVillageButton" type="submit" href="#" class="btn btn-primary pull-right" onclick="delVillage()"  >Delete</button>
                                                                 <div id="success5" class="errmsg">Succesfully Deleted!</div>
 
                                                             </div>
@@ -641,6 +760,121 @@
         }
     };
 
+</script>
+<script>
+    if('{{level}}'==='village'){
+        document.getElementById('stateAdd').disabled = true;
+        document.getElementById('districtAdd').disabled = true;
+        document.getElementById('villageAdd').disabled = true;
+        document.getElementById('blockAdd1').disabled = true;
+        document.getElementById('blockAdd2').disabled = true;
+
+        document.getElementById('villageAddL').value='{{village}}';
+        document.getElementById('blockAddL').value='{{block}}';
+        document.getElementById('blockAddL1').value='{{block}}';
+        document.getElementById('districtAddL').value='{{district}}';
+        document.getElementById('stateAddL').value='{{state}}';
+
+
+// EDIT
+        document.getElementById('stateEdit').disabled = true;
+        document.getElementById('districtEdit').disabled = true;
+        document.getElementById('villageEdit').disabled = true;
+        document.getElementById('blockEdit1').disabled = true;
+        document.getElementById('blockEdit2').disabled = true;
+        document.getElementById('blockEdited1').disabled = true;
+
+        document.getElementById('villageEditL').value='{{village}}';
+        document.getElementById('blockEditL').value='{{block}}';
+        document.getElementById('blockEditL1').value='{{block}}';
+        document.getElementById('districtEditL').value='{{district}}';
+        document.getElementById('stateEditL').value='{{state}}';
+        
+        //DEL
+        document.getElementById('stateDel').disabled = true;
+        document.getElementById('districtDel').disabled = true;
+        document.getElementById('villageDel').disabled = true;
+        document.getElementById('blockDel1').disabled = true;
+        document.getElementById('blockDel2').disabled = true;
+        
+
+        document.getElementById('villageDelL').value='{{village}}';
+        document.getElementById('blockDelL').value='{{block}}';
+        document.getElementById('blockDelL1').value='{{block}}';
+        document.getElementById('districtDelL').value='{{district}}';
+        document.getElementById('stateDelL').value='{{state}}';
+
+
+    }
+    if('{{level}}'==='block'){
+        document.getElementById('stateAdd').disabled = true;
+        document.getElementById('districtAdd').disabled = true;
+        document.getElementById('blockAdd1').disabled = true;
+        document.getElementById('blockAdd2').disabled = true;
+
+        document.getElementById('blockAddL').value='{{block}}';
+        document.getElementById('blockAddL1').value='{{block}}';
+        document.getElementById('districtAddL').value='{{district}}';
+        document.getElementById('stateAddL').value='{{state}}';
+
+
+
+
+        document.getElementById('stateEdit').disabled = true;
+        document.getElementById('districtEdit').disabled = true;
+        document.getElementById('blockEdit1').disabled = true;
+        document.getElementById('blockEdit2').disabled = true;
+
+        document.getElementById('blockEditL').value='{{block}}';
+        document.getElementById('blockEditL1').value='{{block}}';
+        document.getElementById('districtEditL').value='{{district}}';
+        document.getElementById('stateEditL').value='{{state}}';
+
+
+
+        document.getElementById('stateDel').disabled = true;
+        document.getElementById('districtDel').disabled = true;
+        document.getElementById('blockDel1').disabled = true;
+        document.getElementById('blockDel2').disabled = true;
+
+        document.getElementById('blockDelL').value='{{block}}';
+        document.getElementById('blockDelL1').value='{{block}}';
+        document.getElementById('districtDelL').value='{{district}}';
+        document.getElementById('stateDelL').value='{{state}}';
+    }
+    if('{{level}}'==='district'){
+        document.getElementById('stateAdd').disabled = true;
+        document.getElementById('districtAdd').disabled = true;
+
+        document.getElementById('districtAddL').value='{{district}}';
+        document.getElementById('stateAddL').value='{{state}}';
+
+
+        document.getElementById('stateEdit').disabled = true;
+        document.getElementById('districtEdit').disabled = true;
+
+        document.getElementById('districtEditL').value='{{district}}';
+        document.getElementById('stateEditL').value='{{state}}';
+
+
+
+
+        document.getElementById('stateDel').disabled = true;
+        document.getElementById('districtDel').disabled = true;
+
+        document.getElementById('districtDelL').value='{{district}}';
+        document.getElementById('stateDelL').value='{{state}}';
+    }
+    if('{{level}}'==='state'){
+        document.getElementById('stateAdd').disabled = true;
+        document.getElementById('stateAddL').value='{{state}}';
+
+        document.getElementById('stateEdit').disabled = true;
+        document.getElementById('stateEditL').value='{{state}}';
+
+        document.getElementById('stateDel').disabled = true;
+        document.getElementById('stateDelL').value='{{state}}';
+    }
 </script>
 
 </body>

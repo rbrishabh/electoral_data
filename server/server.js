@@ -59,11 +59,35 @@ app.get('/civilCount', authenticated, (req,res)=> {
 
 });
 
-app.get('/addressSettings', authenticate, (req,res)=>{
-    res.render('addressSettings.hbs', {
-        pageTitle : "Address Settings Page"
-    })
+app.get('/addressSettings', authenticate, (req,res)=> {
+    var user = req.session.userId;
+    var obj = {};
+    Users.findById(user).then((user) => {
+        console.log(user);
+        if (user.state) {
+            obj.state = user.state
+        }
+        if (user.village) {
+            obj.village = user.village
+        }
+        if (user.block) {
+            obj.block = user.block
+        }
+        if (user.district) {
+            obj.district = user.district
+        }
+
+
+        obj.level = user.level
+        obj.addC = user.citizenAdd
+        obj.editC = user.citizenEdit
+        obj.addA = user.adminAdd
+        obj.pageTitle = "Address Settings Page";
+        res.render('addressSettings.hbs', obj);
+
+    });
 });
+
 
 app.post('/addBlock/:block/:dist/:state', (req,res)=>{
 
@@ -213,9 +237,30 @@ app.get('/registrationElectoral',authenticate,(req,res)=> {
 });
 
 app.get('/queryAdd',authenticate,(req,res)=> {
-    res.render('queryAdd.hbs', {
-        pageTitle : "Add new query"
-    })
+    var user = req.session.userId;
+    var obj = {};
+    Users.findById(user).then((user) => {
+        console.log(user);
+        if (user.state) {
+            obj.state = user.state
+        }
+        if (user.village) {
+            obj.village = user.village
+        }
+        if (user.block) {
+            obj.block = user.block
+        }
+        if (user.district) {
+            obj.district = user.district
+        }
+
+
+        obj.level = user.level
+        obj.addC = user.citizenAdd
+        obj.editC = user.citizenEdit
+        obj.addA = user.adminAdd
+        res.render('queryAdd.hbs', obj)
+    });
 });
 
 app.get('/addCivilData',(req,res)=> {
@@ -225,9 +270,34 @@ app.get('/addCivilData',(req,res)=> {
 });
 
 app.get('/querySearch',authenticate,(req,res)=> {
-    res.render('querySearchNew.hbs', {
-        pageTitle : "Add new query"
-    })
+    var user = req.session.userId;
+    var obj = {};
+    Users.findById(user).then((user)=>{
+        console.log(user);
+        if(user.state){
+            obj.state = user.state
+        }
+        if(user.village){
+            obj.village = user.village
+        }
+        if(user.block){
+            obj.block = user.block
+        }
+        if(user.district){
+            obj.district = user.district
+        }
+
+
+            obj.level = user.level
+            obj.message= user.messageRights
+            obj.print= user.printRights
+            obj.addC = user.citizenAdd
+            obj.editC= user.citizenEdit
+            obj.addA = user.adminAdd
+
+        res.render('querySearchNew.hbs', obj);
+    });
+
 });
 
 
@@ -322,38 +392,36 @@ app.post('/queryAddedCivilAuth', authenticate, function (req, res) {
     var otpNew = req.body.otp;
     console.log(otpNew);
 
-if(req.body.otp){
-    tokenValidates = speakeasy.totp.verify({
-        secret: secret.base32,
-        encoding: 'base32',
-        token: otpNew,
-        window: 6
-    });
-    if(tokenValidates) {
-        req.body.validationCheck = 'true';
+    if (req.body.otp) {
+        tokenValidates = speakeasy.totp.verify({
+            secret: secret.base32,
+            encoding: 'base32',
+            token: otpNew,
+            window: 6
+        });
+        if (tokenValidates) {
+            req.body.validationCheck = 'true';
+        }
     }
-}
-
-
 
 
     var dob = req.body.dob;
-    if(req.body.age == undefined || req.body.age == "" || req.body.age == null){
+    if (req.body.age == undefined || req.body.age == "" || req.body.age == null) {
 
         var date = new Date(dob).getDate()
         var month = new Date(dob).getMonth();
         var year = new Date(dob).getFullYear();
         var newDate = "";
-        newDate = year +'-' + (month+1) + '-' + date;
+        newDate = year + '-' + (month + 1) + '-' + date;
         var age = getAge(newDate)
     }
     else {
         age = req.body.age;
     }
 
-    console.log(req.body.validationCheck,'123123');
+    console.log(req.body.validationCheck, '123123');
     var newCivilian = new civilian({
-        title : req.body.title,
+        title: req.body.title,
         name: req.body.firstName,
         middleName: req.body.middleName,
         lastName: req.body.lastName,
@@ -376,24 +444,42 @@ if(req.body.otp){
         state: req.body.state,
         pin: req.body.pin,
         mark: req.body.mark,
-        validationCheck :  req.body.validationCheck
+        validationCheck: req.body.validationCheck
     });
 
-    newCivilian.save().then((doc)=>{
-        res.render('queryAdd.hbs', {
-            pageReturn: "1",
-            message: "Data Succesfully Added!"
+    newCivilian.save().then((doc) => {
+        var user = req.session.userId;
+        var obj = {};
+        Users.findById(user).then((user) => {
+            console.log(user);
+            if (user.state) {
+                obj.state = user.state
+            }
+            if (user.village) {
+                obj.village = user.village
+            }
+            if (user.block) {
+                obj.block = user.block
+            }
+            if (user.district) {
+                obj.district = user.district
+            }
+
+
+            obj.level = user.level
+            obj.addC = user.citizenAdd
+            obj.editC = user.citizenEdit
+            obj.addA = user.adminAdd
+            obj.message = "Data Succesfully Added!";
+            obj.pageReturn = "1"
+            res.render('queryAdd.hbs', obj);
+        }, (e) => {
+            res.send(e)
+
         });
-    }, (e)=>{
-res.send(e)
-        // res.render('queryAdd.hbs', {
-        //     pageReturn: "1",
-        //     message:"Something went wrong. Please try again."
 
-        // });
+
     });
-
-
 });
 
 app.get('/getNumber/:email', (req,res)=>{
@@ -904,7 +990,7 @@ app.post('/addedAdmin', authenticate, (req,res)=>{
     }
     Users.update({"email": req.body.email},
         {$set:obj}).then((user)=>{
-    res.render('querySearchNew.hbs');
+    res.redirect('/querySearch');
             }, (e)=>{
         res.send('0');
     }).catch((e)=>{
@@ -932,25 +1018,47 @@ if(!tokenValidates){
             pageTitle: "Registration unsuccessful.",
             message: "Passwords do not match! Please try again."
         });
-    } else{
-        var body = _.pick(req.body, ['email', 'name', 'middleName', 'mobile', 'lastName','age','gender','mark', 'occupation','occOther','notes', 'password']);
-        var user = new Users(body);
+    } else {
+    var body = _.pick(req.body, ['email', 'name', 'middleName', 'mobile', 'lastName', 'age', 'gender', 'mark', 'occupation', 'occOther', 'notes', 'password', 'stateOwn', 'districtOwn', 'blockOwn', 'villageOwn', 'pinOwn']);
+    var user = new Users(body);
 
-        user.save().then(() => {
-            res.render('registrationS.hbs', {
-                name: req.body.name,
-                email: req.body.email
-            });
+    user.save().then(() => {
+        var user1 = req.session.userId;
+        var obj = {};
+        Users.findById(user1).then((user1) => {
+            console.log(user1);
+            if (user1.state) {
+                obj.state = user1.state
+            }
+            if (user1.village) {
+                obj.village = user1.village
+            }
+            if (user1.block) {
+                obj.block = user1.block
+            }
+            if (user1.district) {
+                obj.district = user1.district
+            }
 
-        }).catch((e) => {
-            res.status(400).send(e);
-        })
-    }
+            obj.level = user1.level
+            obj.addC = user1.citizenAdd
+            obj.editC = user1.citizenEdit
+            obj.addA = user1.adminAdd
+            obj.name = req.body.name
+            obj.email = req.body.email
 
+            res.render('registrationS.hbs', obj);
+
+        });
+    }).catch((e) => {
+        res.status(400).send(e);
+    });
+}
 });
 
 app.get('/home', authenticate, (req,res)=>{
-    res.status(200).render('querySearchNew.hbs', {
+    console.log(req.user);
+    res.redirect('/querySearch', {
         pageTitle: 'home',
         pageReturn: 'Succesfully logged in.'
     });

@@ -75,6 +75,26 @@ var userSchema = new mongoose.Schema({
         type: String,
         trim:true
     },
+    villageOwn: {
+        type: String,
+        trim:true
+    },
+    blockOwn: {
+        type: String,
+        trim:true
+    },
+    districtOwn: {
+        type: String,
+        trim:true
+    },
+    stateOwn: {
+        type: String,
+        trim:true
+    },
+    pinOwn: {
+        type: String,
+        trim:true
+    },
     mark: {
         type: String,
         trim:true

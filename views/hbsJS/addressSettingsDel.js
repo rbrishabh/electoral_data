@@ -1,5 +1,11 @@
 $(document).ready(function() {
-    var valueState = $("#stateDel option:selected").val();
+    if(document.getElementById('stateDel').value){
+        var valueState = $("#stateDel option:selected").val();
+
+    }
+    else if (document.getElementById('stateDelL').value){
+        valueState = document.getElementById('stateDelL').value
+    }
     var url = urlFinal+'state/'+valueState;
 
     var ourRequest = new XMLHttpRequest();
@@ -7,6 +13,7 @@ $(document).ready(function() {
     ourRequest.onload = function() {
         var ourData = JSON.parse(ourRequest.responseText);
         console.log(ourData.address)
+        getDBlock()
         addDataToDropdownDel(ourData.address);
     }
     ourRequest.send();
@@ -26,8 +33,19 @@ function addDataToDropdownDel(data) {
 
 function getDBlock() {
     console.log('started 324')
-    var valueState = $("#stateDel option:selected").val();
-    var valueDistrict = $("#districtDel option:selected").text();
+    if(document.getElementById('stateDel').value){
+        var valueState = $("#stateDel option:selected").val();
+
+    }
+    else if (document.getElementById('stateDelL').value){
+        valueState = document.getElementById('stateDelL').value
+    }
+    if(document.getElementById('districtDel').value){
+        var valueDistrict = $("#districtDel option:selected").text();
+    }
+    else if (document.getElementById('districtDelL').value){
+        valueDistrict = document.getElementById('districtDelL').value
+    }
     console.log(valueDistrict);
     var url = urlFinal+'district/' + valueDistrict+'/state/'+valueState;
     var ourRequest = new XMLHttpRequest();
@@ -35,6 +53,7 @@ function getDBlock() {
     ourRequest.onload = function() {
         var ourData = JSON.parse(ourRequest.responseText);
         console.log(ourData.address)
+        getDVillage()
         addDataToDropdownBlockDel(ourData.address);
         addDataToDropdownBlockDel1(ourData.address);
 
@@ -64,7 +83,26 @@ function addDataToDropdownBlockDel1(data) {
 
 }
 
-function delBlock(block, dist, state) {
+function delBlock() {
+    if(document.getElementById('stateDel').value){
+        var state = $("#stateDel option:selected").val();
+
+    }
+    else if (document.getElementById('stateDelL').value){
+        state = document.getElementById('stateDelL').value
+    }
+    if(document.getElementById('districtDel').value){
+        var dist = $("#districtDel option:selected").text();
+    }
+    else if (document.getElementById('districtDelL').value){
+        dist = document.getElementById('districtDelL').value
+    }
+    if(document.getElementById('blockDel1').value){
+        var block=  document.getElementById('blockDel1').value
+    }
+    else if (document.getElementById('blockDelL').value){
+        block= document.getElementById('blockDelL').value
+    }
     console.log(block);
     var url = urlFinal + 'delBlock/'+block+'/'+dist+'/'+state;
     var ourRequest = new XMLHttpRequest();
@@ -84,9 +122,26 @@ function delBlock(block, dist, state) {
 }
 
 function getDVillage() {
-    var valueState = $("#stateDel option:selected").val();
-    var valueDistrict = $("#districtDel option:selected").text();
-    var valueBlock = $("#blockDel2 option:selected").text();
+    if(document.getElementById('stateDel').value){
+        var valueState = $("#stateDel option:selected").val();
+
+    }
+    else if (document.getElementById('stateDelL').value){
+        valueState = document.getElementById('stateDelL').value
+    }
+    if(document.getElementById('districtDel').value){
+        var valueDistrict = $("#districtDel option:selected").text();
+    }
+    else if (document.getElementById('districtDelL').value){
+        valueDistrict = document.getElementById('districtDelL').value
+    }
+    if(document.getElementById('blockDel2').value){
+        var valueBlock=  document.getElementById('blockDel2').value
+    }
+    else if (document.getElementById('blockDelL1').value){
+        valueBlock= document.getElementById('blockDelL1').value
+    }
+
 
     var url = urlFinal + 'district/' + valueDistrict+'/state/'+valueState+'/block/'+valueBlock;
     var ourRequest = new XMLHttpRequest();
@@ -111,7 +166,32 @@ function addDataToDropdownVillageDel(data) {
 
 }
 
-function delVillage(block, dist, state , village) {
+function delVillage() {
+    if(document.getElementById('stateDel').value){
+        var state = $("#stateDel option:selected").val();
+
+    }
+    else if (document.getElementById('stateDelL').value){
+        state = document.getElementById('stateDelL').value
+    }
+    if(document.getElementById('districtDel').value){
+        var dist = $("#districtDel option:selected").text();
+    }
+    else if (document.getElementById('districtDelL').value){
+        dist = document.getElementById('districtDelL').value
+    }
+    if(document.getElementById('blockDel2').value){
+        var block=  document.getElementById('blockDel2').value
+    }
+    else if (document.getElementById('blockDelL1').value){
+        block= document.getElementById('blockDelL1').value
+    }
+    if(document.getElementById('villageDel').value){
+        var village=  document.getElementById('villageDel').value
+    }
+    else if (document.getElementById('villageDelL').value){
+        village= document.getElementById('villageDelL').value
+    }
     console.log(block);
     var url = urlFinal + 'delVillage/'+dist+'/'+state+'/'+block+'/'+village;
     var ourRequest = new XMLHttpRequest();

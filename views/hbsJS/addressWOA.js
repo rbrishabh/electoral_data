@@ -1,21 +1,13 @@
 
 $(document).ready(function() {
-    if(document.getElementById('state').disabled == true){
-
-        var valueState =  $("[id='stateL']").val()
-
-    }
-    else{
-        var valueState = $("#state option:selected").val();
-    }
+    var valueState = $("#state option:selected").val();
     var url = urlFinal+'state/'+valueState;
 
     var ourRequest = new XMLHttpRequest();
     ourRequest.open('GET',url, true);
     ourRequest.onload = function() {
         var ourData = JSON.parse(ourRequest.responseText);
-       console.log(ourData.address)
-        getBlock();
+        console.log(ourData.address)
         addDataToDropdown(ourData.address);
     }
     ourRequest.send();
@@ -26,53 +18,24 @@ $(document).ready(function() {
 
 
 function getBlock() {
-    if(document.getElementById('state').disabled == true && document.getElementById('district').disabled == true){
-
-        var valueState =  $("[id='stateL']").val()
-        var valueDistrict =  $("[id='districtL']").val()
-
-    } else if(document.getElementById('state').disabled == true){
-        var valueState =  $("[id='stateL']").val()
-        var valueDistrict =  $("[id='district']").val()
-    }
-     else {
-        var valueState = $("#state option:selected").val();
-        var valueDistrict = $("#district option:selected").text();
-    }
-
-console.log(valueDistrict)
+    var valueState = $("#state option:selected").val();
+    var valueDistrict = $("#district option:selected").text();
+    console.log(valueDistrict)
     var url = urlFinal+'district/' + valueDistrict+'/state/'+valueState;
-     console.log('asfsdasaasfgeaga', url)
     var ourRequest = new XMLHttpRequest();
     ourRequest.open('GET',url, true);
     ourRequest.onload = function() {
         var ourData = JSON.parse(ourRequest.responseText);
         console.log(ourData.address)
-        getVillage()
         addDataToDropdownBlock(ourData.address);
-
     }
     ourRequest.send();
 }
 
 function getVillage() {
-    if(document.getElementById('state').disabled == true && document.getElementById('district').disabled == true && document.getElementById('block').disabled == true){
-
-
-        var valueState =  $("[id='stateL']").val()
-        var valueDistrict =  $("[id='districtL']").val()
-        var valueBlock =  $("[id='blockL']").val()
-    }
-    else if(document.getElementById('state').disabled == true && document.getElementById('district').disabled == true) {
-        var valueState = $("[id='stateL']").val()
-        var valueDistrict = $("[id='districtL']").val()
-        var valueBlock = $("[id='block']").val()
-    } else {
-        var valueState = $("#state option:selected").val();
-        var valueDistrict = $("#district option:selected").text();
-        var valueBlock = $("#block option:selected").text();
-    }
-
+    var valueState = $("#state option:selected").val();
+    var valueDistrict = $("#district option:selected").text();
+    var valueBlock = $("#block option:selected").text();
 
     var url = urlFinal + 'district/' + valueDistrict+'/state/'+valueState+'/block/'+valueBlock;
     var ourRequest = new XMLHttpRequest();

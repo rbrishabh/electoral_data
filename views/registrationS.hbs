@@ -20,6 +20,7 @@
     <script src="/jquery1.js"></script>
     <script src="/jquery.js"></script>
     <link rel="stylesheet" href="/bootstrap.css">
+    <script src="/areaAccessReg.js"></script>
     <script src="/address.js"></script>
     <script src="/newAdminSettings.js"></script>
 
@@ -168,14 +169,14 @@
                             <strong class="labelh">Area Access Level</strong>
 
                             <div class="row col-md-12">
-                                <div class="col-md-3">
+                                <div class="col-md-3" id="stateRad">
                                     <div class="checkbox pull-left" style="margin-left: -15px; margin-right: -20px; margin-bottom: 20px;">
                                         <label>
                                             <input type="radio" id="stateRadio" required onclick="checkRadio()" value="state" name="optionsRadio">
                                             <strong>State</strong>
                                         </label>
                                     </div></div>
-                                <div class="col-md-3">
+                                <div class="col-md-3" id="districtRad">
                                     <div class="checkbox pull-left" style="margin-left: -15px; margin-right: -20px; margin-bottom: 20px;">
                                         <label>
                                             <input type="radio" id="districtRadio" required onchange="checkRadio()" value="district" name="optionsRadio">
@@ -183,7 +184,7 @@
                                         </label>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-3" id="blockRad">
                                     <div class="checkbox pull-left" style="margin-left: -15px; margin-right: -20px; margin-bottom: 20px;">
                                         <label>
                                             <input type="radio" id="blockRadio" required onchange="checkRadio()" value="block" name="optionsRadio">
@@ -191,7 +192,7 @@
                                         </label>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-3" id="villageRad">
                                     <div class="checkbox pull-left" style="margin-left: -15px; margin-right: -20px; margin-bottom: 20px;">
                                         <label>
                                             <input type="radio" name="optionsRadio" required onchange="checkRadio()" value="village" id="villageRadio">
@@ -200,74 +201,117 @@
                                     </div>
                                 </div>
 
+                            </div>
 
+
+                            <div id="stateR">
+                                <div class="col-md-3" id="stateS" style="margin: 0px !important;">
+
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">State</label>
+                                        <input type="text" required readonly name="state" id="stateL" value="" class="form-control">
+                                    </div>
+
+                                </div>
+                                <div id="stateH"  class="col-md-3" style="margin: 0px !important;">
+                                    <div  class="form-group label-floating">
+                                        <label class="control-label">State</label>
+                                        <select name="state" required id="state" class="form-control">
+                                            <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                                            <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                            <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                                            <option value="Assam">Assam</option>
+                                            <option value="Bihar">Bihar</option>
+                                            <option value="Chandigarh">Chandigarh</option>
+                                            <option value="Chhattisgarh">Chhattisgarh</option>
+                                            <option value="Dadra and Nagar Haveli">Dadra and Nagar Haveli</option>
+                                            <option value="Daman and Diu">Daman and Diu</option>
+                                            <option value="Delhi" selected="selected">Delhi</option>
+                                            <option value="Goa">Goa</option>
+                                            <option value="Gujarat">Gujarat</option>
+                                            <option value="Haryana">Haryana</option>
+                                            <option value="Himachal Pradesh">Himachal Pradesh</option>
+                                            <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                                            <option value="Jharkhand">Jharkhand</option>
+                                            <option value="Karnataka">Karnataka</option>
+                                            <option value="Kerala">Kerala</option>
+                                            <option value="Lakshadweep">Lakshadweep</option>
+                                            <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                            <option value="Maharashtra">Maharashtra</option>
+                                            <option value="Manipur">Manipur</option>
+                                            <option value="Meghalaya">Meghalaya</option>
+                                            <option value="Mizoram">Mizoram</option>
+                                            <option value="Nagaland">Nagaland</option>
+                                            <option value="Orissa">Orissa</option>
+                                            <option value="Pondicherry">Pondicherry</option>
+                                            <option value="Punjab">Punjab</option>
+                                            <option value="Rajasthan">Rajasthan</option>
+                                            <option value="Sikkim">Sikkim</option>
+                                            <option value="Tamil Nadu">Tamil Nadu</option>
+                                            <option value="Tripura">Tripura</option>
+                                            <option value="Uttarakhand" selected>Uttarakhand</option>
+                                            <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                            <option value="West Bengal">West Bengal</option>
+                                        </select>
+                                    </div></div>
+
+                            </div>
+                            <div id="districtR">
+                                <div class="col-md-3" id="districtS" style="margin: 0px !important;">
+
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">District</label>
+                                        <input type="text" required readonly name="district" id="districtL" value="" class="form-control">
+                                    </div>
+
+                                </div>
+                                <div id="districtH" class="col-md-3" style="margin: 0px !important;">
+                                    <div   class="form-group label-floating">
+                                        <label class="control-label">District</label>
+                                        <select  name="district" id="district"  onchange="getBlock()"  class="form-control">
+                                        </select>
+                                    </div>
+                                </div>
 
                             </div>
 
-                            <div id="stateR" class="col-md-3">
-                                <div  class="form-group label-floating">
-                                    <label class="control-label">State</label>
-                                    <select name="state" required id="state" class="form-control">
-                                        <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
-                                        <option value="Andhra Pradesh">Andhra Pradesh</option>
-                                        <option value="Arunachal Pradesh">Arunachal Pradesh</option>
-                                        <option value="Assam">Assam</option>
-                                        <option value="Bihar">Bihar</option>
-                                        <option value="Chandigarh">Chandigarh</option>
-                                        <option value="Chhattisgarh">Chhattisgarh</option>
-                                        <option value="Dadra and Nagar Haveli">Dadra and Nagar Haveli</option>
-                                        <option value="Daman and Diu">Daman and Diu</option>
-                                        <option value="Delhi" selected="selected">Delhi</option>
-                                        <option value="Goa">Goa</option>
-                                        <option value="Gujarat">Gujarat</option>
-                                        <option value="Haryana">Haryana</option>
-                                        <option value="Himachal Pradesh">Himachal Pradesh</option>
-                                        <option value="Jammu and Kashmir">Jammu and Kashmir</option>
-                                        <option value="Jharkhand">Jharkhand</option>
-                                        <option value="Karnataka">Karnataka</option>
-                                        <option value="Kerala">Kerala</option>
-                                        <option value="Lakshadweep">Lakshadweep</option>
-                                        <option value="Madhya Pradesh">Madhya Pradesh</option>
-                                        <option value="Maharashtra">Maharashtra</option>
-                                        <option value="Manipur">Manipur</option>
-                                        <option value="Meghalaya">Meghalaya</option>
-                                        <option value="Mizoram">Mizoram</option>
-                                        <option value="Nagaland">Nagaland</option>
-                                        <option value="Orissa">Orissa</option>
-                                        <option value="Pondicherry">Pondicherry</option>
-                                        <option value="Punjab">Punjab</option>
-                                        <option value="Rajasthan">Rajasthan</option>
-                                        <option value="Sikkim">Sikkim</option>
-                                        <option value="Tamil Nadu">Tamil Nadu</option>
-                                        <option value="Tripura">Tripura</option>
-                                        <option value="Uttarakhand" selected>Uttarakhand</option>
-                                        <option value="Uttar Pradesh">Uttar Pradesh</option>
-                                        <option value="West Bengal">West Bengal</option>
-                                    </select>
+                            <div id="blockR">
+                                <div class="col-md-3" id="blockS" style="margin: 0px !important;">
+
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">Block</label>
+                                        <input type="text" readonly name="block" required id="blockL" value="" class="form-control">
+                                    </div>
+
                                 </div>
-                            </div>
-                            <div id="districtR" class="col-md-3" style="margin: 0px !important;">
-                                <div   class="form-group label-floating">
-                                    <label class="control-label">District</label>
-                                    <select  name="district" id="district" onchange="getBlock()" required class="form-control">
-                                    </select>
+                                <div id="blockH" class="col-md-3" style="margin: 0px !important;">
+                                    <div   class="form-group label-floating">
+                                        <label class="control-label">Block/Nagar palika</label>
+                                        <select  name="block" id="block"  onchange="getVillage()" class="form-control">
+                                        </select>
+                                    </div>
                                 </div>
+
                             </div>
 
-                            <div id="blockR" class="col-md-3" style="margin: 0px !important;">
-                                <div   class="form-group label-floating">
-                                    <label class="control-label">Block/Nagar palika</label>
-                                    <select  name="block" id="block" required onchange="getVillage()" class="form-control">
-                                    </select>
-                                </div>
-                            </div>
+                            <div id="villageR">
+                                <div class="col-md-3" id="villageS" style="margin: 0px !important;">
 
-                            <div id="villageR" class="col-md-3" style="margin: 0px !important;">
-                                <div   class="form-group label-floating">
-                                    <label class="control-label">Village</label>
-                                    <select name="village" id="village" required class="form-control">
-                                    </select>
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">Village</label>
+                                        <input type="text" readonly required name="village" id="villageL" value="" class="form-control">
+                                    </div>
+
                                 </div>
+                                <div  id="villageH" class="col-md-3" style="margin: 0px !important;">
+                                    <div   class="form-group label-floating">
+                                        <label class="control-label">Village</label>
+                                        <select name="village" id="village"  class="form-control">
+                                        </select>
+                                    </div>
+
+                                </div>
+
                             </div>
 
                         </div>
@@ -307,7 +351,48 @@
         </div>
     </div>
 </footer>
+<script>
+    if('{{level}}'==='village'){
+        document.getElementById('stateRadio').disabled = true;
+        document.getElementById('districtRadio').disabled = true;
+        document.getElementById('blockRadio').disabled = true;
 
+        document.getElementById('state').disabled = true;
+        document.getElementById('district').disabled = true;
+        document.getElementById('village').disabled = true;
+        document.getElementById('block').disabled = true;
+
+        document.getElementById('villageL').value='{{village}}';
+        document.getElementById('blockL').value='{{block}}';
+        document.getElementById('districtL').value='{{district}}';
+        document.getElementById('stateL').value='{{state}}';
+    }
+    if('{{level}}'==='block'){
+        document.getElementById('stateRadio').disabled = true;
+        document.getElementById('districtRadio').disabled = true;
+
+        document.getElementById('state').disabled = true;
+        document.getElementById('district').disabled = true;
+        document.getElementById('block').disabled = true;
+
+        document.getElementById('blockL').value='{{block}}';
+        document.getElementById('districtL').value='{{district}}';
+        document.getElementById('stateL').value='{{state}}';
+    }
+    if('{{level}}'==='district'){
+        document.getElementById('stateRadio').disabled = true;
+
+        document.getElementById('state').disabled = true;
+        document.getElementById('district').disabled = true;
+
+        document.getElementById('districtL').value='{{district}}';
+        document.getElementById('stateL').value='{{state}}';
+    }
+    if('{{level}}'==='state'){
+        document.getElementById('state').disabled = true;
+        document.getElementById('stateL').value='{{state}}';
+    }
+</script>
 </body>
 <script src="/bootstrapjs.js"></script>
 <script src="material.min.js"> </script>

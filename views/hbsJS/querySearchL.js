@@ -7,13 +7,68 @@ ageSort = {};
 ageArray = [];
 
 $(document).ready(function() {
+    $("#stateS").hide();
+    $("#villageS").hide();
+    $("#blockS").hide();
+    $("#districtS").hide();
+
     start= 0;
     end = start+20;
-   var state =  $("[name='state']").val()
-   var district =  $("[name='district']").val()
-   var block =  $("[name='block']").val()
-   var village = $("[name='village']").val()
-console.log(village)
+    if(document.getElementById('state').disabled == true && document.getElementById('district').disabled == true && document.getElementById('block').disabled == true && document.getElementById('village').disabled == true){
+        $("#stateS").show();
+        $("#districtS").show();
+        $("#blockS").show();
+        $("#villageS").show();
+
+        $("#stateH").hide();
+        $("#districtH").hide();
+        $("#blockH").hide();
+        $("#villageH").hide();
+
+        var village = $("[id='villageL']").val()
+        var state =  $("[id='stateL']").val()
+        var district =  $("[id='districtL']").val()
+        var block =  $("[id='blockL']").val()
+
+    } else if(document.getElementById('state').disabled == true && document.getElementById('district').disabled == true && document.getElementById('block').disabled == true){
+        $("#stateS").show();
+        $("#districtS").show();
+        $("#blockS").show();
+
+        $("#stateH").hide();
+        $("#districtH").hide();
+        $("#blockH").hide();
+
+
+        var village = $("[id='village']").val()
+        var state =  $("[id='stateL']").val()
+        var district =  $("[id='districtL']").val()
+        var block =  $("[id='blockL']").val()
+    } else if(document.getElementById('state').disabled == true && document.getElementById('district').disabled == true){
+        $("#stateS").show();
+        $("#districtS").show();
+
+        $("#stateH").hide();
+        $("#districtH").hide();
+
+        var village = $("[id='village']").val()
+        var state =  $("[id='stateL']").val()
+        var district =  $("[id='districtL']").val()
+        var block =  $("[id='block']").val()
+    }
+    else if(document.getElementById('state').disabled == true){
+        $("#stateS").show();
+        $("#stateH").hide();
+        var village = $("[id='village']").val()
+        var state =  $("[id='stateL']").val()
+        var district =  $("[id='district']").val()
+        var block =  $("[id='block']").val()
+    }
+
+    console.log(state)
+    if(state==="" || state == null){
+        state = "00"
+    }
     if(district==="" || district == null){
        district = "00"
     }
@@ -24,13 +79,24 @@ console.log(village)
        village="00"
     }
     var url = urlFinal + 'initialSearch/state/' + state + '/district/' + district + '/block/' + block + '/village/' + village;
-console.log(urlFinal)
     var ourRequest = new XMLHttpRequest();
     ourRequest.open('GET', url, true);
     ourRequest.onload = function () {
         var ourData = JSON.parse(ourRequest.responseText);
         console.log('started uttarakhand')
-        y=1;
+
+        start= 0;
+        if(ourData.civilian.length>=20){
+            end = start + 20;
+            y=1;
+            print(ourData);
+        }
+        else{
+            end = ourData.civilian.length;
+            y=1;
+            print(ourData);
+
+        }
         print(ourData);
         outputObj = ourData;
         mainObj = ourData;
@@ -44,19 +110,47 @@ console.log(urlFinal)
 
 
 
-function querySearch(state, district, block, village, pin, firstName, middleName, lastName, relationName, relationMiddle, relationLast, minage, maxage, occ, occother, mobile, email, gender, mark) {
-    if(state==="" || state == null){
-        state = "00"
+function querySearch(pin, firstName, middleName, lastName, relationName, relationMiddle, relationLast, minage, maxage, occ, occother, mobile, email, gender, mark) {
+console.log(document.getElementsByName('block')[0].value)
+    console.log(document.getElementsByName('block')[1].value, 'asdsadf')
+
+   if(document.getElementsByName('state')[0].value){
+       state =  document.getElementsByName('state')[0].value;
+   }
+   else if (document.getElementsByName('state')[1].value){
+       state = document.getElementsByName('state')[1].value;
+   } else {
+       state = '00'
+   }
+    if(document.getElementsByName('district')[0].value){
+        district =  document.getElementsByName('district')[0].value;
     }
-    if(district==="" || district == null){
-        district = "00"
+    else if (document.getElementsByName('district')[1].value){
+        district = document.getElementsByName('district')[1].value;
+    } else  {
+        district = '00'
     }
-    if(block==="" || block == null){
-        block="00"
+    if(document.getElementsByName('block')[0].value){
+        block =  document.getElementsByName('block')[0].value;
+        console.log('runninn')
+
     }
-    if(village==="" || village == null){
-        village="00"
+    else if (document.getElementsByName('block')[1].value){
+        block = document.getElementsByName('block')[1].value;
+        console.log('fkhajfl')
+
+    } else {
+        block = '00'
     }
+    if(document.getElementsByName('village')[0].value){
+        village =  document.getElementsByName('village')[0].value;
+    }
+    else if (document.getElementsByName('village')[1].value){
+        village = document.getElementsByName('village')[1].value;
+    } else {
+        village = '00'
+    }
+
     if(pin===""){
         pin = "00"
     }
@@ -269,6 +363,7 @@ console.log(pages)
         + "<th>" + "Third Mobile"+ "</th>"
         + "<th>" + "<b>Email</b>" + "</th>"
         + "<th>" + "<b>Select</b>" + "</th>"
+        + "<th>" + "<b>Edit</b>" + "</th>"
 
         + "</b></tr>"
 
@@ -367,6 +462,7 @@ if(printData.civilian[x].name== undefined){
             + "<th>" + printData.civilian[x].thirdMobile + "</th>"
             + "<th>" + printData.civilian[x].email + "</th>"
             + "<th>" + "<input type='checkbox' data-value = "+ printData.civilian[x].mobile + "-"+ printData.civilian[x].name+ "-"+ printData.civilian[x].middleName+ "-"+ printData.civilian[x].lastName +">" + "</th>"
+            + "<th>" + "<button class='btn btn-default btn-xs'>Edit</button>" + "</th>"
 
             +"</tr>";
 

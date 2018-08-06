@@ -1,55 +1,139 @@
 $(document).ready(function () {
-    document.getElementById('district').disabled = true;
+
     $("#districtR").hide();
-    document.getElementById('village').disabled = true;
     $("#villageR").hide();
-    document.getElementById('block').disabled = true;
     $("#blockR").hide();
-    document.getElementById('state').disabled = true;
     $("#stateR").hide();
+
+    $("#stateS").hide();
+    $("#villageS").hide();
+    $("#blockS").hide();
+    $("#districtS").hide();
+    document.getElementById('stateL').disabled = true;
+    document.getElementById('districtL').disabled = true;
+    document.getElementById('villageL').disabled = true;
+    document.getElementById('blockL').disabled = true;
+
+    if (document.getElementById('state').disabled == true && document.getElementById('district').disabled == true && document.getElementById('block').disabled == true && document.getElementById('village').disabled == true) {
+
+        document.getElementById('stateL').disabled = false;
+        document.getElementById('districtL').disabled = false;
+        document.getElementById('villageL').disabled = false;
+        document.getElementById('blockL').disabled = false;
+
+
+
+        $("#stateRad").hide();
+        $("#districtRad").hide();
+        $("#blockRad").hide();
+
+        $("#stateS").show();
+        $("#districtS").show();
+        $("#blockS").show();
+        $("#villageS").show();
+
+        $("#stateH").hide();
+        $("#districtH").hide();
+        $("#blockH").hide();
+        $("#villageH").hide();
+
+
+    } else if (document.getElementById('state').disabled == true && document.getElementById('district').disabled == true && document.getElementById('block').disabled == true) {
+        document.getElementById('stateL').disabled = false;
+        document.getElementById('districtL').disabled = false;
+        document.getElementById('blockL').disabled = false;
+
+        $("#stateRad").hide();
+        $("#districtRad").hide();
+
+        $("#stateS").show();
+        $("#districtS").show();
+        $("#blockS").show();
+
+        $("#stateH").hide();
+        $("#districtH").hide();
+        $("#blockH").hide();
+
+
+    } else if (document.getElementById('state').disabled == true && document.getElementById('district').disabled == true) {
+        document.getElementById('stateL').disabled = false;
+        document.getElementById('districtL').disabled = false;
+
+
+        $("#stateRad").hide();
+
+        $("#stateH").hide();
+        $("#districtH").hide();
+
+        $("#stateS").show();
+        $("#districtS").show();
+
+
+    }
+    else if (document.getElementById('state').disabled == true) {
+        document.getElementById('stateL').disabled = false;
+
+        $("#stateS").show();
+        $("#stateH").hide();
+
+    }
+
+
+
+
 });
 
 
 function checkRadio() {
+    $('#state').prop('selectedIndex',0);
+    $('#block').prop('selectedIndex',0);
+    $('#village').prop('selectedIndex',0);
+    $('#district').prop('selectedIndex',0);
+    $('[name="state"]').prop('required',false);
+    $('[name="district"]').prop('required',false);
+    $('[name="block"]').prop('required',false);
+    $('[name="village"]').prop('required',false);
+
+
     if($("#stateRadio").is(':checked')){
-        document.getElementById('district').disabled = true;
         $("#districtR").hide();
-        document.getElementById('village').disabled = true;
         $("#villageR").hide();
-        document.getElementById('block').disabled = true;
         $("#blockR").hide();
-        document.getElementById('state').disabled = false;
         $("#stateR").show();
+        $('[name="state"]').prop('required',true);
     }
+
     if($("#districtRadio").is(':checked')) {
-        document.getElementById('district').disabled = false;
         $("#districtR").show();
-        document.getElementById('village').disabled = true;
         $("#villageR").hide();
-        document.getElementById('block').disabled = true;
         $("#blockR").hide();
-        document.getElementById('state').disabled = false;
         $("#stateR").show();
+        $('[name="state"]').prop('required',true);
+        $('[name="district"]').prop('required',true);
+
+
     }
+
         if($("#villageRadio").is(':checked')) {
-            document.getElementById('district').disabled = false;
             $("#districtR").show();
-            document.getElementById('village').disabled = false;
             $("#villageR").show();
-            document.getElementById('block').disabled = false;
             $("#blockR").show();
-            document.getElementById('state').disabled = false;
             $("#stateR").show();
+            $('[name="state"]').prop('required',true);
+            $('[name="district"]').prop('required',true);
+            $('[name="block"]').prop('required',true);
+            $('[name="village"]').prop('required',true);
+
         }
+
             if($("#blockRadio").is(':checked')) {
-                document.getElementById('district').disabled = false;
                 $("#districtR").show();
-                document.getElementById('village').disabled = true;
                 $("#villageR").hide();
-                document.getElementById('block').disabled = false;
                 $("#blockR").show();
-                document.getElementById('state').disabled = false;
                 $("#stateR").show();
+                $('[name="state"]').prop('required',true);
+                $('[name="district"]').prop('required',true);
+                $('[name="block"]').prop('required',true);
             }
 
-            }
+}

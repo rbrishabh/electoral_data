@@ -23,6 +23,7 @@
     <script src="/maxlength.js"></script>
     <link rel="stylesheet" href="/bootstrap.css">
     <link rel="stylesheet" href="/materialkit.css">
+    <script src="/areaAccess.js"></script>
     <script src="/address.js"></script>
 
     <script>
@@ -458,7 +459,41 @@
                                 <div class="col-md-12">
                                     <strong class="labelh pull-left">Address<span style="color: red">&nbsp; &#42;</span></strong>
                                 </div>
-                                <div class="col-md-6" style="margin: 0px !important;">
+                                <div class="col-md-6" id="stateS" style="margin: 0px !important;">
+
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">State</label>
+                                        <input type="text" required readonly name="state" id="stateL" value="" class="form-control">
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-6" id="districtS" style="margin: 0px !important;">
+
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">District</label>
+                                        <input type="text" readonly required name="district" id="districtL" value="" class="form-control">
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-6" id="blockS" style="margin: 0px !important;">
+
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">Block</label>
+                                        <input type="text" readonly name="block"  required id="blockL" value="" class="form-control">
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6" id="villageS" style="margin: 0px !important;">
+
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">Village</label>
+                                        <input type="text" readonly name="village" required id="villageL" value="" class="form-control">
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6" id="stateH" style="margin: 0px !important;">
 
                                     <div class="form-group label-floating">
                                         <label class="control-label">State</label>
@@ -504,7 +539,7 @@
 
                                 </div>
 
-                                <div class="col-md-6" style="margin: 0px !important;">
+                                <div class="col-md-6" id="districtH" style="margin: 0px !important;">
                                     <div class="form-group label-floating">
                                         <label class="control-label">District</label>
                                         <select  name="district" id="district" onchange="getBlock()" required class="form-control">
@@ -512,7 +547,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-6" style="margin: 0px !important;">
+                                <div class="col-md-6" id="blockH" style="margin: 0px !important;">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Block/Nagar palika</label>
                                         <select  name="block" id="block" onchange="getVillage()" class="form-control">
@@ -520,7 +555,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-6" style="margin: 0px !important;">
+                                <div class="col-md-6" id="villageH" style="margin: 0px !important;">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Village</label>
                                         <select name="village" id="village" class="form-control">
@@ -650,6 +685,39 @@
 
     });
 
+</script>
+<script>
+    if('{{level}}'==='village'){
+        document.getElementById('state').disabled = true;
+        document.getElementById('district').disabled = true;
+        document.getElementById('village').disabled = true;
+        document.getElementById('block').disabled = true;
+
+        document.getElementById('villageL').value='{{village}}';
+        document.getElementById('blockL').value='{{block}}';
+        document.getElementById('districtL').value='{{district}}';
+        document.getElementById('stateL').value='{{state}}';
+    }
+    if('{{level}}'==='block'){
+        document.getElementById('state').disabled = true;
+        document.getElementById('district').disabled = true;
+        document.getElementById('block').disabled = true;
+
+        document.getElementById('blockL').value='{{block}}';
+        document.getElementById('districtL').value='{{district}}';
+        document.getElementById('stateL').value='{{state}}';
+    }
+    if('{{level}}'==='district'){
+        document.getElementById('state').disabled = true;
+        document.getElementById('district').disabled = true;
+
+        document.getElementById('districtL').value='{{district}}';
+        document.getElementById('stateL').value='{{state}}';
+    }
+    if('{{level}}'==='state'){
+        document.getElementById('state').disabled = true;
+        document.getElementById('stateL').value='{{state}}';
+    }
 </script>
 
 </body>
