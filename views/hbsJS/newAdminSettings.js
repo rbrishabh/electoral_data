@@ -1,5 +1,46 @@
 $(document).ready(function () {
 
+
+
+    if(document.getElementById('forMessage').disabled == true){
+        $('.disableMessage').prop('disabled', true);
+    }
+    if(document.getElementById('forPrint').disabled == true){
+        $('.disablePrint').prop('disabled', true);
+    }
+    if(document.getElementById('forMessage').disabled == false){
+       var MessageNo =  $( "#forMessage" ).val();
+
+        $("#myRange").attr({
+            "max" : MessageNo
+        });
+    }
+    if(document.getElementById('forPrint').disabled == false){
+        var printNo =  $( "#forPrint" ).val();
+
+        $("#myRange1").attr({
+            "max" : printNo
+        });
+    }
+    if(document.getElementById('forAdminAdd').disabled == true){
+        $('.disableAdminAdd').prop('disabled', true);
+    }
+    if(document.getElementById('forCivilAdd').disabled == true){
+        $('.disableCivilAdd').prop('disabled', true);
+    }
+    if(document.getElementById('forCivilEdit').disabled == true){
+        $('.disableCivilEdit').prop('disabled', true);
+    }
+
+
+
+
+
+
+
+
+
+
     $("#districtR").hide();
     $("#villageR").hide();
     $("#blockR").hide();

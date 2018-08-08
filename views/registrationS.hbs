@@ -20,7 +20,6 @@
     <script src="/jquery1.js"></script>
     <script src="/jquery.js"></script>
     <link rel="stylesheet" href="/bootstrap.css">
-    <script src="/areaAccessReg.js"></script>
     <script src="/address.js"></script>
     <script src="/newAdminSettings.js"></script>
 
@@ -102,16 +101,23 @@
     <div class="main main-raised" style="padding: 40px;">
         <div class="container">
             <h2 class="text-center">Configure New Admin Rights</h2>
+
             <h4>Configuring settings for <b>{{name}}</b>  :  <b>{{email}}</b></h4>
             <form action="/addedAdmin" autocomplete="off" method="post">
                 <input type="hidden" value="{{email}}" name="email">
+                <input type="hidden" id="forMessage" value="123">
+                <input type="hidden" id="forPrint" value="123">
+                <input type="hidden" id="forAdminAdd" value="123">
+                <input type="hidden" id="forCivilAdd" value="123">
+                <input type="hidden" id="forCivilEdit" value="123">
+
                 <div class="row"><div class="col-md-6"> <div class="row boxrow">
                     <strong class="labelh">Message and Print Settings</strong>
                     <div class="col-md-6">
                         <div class="form-group label-fixed">
                             <label class="control-label">Message Rights</label>
                             <div class="slidecontainer">
-                                <input type="range" min="0" max="1000" value="0" name="messageRights" id="myRange">
+                                <input type="range" min="0" max="1000" class="disableMessage" value="0" name="messageRights" id="myRange">
                                 <p>Value: <span id="demo"></span></p>
                             </div>
                         </div>
@@ -121,7 +127,7 @@
                         <div class="form-group label-fixed">
                             <label class="control-label">Print Rights</label>
                             <div class="slidecontainer">
-                                <input type="range" min="0" max="1000" value="0" name="printRights" id="myRange1">
+                                <input type="range" min="0" class="disablePrint" max="1000" value="0" name="printRights" id="myRange1">
                                 <p>Value: <span id="demo1"></span></p>
                             </div>
                         </div>
@@ -134,7 +140,7 @@
 
                             <div class="checkbox pull-left" style="margin-left: -15px; margin-right: -20px; margin-bottom: 20px;">
                                 <label>
-                                    <input type="checkbox" name="citizenAdd" id="citizenAdd">
+                                    <input type="checkbox" name="citizenAdd" class="disableCivilAdd" id="citizenAdd">
                                     <strong>Add New Citizens</strong>
                                 </label>
                             </div>
@@ -143,7 +149,7 @@
 
                             <div class="checkbox pull-left" style="margin-left: -15px; margin-right: -20px; margin-bottom: 20px;">
                                 <label>
-                                    <input type="checkbox" id="citizenEdit" name="citizenEdit">
+                                    <input type="checkbox" id="citizenEdit" class="disableCivilEdit" name="citizenEdit">
                                     <strong>Edit Existing Citizens</strong>
                                 </label>
                             </div>
@@ -156,7 +162,7 @@
 
                             <div class="checkbox pull-left" style="margin-left: -15px; margin-right: -20px; margin-bottom: 20px;">
                                 <label>
-                                    <input type="checkbox" id="adminAdd" name="adminAdd">
+                                    <input type="checkbox" id="adminAdd" class="disableAdminAdd" name="adminAdd">
                                     <strong>Create New Admins</strong>
                                 </label>
                             </div>
@@ -391,6 +397,31 @@
     if('{{level}}'==='state'){
         document.getElementById('state').disabled = true;
         document.getElementById('stateL').value='{{state}}';
+    }
+</script>
+<script>
+    if('{{editC}}'!='on'){
+        document.getElementById('forCivilEdit').disabled = true;
+    }
+    if('{{addC}}'!='on'){
+        document.getElementById('forCivilAdd').disabled = true;
+    }
+    if('{{addA}}'!='on'){
+        document.getElementById('forAdminAdd').disabled = true;
+    }
+    if('{{message}}'=='0'){
+        document.getElementById('forMessage').disabled = true;
+    }
+    else{
+        document.getElementById('forMessage').value='{{message}}';
+        document.getElementById('forMessage').disabled = false;
+    }
+    if('{{print}}'=='0'){
+        document.getElementById('forPrint').disabled = true;
+    }
+    else{
+        document.getElementById('forPrint').value='{{print}}';
+        document.getElementById('forPrint').disabled = false;
     }
 </script>
 </body>

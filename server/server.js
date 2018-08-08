@@ -1048,6 +1048,8 @@ if(req.body.password !== req.body.confirm){
             obj.addA = user1.adminAdd
             obj.name = req.body.name
             obj.email = req.body.email
+            obj.message = user1.messageRights
+            obj.print = user1.printRights
 
             res.render('registrationS.hbs', obj);
 
