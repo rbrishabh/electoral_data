@@ -11,10 +11,7 @@ var userSchema = new mongoose.Schema({
         required: true,
         trim:true,
         unique:true,
-        validate:{
-            validator:validator.isEmail,
-            message: '{VALUE} is not a valid e-mail address.'
-        }
+
     },
     password:{
         type: String,
@@ -37,6 +34,7 @@ var userSchema = new mongoose.Schema({
     },
     mobile: {
         type: Number,
+        unique:true,
         required: true,
         trim:true
     },

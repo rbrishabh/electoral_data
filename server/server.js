@@ -474,12 +474,70 @@ app.post('/queryAddedCivilAuth', authenticate, function (req, res) {
             obj.pageReturn = "1"
             res.render('queryAdd.hbs', obj);
         }, (e) => {
-            res.send(e)
-
+            res.send(e);
         });
 
 
+    }, (e)=>{
+
+        var user = req.session.userId;
+        var obj = {};
+        Users.findById(user).then((user) => {
+            console.log(user);
+            if (user.state) {
+                obj.state = user.state
+            }
+            if (user.village) {
+                obj.village = user.village
+            }
+            if (user.block) {
+                obj.block = user.block
+            }
+            if (user.district) {
+                obj.district = user.district
+            }
+
+            obj.level = user.level
+            obj.addC = user.citizenAdd
+            obj.editC = user.citizenEdit
+            obj.addA = user.adminAdd
+            obj.message = "Mobile/Email already exists.";
+            obj.pageReturn = "1"
+            res.render('queryAdd.hbs', obj);
+        }, (e) => {
+            res.send(e);
+        });
+    }).catch((e)=>{
+        var user = req.session.userId;
+        var obj = {};
+        Users.findById(user).then((user) => {
+            console.log(user);
+            if (user.state) {
+                obj.state = user.state
+            }
+            if (user.village) {
+                obj.village = user.village
+            }
+            if (user.block) {
+                obj.block = user.block
+            }
+            if (user.district) {
+                obj.district = user.district
+            }
+
+
+            obj.level = user.level
+            obj.addC = user.citizenAdd
+            obj.editC = user.citizenEdit
+            obj.addA = user.adminAdd
+            obj.message =  "Mobile/Email already exists.";
+            obj.pageReturn = "1"
+            res.render('queryAdd.hbs', obj);
+        }, (e) => {
+            res.send(e);
+        });
     });
+
 });
 
 app.get('/getNumber/:email', (req,res)=>{
@@ -1053,19 +1111,76 @@ if(req.body.password !== req.body.confirm){
 
             res.render('registrationS.hbs', obj);
 
+        }, (e)=>{
+            res.send(e);
+        }).catch((e)=>{
+            res.send(e);
         });
-    }).catch((e) => {
-        res.status(400).send(e);
+    }, (e)=>{
+
+        var user = req.session.userId;
+        var obj = {};
+        Users.findById(user).then((user) => {
+            console.log(user);
+            if (user.state) {
+                obj.state = user.state
+            }
+            if (user.village) {
+                obj.village = user.village
+            }
+            if (user.block) {
+                obj.block = user.block
+            }
+            if (user.district) {
+                obj.district = user.district
+            }
+
+            obj.level = user.level
+            obj.addC = user.citizenAdd
+            obj.editC = user.citizenEdit
+            obj.addA = user.adminAdd
+            obj.messageError = "Mobile/Email already exists.";
+            obj.pageReturn = "1"
+            res.render('registration.hbs', obj);
+        }, (e) => {
+            res.send(e);
+        });
+    }).catch((e)=>{
+        var user = req.session.userId;
+        var obj = {};
+        Users.findById(user).then((user) => {
+            console.log(user);
+            if (user.state) {
+                obj.state = user.state
+            }
+            if (user.village) {
+                obj.village = user.village
+            }
+            if (user.block) {
+                obj.block = user.block
+            }
+            if (user.district) {
+                obj.district = user.district
+            }
+
+
+            obj.level = user.level
+            obj.addC = user.citizenAdd
+            obj.editC = user.citizenEdit
+            obj.addA = user.adminAdd
+            obj.messageError =  "Mobile/Email already exists.";
+            obj.pageReturn = "1"
+            res.render('registration.hbs', obj);
+        }, (e) => {
+            res.send(e);
+        });
     });
 }
 });
 
 app.get('/home', authenticate, (req,res)=>{
-    console.log(req.user);
-    res.redirect('/querySearch', {
-        pageTitle: 'home',
-        pageReturn: 'Succesfully logged in.'
-    });
+
+    res.redirect('/querySearch');
 });
 
 
