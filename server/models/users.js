@@ -121,6 +121,10 @@ var userSchema = new mongoose.Schema({
         type: String,
         trim:true
     },
+    printRightsL: {
+        type: String,
+        trim:true
+    },
     messageRights: {
         type: String,
         trim:true

@@ -483,7 +483,7 @@ if(printData.civilian[x].name== undefined){
         +
 
         '<button class="btn btn-success pull-right" data-toggle="modal" data-target="#myModal" id="msgbtn">Message</button>' +
-        '<button class="btn btn-success pull-right" onclick="printData()">Print</button>';
+        '<button class="btn btn-success pull-right disableButtonPrint" onclick="printData(); printDec(); ">Print</button>';
     $(document).ready(function () {
         var listInput = [];
         $('#msgsend').click(function (e) {
@@ -509,6 +509,13 @@ if(printData.civilian[x].name== undefined){
     if(document.getElementById('forMessage').disabled == true){
         $('.disableButton').prop('disabled', true);
     }
+    if(document.getElementById('forPrint').disabled == true){
+        $('.disableButtonPrint').prop('disabled', true);
+    } else {
+        $('.disableButtonPrint').prop('disabled', false);
+
+    }
+
 
 
     if(end>=printData.civilian.length-1){
@@ -556,8 +563,30 @@ else if(end!=outputObj.civilian.length){
 
 }
 
+function printDec() {
+    var url = urlFinal + 'printDecrement';
+    console.log(url);
+    var ourRequest = new XMLHttpRequest();
+    ourRequest.open('GET', url, true);
+    ourRequest.onload = function () {
+        var ourData = ourRequest.responseText;
+        console.log(ourData);
+        console.log(typeof ourData);
+        if(ourData==='1'){
+            $('.disableButtonPrint').prop('disabled', true);
+        } else {
+            $('.disableButtonPrint').prop('disabled', false);
+
+        }
+
+    }
+    ourRequest.send();
+
+
+}
 
 function printData() {
+
     var divToPrint = document.getElementById('opTable');
     var htmlToPrint = '' +
         '<style type="text/css">' +

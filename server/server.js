@@ -290,7 +290,7 @@ app.get('/querySearch',authenticate,(req,res)=> {
 
             obj.level = user.level
             obj.message= user.messageRights
-            obj.print= user.printRights
+            obj.print= user.printRightsL
             obj.addC = user.citizenAdd
             obj.editC= user.citizenEdit
             obj.addA = user.adminAdd
@@ -1041,7 +1041,8 @@ app.post('/addedAdmin', authenticate, (req,res)=>{
         obj.messageRights = req.body.messageRights
     }
     if(req.body.printRights){
-        obj.printRights = req.body.printRights
+        obj.printRights = req.body.printRights;
+        obj.printRightsL = req.body.printRights;
     }
     if(req.body.optionsRadio){
         obj.level = req.body.optionsRadio
@@ -1055,6 +1056,29 @@ app.post('/addedAdmin', authenticate, (req,res)=>{
         res.send('0');
     });
 });
+
+app.get('/printDecrement', (req,res)=>{
+
+
+    var user1 = req.session.userId;
+    var obj = {};
+    Users.findById(user1).then((user1) => {
+        var mobile = user1.mobile;
+        console.log(mobile);
+        if(user1.printRightsL>0){
+            var printRightsL = user1.printRightsL-1;
+            var obj ={};
+            obj.printRightsL = printRightsL;
+            Users.update({"mobile": mobile},
+                {$set:obj}).then((user)=>{
+                    res.send(printRightsL);
+            });
+        }
+res.send(user1.printRightsL);
+    });
+
+});
+
 
 app.post('/registrationElectoralData' , authenticate, (req, res) => {
 var otp = req.body.otp;

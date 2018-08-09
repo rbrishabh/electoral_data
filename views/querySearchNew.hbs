@@ -431,6 +431,7 @@
                             </div>
 
                             <input type="hidden" id="forMessage" value="123">
+                            <input type="hidden" id="forPrint" value="123">
                         </div>
                     </div>
 
@@ -567,6 +568,9 @@
 <script>
     if('{{editC}}'!='on'){
         document.getElementById('forMessage').disabled = true;
+    }
+    if('{{print}}'=='0'){
+        document.getElementById('forPrint').disabled = true;
     }
 </script>
 </body>

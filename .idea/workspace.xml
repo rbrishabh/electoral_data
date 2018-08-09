@@ -5,10 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="08b0d45d-fc30-493e-b719-7478e6d82225" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/db/mongoose.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/db/mongoose.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/models/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/models/users.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/server.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/hbsJS/configjs.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/hbsJS/configjs.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/registration.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/registration.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/hbsJS/querySearchL.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/hbsJS/querySearchL.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/querySearchNew.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/querySearchNew.hbs" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -43,30 +46,30 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="hbs" value="4323" />
-          <entry key="js" value="5238" />
+          <entry key="hbs" value="4384" />
+          <entry key="js" value="5770" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="2" />
-          <entry key="Handlebars/Mustache" value="4323" />
-          <entry key="JavaScript" value="5236" />
+          <entry key="Handlebars/Mustache" value="4384" />
+          <entry key="JavaScript" value="5768" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="css" value="2" />
-          <entry key="hbs" value="38" />
-          <entry key="js" value="84" />
+          <entry key="hbs" value="39" />
+          <entry key="js" value="86" />
           <entry key="rnc" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CSS" value="2" />
-          <entry key="Handlebars/Mustache" value="38" />
-          <entry key="JavaScript" value="84" />
+          <entry key="Handlebars/Mustache" value="39" />
+          <entry key="JavaScript" value="86" />
           <entry key="RNG Compact" value="2" />
         </counts>
       </usages-collector>
@@ -77,20 +80,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/server/db/mongoose.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="57">
-              <caret line="3" column="21" lean-forward="true" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="26" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="141">
-              <caret line="1167" column="38" lean-forward="true" selection-start-line="1167" selection-start-column="38" selection-end-line="1167" selection-end-column="38" />
+            <state relative-caret-position="267">
+              <caret line="1076" column="29" selection-start-line="1076" selection-start-column="29" selection-end-line="1076" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -98,8 +92,35 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/registration.hbs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="125">
+            <state relative-caret-position="295">
               <caret line="355" selection-start-line="355" selection-end-line="355" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/models/civilian.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="236">
+              <caret line="74" column="8" selection-start-line="74" selection-start-column="8" selection-end-line="74" selection-end-column="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/views/hbsJS/querySearchL.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="146">
+              <caret line="574" column="23" selection-start-line="574" selection-start-column="23" selection-end-line="574" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/querySearchNew.hbs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="229">
+              <caret line="573" column="4" selection-start-line="573" selection-start-column="4" selection-end-line="573" selection-end-column="4" />
             </state>
           </provider>
         </entry>
@@ -107,17 +128,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/models/users.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="19">
-              <caret line="36" column="18" lean-forward="true" selection-start-line="36" selection-start-column="18" selection-end-line="36" selection-end-column="18" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/hbsJS/configjs.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="57">
-              <caret line="3" column="19" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
+            <state relative-caret-position="210">
+              <caret line="125" column="14" lean-forward="true" selection-start-line="125" selection-start-column="14" selection-end-line="125" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -126,13 +138,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>initi</find>
-      <find>otp</find>
-      <find>maxlengthfilter</find>
-      <find>.hide</find>
-      <find>villageL</find>
-      <find>asfsdasaasfgeaga</find>
-      <find>n</find>
       <find>querySearch</find>
       <find>state</find>
       <find>id=&quot;state&quot;</find>
@@ -155,7 +160,14 @@
       <find>queryAdd</find>
       <find>registrationS</find>
       <find>registrations</find>
+      <find>addedad</find>
       <find>email</find>
+      <find>printD</find>
+      <find>formessage</find>
+      <find>querysearch</find>
+      <find>forPrint</find>
+      <find>forprint</find>
+      <find>printd</find>
     </findStrings>
     <replaceStrings>
       <replace>onchange=&quot;showCivilian(value,this.id</replace>
@@ -204,7 +216,6 @@
         <option value="$PROJECT_DIR$/123456.json" />
         <option value="$PROJECT_DIR$/views/hbsJS/otpUser.js" />
         <option value="$PROJECT_DIR$/views/hbsJS/otp.js" />
-        <option value="$PROJECT_DIR$/server/models/civilian.js" />
         <option value="$PROJECT_DIR$/server/models/address.js" />
         <option value="$PROJECT_DIR$/views/hbsJS/numeric.js" />
         <option value="$PROJECT_DIR$/views/login.hbs" />
@@ -226,16 +237,17 @@
         <option value="$PROJECT_DIR$/views/newCivilAdd.hbs" />
         <option value="$PROJECT_DIR$/views/hbsJS/address.js" />
         <option value="$PROJECT_DIR$/views/hbsJS/areaAccessReg.js" />
-        <option value="$PROJECT_DIR$/views/hbsJS/querySearchL.js" />
         <option value="$PROJECT_DIR$/playground/otp.js" />
-        <option value="$PROJECT_DIR$/views/querySearchNew.hbs" />
         <option value="$PROJECT_DIR$/views/registrationS.hbs" />
         <option value="$PROJECT_DIR$/views/hbsJS/newAdminSettings.js" />
-        <option value="$PROJECT_DIR$/server/models/users.js" />
         <option value="$PROJECT_DIR$/views/registration.hbs" />
-        <option value="$PROJECT_DIR$/server/server.js" />
+        <option value="$PROJECT_DIR$/server/models/civilian.js" />
         <option value="$PROJECT_DIR$/views/hbsJS/configjs.js" />
         <option value="$PROJECT_DIR$/server/db/mongoose.js" />
+        <option value="$PROJECT_DIR$/server/models/users.js" />
+        <option value="$PROJECT_DIR$/server/server.js" />
+        <option value="$PROJECT_DIR$/views/querySearchNew.hbs" />
+        <option value="$PROJECT_DIR$/views/hbsJS/querySearchL.js" />
       </list>
     </option>
   </component>
@@ -436,12 +448,12 @@
       <workItem from="1533631133553" duration="1974000" />
       <workItem from="1533707488597" duration="3875000" />
       <workItem from="1533726735712" duration="3481000" />
-      <workItem from="1533792729209" duration="4956000" />
+      <workItem from="1533792729209" duration="11897000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="594279000" />
+    <option name="totallyTimeSpent" value="601220000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -456,7 +468,7 @@
     <frame x="-8" y="-8" width="1376" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.7975133" weight="0.16890882" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.7975133" visible="true" weight="0.16890882" />
       <window_info id="Structure" order="1" sideWeight="0.20248668" side_tool="true" weight="0.16890882" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32838285" />
@@ -467,7 +479,7 @@
       <window_info anchor="bottom" id="Favorites" order="6" sideWeight="0.49925262" side_tool="true" weight="0.32838285" />
       <window_info anchor="bottom" id="TODO" order="7" weight="0.32838285" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.8729447" visible="true" weight="0.39016393" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.8729447" visible="true" weight="0.3704918" />
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.32786885" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.1270553" side_tool="true" weight="0.39180326" />
       <window_info anchor="bottom" id="Inspection Results" order="12" weight="0.32838285" />
@@ -487,7 +499,7 @@
       <window_info anchor="bottom" id="Favorites" order="6" sideWeight="0.49925262" side_tool="true" weight="0.32838285" />
       <window_info anchor="bottom" id="TODO" order="7" weight="0.32838285" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.8729447" visible="true" weight="0.39016393" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.8729447" visible="true" weight="0.3704918" />
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.32786885" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.1270553" side_tool="true" weight="0.39180326" />
       <window_info anchor="bottom" id="Inspection Results" order="12" weight="0.32838285" />
@@ -721,13 +733,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/demo.hbs" />
-    <entry file="file://$PROJECT_DIR$/server/models/civilian.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="331">
-          <caret line="79" column="6" selection-start-line="79" selection-start-column="6" selection-end-line="79" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/queryAdd.hbs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="331">
@@ -749,13 +754,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/hbsJS/areaAccessReg.js" />
-    <entry file="file://$PROJECT_DIR$/views/querySearchNew.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="566" lean-forward="true" selection-start-line="566" selection-end-line="570" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/hbsJS/newAdminSettings.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="114">
@@ -770,34 +768,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/hbsJS/querySearchL.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
-          <caret line="509" column="14" lean-forward="true" selection-start-line="509" selection-start-column="14" selection-end-line="509" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/registration.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="355" selection-start-line="355" selection-end-line="355" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="1167" column="38" lean-forward="true" selection-start-line="1167" selection-start-column="38" selection-end-line="1167" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/models/users.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="36" column="18" lean-forward="true" selection-start-line="36" selection-start-column="18" selection-end-line="36" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/hbsJS/configjs.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="57">
@@ -809,6 +779,48 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="57">
           <caret line="3" column="21" lean-forward="true" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/models/civilian.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="236">
+          <caret line="74" column="8" selection-start-line="74" selection-start-column="8" selection-end-line="74" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/models/users.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="125" column="14" lean-forward="true" selection-start-line="125" selection-start-column="14" selection-end-line="125" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/querySearchNew.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="229">
+          <caret line="573" column="4" selection-start-line="573" selection-start-column="4" selection-end-line="573" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="267">
+          <caret line="1076" column="29" selection-start-line="1076" selection-start-column="29" selection-end-line="1076" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/registration.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="355" selection-start-line="355" selection-end-line="355" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/hbsJS/querySearchL.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="146">
+          <caret line="574" column="23" selection-start-line="574" selection-start-column="23" selection-end-line="574" selection-end-column="23" />
         </state>
       </provider>
     </entry>
