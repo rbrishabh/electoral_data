@@ -1139,7 +1139,7 @@ if(req.body.password !== req.body.confirm){
             obj.addC = user.citizenAdd
             obj.editC = user.citizenEdit
             obj.addA = user.adminAdd
-            obj.messageError = "Mobile/Email already exists.";
+            obj.message = "Mobile/Email already exists.";
             obj.pageReturn = "1"
             res.render('registration.hbs', obj);
         }, (e) => {
@@ -1168,7 +1168,7 @@ if(req.body.password !== req.body.confirm){
             obj.addC = user.citizenAdd
             obj.editC = user.citizenEdit
             obj.addA = user.adminAdd
-            obj.messageError =  "Mobile/Email already exists.";
+            obj.message =  "Mobile/Email already exists.";
             obj.pageReturn = "1"
             res.render('registration.hbs', obj);
         }, (e) => {
