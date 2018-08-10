@@ -444,6 +444,7 @@ app.post('/queryAddedCivilAuth', authenticate, function (req, res) {
         state: req.body.state,
         pin: req.body.pin,
         mark: req.body.mark,
+        notes: req.body.notes,
         validationCheck: req.body.validationCheck
     });
 
@@ -1213,6 +1214,7 @@ if(req.body.password !== req.body.confirm){
             obj.addA = user.adminAdd
             obj.message = "Mobile/Email already exists.";
             obj.pageReturn = "1"
+            obj.name = req.body.name;
             res.render('registration.hbs', obj);
         }, (e) => {
             res.send(e);

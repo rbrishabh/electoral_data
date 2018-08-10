@@ -122,19 +122,19 @@
                                 <div class="col-md-4">
                                     <div class="form-group label-floating">
                                         <label class="control-label">First Name</label>
-                                        <input required type="text" name="name" class="form-control">
+                                        <input required type="text" name="name" id="name" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Middle Name</label>
-                                        <input  type="text" name="middleName" class="form-control">
+                                        <input  type="text" name="middleName" id="middleName" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Last Name</label>
-                                        <input type="text" name="lastName" class="form-control">
+                                        <input type="text" name="lastName" id="lastName" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -142,7 +142,7 @@
                                         <div class="col-xs-12">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">E-mail</label>
-                                                <input required type="email" name="email" class="form-control">
+                                                <input required type="email" id="email" name="email" class="form-control">
                                             </div>
                                         </div>
 
@@ -178,7 +178,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Age</label>
-                                        <input type="number" required name="age" max="100" min="0" class="form-control">
+                                        <input type="number" required name="age" id="age" max="100" min="0" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -258,7 +258,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group label-floating">
                                             <label class="control-label">Notes</label>
-                                            <textarea type="text" name="notes" rows="5" class="form-control"  style="border-right: 1px solid #eee;"></textarea>
+                                            <textarea type="text" name="notes" id="notes" rows="5" class="form-control"  style="border-right: 1px solid #eee;"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -382,6 +382,11 @@
             document.getElementById("otherocc").style.display = "none";
         }
     };
+</script>
+<script>
+    if('{{message}}'=='Mobile/Email already exists.'){
+        document.getElementById('name').value='{{name}}';
+    }
 </script>
 </body>
 <script src="/bootstrapjs.js"></script>

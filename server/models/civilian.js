@@ -71,7 +71,10 @@ var civilian = mongoose.model(civilModel, {
     },
     email: {
         type: String,
-
+        trim:true
+    },
+    notes: {
+        type: String,
         trim:true
     },
     professionOther: {
