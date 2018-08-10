@@ -577,7 +577,6 @@ app.get('/getNumber/:email', (req,res)=>{
 app.get('/message', (req,res)=>{
     console.log('sending starts!');
 
-    var user1 = req.session.userId;
 
     var message = req.query.message
     var arr = req.query.array.split(",")
@@ -593,6 +592,8 @@ app.get('/message', (req,res)=>{
             }
         });        console.log(url)
     }
+    var user1 = req.session.userId;
+
     var no = arr1.length;
     console.log(no);
     Users.findById(user1).then((user1) => {
@@ -1040,6 +1041,9 @@ app.post('/passwordChanged',authenticate, (req,res)=>{
 
 app.post('/addedAdmin', authenticate, (req,res)=>{
     var obj = {};
+    var user1 = req.session.userId;
+
+
     if(req.body.state){
         obj.state = req.body.state
     }
@@ -1061,8 +1065,24 @@ app.post('/addedAdmin', authenticate, (req,res)=>{
     if(req.body.adminAdd){
         obj.adminAdd = req.body.adminAdd
     }
-    if(req.body.messageRights){
-        obj.messageRights = req.body.messageRights
+    if(req.body.messageRights) {
+        obj.messageRights = req.body.messageRights;
+        var obj1 = {};
+        var no = req.body.messageRights;
+        console.log(no);
+        Users.findById(user1).then((user1) => {
+            var mobile = user1.mobile;
+
+            if (user1.messageRights > 0) {
+                var messageRights = user1.messageRights - no;
+
+                obj1.messageRights = messageRights;
+                Users.update({"mobile": mobile},
+                    {$set: obj1}).then((user) => {
+                    console.log(user);
+                    });
+            }
+        });
     }
     if(req.body.printRights){
         obj.printRights = req.body.printRights;
