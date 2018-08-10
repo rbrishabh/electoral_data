@@ -575,7 +575,10 @@ app.get('/getNumber/:email', (req,res)=>{
 });
 
 app.get('/message', (req,res)=>{
-    console.log('sending starts!')
+    console.log('sending starts!');
+
+    var user1 = req.session.userId;
+
     var message = req.query.message
     var arr = req.query.array.split(",")
     var arr1 = [];
@@ -590,6 +593,27 @@ app.get('/message', (req,res)=>{
             }
         });        console.log(url)
     }
+    var no = arr1.length;
+    console.log(no);
+    Users.findById(user1).then((user1) => {
+        var mobile = user1.mobile;
+
+        if(user1.messageRights>0){
+            var messageRights = user1.messageRights-no;
+
+            var obj ={};
+            obj.messageRights = messageRights;
+            Users.update({"mobile": mobile},
+                {$set:obj}).then((user)=>{
+                res.send({messageRights});
+
+            });
+        }
+        else{
+            messageRights = user1.messageRights;
+            res.send({messageRights});
+        }
+    });
 
 
      console.log(arr1, message);
@@ -1071,13 +1095,17 @@ app.get('/printDecrement', (req,res)=>{
             obj.printRightsL = printRightsL;
             Users.update({"mobile": mobile},
                 {$set:obj}).then((user)=>{
-                    res.send(printRightsL);
+                    res.send({printRightsL});
             });
         }
-res.send(user1.printRightsL);
+        else {
+            printRightsL = user1.printRightsL;
+            res.send({printRightsL});
+        }
     });
 
 });
+
 
 
 app.post('/registrationElectoralData' , authenticate, (req, res) => {

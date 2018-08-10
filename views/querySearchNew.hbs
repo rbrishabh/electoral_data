@@ -431,6 +431,7 @@
                             </div>
 
                             <input type="hidden" id="forMessage" value="123">
+                            <input type="hidden" id="forMessaging" value="123">
                             <input type="hidden" id="forPrint" value="123">
                         </div>
                     </div>
@@ -571,6 +572,16 @@
     }
     if('{{print}}'=='0'){
         document.getElementById('forPrint').disabled = true;
+    }
+    else {
+        document.getElementById('forPrint').value='{{print}}';
+
+    }
+    if('{{message}}'=='0'){
+        document.getElementById('forMessaging').disabled = true;
+    }
+    else{
+        document.getElementById('forMessaging').value='{{message}}';
     }
 </script>
 </body>

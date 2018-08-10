@@ -482,7 +482,7 @@ if(printData.civilian[x].name== undefined){
     '</ul>'
         +
 
-        '<button class="btn btn-success pull-right" data-toggle="modal" data-target="#myModal" id="msgbtn">Message</button>' +
+        '<button class="btn btn-success pull-right disableButtonMessage" data-toggle="modal" data-target="#myModal" id="msgbtn">Message</button>' +
         '<button class="btn btn-success pull-right disableButtonPrint" onclick="printData(); printDec(); ">Print</button>';
     $(document).ready(function () {
         var listInput = [];
@@ -495,12 +495,34 @@ if(printData.civilian[x].name== undefined){
                 });
                 var stringify = JSON.stringify(listInput)
                 var text = $('#comment').val();
-                var url = urlFinal + 'message?array='+listInput+'&message='+text;
-                console.log(url)
-                var ourRequest = new XMLHttpRequest();
-                ourRequest.open('GET', url, true);
-                ourRequest.send();
-                listInput= [];
+                console.log($("#forMessaging").val());
+                if($("#forMessaging").val()>=listInput.length){
+                    var url = urlFinal + 'message?array='+listInput+'&message='+text;
+                    console.log(listInput)
+                    var ourRequest = new XMLHttpRequest();
+                    ourRequest.open('GET', url, true);
+                    ourRequest.onload = function () {
+                        var ourData = JSON.parse(ourRequest.responseText);
+                        console.log(ourData.messageRights);
+                        document.getElementById('forMessaging').value=ourData.messageRights;
+                        console.log(typeof ourData.messageRights);
+                        if(ourData.messageRights===0 || ourData.messageRights === '0'){
+                            $('.disableButtonMessage').prop('disabled', true);
+                        } else {
+                            $('.disableButtonMessage').prop('disabled', false);
+
+                        }
+
+                    }
+                    ourRequest.send();
+                    listInput= [];
+                }
+                else{
+                    console.log('mess Else runnin');
+                    listInput= [];
+                    alert('You do not have enough messages left. Please contact the admin for more rights');
+                }
+
             }
             e.preventDefault();
         });
@@ -513,6 +535,12 @@ if(printData.civilian[x].name== undefined){
         $('.disableButtonPrint').prop('disabled', true);
     } else {
         $('.disableButtonPrint').prop('disabled', false);
+
+    }
+    if(document.getElementById('forMessaging').disabled == true){
+        $('.disableButtonMessage').prop('disabled', true);
+    } else {
+        $('.disableButtonMessage').prop('disabled', false);
 
     }
 
@@ -564,52 +592,63 @@ else if(end!=outputObj.civilian.length){
 }
 
 function printDec() {
-    var url = urlFinal + 'printDecrement';
-    console.log(url);
-    var ourRequest = new XMLHttpRequest();
-    ourRequest.open('GET', url, true);
-    ourRequest.onload = function () {
-        var ourData = ourRequest.responseText;
-        console.log(ourData);
-        console.log(typeof ourData);
-        if(ourData==='1'){
-            $('.disableButtonPrint').prop('disabled', true);
-        } else {
-            $('.disableButtonPrint').prop('disabled', false);
+    if($("#forPrint").val()>=1) {
+        var url = urlFinal + 'printDecrement';
+        console.log(url);
+        var ourRequest = new XMLHttpRequest();
+        ourRequest.open('GET', url, true);
+        ourRequest.onload = function () {
+            var ourData = JSON.parse(ourRequest.responseText);
+            document.getElementById('forPrint').value = ourData.printRightsL;
+            console.log(ourData.printRightsL);
+            console.log(typeof ourData.printRightsL);
+            if (ourData.printRightsL === 0 || ourData.printRightsL === '0' ) {
+                $('.disableButtonPrint').prop('disabled', true);
+            } else {
+                $('.disableButtonPrint').prop('disabled', false);
+            }
 
         }
-
+        ourRequest.send();
     }
-    ourRequest.send();
-
+    else {
+        $('.disableButtonPrint').prop('disabled', true);
+        alert('You do not have enough print rights, please contact the admin.');
+    }
 
 }
 
 function printData() {
+    if($("#forPrint").val()>=1) {
 
-    var divToPrint = document.getElementById('opTable');
-    var htmlToPrint = '' +
-        '<style type="text/css">' +
+        var divToPrint = document.getElementById('opTable');
+        var htmlToPrint = '' +
+            '<style type="text/css">' +
 
-      '  #opTable {'+
-        ' border-collapse: collapse;' +
-    '}'
-    +
-        'table th, table td {' +
+            '  #opTable {' +
+            ' border-collapse: collapse;' +
+            '}'
+            +
+            'table th, table td {' +
 
 
-    'border:1px solid #000;' +
-        'padding;0.5em;' +
-        '}' +
-        'table td:last-child {display:none}'+
-    'table th:last-child {display:none}'+
-        '</style>';
-    htmlToPrint += divToPrint.outerHTML;
-    newWin = window.open("");
-    newWin.document.write(htmlToPrint);
-    newWin.print();
-    newWin.close();
-}
+            'border:1px solid #000;' +
+            'padding;0.5em;' +
+            '}' +
+            'table td:last-child {display:none}' +
+            'table th:last-child {display:none}' +
+            '</style>';
+        htmlToPrint += divToPrint.outerHTML;
+        newWin = window.open("");
+        newWin.document.write(htmlToPrint);
+        newWin.print();
+        newWin.close();
+    }
+    else {
+        $('.disableButtonPrint').prop('disabled', true);
+        alert('You do not have enough print rights, please contact the admin.');
+    }
+    }
 
 
 
