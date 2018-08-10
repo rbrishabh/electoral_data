@@ -125,6 +125,14 @@ var userSchema = new mongoose.Schema({
         type: String,
         trim:true
     },
+    dateTime: {
+        type: String,
+        trim:true
+    },
+    createdBy: {
+        type: String,
+        trim:true
+    },
     messageRights: {
         type: String,
         trim:true

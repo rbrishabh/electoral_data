@@ -11,6 +11,7 @@ var MongoStore = require('connect-mongo')(session)
 var speakeasy = require('speakeasy');
 const request = require('request');
 var getAge = require('get-age')
+const moment = require('moment');
 value = {};
 
 const{Users}= require('./models/users');
@@ -331,6 +332,8 @@ app.post('/queryAddedCivil', function (req, res) {
 
 
 if(tokenValidates) {
+    var date = moment().utcOffset("+05:30").format();
+
     var newCivilian = new civilian({
         title : req.body.title,
         name: req.body.firstName,
@@ -355,7 +358,9 @@ if(tokenValidates) {
         state: req.body.state,
         pin: req.body.pin,
         mark: req.body.mark,
-        validationCheck :  'true'
+        validationCheck :  'true',
+        dateTime: date,
+        createdBy: 'local@genesis-in.com'
     });
 
     newCivilian.save().then((doc)=>{
@@ -419,126 +424,138 @@ app.post('/queryAddedCivilAuth', authenticate, function (req, res) {
         age = req.body.age;
     }
 
-    console.log(req.body.validationCheck, '123123');
-    var newCivilian = new civilian({
-        title: req.body.title,
-        name: req.body.firstName,
-        middleName: req.body.middleName,
-        lastName: req.body.lastName,
-        relation: req.body.optionsRadios,
-        relationTitle: req.body.relationTitle,
-        relationName: req.body.relationFirst,
-        relationMiddle: req.body.relationMiddle,
-        relationLast: req.body.relationLast,
-        mobile: req.body.mobile,
-        secondMobile: req.body.secondMobile,
-        thirdMobile: req.body.thirdMobile,
-        email: req.body.email,
-        age: age,
-        gender: req.body.gender,
-        profession: req.body.occ,
-        professionOther: req.body.occOther,
-        village: req.body.village,
-        block: req.body.block,
-        district: req.body.district,
-        state: req.body.state,
-        pin: req.body.pin,
-        mark: req.body.mark,
-        notes: req.body.notes,
-        validationCheck: req.body.validationCheck
-    });
-
-    newCivilian.save().then((doc) => {
-        var user = req.session.userId;
-        var obj = {};
-        Users.findById(user).then((user) => {
-            console.log(user);
-            if (user.state) {
-                obj.state = user.state
-            }
-            if (user.village) {
-                obj.village = user.village
-            }
-            if (user.block) {
-                obj.block = user.block
-            }
-            if (user.district) {
-                obj.district = user.district
-            }
+    var date = moment().utcOffset("+05:30").format();
+    var user = req.session.userId;
+    Users.findById(user).then((user) => {
+    var createdBy = user.email;
 
 
-            obj.level = user.level
-            obj.addC = user.citizenAdd
-            obj.editC = user.citizenEdit
-            obj.addA = user.adminAdd
-            obj.message = "Data Succesfully Added!";
-            obj.pageReturn = "1"
-            res.render('queryAdd.hbs', obj);
-        }, (e) => {
-            res.send(e);
+        var newCivilian = new civilian({
+            title: req.body.title,
+            name: req.body.firstName,
+            middleName: req.body.middleName,
+            lastName: req.body.lastName,
+            relation: req.body.optionsRadios,
+            relationTitle: req.body.relationTitle,
+            relationName: req.body.relationFirst,
+            relationMiddle: req.body.relationMiddle,
+            relationLast: req.body.relationLast,
+            mobile: req.body.mobile,
+            secondMobile: req.body.secondMobile,
+            thirdMobile: req.body.thirdMobile,
+            email: req.body.email,
+            age: age,
+            gender: req.body.gender,
+            profession: req.body.occ,
+            professionOther: req.body.occOther,
+            village: req.body.village,
+            block: req.body.block,
+            district: req.body.district,
+            state: req.body.state,
+            pin: req.body.pin,
+            mark: req.body.mark,
+            notes: req.body.notes,
+            validationCheck: req.body.validationCheck,
+            dateTime: date,
+            createdBy: createdBy
         });
 
+        newCivilian.save().then((doc) => {
 
-    }, (e)=>{
+            var obj = {};
+            Users.findById(user).then((user) => {
+                console.log(user);
+                if (user.state) {
+                    obj.state = user.state
+                }
+                if (user.village) {
+                    obj.village = user.village
+                }
+                if (user.block) {
+                    obj.block = user.block
+                }
+                if (user.district) {
+                    obj.district = user.district
+                }
 
-        var user = req.session.userId;
-        var obj = {};
-        Users.findById(user).then((user) => {
-            console.log(user);
-            if (user.state) {
-                obj.state = user.state
-            }
-            if (user.village) {
-                obj.village = user.village
-            }
-            if (user.block) {
-                obj.block = user.block
-            }
-            if (user.district) {
-                obj.district = user.district
-            }
 
-            obj.level = user.level
-            obj.addC = user.citizenAdd
-            obj.editC = user.citizenEdit
-            obj.addA = user.adminAdd
-            obj.message = "Mobile/Email already exists.";
-            obj.pageReturn = "1"
-            res.render('queryAdd.hbs', obj);
-        }, (e) => {
-            res.send(e);
+                obj.level = user.level
+                obj.addC = user.citizenAdd
+                obj.editC = user.citizenEdit
+                obj.addA = user.adminAdd
+                obj.message = "Data Succesfully Added!";
+                obj.pageReturn = "1"
+                res.render('queryAdd.hbs', obj);
+            }, (e) => {
+                res.send(e);
+            });
+
+
+        }, (e)=>{
+
+            var user = req.session.userId;
+            var obj = {};
+            Users.findById(user).then((user) => {
+                console.log(user);
+                if (user.state) {
+                    obj.state = user.state
+                }
+                if (user.village) {
+                    obj.village = user.village
+                }
+                if (user.block) {
+                    obj.block = user.block
+                }
+                if (user.district) {
+                    obj.district = user.district
+                }
+
+                obj.level = user.level
+                obj.addC = user.citizenAdd
+                obj.editC = user.citizenEdit
+                obj.addA = user.adminAdd
+                obj.message = "Mobile/Email already exists.";
+                obj.pageReturn = "1"
+                res.render('queryAdd.hbs', obj);
+            }, (e) => {
+                res.send(e);
+            });
+        }).catch((e)=>{
+            var user = req.session.userId;
+            var obj = {};
+            Users.findById(user).then((user) => {
+                console.log(user);
+                if (user.state) {
+                    obj.state = user.state
+                }
+                if (user.village) {
+                    obj.village = user.village
+                }
+                if (user.block) {
+                    obj.block = user.block
+                }
+                if (user.district) {
+                    obj.district = user.district
+                }
+
+
+                obj.level = user.level
+                obj.addC = user.citizenAdd
+                obj.editC = user.citizenEdit
+                obj.addA = user.adminAdd
+                obj.message =  "Mobile/Email already exists.";
+                obj.pageReturn = "1"
+                res.render('queryAdd.hbs', obj);
+            }, (e) => {
+                res.send(e);
+            });
         });
+
+    }, (e) => {
+        res.send(e);
     }).catch((e)=>{
-        var user = req.session.userId;
-        var obj = {};
-        Users.findById(user).then((user) => {
-            console.log(user);
-            if (user.state) {
-                obj.state = user.state
-            }
-            if (user.village) {
-                obj.village = user.village
-            }
-            if (user.block) {
-                obj.block = user.block
-            }
-            if (user.district) {
-                obj.district = user.district
-            }
-
-
-            obj.level = user.level
-            obj.addC = user.citizenAdd
-            obj.editC = user.citizenEdit
-            obj.addA = user.adminAdd
-            obj.message =  "Mobile/Email already exists.";
-            obj.pageReturn = "1"
-            res.render('queryAdd.hbs', obj);
-        }, (e) => {
-            res.send(e);
-        });
-    });
-
+    res.send(e);
+});
 });
 
 app.get('/getNumber/:email', (req,res)=>{
@@ -1152,102 +1169,111 @@ if(req.body.password !== req.body.confirm){
             message: "Passwords do not match! Please try again."
         });
     } else {
-     var body = _.pick(req.body, ['email', 'name', 'middleName', 'mobile', 'lastName', 'age', 'gender', 'mark', 'occupation', 'occOther', 'notes', 'password', 'stateOwn', 'districtOwn', 'blockOwn', 'villageOwn', 'pinOwn', 'verifiedMobile']);
-     var user = new Users(body);
+    var user1 = req.session.userId;
+    Users.findById(user1).then((user1) => {
 
-    user.save().then(() => {
-        var user1 = req.session.userId;
-        var obj = {};
-        Users.findById(user1).then((user1) => {
-            console.log(user1);
-            if (user1.state) {
-                obj.state = user1.state
-            }
-            if (user1.village) {
-                obj.village = user1.village
-            }
-            if (user1.block) {
-                obj.block = user1.block
-            }
-            if (user1.district) {
-                obj.district = user1.district
-            }
+        var body = _.pick(req.body, ['email', 'name', 'middleName', 'mobile', 'lastName', 'age', 'gender', 'mark', 'occupation', 'occOther', 'notes', 'password', 'stateOwn', 'districtOwn', 'blockOwn', 'villageOwn', 'pinOwn', 'verifiedMobile']);
+        body.dateTime = moment().utcOffset("+05:30").format();
+        body.createdBy = user1.email;
+        var user = new Users(body);
+        user.save().then(() => {
+            var obj = {};
+            Users.findById(user1).then((user1) => {
+                console.log(user1);
+                if (user1.state) {
+                    obj.state = user1.state
+                }
+                if (user1.village) {
+                    obj.village = user1.village
+                }
+                if (user1.block) {
+                    obj.block = user1.block
+                }
+                if (user1.district) {
+                    obj.district = user1.district
+                }
 
-            obj.level = user1.level
-            obj.addC = user1.citizenAdd
-            obj.editC = user1.citizenEdit
-            obj.addA = user1.adminAdd
-            obj.name = req.body.name
-            obj.email = req.body.email
-            obj.message = user1.messageRights
-            obj.print = user1.printRights
+                obj.level = user1.level
+                obj.addC = user1.citizenAdd
+                obj.editC = user1.citizenEdit
+                obj.addA = user1.adminAdd
+                obj.name = req.body.name
+                obj.email = req.body.email
+                obj.message = user1.messageRights
+                obj.print = user1.printRights
 
-            res.render('registrationS.hbs', obj);
+                res.render('registrationS.hbs', obj);
 
-        }, (e)=>{
-            res.send(e);
-        }).catch((e)=>{
-            res.send(e);
-        });
-    }, (e)=>{
-
-        var user = req.session.userId;
-        var obj = {};
-        Users.findById(user).then((user) => {
-            console.log(user);
-            if (user.state) {
-                obj.state = user.state
-            }
-            if (user.village) {
-                obj.village = user.village
-            }
-            if (user.block) {
-                obj.block = user.block
-            }
-            if (user.district) {
-                obj.district = user.district
-            }
-
-            obj.level = user.level
-            obj.addC = user.citizenAdd
-            obj.editC = user.citizenEdit
-            obj.addA = user.adminAdd
-            obj.message = "Mobile/Email already exists.";
-            obj.pageReturn = "1"
-            obj.name = req.body.name;
-            res.render('registration.hbs', obj);
+            }, (e) => {
+                res.send(e);
+            }).catch((e) => {
+                res.send(e);
+            });
         }, (e) => {
-            res.send(e);
-        });
-    }).catch((e)=>{
-        var user = req.session.userId;
-        var obj = {};
-        Users.findById(user).then((user) => {
-            console.log(user);
-            if (user.state) {
-                obj.state = user.state
-            }
-            if (user.village) {
-                obj.village = user.village
-            }
-            if (user.block) {
-                obj.block = user.block
-            }
-            if (user.district) {
-                obj.district = user.district
-            }
+
+            var user = req.session.userId;
+            var obj = {};
+            Users.findById(user).then((user) => {
+                console.log(user);
+                if (user.state) {
+                    obj.state = user.state
+                }
+                if (user.village) {
+                    obj.village = user.village
+                }
+                if (user.block) {
+                    obj.block = user.block
+                }
+                if (user.district) {
+                    obj.district = user.district
+                }
+
+                obj.level = user.level
+                obj.addC = user.citizenAdd
+                obj.editC = user.citizenEdit
+                obj.addA = user.adminAdd
+                obj.message = "Mobile/Email already exists.";
+                obj.pageReturn = "1"
+                obj.name = req.body.name;
+                res.render('registration.hbs', obj);
+            }, (e) => {
+                res.send(e);
+            });
+        }).catch((e) => {
+            var user = req.session.userId;
+            var obj = {};
+            Users.findById(user).then((user) => {
+                console.log(user);
+                if (user.state) {
+                    obj.state = user.state
+                }
+                if (user.village) {
+                    obj.village = user.village
+                }
+                if (user.block) {
+                    obj.block = user.block
+                }
+                if (user.district) {
+                    obj.district = user.district
+                }
 
 
-            obj.level = user.level
-            obj.addC = user.citizenAdd
-            obj.editC = user.citizenEdit
-            obj.addA = user.adminAdd
-            obj.message =  "Mobile/Email already exists.";
-            obj.pageReturn = "1"
-            res.render('registration.hbs', obj);
-        }, (e) => {
-            res.send(e);
+                obj.level = user.level
+                obj.addC = user.citizenAdd
+                obj.editC = user.citizenEdit
+                obj.addA = user.adminAdd
+                obj.message = "Mobile/Email already exists.";
+                obj.pageReturn = "1"
+                res.render('registration.hbs', obj);
+            }, (e) => {
+                res.send(e);
+            });
         });
+
+    }, (e) => {
+        res.send('0');
+    }).catch((e) => {
+        res.send('0');
     });
 }
 });

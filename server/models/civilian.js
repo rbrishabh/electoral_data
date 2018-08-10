@@ -73,6 +73,14 @@ var civilian = mongoose.model(civilModel, {
         type: String,
         trim:true
     },
+    dateTime: {
+        type: String,
+        trim:true
+    },
+    createdBy: {
+        type: String,
+        trim:true
+    },
     notes: {
         type: String,
         trim:true
