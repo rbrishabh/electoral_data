@@ -119,6 +119,8 @@ function editBlock(editedBlock) {
             getDBlock();
 
             document.getElementById('success2').style.display = "block"
+            setTimeout(function(){document.getElementById('success2').style.display = "none";}, 5000);
+
         }
     }
     ourRequest.send();
@@ -210,6 +212,8 @@ function editVillage(editedVillage) {
             getDBlock();
 
             document.getElementById('success3').style.display = "block"
+            setTimeout(function(){document.getElementById('success3').style.display = "none";}, 5000);
+
         }
     }
     ourRequest.send();

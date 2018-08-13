@@ -62,6 +62,8 @@ function addBlock(block) {
             getEBlock();
 
             document.getElementById('success').style.display = "block"
+            setTimeout(function(){document.getElementById('success').style.display = "none";}, 5000);
+
         }
     }
     ourRequest.send();
@@ -138,7 +140,8 @@ function addVillage(village) {
           getDBlock();
           getEBlock();
 
-          document.getElementById('success1').style.display = "block"
+          document.getElementById('success1').style.display = "block";
+          setTimeout(function(){document.getElementById('success1').style.display = "none";}, 5000);
       }
       }
     ourRequest.send();

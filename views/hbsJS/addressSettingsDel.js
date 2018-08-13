@@ -115,6 +115,8 @@ function delBlock() {
             getABlock();
 
             document.getElementById('success4').style.display = "block"
+            setTimeout(function(){document.getElementById('success4').style.display = "none";}, 5000);
+
         }
     }
     ourRequest.send();
@@ -207,6 +209,8 @@ function delVillage() {
             getABlock();
 
             document.getElementById('success5').style.display = "block"
+            setTimeout(function(){document.getElementById('success5').style.display = "none";}, 5000);
+
         }
     }
     ourRequest.send();

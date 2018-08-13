@@ -482,8 +482,8 @@ if(printData.civilian[x].name== undefined){
     '</ul>'
         +
 
-        '<button class="btn btn-success pull-right disableButtonMessage" data-toggle="modal" data-target="#myModal" id="msgbtn">Message</button>' +
-        '<button class="btn btn-success pull-right disableButtonPrint" onclick="printData(); printDec(); ">Print</button>';
+        '<button class="btn btn-primary pull-right disableButtonMessage" data-toggle="modal" data-target="#myModal" id="msgbtn">Message</button>' +
+        '<button class="btn btn-primary pull-right disableButtonPrint" onclick="printData(); printDec(); ">Print</button>';
     $(document).ready(function () {
         var listInput = [];
         $('#msgsend').click(function (e) {

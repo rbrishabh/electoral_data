@@ -2,9 +2,10 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <link rel="apple-touch-icon" sizes="76x76" href="apple-icon.png">
-        <link rel="icon" type="image/png" href="favicon.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
+        <link rel="icon" type="image/png" href="assets/img/favicon.png">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta name="Author" content="hemant.me"/>
         <title>Electoral - Log-in</title>
 
         <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
@@ -15,58 +16,11 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
 
         <!-- CSS Files -->
-        <script src="/configjs.js"></script>
-        <script src="/jquery1.js"></script>
-        <script src="/otp.js"></script>
-        <script src="/loginAddress.js"></script>
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="assets/css/material-kit.css" rel="stylesheet"/>
 
-        <link rel="stylesheet" href="/bootstrap.css">
-
-        <link rel="stylesheet" href="/materialkit.css">
-
-        <link rel="stylesheet" href="/styleLogin.css">
-        <link rel="stylesheet" href="/inputtype.css">
-
-        <!--js files-->
-
-
-
-        <style>
-
-            .digit{
-                font-size: 28px;
-                color: #333;
-                font-weight: 200;
-                float: left;
-                margin-top: 5px;
-            }
-            .txtt{
-                color: #888;
-                float: left;
-                display: block;
-            }
-            .card-header{
-                display: block !important;
-                padding: 15px !important;
-                border-radius: 5px !important;
-                margin-top: -20px !important;
-                font-size: 20px !important;
-                color: #fff !important;
-                margin-bottom: 20px !important;
-                line-height: 30px !important;
-
-
-            }
-            .card-header-text{
-                color: #eee;
-                font-size: 14px;
-            }
-            .blue{
-                background-color: #068CD4 !important;
-
-                box-shadow: 0 14px 26px -12px rgba(3, 169, 244, 0.42), 0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(3, 169, 244, 0.2) !important;
-            }
-        </style>
+        <!-- CSS Just for demo purpose, don't include it in your project -->
+        <link href="assets/css/demo.css" rel="stylesheet" />
 
     </head>
 
@@ -78,15 +32,21 @@
                         <div class="navbar-header">
                             <a href="#">
                                 <div class="logo">
-                                    <img src="logo.png" alt="Electoral Logo">
+                                    <img src="assets/img/logo.png" alt="Electoral Logo">
                                 </div>
                             </a>
                         </div>
                     </div><!-- /.container-fluid -->
                 </nav>
-            </div>
-            </div>
-            
+            </div></div>
+
+
+
+
+
+
+
+
 
         <div class="wrapper" style="margin-top: -80px;">
             <div class="container">
@@ -99,18 +59,18 @@
                                         <div class="card-header" style="background-color: #56B6C3 !important;
 
                 box-shadow: 0 14px 26px -12px rgba(86, 182, 195, 0.42), 0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(3, 169, 244, 0.2) !important;"><i class="fa fa-users">
-                                        </i><small class="card-header-text"> Civilian Registered</small></div>
+                                            </i><small class="card-header-text"> Civilian Registered</small></div>
 
                                         <div class="row">
                                             <div class="col-xs-6" style="border-right: 1px solid #ccc">
                                                 <strong class="txtt">Total</strong>
                                                 <br>
-                                                <strong class="digit" id="liveCounterCivil">0</strong>
+                                                <strong class="digit">96842</strong>
                                             </div>
                                             <div class="col-xs-6">
                                                 <strong class="txtt">Today</strong>
                                                 <br>
-                                                <strong class="digit" id="liveCounterCivilToday">0</strong>
+                                                <strong class="digit">120</strong>
                                             </div>
                                         </div>
 
@@ -119,26 +79,26 @@
                                     </div>
                                 </div>
                             </div>
-
-
+                            
+                            
                             <div class="col-md-4">
                                 <div class="card card-nav-tabs card-signup">
                                     <div class="col-md-12">
                                         <div class="card-header" style="background-color: #EC4D4A !important;
-
+                
                 box-shadow: 0 14px 26px -12px rgba(236, 77, 74, 0.42), 0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(3, 169, 244, 0.2) !important;"><i class="fa fa-map-o">
-                                        </i><small class="card-header-text"> Block Registered</small></div>
+                                            </i><small class="card-header-text"> Block Registered</small></div>
 
                                         <div class="row">
                                             <div class="col-xs-6" style="border-right: 1px solid #ccc">
                                                 <strong class="txtt">Total</strong>
                                                 <br>
-                                                <strong class="digit" id="liveCounterBlock">0</strong>
+                                                <strong class="digit">768</strong>
                                             </div>
                                             <div class="col-xs-6">
                                                 <strong class="txtt">Today</strong>
                                                 <br>
-                                                <strong class="digit" id="liveCounterBlockToday">0</strong>
+                                                <strong class="digit">20</strong>
                                             </div>
                                         </div>
 
@@ -147,25 +107,25 @@
                                     </div>
                                 </div>
                             </div>
-
+                            
                             <div class="col-md-4">
                                 <div class="card card-nav-tabs card-signup">
                                     <div class="col-md-12">
                                         <div class="card-header" style="background-color: #FD9C17 !important;
-
+                
                 box-shadow: 0 14px 26px -12px rgba(253, 156, 23, 0.42), 0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(3, 169, 244, 0.2) !important;"><i class="fa fa-home">
-                                        </i><small class="card-header-text"> Village Registered</small></div>
+                                            </i><small class="card-header-text"> Village Registered</small></div>
 
                                         <div class="row">
                                             <div class="col-xs-6" style="border-right: 1px solid #ccc">
                                                 <strong class="txtt">Total</strong>
                                                 <br>
-                                                <strong class="digit" id="liveCounterVillage">0</strong>
+                                                <strong class="digit">2784</strong>
                                             </div>
                                             <div class="col-xs-6">
                                                 <strong class="txtt">Today</strong>
                                                 <br>
-                                                <strong class="digit" id="liveCounterVillageToday">0</strong>
+                                                <strong class="digit">42</strong>
                                             </div>
                                         </div>
 
@@ -174,26 +134,26 @@
                                     </div>
                                 </div>
                             </div>
-
-
+                            
+                            
                             <div class="col-md-4">
                                 <div class="card card-nav-tabs card-signup">
                                     <div class="col-md-12">
                                         <div class="card-header" style="background-color: #58B05C !important;
-
+                
                 box-shadow: 0 14px 26px -12px rgba(88, 176, 92, 0.42), 0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(3, 169, 244, 0.2) !important;"><i class="fa fa-info-circle">
-                                        </i><small class="card-header-text"> Applications Received</small></div>
+                                            </i><small class="card-header-text"> Applications Received</small></div>
 
                                         <div class="row">
                                             <div class="col-xs-6" style="border-right: 1px solid #ccc">
                                                 <strong class="txtt">Total </strong>
                                                 <br>
-                                                <strong class="digit">0</strong>
+                                                <strong class="digit">84</strong>
                                             </div>
                                             <div class="col-xs-6">
                                                 <strong class="txtt">Today </strong>
                                                 <br>
-                                                <strong class="digit">0</strong>
+                                                <strong class="digit">62</strong>
                                             </div>
                                         </div>
 
@@ -202,26 +162,26 @@
                                     </div>
                                 </div>
                             </div>
-
-
+                            
+                            
                             <div class="col-md-4">
                                 <div class="card card-nav-tabs card-signup">
                                     <div class="col-md-12">
                                         <div class="card-header" style="background-color: #068CD4 !important;
-
+                
                 box-shadow: 0 14px 26px -12px rgba(3, 169, 244, 0.42), 0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(3, 169, 244, 0.2) !important;"><i class="fa fa-check-square-o">
-                                        </i><small class="card-header-text"> Applications Resolved</small></div>
+                                            </i><small class="card-header-text"> Applications Resolved</small></div>
 
                                         <div class="row">
                                             <div class="col-xs-6" style="border-right: 1px solid #ccc">
                                                 <strong class="txtt">Total </strong>
                                                 <br>
-                                                <strong class="digit">0</strong>
+                                                <strong class="digit">60</strong>
                                             </div>
                                             <div class="col-xs-6">
                                                 <strong class="txtt">Today </strong>
                                                 <br>
-                                                <strong class="digit">0</strong>
+                                                <strong class="digit">32</strong>
                                             </div>
                                         </div>
 
@@ -230,26 +190,26 @@
                                     </div>
                                 </div>
                             </div>
-
-
+                            
+                            
                             <div class="col-md-4">
                                 <div class="card card-nav-tabs card-signup">
                                     <div class="col-md-12">
                                         <div class="card-header" style="background-color: #A844BA !important;
-
+                
                 box-shadow: 0 14px 26px -12px rgba(168, 68, 186, 0.42), 0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(3, 169, 244, 0.2) !important;"><i class="fa fa-mars"></i>&nbsp;<i class="fa fa-venus"></i>
-                                            <small class="card-header-text"> Gender</small></div>
+                                        <small class="card-header-text"> Gender</small></div>
 
                                         <div class="row">
                                             <div class="col-xs-6" style="border-right: 1px solid #ccc">
-                                                <strong class="txtt">Male</strong>
+                                                <strong class="txtt">male</strong>
                                                 <br>
-                                                <strong class="digit" id="liveCounterCivilMale">0</strong>
+                                                <strong class="digit">8024</strong>
                                             </div>
                                             <div class="col-xs-6">
                                                 <strong class="txtt">Female</strong>
                                                 <br>
-                                                <strong class="digit" id="liveCounterCivilFemale">0</strong>
+                                                <strong class="digit">3482</strong>
                                             </div>
                                         </div>
 
@@ -258,110 +218,96 @@
                                     </div>
                                 </div>
                             </div>
-
-
-
-
+                            
+                            
+                            
+                            
                         </div>
 
 
 
                     </div>
-
                     <div class="col-md-4 col-sm-6">
 
-
-                       
                         <div class="card card-nav-tabs card-signup" style="margin-top: 25px;">
-                            <form class="form" method="post" autocomplete="off" action="/">
-<!--
-                                <div class="header header-info text-center">
-                                   
-                                    <h4 style="font-weight: 500; ">Sign In</h4>
+                            <form class="form" method="" action="">
+                                <!--
+<div class="header header-info text-center">
 
-                                </div>
+<h4 style="font-weight: 500; ">Sign In</h4>
+
+</div>
 --><ul class="nav nav-pills nav-pills-rose ">
                                 <li class="nav-item active" style="width: 50%; ">
-                                    <a class="nav-link active show" href="#signinpage" data-toggle="tab" style="width: 100%; border-radius: 0px;">Sign In</a>
+                                    <a class="nav-link active show " href="#signinpage" data-toggle="tab" style="width: 100%; border-radius: 0px;">Sign-In</a>
                                 </li>
                                 <li class="nav-item" style="width: 50%; float: left; margin: 0px;">
-                                    <a class="nav-link" href="/addCivildata" style="width: 100%; border-radius: 0px;">Join Us</a>
+                                    <a class="nav-link"  data-toggle="tab" style="width: 100%; border-radius: 0px;">Citizen Register</a>
                                 </li>
-                            </ul>
-                               <div class="tab-content tab-space">
-                                <div class="tab-pane active " id="signinpage">
-                                   <div class="content" style="padding-left: 40px;">
+                                </ul>
+                                <div class="tab-content tab-space">
+                                    <div class="tab-pane active " id="signinpage">
+                                        <div class="content" style="padding-left: 40px;">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">User Id</label>
+                                                <input type="email" class="form-control">
+                                            </div>
 
-                                       <div class="form-group label-floating">
-                                        <label class="control-label">Email-Id</label>
-                                        <input type="email" id="email" name="email" class="form-control" autocomplete="off" required>
-                                           <div id="otperror" class="errmsg">Wrong E-mail!</div>
+                                            <div class="form-group label-floating">
 
-                                       </div>
+                                                <label class="control-label">Password</label>
+                                                <input type="password" class="form-control" >
+                                            </div>
 
-                                    <div class="form-group label-floating">
+                                            <hr><h4 class="text-center" style="font-weight: 500; margin-top: -34px; margin-bottom: 0px; ">OR</h4>
 
-                                        <label class="control-label">Password</label>
-                                        <input type="password" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');" id="password" name="password" class="form-control" required>
-                                    </div>
 
-    <hr><h4 class="text-center" style="font-weight: 500; margin-top: -34px; margin-bottom: 0px; ">OR</h4>
-                                    
-                                    
 
-                                    <div class="row">
-                                        <div class="col-xs-3">
-                                           
-                                            <div class="checkbox pull-left" style="margin-left: -15px; margin-right: -20px; margin-bottom: 20px;">
-                                                <label>
-                                                    <input type="checkbox" id="checkboxLogin" name="optionsCheckboxes" onchange="otpShow(document.getElementById('email').value)" >
-                                                   <strong>OTP</strong>
-                                                </label>
+                                            <div class="row">
+                                                <div class="col-xs-3">
+                                                    <div class="checkbox pull-left" style="margin-left: -15px; margin-right: -20px; margin-bottom: 20px;">
+                                                        <label>
+                                                            <input type="checkbox" name="optionsCheckboxes" onchange="otpShow()" >
+                                                            <strong>OTP</strong>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div id="otpbox" style="display: none;">
+                                                    <div class="col-xs-6" >
+                                                        <div class="form-group label-floating" style="margin-top: 10px;">
+                                                            <label class="control-label">Enter OTP</label>
+                                                            <input type="text" class="form-control" >
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-3" >
+                                                        <a href="#" class="btn btn-simple btn-primary btn-xs pull-right" style="margin-top: 20px; margin-right: -15px;  ">Resend OTP</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <img src="assets/img/recaptcha.png" class="img-responsive">
+                                                </div>
+
+                                            </div>
+
+
+                                            <div class="row">
+                                                <div class="col-md-6">
+
+                                                    <a href="#" class="btn btn-simple btn-primary btn-xs pull-left" style="margin-top: 20px; margin-left: -15px;">Forgot Password</a>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <button class="btn btn-primary pull-right" id="add_data" style="width: 100%;">Sign-in</button>
+                                                </div>
                                             </div>
                                         </div>
-                                           <div id="otpbox" style="display: none;">
-                                            <div class="col-xs-6" >
-                                            <div class="form-group label-floating" style="margin-top: 10px;">
-
-                                        <label class="control-label">Enter OTP</label>
-                                        <input type="text" name="enterotp" class="form-control numeric" required>
-                                    </div>
-                                            </div>
-                                            <div class="col-xs-3" >
-                                                <input type="button"  disabled id="resendOTP" onclick="ResendOTP()" class="btn btn-simple btn-primary btn-xs pull-right" style="margin-top: 25px; margin-right: -15px;" value="Resend OTP">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="row">
-                                        <div class="col-md-12">
-            <div id="captcha" onmousedown='return false;' onselectstart='return false;' class="panel panel-default text-center">
-               </div>
-
-
-
-<div class="form-group label-floating"><label class="control-label">Enter Captcha </label>
-                                            <input class="form-control" id="captchaField" name="captcha" onkeyup="checkCaptcha(value)" required type="text">
-</div> </div>
-                                            
                                     </div>
 
 
-                                    <div class="row">
-                                        <div class="col-md-6">
-
-                                            <!--<a href="/forgot" class="btn btn-simple btn-primary btn-xs pull-left" style="margin-top: 20px; margin-left: -15px;">Forgot Password</a>-->
-                                        </div>
-                                        <div id="check" class="col-md-6">
-                                            <button action="submit" class="btn btn-primary pull-right" id="login_button" style="width: 100%;">Login</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                    <div class="text-center" id="wrong"><h5><b>{{message}}</b></h5></div>
 
                                 </div>
-
-                            </div>
                             </form>
                         </div>
                     </div>
@@ -372,23 +318,29 @@
         </div>
         <footer class="footer footer-transparent">
             <div class="container">
-                <div id="a" class="copyright">
+<!--
+                <div class="copyright">
                     &copy; 2018 Electoral | Powered by Genesis
-
                 </div>
+-->
             </div>
         </footer>
-<script type="text/javascript">
+        <script type="text/javascript">
+            function otpShow(){
+                var x = document.getElementById("otpbox");
+                if (x.style.display === "none") {
+                    x.style.display = "block";
+                } else {
+                    x.style.display = "none";
+                }
+            }
 
         </script>
-        <script src="/captcha.js"></script>
     </body>
-    <script src="/bootstrapjs.js"></script>
-    <script src="material.min.js"> </script>
-    <script src="/materialkitjs.js"></script>
+    <script src="assets/js/jquery.min.js" type="text/javascript"></script>
+    <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="assets/js/material.min.js"></script>
 
     <!-- Control Center for Material Kit: activating the ripples, parallax effects, scripts from the example pages etc -->
-
-
-
+    <script src="assets/js/material-kit.js" type="text/javascript"></script>
 </html>
