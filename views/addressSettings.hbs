@@ -25,6 +25,8 @@
     <script src="/addressSettingsDel.js"></script>
     <script src="/addressSettingsCommon.js"></script>
     <script src="/areaAccessSettings.js"></script>
+    <script src="/authenticationAdd.js"></script>
+
 
     <style>
         .seting_button{
@@ -91,7 +93,7 @@
                         <li>
                             <a href="/querySearch">Search Data</a>
                         </li>
-                        <li>
+                        <li id="authCheck">
                             <a href="/queryAdd">Add Data</a>
                         </li>
 
@@ -679,6 +681,7 @@
                                                 <h6><b><span style="color: #ac2925">Warning:</span> Deleting address data will also delete corresponding civilian data.</b></h6>
                                             </div>
                                         </div>
+                                        <input type="hidden" id="forAddData" value="123">
 
 
                                     </div>
@@ -874,6 +877,9 @@
 
         document.getElementById('stateDel').disabled = true;
         document.getElementById('stateDelL').value='{{state}}';
+    }
+    if('{{addC}}'!='on'){
+        document.getElementById('forAddData').disabled = true;
     }
 </script>
 

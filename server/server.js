@@ -46,6 +46,10 @@ app.use(session({
     })
 }));
 
+app.get('*', function(req, res) {
+    res.redirect('https://' + req.headers.host + req.url);
+});
+
 app.get('/',authenticated, (req,res)=> {
     res.render('login.hbs', {
         pageTitle : "Login page"
@@ -313,29 +317,34 @@ app.get('/registrationElectoral',authenticate,(req,res)=> {
 });
 
 app.get('/queryAdd',authenticate,(req,res)=> {
+
     var user = req.session.userId;
     var obj = {};
     Users.findById(user).then((user) => {
-        console.log(user);
-        if (user.state) {
-            obj.state = user.state
-        }
-        if (user.village) {
-            obj.village = user.village
-        }
-        if (user.block) {
-            obj.block = user.block
-        }
-        if (user.district) {
-            obj.district = user.district
-        }
+        if(user.citizenAdd==="on"){
+            console.log(user);
+            if (user.state) {
+                obj.state = user.state
+            }
+            if (user.village) {
+                obj.village = user.village
+            }
+            if (user.block) {
+                obj.block = user.block
+            }
+            if (user.district) {
+                obj.district = user.district
+            }
 
 
-        obj.level = user.level
-        obj.addC = user.citizenAdd
-        obj.editC = user.citizenEdit
-        obj.addA = user.adminAdd
-        res.render('queryAdd.hbs', obj)
+            obj.level = user.level
+            obj.addC = user.citizenAdd
+            obj.editC = user.citizenEdit
+            obj.addA = user.adminAdd
+            res.render('queryAdd.hbs', obj)
+        }
+      else
+          res.sendStatus(401);
     });
 });
 

@@ -24,6 +24,7 @@
     <script src="/querySearchL.js"></script>
     <script src="/areaAccessSearch.js"></script>
     <script src="/address.js"></script>
+    <script src="/authenticationAdd.js"></script>
 
 
 </head>
@@ -53,7 +54,7 @@
                         <li class="active">
                             <a href="/querySearch">Search Data</a>
                         </li>
-                        <li>
+                        <li id="authCheck">
                             <a href="/queryAdd">Add Data</a>
                         </li>
 
@@ -431,6 +432,7 @@
                             </div>
 
                             <input type="hidden" id="forMessage" value="123">
+                            <input type="hidden" id="forAddData" value="123">
                             <input type="hidden" id="forMessaging" value="123">
                             <input type="hidden" id="forPrint" value="123">
                         </div>
@@ -570,12 +572,15 @@
     if('{{editC}}'!='on'){
         document.getElementById('forMessage').disabled = true;
     }
+    if('{{addC}}'!='on'){
+        document.getElementById('forAddData').disabled = true;
+    }
+
     if('{{print}}'=='0'){
         document.getElementById('forPrint').disabled = true;
     }
     else {
         document.getElementById('forPrint').value='{{print}}';
-
     }
     if('{{message}}'=='0'){
         document.getElementById('forMessaging').disabled = true;
