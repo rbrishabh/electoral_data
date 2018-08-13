@@ -77,6 +77,10 @@ var civilian = mongoose.model(civilModel, {
         type: String,
         trim:true
     },
+    time: {
+        type: String,
+        trim:true
+    },
     createdBy: {
         type: String,
         trim:true

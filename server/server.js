@@ -130,12 +130,14 @@ app.post('/addBlock/:block/:dist/:state', (req,res)=>{
         var state = req.params.state;
         var block = req.params.block;
         var date = moment().utcOffset("+05:30").format('DD-MM-YYYY');
+        var time = moment().utcOffset("+05:30").format();
         var blockAddress = new address ({
             dateTime: date,
             addedByBlock: addedBy,
             state: state,
             block:block,
-            district:district
+            district:district,
+            time:time
         });
         blockAddress.save().then((doc)=>{
             res.send("1")
@@ -182,13 +184,16 @@ app.post('/addVillage/:village/:block/:dist/:state', (req,res)=>{
         var state = req.params.state;
         var block = req.params.block;
         var date = moment().utcOffset("+05:30").format('DD-MM-YYYY');
+        var time = moment().utcOffset("+05:30").format();
+
         var blockAddress = new address ({
             dateTime: date,
             addedByVillage: addedBy,
             village : village,
             state: state,
             block:block,
-            district:district
+            district:district,
+            time:time
         });
         blockAddress.save().then((doc)=>{
             res.send("1")
@@ -388,6 +393,7 @@ app.post('/queryAddedCivil', function (req, res) {
 
 if(tokenValidates) {
     var date = moment().utcOffset("+05:30").format('DD-MM-YYYY');
+    var time = moment().utcOffset("+05:30").format();
 
     var newCivilian = new civilian({
         title : req.body.title,
@@ -415,7 +421,8 @@ if(tokenValidates) {
         mark: req.body.mark,
         validationCheck :  'true',
         dateTime: date,
-        createdBy: 'local@genesis-in.com'
+        createdBy: 'local@genesis-in.com',
+        time:time
     });
 
     newCivilian.save().then((doc)=>{
@@ -480,6 +487,7 @@ app.post('/queryAddedCivilAuth', authenticate, function (req, res) {
     }
 
     var date = moment().utcOffset("+05:30").format('DD-MM-YYYY');
+    var time = moment().utcOffset("+05:30").format();
     var user = req.session.userId;
     Users.findById(user).then((user) => {
     var createdBy = user.email;
@@ -512,7 +520,8 @@ app.post('/queryAddedCivilAuth', authenticate, function (req, res) {
             notes: req.body.notes,
             validationCheck: req.body.validationCheck,
             dateTime: date,
-            createdBy: createdBy
+            createdBy: createdBy,
+            time:time
         });
 
         newCivilian.save().then((doc) => {
@@ -1229,6 +1238,8 @@ if(req.body.password !== req.body.confirm){
 
         var body = _.pick(req.body, ['email', 'name', 'middleName', 'mobile', 'lastName', 'age', 'gender', 'mark', 'occupation', 'occOther', 'notes', 'password', 'stateOwn', 'districtOwn', 'blockOwn', 'villageOwn', 'pinOwn', 'verifiedMobile']);
         body.dateTime = moment().utcOffset("+05:30").format('DD-MM-YYYY');
+        body.time = moment().utcOffset("+05:30").format();
+
         body.createdBy = user1.email;
         var user = new Users(body);
         user.save().then(() => {

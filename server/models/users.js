@@ -129,6 +129,10 @@ var userSchema = new mongoose.Schema({
         type: String,
         trim:true
     },
+    time: {
+        type: String,
+        trim:true
+    },
     createdBy: {
         type: String,
         trim:true

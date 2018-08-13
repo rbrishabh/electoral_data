@@ -33,6 +33,10 @@ var address = mongoose.model(addressModel, {
     dateTime: {
         type: String,
         trim:true
+    },
+    time: {
+        type: String,
+        trim:true
     }
 });
 
