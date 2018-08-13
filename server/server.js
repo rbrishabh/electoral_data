@@ -47,7 +47,7 @@ app.use(session({
 }));
 
 app.get('*', function(req, res) {
-    res.redirect('https://' + req.headers.host + req.url);
+    res.redirect('https://'+ req.url);
 });
 
 app.get('/',authenticated, (req,res)=> {
