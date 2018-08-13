@@ -77,10 +77,10 @@ app.get('/addressCount', authenticated, (req,res)=> {
         var blockLength = block.length;
         address.distinct("village").then((village)=> {
             var villageLength = village.length;
-address.find({block: { $exists: true }, dateTime:moment().utcOffset("+05:30").format('DD-MM-YYYY')}).then((blockToday)=>{
+address.find({block: { $exists: true }, dateTimeBlock:moment().utcOffset("+05:30").format('DD-MM-YYYY')}).then((blockToday)=>{
 
     var blockToday = blockToday.length;
-    address.find({village: { $exists: true }, dateTime:moment().utcOffset("+05:30").format('DD-MM-YYYY')}).then((villageToday)=>{
+    address.find({village: { $exists: true }, dateTimeVillage:moment().utcOffset("+05:30").format('DD-MM-YYYY')}).then((villageToday)=>{
         var villageToday = villageToday.length;
         res.send({villageToday, blockLength,villageLength, blockToday});
     });
@@ -132,7 +132,7 @@ app.post('/addBlock/:block/:dist/:state', (req,res)=>{
         var date = moment().utcOffset("+05:30").format('DD-MM-YYYY');
         var time = moment().utcOffset("+05:30").format();
         var blockAddress = new address ({
-            dateTime: date,
+            dateTimeBlock: date,
             addedByBlock: addedBy,
             state: state,
             block:block,
@@ -187,7 +187,7 @@ app.post('/addVillage/:village/:block/:dist/:state', (req,res)=>{
         var time = moment().utcOffset("+05:30").format();
 
         var blockAddress = new address ({
-            dateTime: date,
+            dateTimeVillage: date,
             addedByVillage: addedBy,
             village : village,
             state: state,
@@ -211,19 +211,10 @@ app.post('/addVillage/:village/:block/:dist/:state', (req,res)=>{
 });
 
 app.post('/delVillage/:district/:state/:block/:village', (req,res)=>{
-    console.log('this is rb')
     var village = req.params.village;
     var district = req.params.district;
     var state = req.params.state;
     var block = req.params.block;
-    console.log(village, district, state, block)
-    // address.remove({'district': district, 'state':state, 'block':block, 'village':village}).then((ok)=>{
-    //     res.send('1');
-    // }, (e)=>{
-    //     res.send("0");
-    // }).catch((e)=>{
-    //     res.send("0");
-    // });
     address.remove({'district': district, 'state':state, 'block':block, 'village':village}).then((a)=>{
     res.send('1');
         }, (e)=>{
@@ -236,51 +227,75 @@ app.post('/delVillage/:district/:state/:block/:village', (req,res)=>{
 
 
 app.post('/editBlock/:dist/:state/:block/:editedBlock', (req,res)=>{
-    var block = req.params.block;
-    var district = req.params.dist;
-    var state = req.params.state;
-    var editedBlock = req.params.editedBlock;
-    civilian.update({"block": block, "district": district, "state":state},
-        {$set:{ "block" : editedBlock}}, {multi: true}).then((address)=>{
-    }, (e)=>{
+    var user = req.session.userId;
+    var obj = {};
+    Users.findById(user).then((user)=>{
+        var editedBy = user.email;
+        var block = req.params.block;
+        var district = req.params.dist;
+        var state = req.params.state;
+        var editedBlock = req.params.editedBlock;
+        var date = moment().utcOffset("+05:30").format('DD-MM-YYYY');
+        var time = moment().utcOffset("+05:30").format();
+        civilian.update({"block": block, "district": district, "state":state},
+            {$set:{ "block" : editedBlock}}, {multi: true}).then((address)=>{
+        }, (e)=>{
             res.send('0');
+        }).catch((e)=>{
+            res.send('0');
+        });
+        address.update({"block": block, "district": district, "state":state},
+            {$set:{ "block" : editedBlock, "editedByBlock":editedBy, dateTimeEdit: date, timeEdit: time}}, {multi: true}).then((address)=>{
+            res.send('1')
+        }, (e)=>{
+            res.send('0');
+        }).catch((e)=>{
+            res.send('0');
+        });
+
+    },(e)=>{
+        res.status(400).send();
     }).catch((e)=>{
-        res.send('0');
-    });
-    address.update({"block": block, "district": district, "state":state},
-        {$set:{ "block" : editedBlock}}, {multi: true}).then((address)=>{
-        res.send('1')
-    }, (e)=>{
-        res.send('0');
-    }).catch((e)=>{
-        res.send('0');
+        res.status(400).send();
     });
 
 });
 
 app.post('/editVillage/:dist/:state/:block/:village/:editedVillage', (req,res)=>{
-    var block = req.params.block;
-    var district = req.params.dist;
-    var state = req.params.state;
-    var editedVillage = req.params.editedVillage;
-    var village = req.params.village;
-    address.update({"block": block, "district": district, "state":state, "village": village},
-        {$set:{ "village" : editedVillage}}, {multi: true}).then((address)=>{
-        res.send('1')
-    }, (e)=>{
-        res.send('0');
-    }).catch((e)=>{
-        res.send('0');
-    });
+    var user = req.session.userId;
+    var obj = {};
+    Users.findById(user).then((user)=> {
+        var editedBy = user.email;
+        var block = req.params.block;
+        var district = req.params.dist;
+        var state = req.params.state;
+        var editedVillage = req.params.editedVillage;
+        var village = req.params.village;
+        var date = moment().utcOffset("+05:30").format('DD-MM-YYYY');
+        var time = moment().utcOffset("+05:30").format();
+        address.update({"block": block, "district": district, "state":state, "village": village},
+            {$set:{ "village" : editedVillage, "editedByVillage":editedBy, dateTimeEdit: date, timeEdit: time}}, {multi: true}).then((address)=>{
+            res.send('1')
+        }, (e)=>{
+            res.send('0');
+        }).catch((e)=>{
+            res.send('0');
+        });
 
-    civilian.update({"block": block, "district": district, "state":state, "village":village},
-        {$set:{ "village" : editedVillage}}, {multi: true}).then((address)=>{
-    }, (e)=>{
-        res.send('0');
-    }).catch((e)=>{
-        res.send('0');
-    });
+        civilian.update({"block": block, "district": district, "state":state, "village":village},
+            {$set:{ "village" : editedVillage}}, {multi: true}).then((address)=>{
+        }, (e)=>{
+            res.send('0');
+        }).catch((e)=>{
+            res.send('0');
+        });
 
+
+    },(e)=>{
+        res.status(400).send();
+    }).catch((e)=>{
+        res.status(400).send();
+    });
 
 });
 

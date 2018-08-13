@@ -30,7 +30,27 @@ var address = mongoose.model(addressModel, {
         type: String,
         trim:true
     },
-    dateTime: {
+    editedByBlock: {
+        type: String,
+        trim:true
+    },
+    editedByVillage: {
+        type: String,
+        trim:true
+    },
+    dateTimeBlock: {
+        type: String,
+        trim:true
+    },
+    dateTimeVillage: {
+        type: String,
+        trim:true
+    },
+    dateTimeEdit: {
+        type: String,
+        trim:true
+    },
+    timeEdit: {
         type: String,
         trim:true
     },
