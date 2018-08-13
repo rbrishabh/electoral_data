@@ -22,7 +22,9 @@ const fs = require('fs');
 
 const app = express();
 const port = process.env.PORT || 80;
-
+app.get('*', function(req, res) {
+    res.redirect('https://' + req.headers.host + req.url);
+});
 
 app.set('view engine', 'hbs');
 
@@ -46,9 +48,7 @@ app.use(session({
     })
 }));
 
-app.get('*', function(req, res) {
-    res.redirect('https://'+ req.url);
-});
+
 
 app.get('/',authenticated, (req,res)=> {
     res.render('login.hbs', {
