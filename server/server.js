@@ -53,11 +53,42 @@ app.get('/',authenticated, (req,res)=> {
 });
 
 app.get('/civilCount', authenticated, (req,res)=> {
-    civilian.count().then((counter)=>{
-         var countCivil =  `Number of Civilians Registered: ${counter}`
-        res.send(countCivil);
-    });
+    civilian.count().then((counterCivil)=>{
+        var counterCivil =  counterCivil.toString();
+        civilian.find({dateTime:moment().utcOffset("+05:30").format('DD-MM-YYYY')}).count().then((counterCivilToday)=>{
+            var countCivilToday =  counterCivilToday.toString();
 
+            civilian.find({gender:'Male'}).count().then((counterCivilMale)=> {
+                var countCivilMale = counterCivilMale.toString();
+
+                civilian.find({gender: 'Female'}).count().then((counterCivilFemale) => {
+                    var countCivilFemale = counterCivilFemale.toString();
+                    res.send({counterCivil, countCivilToday, countCivilMale, countCivilFemale});
+                });
+            });
+        });
+    });
+});
+
+
+app.get('/addressCount', authenticated, (req,res)=> {
+
+    address.distinct("block").then((block)=>{
+        var blockLength = block.length;
+        address.distinct("village").then((village)=> {
+            var villageLength = village.length;
+address.find({block: { $exists: true }, dateTime:moment().utcOffset("+05:30").format('DD-MM-YYYY')}).then((blockToday)=>{
+
+    var blockToday = blockToday.length;
+    address.find({village: { $exists: true }, dateTime:moment().utcOffset("+05:30").format('DD-MM-YYYY')}).then((villageToday)=>{
+        var villageToday = villageToday.length;
+        res.send({villageToday, blockLength,villageLength, blockToday});
+    });
+});
+
+        });
+
+        });
 });
 
 app.get('/addressSettings', authenticate, (req,res)=> {
@@ -91,22 +122,33 @@ app.get('/addressSettings', authenticate, (req,res)=> {
 
 
 app.post('/addBlock/:block/:dist/:state', (req,res)=>{
-
-    var district = req.params.dist;
-    var state = req.params.state;
-    var block = req.params.block;
-var blockAddress = new address ({
-    state: state,
-    block:block,
-    district:district
-});
-blockAddress.save().then((doc)=>{
-    res.send("1")
-}, (e)=>{
-    res.send("0");
-}).catch((e)=>{
-    res.send("0");
-});
+    var user = req.session.userId;
+    var obj = {};
+    Users.findById(user).then((user)=>{
+        var addedBy = user.email;
+        var district = req.params.dist;
+        var state = req.params.state;
+        var block = req.params.block;
+        var date = moment().utcOffset("+05:30").format('DD-MM-YYYY');
+        var blockAddress = new address ({
+            dateTime: date,
+            addedByBlock: addedBy,
+            state: state,
+            block:block,
+            district:district
+        });
+        blockAddress.save().then((doc)=>{
+            res.send("1")
+        }, (e)=>{
+            res.send("0");
+        }).catch((e)=>{
+            res.send("0");
+        });
+    },(e)=>{
+        res.status(400).send();
+    }).catch((e)=>{
+        res.status(400).send();
+    });
 });
 
 app.post('/delBlock/:block/:dist/:state', (req,res)=>{
@@ -131,23 +173,36 @@ app.post('/delBlock/:block/:dist/:state', (req,res)=>{
 });
 
 app.post('/addVillage/:village/:block/:dist/:state', (req,res)=>{
-    var village = req.params.village;
-    var district = req.params.dist;
-    var state = req.params.state;
-    var block = req.params.block;
-    var blockAddress = new address ({
-        village : village,
-        state: state,
-        block:block,
-        district:district
-    });
-    blockAddress.save().then((doc)=>{
-        res.send("1")
-    }, (e)=>{
-        res.send("0");
+    var user = req.session.userId;
+    var obj = {};
+    Users.findById(user).then((user)=>{
+        var addedBy = user.email;
+        var village = req.params.village;
+        var district = req.params.dist;
+        var state = req.params.state;
+        var block = req.params.block;
+        var date = moment().utcOffset("+05:30").format('DD-MM-YYYY');
+        var blockAddress = new address ({
+            dateTime: date,
+            addedByVillage: addedBy,
+            village : village,
+            state: state,
+            block:block,
+            district:district
+        });
+        blockAddress.save().then((doc)=>{
+            res.send("1")
+        }, (e)=>{
+            res.send("0");
+        }).catch((e)=>{
+            res.send("0");
+        });
+    },(e)=>{
+        res.status(400).send();
     }).catch((e)=>{
-        res.send("0");
+        res.status(400).send();
     });
+
 });
 
 app.post('/delVillage/:district/:state/:block/:village', (req,res)=>{
@@ -332,7 +387,7 @@ app.post('/queryAddedCivil', function (req, res) {
 
 
 if(tokenValidates) {
-    var date = moment().utcOffset("+05:30").format();
+    var date = moment().utcOffset("+05:30").format('DD-MM-YYYY');
 
     var newCivilian = new civilian({
         title : req.body.title,
@@ -424,7 +479,7 @@ app.post('/queryAddedCivilAuth', authenticate, function (req, res) {
         age = req.body.age;
     }
 
-    var date = moment().utcOffset("+05:30").format();
+    var date = moment().utcOffset("+05:30").format('DD-MM-YYYY');
     var user = req.session.userId;
     Users.findById(user).then((user) => {
     var createdBy = user.email;
@@ -1173,7 +1228,7 @@ if(req.body.password !== req.body.confirm){
     Users.findById(user1).then((user1) => {
 
         var body = _.pick(req.body, ['email', 'name', 'middleName', 'mobile', 'lastName', 'age', 'gender', 'mark', 'occupation', 'occOther', 'notes', 'password', 'stateOwn', 'districtOwn', 'blockOwn', 'villageOwn', 'pinOwn', 'verifiedMobile']);
-        body.dateTime = moment().utcOffset("+05:30").format();
+        body.dateTime = moment().utcOffset("+05:30").format('DD-MM-YYYY');
         body.createdBy = user1.email;
         var user = new Users(body);
         user.save().then(() => {

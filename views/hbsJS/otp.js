@@ -6,21 +6,10 @@ $(document).ready(function() {
     var ourRequest = new XMLHttpRequest();
     ourRequest.open('GET', countURL, true);
     ourRequest.onload = function () {
-        var number = ourRequest.responseText;
-        console.log(typeof number);
+        var number = JSON.parse(ourRequest.responseText);
         printIt(number);
     }
     ourRequest.send();
-
-    function printIt(data){
-
-document.getElementById('liveCounter').innerHTML = "<b>"+data+"</b>"
-    }
-
-
-
-
-
 
 });
 
@@ -80,3 +69,12 @@ if(otpR.message == "Incorrect Email!"){
     function ResendOTP() {
      otpShow();
  }
+function printIt(data){
+
+    document.getElementById('liveCounterCivil').innerHTML = data.counterCivil;
+    document.getElementById('liveCounterCivilToday').innerHTML = data.countCivilToday;
+    document.getElementById('liveCounterCivilMale').innerHTML = data.countCivilMale;
+    document.getElementById('liveCounterCivilFemale').innerHTML = data.countCivilFemale;
+}
+
+

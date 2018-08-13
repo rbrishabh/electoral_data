@@ -21,6 +21,18 @@ var address = mongoose.model(addressModel, {
     pin: {
         type: String,
         trim:true
+    },
+    addedByBlock: {
+        type: String,
+        trim:true
+    },
+    addedByVillage: {
+        type: String,
+        trim:true
+    },
+    dateTime: {
+        type: String,
+        trim:true
     }
 });
 

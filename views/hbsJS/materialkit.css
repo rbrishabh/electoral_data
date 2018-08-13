@@ -34,19 +34,19 @@
     width: 100%;
     position: fixed;
     background-color: rgba(0, 0, 0, 0.5);
-    z-index: 998;
+    z-index: 9998;
     top: 0;
     left: 0;
 
     display: none;
 }
 .model{
-    height: 140px;
+    height: auto;
     line-height: 70px;
     width: 400px;
 
     position: fixed;
-    z-index: 999;
+    z-index: 9999;
     background-color: #fff;
     color: forestgreen;
     text-align: center;
