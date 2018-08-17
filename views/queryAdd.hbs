@@ -59,9 +59,14 @@
                         <li>
                             <a href="/querySearch">Search Data</a>
                         </li>
-                        <li class="active">
+                        <li class="active" id="authCheckAdd">
                             <a href="/queryAdd">Add Data</a>
                         </li>
+                        <li id="authCheckAddUser">
+                            <a href="/registrationElectoral">Registration</a>
+
+                        </li>
+
 
                         <li>
                             <a href="#">Change Password</a>
@@ -78,7 +83,7 @@
                                 <li><a href="#">List of Admins</a></li>
                                 <li><a href="#">List of Blocked Users/Admins</a></li>
                                 <li><a href="#">List Change Mobile User/Admin</a></li>
-                                <li><a href="/addressSettings">Address Settings</a></li>
+                                <li id="authCheckAddress"><a href="/addressSettings">Address Settings</a></li>
 
                             </ul>
                         </li>
@@ -98,6 +103,13 @@
         <div class="container">
             <h2 class="text-center">Citizen Registration</h2>
             <form action="/queryAddedCivilAuth" autocomplete="off" method="post">
+
+
+                <input type="hidden" id="forAddData" value="123">
+                <input type="hidden" id="forAddAdmin" value="123">
+                <input type="hidden" id="forAddress" value="123">
+
+
                 <div class="row">
                     <div class="col-md-6" style="margin: 0px !important;">
                         <div class="col-md-6">
@@ -703,6 +715,16 @@
 
 </script>
 <script>
+    if('{{addA}}'!='on'){
+        document.getElementById('forAddAdmin').disabled = true;
+    }
+    if('{{aedAddress}}'!='on'){
+        document.getElementById('forAddress').disabled = true;
+    }
+    if('{{addC}}'!='on'){
+        document.getElementById('forAddData').disabled = true;
+    }
+
     if('{{level}}'==='village'){
         document.getElementById('state').disabled = true;
         document.getElementById('district').disabled = true;

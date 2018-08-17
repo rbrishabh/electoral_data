@@ -113,6 +113,14 @@ var userSchema = new mongoose.Schema({
         type: String,
         trim:true
     },
+    adminEdit: {
+        type: String,
+        trim:true
+    },
+    addressAED: {
+        type: String,
+        trim:true
+    },
     notes: {
         type: String,
         trim:true

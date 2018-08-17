@@ -21,6 +21,10 @@ const fs = require('fs');
 
 
 const app = express();
+var toHttps = require('express-to-https').basic;
+
+app.use(toHttps);
+
 const port = process.env.PORT || 80;
 
 app.set('view engine', 'hbs');
@@ -96,27 +100,35 @@ app.get('/addressSettings', authenticate, (req,res)=> {
     var user = req.session.userId;
     var obj = {};
     Users.findById(user).then((user) => {
-        console.log(user);
-        if (user.state) {
-            obj.state = user.state
-        }
-        if (user.village) {
-            obj.village = user.village
-        }
-        if (user.block) {
-            obj.block = user.block
-        }
-        if (user.district) {
-            obj.district = user.district
-        }
+        if(user.addressAED=="on"){
+            console.log(user);
+            if (user.state) {
+                obj.state = user.state
+            }
+            if (user.village) {
+                obj.village = user.village
+            }
+            if (user.block) {
+                obj.block = user.block
+            }
+            if (user.district) {
+                obj.district = user.district
+            }
 
 
-        obj.level = user.level
-        obj.addC = user.citizenAdd
-        obj.editC = user.citizenEdit
-        obj.addA = user.adminAdd
-        obj.pageTitle = "Address Settings Page";
-        res.render('addressSettings.hbs', obj);
+            obj.level = user.level
+            obj.addC = user.citizenAdd
+            obj.aedAddress = user.addressAED
+            obj.addA = user.adminAdd
+            obj.editC = user.citizenEdit
+            obj.addA = user.adminAdd
+            obj.pageTitle = "Address Settings Page";
+            res.render('addressSettings.hbs', obj);
+        }
+        else {
+            res.sendStatus(401);
+        }
+
 
     });
 });
@@ -308,9 +320,23 @@ app.get('/superAdmin',authenticate,(req,res)=> {
 });
 
 app.get('/registrationElectoral',authenticate,(req,res)=> {
-    res.render('registration.hbs', {
-        pageTitle : "registration page"
-    })
+    var user = req.session.userId;
+var obj ={};
+    Users.findById(user).then((user) => {
+
+        if(user.adminAdd=="on"){
+            obj.level = user.level
+            obj.addC = user.citizenAdd
+            obj.aedAddress = user.addressAED
+            obj.addA = user.adminAdd
+            obj.editC = user.citizenEdit
+            obj.addA = user.adminAdd
+            res.render('registration.hbs', obj)
+        }
+         else {
+         res.sendStatus(401);
+         }
+    });
 });
 
 app.get('/queryAdd',authenticate,(req,res)=> {
@@ -336,6 +362,8 @@ app.get('/queryAdd',authenticate,(req,res)=> {
 
             obj.level = user.level
             obj.addC = user.citizenAdd
+            obj.aedAddress = user.addressAED
+            obj.addA = user.adminAdd
             obj.editC = user.citizenEdit
             obj.addA = user.adminAdd
             res.render('queryAdd.hbs', obj)
@@ -374,6 +402,8 @@ app.get('/querySearch',authenticate,(req,res)=> {
             obj.message= user.messageRights
             obj.print= user.printRightsL
             obj.addC = user.citizenAdd
+        obj.aedAddress = user.addressAED
+        obj.addA = user.adminAdd
             obj.editC= user.citizenEdit
             obj.addA = user.adminAdd
 
@@ -566,6 +596,8 @@ app.post('/queryAddedCivilAuth', authenticate, function (req, res) {
 
                 obj.level = user.level
                 obj.addC = user.citizenAdd
+                obj.aedAddress = user.addressAED
+                obj.addA = user.adminAdd
                 obj.editC = user.citizenEdit
                 obj.addA = user.adminAdd
                 obj.message = "Data Succesfully Added!";
@@ -597,6 +629,8 @@ app.post('/queryAddedCivilAuth', authenticate, function (req, res) {
 
                 obj.level = user.level
                 obj.addC = user.citizenAdd
+                obj.aedAddress = user.addressAED
+                obj.addA = user.adminAdd
                 obj.editC = user.citizenEdit
                 obj.addA = user.adminAdd
                 obj.message = "Mobile/Email already exists.";
@@ -626,6 +660,8 @@ app.post('/queryAddedCivilAuth', authenticate, function (req, res) {
 
                 obj.level = user.level
                 obj.addC = user.citizenAdd
+                obj.aedAddress = user.addressAED
+                obj.addA = user.adminAdd
                 obj.editC = user.citizenEdit
                 obj.addA = user.adminAdd
                 obj.message =  "Mobile/Email already exists.";
@@ -1168,6 +1204,12 @@ app.post('/addedAdmin', authenticate, (req,res)=>{
     if(req.body.adminAdd){
         obj.adminAdd = req.body.adminAdd
     }
+    if(req.body.adminEdit){
+        obj.adminAdd = req.body.adminAdd
+    }
+    if(req.body.addressAED){
+        obj.adminAdd = req.body.adminAdd
+    }
     if(req.body.messageRights) {
         obj.messageRights = req.body.messageRights;
         var obj1 = {};
@@ -1186,10 +1228,15 @@ app.post('/addedAdmin', authenticate, (req,res)=>{
                     });
             }
         });
+    } else{
+        obj.messageRights = '0';
     }
     if(req.body.printRights){
         obj.printRights = req.body.printRights;
         obj.printRightsL = req.body.printRights;
+    } else{
+        obj.printRights = '0';
+        obj.printRightsL = '0';
     }
     if(req.body.optionsRadio){
         obj.level = req.body.optionsRadio
@@ -1283,6 +1330,8 @@ if(req.body.password !== req.body.confirm){
                 obj.level = user1.level
                 obj.addC = user1.citizenAdd
                 obj.editC = user1.citizenEdit
+                obj.editA = user1.adminEdit
+                obj.aedAddress = user1.addressAED
                 obj.addA = user1.adminAdd
                 obj.name = req.body.name
                 obj.email = req.body.email
@@ -1317,6 +1366,8 @@ if(req.body.password !== req.body.confirm){
 
                 obj.level = user.level
                 obj.addC = user.citizenAdd
+                obj.aedAddress = user.addressAED
+                obj.addA = user.adminAdd
                 obj.editC = user.citizenEdit
                 obj.addA = user.adminAdd
                 obj.message = "Mobile/Email already exists.";
@@ -1347,6 +1398,8 @@ if(req.body.password !== req.body.confirm){
 
                 obj.level = user.level
                 obj.addC = user.citizenAdd
+                obj.aedAddress = user.addressAED
+                obj.addA = user.adminAdd
                 obj.editC = user.citizenEdit
                 obj.addA = user.adminAdd
                 obj.message = "Mobile/Email already exists.";

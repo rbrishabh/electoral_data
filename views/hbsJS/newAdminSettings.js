@@ -25,6 +25,12 @@ $(document).ready(function () {
     if(document.getElementById('forAdminAdd').disabled == true){
         $('.disableAdminAdd').prop('disabled', true);
     }
+    if(document.getElementById('forAdminEdit').disabled == true){
+        $('.disableAdminEdit').prop('disabled', true);
+    }
+    if(document.getElementById('forAddressAED').disabled == true){
+        $('.disableAddress').prop('disabled', true);
+    }
     if(document.getElementById('forCivilAdd').disabled == true){
         $('.disableCivilAdd').prop('disabled', true);
     }
