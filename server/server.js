@@ -23,7 +23,7 @@ const fs = require('fs');
 const app = express();
 var toHttps = require('express-to-https').basic;
 
-app.use(toHttps);
+// app.use(toHttps);
 
 const port = process.env.PORT || 80;
 
@@ -678,6 +678,84 @@ app.post('/queryAddedCivilAuth', authenticate, function (req, res) {
     res.send(e);
 });
 });
+
+
+app.get('/valueForEdit/:id', (req,res)=> {
+    var id = req.params.id;
+    civilian.find({
+        _id:id
+    }).then((civilian)=>{
+        if(!civilian){
+            res.send();
+        } else {
+            res.send({civilian});
+        }
+    },(e)=>{
+        res.status(400).send();
+    }).catch((e)=>{
+        res.status(400).send();
+    });
+});
+
+
+
+app.post("/editFormSubmit", (req,res)=>{
+    var date = moment().utcOffset("+05:30").format('DD-MM-YYYY');
+    var time = moment().utcOffset("+05:30").format();
+    var user = req.session.userId;
+    Users.findById(user).then((user) => {
+        var createdBy = user.email;
+        var data = req.query.array;
+        var toEdit = JSON.parse(data);
+        var updateObj = {};
+        for (var i = 0; i < toEdit.length; i++) {
+            updateObj[toEdit[i].name] = toEdit[i].value;
+        }
+
+        var obj = {
+
+            name: updateObj.nameEdit,
+            middleName: updateObj.middleNameEdit,
+            lastName: updateObj.lastNameEdit,
+            relation: updateObj.optionsRadiosEdit,
+            relationName: updateObj.relationNameEdit,
+            relationMiddle: updateObj.relationMiddleEdit,
+            relationLast: updateObj.relationLastEdit,
+            mobile: updateObj.mobileEdit,
+            secondMobile: updateObj.secondMobileEdit,
+            thirdMobile: updateObj.thirdMobileEdit,
+            email: updateObj.emailEdit,
+            age: updateObj.ageEdit,
+            gender: updateObj.genderEdit,
+            profession: updateObj.professionEdit,
+            professionOther: updateObj.occOtherEdit,
+            village: updateObj.villageE,
+            block: updateObj.blockE,
+            district: updateObj.districtE,
+            state: updateObj.stateE,
+            pin: updateObj.pinE,
+            mark: updateObj.markEdit,
+            notes: updateObj.notesEdit,
+            dateTime: date,
+            createdBy: createdBy,
+            time: time
+        }
+
+        civilian.update({"mobile": obj.mobile},
+            {$set:obj}).then((civilian)=>{
+           //done
+            });
+        civilian.find().then((civilian)=>{
+         res.send({civilian});
+        });
+
+        }, (e) => {
+        res.send(e);
+    }).catch((e)=>{
+        res.send(e);
+    });
+});
+
 
 app.get('/getNumber/:email', (req,res)=>{
 

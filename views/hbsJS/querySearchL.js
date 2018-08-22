@@ -6,11 +6,147 @@ i=1;
 ageSort = {};
 ageArray = [];
 
+
+
+
+
+
+
+
+
+
+
+function printToEdit (value){
+    var url = urlFinal + 'valueForEdit/'+value
+    var ourRequest = new XMLHttpRequest();
+    ourRequest.open('GET', url, true);
+    ourRequest.onload = function () {
+        var ourData = JSON.parse(ourRequest.responseText);
+
+   printingToEdit(ourData.civilian[0]);
+    }
+    ourRequest.send();
+}
+
+function printingToEdit(value) {
+    console.log(value)
+    $('#editForm').trigger("reset");
+    if(value.name){
+        document.getElementById('nameEdit').value=value.name;
+    }
+    if(value.lastName){
+        document.getElementById('lastNameEdit').value=value.lastName;
+    }if(value.middleName){
+        document.getElementById('middleNameEdit').value=value.middleName;
+    }
+    if(value.relationName){
+        document.getElementById('relationNameEdit').value=value.relationName;
+    }
+    if(value.relationMiddle){
+        document.getElementById('relationMiddleEdit').value=value.relationMiddle;
+    }
+    if(value.relationLast){
+        document.getElementById('relationLastEdit').value=value.relationLast
+    }
+    if(value.mobile){
+        document.getElementById('mobileEdit').value=value.mobile;
+    }
+if(value.relation){
+if(value.relation==="Father"){
+    $("#fatherEdit").prop("checked", true);
+}
+if(value.relation==="Mother"){
+    $("#motherEdit").prop("checked", true);
+}
+if(value.relation==="Spouse"){
+    $("#spouseEdit").prop("checked", true);
+}
+}
+    if(value.secondMobile){
+        document.getElementById('secondMobileEdit').value=value.secondMobile;
+    }
+    if(value.thirdMobile){
+        document.getElementById('thirdMobileEdit').value=value.thirdMobile;
+    }
+    if(value.email){
+        document.getElementById('emailEdit').value=value.email;
+    }
+    if(value.notes){
+        document.getElementById('notesEdit').value=value.notes;
+    }
+    if(value.age){
+        document.getElementById('ageEdit').value=value.age;
+    }
+    if(value.profession){
+        $("#otherselect2").val(value.profession);
+        if(value.profession=="other"){
+            document.getElementById('occOtherEdit').disabled = false;
+         otherBox2();
+        }
+    }
+    if(value.state){
+        $("#stateE").val(value.state);
+        $("#stateLE").val(value.state);
+
+    }
+    if(value.district){
+        $("#districtE").val(value.district);
+        $("#districtLE").val(value.district);
+
+    }
+    if(value.block){
+        console.log(value.block)
+        $('#blockE').append($('<option>', {
+            value: value.block,
+            text: value.block,
+            selected: true
+        }));
+
+        $("#blockLE").val(value.block);
+
+    }
+    if(value.village){
+        $('#villageE').append($('<option>', {
+            value: value.village,
+            text: value.village,
+            selected: true
+        }));
+
+        $("#villageLE").val(value.village);
+
+    }
+    if(value.pin){
+        document.getElementById('pinE').value=value.pin;
+    }
+    if(value.professionOther){
+        document.getElementById('occOtherEdit').value=value.professionOther;
+    }
+    if(value.mark){
+
+        $("#markEdit").val(value.mark);
+
+    }
+
+
+}
+
+
+
+
+
+
 $(document).ready(function() {
+
+
+
+    document.getElementById('occOtherEdit').disabled = true;
+
     $("#stateS").hide();
     $("#villageS").hide();
     $("#blockS").hide();
     $("#districtS").hide();
+
+
 
 
     start= 0;
@@ -65,6 +201,57 @@ $(document).ready(function() {
         var district =  $("[id='district']").val()
         var block =  $("[id='block']").val()
     }
+    
+    
+    
+    
+    
+    $("#stateSE").hide();
+    $("#villageSE").hide();
+    $("#blockSE").hide();
+    $("#districtSE").hide();
+
+
+
+
+    
+    if(document.getElementById('stateE').disabled == true && document.getElementById('districtE').disabled == true && document.getElementById('blockE').disabled == true && document.getElementById('villageE').disabled == true){
+        $("#stateSE").show();
+        $("#districtSE").show();
+        $("#blockSE").show();
+        $("#villageSE").show();
+
+        $("#stateHE").hide();
+        $("#districtHE").hide();
+        $("#blockHE").hide();
+        $("#villageHE").hide();
+
+       
+
+    } else if(document.getElementById('stateE').disabled == true && document.getElementById('districtE').disabled == true && document.getElementById('blockE').disabled == true){
+        $("#stateSE").show();
+        $("#districtSE").show();
+        $("#blockSE").show();
+
+        $("#stateHE").hide();
+        $("#districtHE").hide();
+        $("#blockHE").hide();
+
+
+    } else if(document.getElementById('stateE').disabled == true && document.getElementById('districtE').disabled == true){
+        $("#stateSE").show();
+        $("#districtSE").show();
+
+        $("#stateHE").hide();
+        $("#districtHE").hide();
+
+       
+    }
+    else if(document.getElementById('stateE').disabled == true){
+        $("#stateSE").show();
+        $("#stateHE").hide();
+       
+    }
 
     console.log(state)
     if(state==="" || state == null){
@@ -98,13 +285,45 @@ $(document).ready(function() {
             print(ourData);
 
         }
-        print(ourData);
-        outputObj = ourData;
-        mainObj = ourData;
-
-    }
+    };
 
     ourRequest.send();
+
+
+
+
+    $("#editForm").submit(function(event) {
+        event.preventDefault();
+        var datastring = $("#editForm").serializeArray();
+        var dataEdit = JSON.stringify(datastring);
+        var url = urlFinal + 'editFormSubmit?array='+dataEdit;
+        var ourRequest = new XMLHttpRequest();
+        ourRequest.open('POST', url, true);
+        ourRequest.onload = function () {
+            var ourData = JSON.parse(ourRequest.responseText);
+            document.getElementById("model").style.display = "block";
+
+
+
+
+            start= 0;
+            if(ourData.civilian.length>=20){
+                end = start + 20;
+                y=1;
+                print(ourData);
+            }
+            else{
+                end = ourData.civilian.length;
+                y=1;
+                print(ourData);
+
+
+            }
+        }
+        ourRequest.send();
+
+    });
+
 
 });
 
@@ -452,7 +671,7 @@ if(printData.civilian[x].name== undefined){
             + "<th>" + printData.civilian[x].age + "</th>"
             + "<th>" + printData.civilian[x].gender + "</th>"
             + "<th>" + printData.civilian[x].profession+ "</th>"
-            + "<th>" + printData.civilian[x].occother+ "</th>"
+            + "<th>" + printData.civilian[x].professionOther+ "</th>"
             + "<th>" + printData.civilian[x].village+ "</th>"
             + "<th>" + printData.civilian[x].block+ "</th>"
             + "<th>" + printData.civilian[x].district+ "</th>"
@@ -463,12 +682,15 @@ if(printData.civilian[x].name== undefined){
             + "<th>" + printData.civilian[x].thirdMobile + "</th>"
             + "<th>" + printData.civilian[x].email + "</th>"
             + "<th>" + "<input type='checkbox' data-value = "+ printData.civilian[x].mobile + "-"+ printData.civilian[x].name+ "-"+ printData.civilian[x].middleName+ "-"+ printData.civilian[x].lastName +">" + "</th>"
-            + "<th>" + "<button class='btn btn-default btn-xs disableButton'>Edit</button>" + "</th>"
+            + "<th>" + "<button class='btn btn-default btn-xs disableButton' id='editCitizen' data-toggle='modal' data-target='#myModalEdit' value=" + printData.civilian[x]._id +  " onclick='printToEdit(value)' >Edit</button>" + "</th>"
 
             +"</tr>";
 
         i++
     }
+
+
+
 
     txt += "</tbody></table></div>"
     document.getElementById("opTable").innerHTML = txt;
@@ -485,6 +707,7 @@ if(printData.civilian[x].name== undefined){
         '<button class="btn btn-primary pull-right disableButtonMessage" data-toggle="modal" data-target="#myModal" id="msgbtn">Message</button>' +
         '<button class="btn btn-primary pull-right disableButtonPrint" onclick="printData(); printDec(); ">Print</button>';
     $(document).ready(function () {
+
         var listInput = [];
         $('#msgsend').click(function (e) {
             if ($('input[type=checkbox]').is(':checked')) {
@@ -526,6 +749,7 @@ if(printData.civilian[x].name== undefined){
             }
             e.preventDefault();
         });
+
     });
 
     if(document.getElementById('forMessage').disabled == true){

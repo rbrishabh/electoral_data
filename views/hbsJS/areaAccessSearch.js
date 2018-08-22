@@ -32,6 +32,39 @@ $(document).ready(function() {
         document.getElementById('stateL').disabled = false;
 
     }
+    
+    
+    document.getElementById('stateLE').disabled = true;
+    document.getElementById('districtLE').disabled = true;
+    document.getElementById('villageLE').disabled = true;
+    document.getElementById('blockLE').disabled = true;
+
+    if (document.getElementById('stateE').disabled == true && document.getElementById('districtE').disabled == true && document.getElementById('blockE').disabled == true && document.getElementById('villageE').disabled == true) {
+        document.getElementById('stateLE').disabled = false;
+        document.getElementById('districtLE').disabled = false;
+        document.getElementById('villageLE').disabled = false;
+        document.getElementById('blockLE').disabled = false;
+
+
+
+    } else if (document.getElementById('stateE').disabled == true && document.getElementById('districtE').disabled == true && document.getElementById('blockE').disabled == true) {
+
+        document.getElementById('stateLE').disabled = false;
+        document.getElementById('districtLE').disabled = false;
+        document.getElementById('blockLE').disabled = false;
+
+    } else if (document.getElementById('stateE').disabled == true && document.getElementById('districtE').disabled == true) {
+
+        document.getElementById('stateLE').disabled = false;
+        document.getElementById('districtLE').disabled = false;
+
+
+    }
+    else if (document.getElementById('stateE').disabled == true) {
+
+        document.getElementById('stateLE').disabled = false;
+
+    }
 
 
 });
