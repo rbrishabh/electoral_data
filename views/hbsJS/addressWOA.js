@@ -55,7 +55,11 @@ function addDataToDropdown(data) {
     for(var x in data){
         text = text + '<option>'+data[x]+'</option>'
     }
-    document.getElementById("district").innerHTML = text
+    document.getElementById("district").innerHTML = text;
+    if(document.getElementById('districtHi').disabled == false){
+console.log(document.getElementById('districtHi').value);
+        $("#district").val(document.getElementById('districtHi').value);
+    }
 
 }
 function addDataToDropdownBlock(data) {

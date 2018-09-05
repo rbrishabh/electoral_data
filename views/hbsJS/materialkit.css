@@ -18,6 +18,20 @@
 /* SHADOWS */
 /* Shadows (from mdl http://www.getmdl.io/) */
 
+
+.buttonplain {
+    border: none;
+    outline: none;
+    background: none;
+
+}
+
+
+.buttonplain:hover {
+
+    color: blue;
+}
+
 .labelh{
     display: block;
     margin-top: 10px;

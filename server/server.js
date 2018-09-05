@@ -23,7 +23,7 @@ const fs = require('fs');
 const app = express();
 var toHttps = require('express-to-https').basic;
 
-app.use(toHttps);
+// app.use(toHttps);
 
 const port = process.env.PORT || 80;
 
@@ -32,6 +32,7 @@ app.set('view engine', 'hbs');
 app.use(express.static(__dirname+'./../views/img'));
 app.use(express.static(__dirname+'./../views/hbsJS'));
 app.use(bodyParser.urlencoded({ extended: false }));
+
 
 app.use(function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
@@ -405,9 +406,121 @@ app.get('/querySearch',authenticate,(req,res)=> {
         obj.aedAddress = user.addressAED
         obj.addA = user.adminAdd
             obj.editC= user.citizenEdit
-            obj.addA = user.adminAdd
+            obj.blockA = user.adminBlock
 
         res.render('querySearchNew.hbs', obj);
+    });
+
+});
+
+
+app.get('/userSearch',authenticate,(req,res)=> {
+    var user = req.session.userId;
+    var obj = {};
+    Users.findById(user).then((user)=>{
+        console.log(user);
+        if(user.state){
+            obj.state = user.state
+        }
+        if(user.village){
+            obj.village = user.village
+        }
+        if(user.block){
+            obj.block = user.block
+        }
+        if(user.district){
+            obj.district = user.district
+        }
+
+
+            obj.level = user.level;
+            obj.message= user.messageRights;
+            obj.print= user.printRightsL;
+            obj.printOthers= user.printRights;
+
+            obj.addC = user.citizenAdd;
+        obj.aedAddress = user.addressAED;
+        obj.addA = user.adminAdd;
+            obj.editC= user.citizenEdit;
+            obj.editA= user.adminEdit;
+        obj.blockA = user.adminBlock;
+        console.log(obj);
+
+        res.render('userSearchNew.hbs', obj);
+    });
+
+});
+
+app.get('/mobileReq',authenticate,(req,res)=> {
+    var user = req.session.userId;
+    var obj = {};
+    Users.findById(user).then((user)=>{
+        console.log(user);
+        if(user.state){
+            obj.state = user.state
+        }
+        if(user.village){
+            obj.village = user.village
+        }
+        if(user.block){
+            obj.block = user.block
+        }
+        if(user.district){
+            obj.district = user.district
+        }
+
+
+            obj.level = user.level;
+            obj.message= user.messageRights;
+            obj.print= user.printRightsL;
+            obj.printOthers= user.printRights;
+
+            obj.addC = user.citizenAdd;
+        obj.aedAddress = user.addressAED;
+        obj.addA = user.adminAdd;
+            obj.editC= user.citizenEdit;
+            obj.editA= user.adminEdit;
+        obj.blockA = user.adminBlock;
+        console.log(obj);
+
+        res.render('mobileReq.hbs', obj);
+    });
+
+});
+
+app.get('/blockedUsers',authenticate,(req,res)=> {
+    var user = req.session.userId;
+    var obj = {};
+    Users.findById(user).then((user)=>{
+        console.log(user);
+        if(user.state){
+            obj.state = user.state
+        }
+        if(user.village){
+            obj.village = user.village
+        }
+        if(user.block){
+            obj.block = user.block
+        }
+        if(user.district){
+            obj.district = user.district
+        }
+
+
+            obj.level = user.level;
+            obj.message= user.messageRights;
+            obj.print= user.printRightsL;
+            obj.printOthers= user.printRights;
+
+            obj.addC = user.citizenAdd;
+        obj.aedAddress = user.addressAED;
+        obj.addA = user.adminAdd;
+            obj.editC= user.citizenEdit;
+            obj.editA= user.adminEdit;
+        obj.blockA = user.adminBlock;
+        console.log(obj);
+
+        res.render('blockedUsers.hbs', obj);
     });
 
 });
@@ -697,6 +810,130 @@ app.get('/valueForEdit/:id', (req,res)=> {
     });
 });
 
+app.get('/valueForEdit1/:id', (req,res)=> {
+    var id = req.params.id;
+    Users.find({
+        _id:id,
+        blocked:false
+    }).then((user)=>{
+        if(!user){
+            res.send();
+        } else {
+            var obj = {
+                civilian : []
+            };
+
+            for(var i = 0; i < user.length; i ++)
+            {
+                obj['civilian'].push(
+                    {    _id: user[i]._id,
+                        name: user[i].name,
+                        lastName: user[i].lastName,
+                        middleName: user[i].middleName,
+                        age: user[i].age,
+                        gender: user[i].gender,
+                        mobile: user[i].mobile,
+                        occupation: user[i].occupation,
+                        occOther: user[i].occOther,
+                        state: user[i].state,
+                        village: user[i].village,
+                        block: user[i].block,
+                        district: user[i].district,
+                        email: user[i].email,
+                        mark: user[i].mark,
+                        pin: user[i].pin});
+            }
+            console.log(obj)
+            res.send(JSON.stringify(obj));
+        }
+    },(e)=>{
+        res.status(400).send();
+    }).catch((e)=>{
+        res.status(400).send();
+    });
+});
+
+app.get('/valueForBlock/:mobile', (req,res)=> {
+    var mobile = req.params.mobile;
+    Users.find({
+        mobile:mobile,
+        blocked:false
+    }).then((user)=>{
+        if(!user){
+            res.send();
+        } else {
+        var email = user[0].email;
+        email = email + "##";
+        console.log(email);
+            Users.update({"mobile":mobile},
+                {$set:{"email": email, "blocked": true}}).then((civilian)=>{
+                //done
+            });
+        }
+    });
+});
+
+app.get('/valueForUnBlock/:mobile', (req,res)=> {
+    var mobile = req.params.mobile;
+    Users.find({
+        mobile:mobile,
+        blocked:true
+    }).then((user)=>{
+        if(!user){
+            res.send();
+        } else {
+        var email = user[0].email;
+        email = email.slice(0, - 2);;
+        console.log(email);
+            Users.update({"mobile":mobile},
+                {$set:{"email": email, "blocked": false}}).then((civilian)=>{
+                //done
+            });
+        }
+    });
+});
+
+app.get('/acceptedReq/:email', (req,res)=> {
+    var email = req.params.email;
+    Users.find({
+        email:email,
+        reqMobile:true
+    }).then((user)=>{
+        if(!user){
+            res.send();
+        } else {
+      obj={};
+      obj.mobile = user.mobileReq;
+      obj.reqMobile = false;
+            Users.update({"email":email},
+                {$set:obj}).then((civilian)=>{
+                //done
+            });
+        }
+    });
+});
+
+app.get('/rejectedReq/:email', (req,res)=> {
+    var email = req.params.email;
+    Users.find({
+        email:email,
+        reqMobile:true
+    }).then((user)=>{
+    }).then((user)=>{
+        if(!user){
+            res.send();
+        } else {
+      obj={};
+
+      obj.reqMobile = false;
+            Users.update({"email":email},
+                {$set:obj}).then((civilian)=>{
+                //done
+            });
+        }
+    });
+});
+
 
 
 app.post("/editFormSubmit", (req,res)=>{
@@ -745,9 +982,210 @@ app.post("/editFormSubmit", (req,res)=>{
             {$set:obj}).then((civilian)=>{
            //done
             });
-        civilian.find().then((civilian)=>{
-         res.send({civilian});
-        });
+
+
+        }, (e) => {
+        res.send(e);
+    }).catch((e)=>{
+        res.send(e);
+    });
+});
+
+
+app.post("/editFormSubmitUser", (req,res)=>{
+    var date = moment().utcOffset("+05:30").format('DD-MM-YYYY');
+    var time = moment().utcOffset("+05:30").format();
+    var user = req.session.userId;
+    Users.findById(user).then((user) => {
+        var createdBy = user.email;
+        var data = req.query.array;
+        var toEdit = JSON.parse(data);
+        var updateObj = {};
+        for (var i = 0; i < toEdit.length; i++) {
+            updateObj[toEdit[i].name] = toEdit[i].value;
+        }
+
+        var obj = {
+
+            name: updateObj.nameEdit,
+            middleName: updateObj.middleNameEdit,
+            lastName: updateObj.lastNameEdit,
+
+
+            mobile: updateObj.mobileEdit,
+
+            email: updateObj.emailEdit,
+            age: updateObj.ageEdit,
+            gender: updateObj.genderEdit,
+            occupation: updateObj.occupationEdit,
+            occOther: updateObj.occOtherEdit,
+            village: updateObj.villageE,
+            block: updateObj.blockE,
+            district: updateObj.districtE,
+            state: updateObj.stateE,
+            pin: updateObj.pinE,
+            mark: updateObj.markEdit,
+            notes: updateObj.notesEdit,
+            dateTime: date,
+            createdBy: createdBy,
+            time: time
+        }
+
+        Users.update({"mobile": obj.mobile},
+            {$set:obj}).then((civilian)=>{
+           //done
+            });
+        // Users.find().then((user)=>{
+        //     var obj = {
+        //         civilian : []
+        //     };
+        //
+        //     for(var i = 0; i < user.length; i ++)
+        //     {
+        //         obj['civilian'].push(
+        //             {    _id: user[i]._id,
+        //                 name: user[i].name,
+        //                 lastName: user[i].lastName,
+        //                 middleName: user[i].middleName,
+        //                 age: user[i].age,
+        //                 gender: user[i].gender,
+        //                 mobile: user[i].mobile,
+        //                 occupation: user[i].occupation,
+        //                 occOther: user[i].occOther,
+        //                 state: user[i].state,
+        //                 village: user[i].village,
+        //                 block: user[i].block,
+        //                 district: user[i].district,
+        //                 email: user[i].email,
+        //                 mark: user[i].mark,
+        //                 pin: user[i].pin});
+        //     }
+        //     console.log(obj)
+        //     res.send(JSON.stringify(obj));
+        // });
+
+        }, (e) => {
+        res.send(e);
+    }).catch((e)=>{
+        res.send(e);
+    });
+});
+
+
+app.post("/editFormRightsSubmitUser", (req,res)=>{
+    var date = moment().utcOffset("+05:30").format('DD-MM-YYYY');
+    var time = moment().utcOffset("+05:30").format();
+    var user = req.session.userId;
+    var user1 = req.session.userId;
+    Users.findById(user).then((user) => {
+        var createdBy = user.email;
+        var data = req.query.array;
+        var toEdit = JSON.parse(data);
+        var updateObj = {};
+        var obj = {};
+        for (var i = 0; i < toEdit.length; i++) {
+            updateObj[toEdit[i].name] = toEdit[i].value;
+        }
+
+        var email = updateObj.emailRights;
+        console.log(updateObj);
+        if(updateObj.state){
+            obj.state = updateObj.state
+        }
+        if(updateObj.district){
+            obj.district = updateObj.district
+        }
+        if(updateObj.block){
+            obj.block = updateObj.block
+        }
+        if(updateObj.village){
+            obj.village = updateObj.village
+        }
+        if(updateObj.citizenAdd){
+            obj.citizenAdd = updateObj.citizenAdd
+        }
+        if(updateObj.citizenEdit){
+            obj.citizenEdit = updateObj.citizenEdit
+        }
+        if(updateObj.adminBlock){
+            obj.adminBlock = updateObj.adminBlock
+        }
+        if(updateObj.adminAdd){
+            obj.adminAdd = updateObj.adminAdd
+        }
+        if(updateObj.adminEdit){
+            obj.adminEdit = updateObj.adminEdit
+        }
+        if(updateObj.addressAED){
+            obj.addressEAD = updateObj.addressEAD
+        }
+        if(updateObj.messageRights) {
+            obj.messageRights = updateObj.messageRights;
+            var obj1 = {};
+            var no = updateObj.messageRights;
+            console.log(no);
+            Users.findById(user1).then((user1) => {
+                var mobile = user1.mobile;
+
+                if (user1.messageRights > 0) {
+                    var messageRights = user1.messageRights - no;
+
+                    obj1.messageRights = messageRights;
+                    Users.update({"mobile": mobile},
+                        {$set: obj1}).then((user) => {
+                        console.log(user);
+                    });
+                }
+            });
+        } else{
+            obj.messageRights = '0';
+        }
+        if(updateObj.printRights){
+            obj.printRights = updateObj.printRights;
+            obj.printRightsL = updateObj.printRights;
+        } else{
+            obj.printRights = '0';
+            obj.printRightsL = '0';
+        }
+        if(updateObj.optionsRadio){
+            obj.level = updateObj.optionsRadio
+        }
+        obj.createdBy = createdBy;
+        obj.dateTime = date;
+        obj.time = time;
+       
+        Users.update({"email": email},
+            {$set:obj}).then((civilian)=>{
+           //done
+            });
+        // Users.find().then((user)=>{
+        //     var obj = {
+        //         civilian : []
+        //     };
+        //
+        //     for(var i = 0; i < user.length; i ++)
+        //     {
+        //         obj['civilian'].push(
+        //             {    _id: user[i]._id,
+        //                 name: user[i].name,
+        //                 lastName: user[i].lastName,
+        //                 middleName: user[i].middleName,
+        //                 age: user[i].age,
+        //                 gender: user[i].gender,
+        //                 mobile: user[i].mobile,
+        //                 occupation: user[i].occupation,
+        //                 occOther: user[i].occOther,
+        //                 state: user[i].state,
+        //                 village: user[i].village,
+        //                 block: user[i].block,
+        //                 district: user[i].district,
+        //                 email: user[i].email,
+        //                 mark: user[i].mark,
+        //                 pin: user[i].pin});
+        //     }
+        //     console.log(obj)
+        //     res.send(JSON.stringify(obj));
+        // });
 
         }, (e) => {
         res.send(e);
@@ -1084,7 +1522,263 @@ app.get('/initialSearch/state/:state/district/:district/block/:block/village/:vi
 
 });
 
+app.get('/initialSearch1/state/:state/district/:district/block/:block/village/:village', (req,res)=>{
+ console.log('reached here asfjlfjb');
+ var query = {};
+
+    if(req.params.state != "00") {
+     query.state = req.params.state;
+    }
+    if(req.params.district!="00"){
+        query.district = req.params.district
+    }
+    if(req.params.block!="00"){
+        query.block = req.params.block
+    }
+    if(req.params.village!="00"){
+        query.village= req.params.village
+    }
+    query.blocked = false;
+    console.log(query)
+    Users.find(query).then((user)=>{
+        if(!user){
+            res.send();
+        } else {
+
+          var obj = {
+                civilian : []
+            };
+
+           for(var i = 0; i < user.length; i ++)
+            {
+                obj['civilian'].push(
+
+                        {_id: user[i]._id,
+                            name: user[i].name,
+                    lastName: user[i].lastName,
+                    middleName: user[i].middleName,
+                    age: user[i].age,
+                    gender: user[i].gender,
+                    mobile: user[i].mobile,
+                            occupation: user[i].occupation,
+                    occOther: user[i].occOther,
+                    state: user[i].state,
+                    village: user[i].village,
+                    block: user[i].block,
+                    district: user[i].district,
+                    email: user[i].email,
+                    mark: user[i].mark,
+                    pin: user[i].pin});
+            }
+            console.log(obj)
+            res.send(JSON.stringify(obj));
+        }
+    },(e)=>{
+        res.status(400).send();
+    }).catch((e)=>{
+        res.status(400).send();
+    });
+
+});
+
+app.get('/initialSearch2/state/:state/district/:district/block/:block/village/:village', (req,res)=>{
+ console.log('reached here asfjlfjb');
+ var query = {};
+
+    if(req.params.state != "00") {
+     query.state = req.params.state;
+    }
+    if(req.params.district!="00"){
+        query.district = req.params.district
+    }
+    if(req.params.block!="00"){
+        query.block = req.params.block
+    }
+    if(req.params.village!="00"){
+        query.village= req.params.village
+    }
+    query.blocked = true;
+    console.log(query)
+    Users.find(query).then((user)=>{
+        if(!user){
+            res.send();
+        } else {
+
+          var obj = {
+                civilian : []
+            };
+
+           for(var i = 0; i < user.length; i ++)
+            {
+                obj['civilian'].push(
+
+                        {_id: user[i]._id,
+                            name: user[i].name,
+                    lastName: user[i].lastName,
+                    middleName: user[i].middleName,
+                    age: user[i].age,
+                    gender: user[i].gender,
+                    mobile: user[i].mobile,
+                            occupation: user[i].occupation,
+                    occOther: user[i].occOther,
+                    state: user[i].state,
+                    village: user[i].village,
+                    block: user[i].block,
+                    district: user[i].district,
+                    email: user[i].email,
+                    mark: user[i].mark,
+                    pin: user[i].pin});
+            }
+            console.log(obj)
+            res.send(JSON.stringify(obj));
+        }
+    },(e)=>{
+        res.status(400).send();
+    }).catch((e)=>{
+        res.status(400).send();
+    });
+
+});
+
+app.get('/initialSearch3/state/:state/district/:district/block/:block/village/:village', (req,res)=>{
+ console.log('reached here asfjlfjb');
+ var query = {};
+
+    if(req.params.state != "00") {
+     query.state = req.params.state;
+    }
+    if(req.params.district!="00"){
+        query.district = req.params.district
+    }
+    if(req.params.block!="00"){
+        query.block = req.params.block
+    }
+    if(req.params.village!="00"){
+        query.village= req.params.village
+    }
+    query.mobileReq = true;
+    console.log(query)
+    Users.find(query).then((user)=>{
+        if(!user){
+            res.send();
+        } else {
+
+          var obj = {
+                civilian : []
+            };
+
+           for(var i = 0; i < user.length; i ++)
+            {
+                obj['civilian'].push(
+
+                        {_id: user[i]._id,
+                            name: user[i].name,
+                    lastName: user[i].lastName,
+                    middleName: user[i].middleName,
+                    age: user[i].age,
+                    gender: user[i].gender,
+                    mobile: user[i].mobile,
+                    reqMobile: user[i].reqMobile,
+                            occupation: user[i].occupation,
+                    occOther: user[i].occOther,
+                    state: user[i].state,
+                    village: user[i].village,
+                    block: user[i].block,
+                    district: user[i].district,
+                    email: user[i].email,
+                    mark: user[i].mark,
+                    pin: user[i].pin});
+            }
+            console.log(obj)
+            res.send(JSON.stringify(obj));
+        }
+    },(e)=>{
+        res.status(400).send();
+    }).catch((e)=>{
+        res.status(400).send();
+    });
+
+});
+
 app.get('/buttonSearch/:state/:district/:block/:village/:pin/:firstName/:middleName/:lastName/:relationName/:relationMiddle/:relationLast/:minage/:maxage/:occ/:occother/:mobile/:email/:gender/:mark', (req,res)=>{
+    console.log('search botton reached server');
+    var query = {};
+    var age = {};
+    if(req.params.state != "00") {
+        query.state = req.params.state;
+    }
+    if(req.params.district!="00"){
+        query.district = req.params.district
+    }
+    if(req.params.block!="00"){
+        query.block = req.params.block
+    }
+    if(req.params.village!="00"){
+        query.village= req.params.village
+    }
+    if(req.params.pin!="00"){
+        query.pin= req.params.pin
+    }
+    if(req.params.firstName!="00"){
+       query.name= req.params.firstName
+
+
+    }
+    if(req.params.middleName!="00"){
+        query.middleName= req.params.middleName
+
+    }
+    if(req.params.lastName!="00"){
+       query.lastName= req.params.lastName
+
+    }
+    if(req.params.minage!="00" && req.params.maxage == "00"){
+        query.age= {$gte: req.params.minage}
+    }
+    if(req.params.maxage!="00" && req.params.minage == "00"){
+        query.age= {$lte: req.params.maxage}
+    }
+    if(req.params.minage!="00" && req.params.maxage != "00"){
+        query.age= {$lte: req.params.maxage, $gte: req.params.minage}
+        }
+    if(req.params.occ!="00"){
+        query.profession= req.params.occ
+    }
+    if(req.params.occother!="00"){
+        query.professionOther= req.params.occother
+    }
+    if(req.params.mobile!="00"){
+        query.mobile= req.params.mobile
+    }
+    if(req.params.email!="00"){
+        query.email= req.params.email
+    }
+    if(req.params.gender!="00"){
+        query.gender= req.params.gender
+    }
+    if(req.params.mark!="00"){
+        query.mark= req.params.mark
+    }
+    console.log(query, '123');
+    civilian.find(query).then((civilian)=>{
+        if(!civilian){
+            console.log('if running')
+            res.send();
+        } else {
+            console.log(civilian)
+
+            console.log('else running')
+            res.status(200).send({civilian});
+        }
+    },(e)=>{
+        res.status(400).send();
+    }).catch((e)=>{
+        res.status(400).send();
+    });
+
+});
+
+app.get('/buttonSearch1/:state/:district/:block/:village/:pin/:firstName/:middleName/:lastName/:minage/:maxage/:occ/:occother/:mobile/:email/:gender/:mark', (req,res)=>{
     console.log('search botton reached server');
     var query = {};
     var age = {};
@@ -1155,16 +1849,271 @@ app.get('/buttonSearch/:state/:district/:block/:village/:pin/:firstName/:middleN
     if(req.params.mark!="00"){
         query.mark= req.params.mark
     }
+    query.blocked = false;
     console.log(query, '123');
-    civilian.find(query).then((civilian)=>{
-        if(!civilian){
+    Users.find(query).then((user)=>{
+        if(!user){
             console.log('if running')
             res.send();
         } else {
-            console.log(civilian)
+            var obj = {
+                civilian : []
+            };
 
-            console.log('else running')
-            res.status(200).send({civilian});
+            for(var i = 0; i < user.length; i ++)
+            {
+                obj['civilian'].push(
+                    {
+                        _id: user[i]._id,
+                        _id: user[i]._id,
+                        name: user[i].name,
+                        lastName: user[i].lastName,
+                        middleName: user[i].middleName,
+                        age: user[i].age,
+                        gender: user[i].gender,
+                        mobile: user[i].mobile,
+                        occupation: user[i].occupation,
+                        occOther: user[i].occOther,
+                        state: user[i].state,
+                        village: user[i].village,
+                        block: user[i].block,
+                        district: user[i].district,
+                        email: user[i].email,
+                        mark: user[i].mark,
+                        pin: user[i].pin});
+            }
+            console.log(obj)
+            res.send(JSON.stringify(obj));
+        }
+    },(e)=>{
+        res.status(400).send();
+    }).catch((e)=>{
+        res.status(400).send();
+    });
+
+});
+
+app.get('/buttonSearch2/:state/:district/:block/:village/:pin/:firstName/:middleName/:lastName/:minage/:maxage/:occ/:occother/:mobile/:email/:gender/:mark', (req,res)=>{
+    console.log('search botton reached server');
+    var query = {};
+    var age = {};
+    if(req.params.state != "00") {
+        query.state = req.params.state;
+    }
+    if(req.params.district!="00"){
+        query.district = req.params.district
+    }
+    if(req.params.block!="00"){
+        query.block = req.params.block
+    }
+    if(req.params.village!="00"){
+        query.village= req.params.village
+    }
+    if(req.params.pin!="00"){
+        query.pin= req.params.pin
+    }
+    if(req.params.firstName!="00"){
+       query.name= req.params.firstName
+
+
+    }
+    if(req.params.middleName!="00"){
+        query.middleName= req.params.middleName
+
+    }
+    if(req.params.lastName!="00"){
+       query.lastName= req.params.lastName
+
+    }
+    if(req.params.relationName!="00"){
+        query.relationName= req.params.relationName
+
+
+    }
+    if(req.params.relationMiddle!="00"){
+        query.relationMiddle= req.params.relationMiddle
+
+    }
+    if(req.params.relationLast!="00"){
+        query.relationLast= req.params.relationLast
+    }
+    if(req.params.minage!="00" && req.params.maxage == "00"){
+        query.age= {$gte: req.params.minage}
+    }
+    if(req.params.maxage!="00" && req.params.minage == "00"){
+        query.age= {$lte: req.params.maxage}
+    }
+    if(req.params.minage!="00" && req.params.maxage != "00"){
+        query.age= {$lte: req.params.maxage, $gte: req.params.minage}
+        }
+    if(req.params.occ!="00"){
+        query.profession= req.params.occ
+    }
+    if(req.params.occother!="00"){
+        query.professionOther= req.params.occother
+    }
+    if(req.params.mobile!="00"){
+        query.mobile= req.params.mobile
+    }
+    if(req.params.email!="00"){
+        query.email= req.params.email
+    }
+    if(req.params.gender!="00"){
+        query.gender= req.params.gender
+    }
+    if(req.params.mark!="00"){
+        query.mark= req.params.mark
+    }
+    query.blocked = true;
+    console.log(query, '123');
+    Users.find(query).then((user)=>{
+        if(!user){
+            console.log('if running')
+            res.send();
+        } else {
+            var obj = {
+                civilian : []
+            };
+
+            for(var i = 0; i < user.length; i ++)
+            {
+                obj['civilian'].push(
+                    {
+                        _id: user[i]._id,
+                        _id: user[i]._id,
+                        name: user[i].name,
+                        lastName: user[i].lastName,
+                        middleName: user[i].middleName,
+                        age: user[i].age,
+                        gender: user[i].gender,
+                        mobile: user[i].mobile,
+                        occupation: user[i].occupation,
+                        occOther: user[i].occOther,
+                        state: user[i].state,
+                        village: user[i].village,
+                        block: user[i].block,
+                        district: user[i].district,
+                        email: user[i].email,
+                        mark: user[i].mark,
+                        pin: user[i].pin});
+            }
+            console.log(obj)
+            res.send(JSON.stringify(obj));
+        }
+    },(e)=>{
+        res.status(400).send();
+    }).catch((e)=>{
+        res.status(400).send();
+    });
+
+});
+app.get('/buttonSearch3/:state/:district/:block/:village/:pin/:firstName/:middleName/:lastName/:minage/:maxage/:occ/:occother/:mobile/:email/:gender/:mark', (req,res)=>{
+    console.log('search botton reached server');
+    var query = {};
+    var age = {};
+    if(req.params.state != "00") {
+        query.state = req.params.state;
+    }
+    if(req.params.district!="00"){
+        query.district = req.params.district
+    }
+    if(req.params.block!="00"){
+        query.block = req.params.block
+    }
+    if(req.params.village!="00"){
+        query.village= req.params.village
+    }
+    if(req.params.pin!="00"){
+        query.pin= req.params.pin
+    }
+    if(req.params.firstName!="00"){
+       query.name= req.params.firstName
+
+
+    }
+    if(req.params.middleName!="00"){
+        query.middleName= req.params.middleName
+
+    }
+    if(req.params.lastName!="00"){
+       query.lastName= req.params.lastName
+
+    }
+    if(req.params.relationName!="00"){
+        query.relationName= req.params.relationName
+
+
+    }
+    if(req.params.relationMiddle!="00"){
+        query.relationMiddle= req.params.relationMiddle
+
+    }
+    if(req.params.relationLast!="00"){
+        query.relationLast= req.params.relationLast
+    }
+    if(req.params.minage!="00" && req.params.maxage == "00"){
+        query.age= {$gte: req.params.minage}
+    }
+    if(req.params.maxage!="00" && req.params.minage == "00"){
+        query.age= {$lte: req.params.maxage}
+    }
+    if(req.params.minage!="00" && req.params.maxage != "00"){
+        query.age= {$lte: req.params.maxage, $gte: req.params.minage}
+        }
+    if(req.params.occ!="00"){
+        query.profession= req.params.occ
+    }
+    if(req.params.occother!="00"){
+        query.professionOther= req.params.occother
+    }
+    if(req.params.mobile!="00"){
+        query.mobile= req.params.mobile
+    }
+    if(req.params.email!="00"){
+        query.email= req.params.email
+    }
+    if(req.params.gender!="00"){
+        query.gender= req.params.gender
+    }
+    if(req.params.mark!="00"){
+        query.mark= req.params.mark
+    }
+    query.mobileReq = true;
+    console.log(query, '123');
+    Users.find(query).then((user)=>{
+        if(!user){
+            console.log('if running')
+            res.send();
+        } else {
+            var obj = {
+                civilian : []
+            };
+
+            for(var i = 0; i < user.length; i ++)
+            {
+                obj['civilian'].push(
+                    {
+                        _id: user[i]._id,
+                        _id: user[i]._id,
+                        name: user[i].name,
+                        lastName: user[i].lastName,
+                        middleName: user[i].middleName,
+                        age: user[i].age,
+                        gender: user[i].gender,
+                        mobile: user[i].mobile,
+                        reqMobile: user[i].reqMobile,
+                        occupation: user[i].occupation,
+                        occOther: user[i].occOther,
+                        state: user[i].state,
+                        village: user[i].village,
+                        block: user[i].block,
+                        district: user[i].district,
+                        email: user[i].email,
+                        mark: user[i].mark,
+                        pin: user[i].pin});
+            }
+            console.log(obj)
+            res.send(JSON.stringify(obj));
         }
     },(e)=>{
         res.status(400).send();
@@ -1279,14 +2228,17 @@ app.post('/addedAdmin', authenticate, (req,res)=>{
     if(req.body.citizenEdit){
         obj.citizenEdit = req.body.citizenEdit
     }
+    if(req.body.adminBlock){
+        obj.adminBlock = req.body.adminBlock
+    }
     if(req.body.adminAdd){
         obj.adminAdd = req.body.adminAdd
     }
     if(req.body.adminEdit){
-        obj.adminAdd = req.body.adminAdd
+        obj.adminEdit = req.body.adminEdit
     }
     if(req.body.addressAED){
-        obj.adminAdd = req.body.adminAdd
+        obj.addressEAD = req.body.addressEAD
     }
     if(req.body.messageRights) {
         obj.messageRights = req.body.messageRights;
@@ -1409,6 +2361,7 @@ if(req.body.password !== req.body.confirm){
                 obj.addC = user1.citizenAdd
                 obj.editC = user1.citizenEdit
                 obj.editA = user1.adminEdit
+                obj.blockA = user1.adminBlock
                 obj.aedAddress = user1.addressAED
                 obj.addA = user1.adminAdd
                 obj.name = req.body.name
@@ -1496,9 +2449,87 @@ if(req.body.password !== req.body.confirm){
 }
 });
 
+
+app.post('/editAdminProfile' , authenticate, (req, res) => {
+
+    var user1 = req.session.userId;
+    Users.findById(user1).then((user1) => {
+         if(req.body.mobile){
+             console.log(req.body.mobile,"mpbole is thow");
+             Users.find({"mobile": req.body.mobile}).then((user)=>{
+                 if(!user){
+                     console.log('if runnuninin admin')
+                     var obj = {};
+                     obj.reqMobile = req.body.mobile;
+                     obj.mobileReq = true;
+                     console.log(obj, 'this is the objj')
+                     Users.update({"email": req.body.email},
+                         {$set: obj}).then((user) => {
+                         //done
+                     });
+                 }
+             });
+         }
+        var body = _.pick(req.body, ['email', 'name', 'middleName', 'lastName', 'age', 'gender', 'mark', 'occupation', 'occOther', 'stateOwn', 'districtOwn', 'blockOwn', 'villageOwn', 'pinOwn']);
+
+        Users.update({"email": req.body.email},
+            {$set: body}).then((user) => {
+            res.redirect('/querySearch')
+
+        }, (e) => {
+            res.send(e);
+        }).catch((e) => {
+            res.send(e);
+        });
+    }, (e) => {
+        res.send(e);
+    }).catch((e) => {
+        res.send(e);
+    });
+
+});
+
 app.get('/home', authenticate, (req,res)=>{
 
     res.redirect('/querySearch');
+});
+
+app.get('/editProfile', authenticate, (req,res)=>{
+    var user = req.session.userId;
+    var obj = {};
+    Users.findById(user).then((user) => {
+
+      obj.email= user.email;
+      obj.name = user.name;
+      obj.middleName = user.middleName;
+      obj.lastName=user.lastName;
+      obj.mobile = user.mobile;
+      obj.age = user.age;
+      obj.gender = user.gender;
+      obj.mark = user.mark;
+      obj.occupation= user.occupation;
+        obj.occOther= user.occOther;
+      obj.stateOwn = user.stateOwn;
+      obj.districtOwn = user.districtOwn;
+      obj.villageOwn = user.villageOwn;
+      obj.blockOwn = user.blockOwn;
+      obj.pinOwn = user.pinOwn;
+      obj.level = user.level;
+      obj.notes = user.notes;
+      obj.messageRights = user.messageRights;
+      obj.printRightsL = user.printRightsL;
+        obj.addC = user.citizenAdd;
+        obj.aedAddress = user.addressAED;
+        obj.addA = user.adminAdd;
+        obj.editC = user.citizenEdit;
+
+        res.render('editProfile.hbs', obj);
+    },(e)=>{
+        res.send(e);
+    }).catch((e)=>{
+        res.send(e);
+    });
+
 });
 
 

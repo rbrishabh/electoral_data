@@ -17,16 +17,39 @@ ageArray = [];
 
 
 function printToEdit (value){
-    var url = urlFinal + 'valueForEdit/'+value
+    var url = urlFinal + 'valueForEdit1/'+value
     var ourRequest = new XMLHttpRequest();
     ourRequest.open('GET', url, true);
     ourRequest.onload = function () {
         var ourData = JSON.parse(ourRequest.responseText);
-
-   printingToEdit(ourData.civilian[0]);
+        console.log(ourData,'rthg')
+        printingToEdit(ourData.civilian[0]);
     }
     ourRequest.send();
 }
+function printToEditRights (value){
+
+    document.getElementById('emailRights').value=value;
+}
+
+
+function acceptedReq(value){
+    var url = urlFinal + 'acceptedReq/'+value;
+    var ourRequest = new XMLHttpRequest();
+    ourRequest.open('GET', url, true);
+    ourRequest.send();
+    alert('Accepted, changes will be shown on page refresh');
+}
+
+
+function rejectedReq(value){
+    var url = urlFinal + 'rejectedReq/'+value;
+    var ourRequest = new XMLHttpRequest();
+    ourRequest.open('GET', url, true);
+    ourRequest.send();
+    alert('Rejected, changes will be shown on page refresh');
+}
+
 
 function printingToEdit(value) {
     console.log(value)
@@ -51,17 +74,17 @@ function printingToEdit(value) {
     if(value.mobile){
         document.getElementById('mobileEdit').value=value.mobile;
     }
-if(value.relation){
-if(value.relation==="Father"){
-    $("#fatherEdit").prop("checked", true);
-}
-if(value.relation==="Mother"){
-    $("#motherEdit").prop("checked", true);
-}
-if(value.relation==="Spouse"){
-    $("#spouseEdit").prop("checked", true);
-}
-}
+    if(value.relation){
+        if(value.relation==="Father"){
+            $("#fatherEdit").prop("checked", true);
+        }
+        if(value.relation==="Mother"){
+            $("#motherEdit").prop("checked", true);
+        }
+        if(value.relation==="Spouse"){
+            $("#spouseEdit").prop("checked", true);
+        }
+    }
     if(value.secondMobile){
         document.getElementById('secondMobileEdit').value=value.secondMobile;
     }
@@ -77,11 +100,11 @@ if(value.relation==="Spouse"){
     if(value.age){
         document.getElementById('ageEdit').value=value.age;
     }
-    if(value.profession){
-        $("#otherselect2").val(value.profession);
-        if(value.profession=="other"){
+    if(value.occupation){
+        $("#otherselect2").val(value.occupation);
+        if(value.occupation=="other"){
             document.getElementById('occOtherEdit').disabled = false;
-         otherBox2();
+            otherBox2();
         }
     }
     if(value.state){
@@ -118,8 +141,8 @@ if(value.relation==="Spouse"){
     if(value.pin){
         document.getElementById('pinE').value=value.pin;
     }
-    if(value.professionOther){
-        document.getElementById('occOtherEdit').value=value.professionOther;
+    if(value.occOther){
+        document.getElementById('occOtherEdit').value=value.occOther;
     }
     if(value.mark){
 
@@ -194,20 +217,18 @@ $(document).ready(function() {
         var block =  $("[id='block']").val()
     }
     else if(document.getElementById('state').disabled == true){
-        console.log('me runnun state')
         $("#stateS").show();
         $("#stateH").hide();
         var village = $("[id='village']").val()
-        var state =  $("[id='stateL']").val();
-        console.log(state);
+        var state =  $("[id='stateL']").val()
         var district =  $("[id='district']").val()
         var block =  $("[id='block']").val()
     }
-    
-    
-    
-    
-    
+
+
+
+
+
     $("#stateSE").hide();
     $("#villageSE").hide();
     $("#blockSE").hide();
@@ -216,7 +237,7 @@ $(document).ready(function() {
 
 
 
-    
+
     if(document.getElementById('stateE').disabled == true && document.getElementById('districtE').disabled == true && document.getElementById('blockE').disabled == true && document.getElementById('villageE').disabled == true){
         $("#stateSE").show();
         $("#districtSE").show();
@@ -228,7 +249,7 @@ $(document).ready(function() {
         $("#blockHE").hide();
         $("#villageHE").hide();
 
-       
+
 
     } else if(document.getElementById('stateE').disabled == true && document.getElementById('districtE').disabled == true && document.getElementById('blockE').disabled == true){
         $("#stateSE").show();
@@ -247,38 +268,39 @@ $(document).ready(function() {
         $("#stateHE").hide();
         $("#districtHE").hide();
 
-       
+
     }
     else if(document.getElementById('stateE').disabled == true){
         $("#stateSE").show();
         $("#stateHE").hide();
-       
+
     }
 
-    console.log(state)
+    console.log(state);
     if(state==="" || state == null){
         state = "00"
     }
     if(district==="" || district == null){
-       district = "00"
+        district = "00"
     }
     if(block==="" || block == null){
-       block="00"
+        block="00"
     }
     if(village==="" || village == null){
-       village="00"
+        village="00"
     }
-    var url = urlFinal + 'initialSearch/state/' + state + '/district/' + district + '/block/' + block + '/village/' + village;
+    var url = urlFinal + 'initialSearch3/state/' + state + '/district/' + district + '/block/' + block + '/village/' + village;
     var ourRequest = new XMLHttpRequest();
+    console.log(url);
     ourRequest.open('GET', url, true);
     ourRequest.onload = function () {
         var ourData = JSON.parse(ourRequest.responseText);
-        console.log(ourData);
 
+
+        console.log(ourData);
         start= 0;
         if(ourData.civilian.length>=20){
             end = start + 20;
-            y=1;
             outputObj = ourData;
             mainObj = ourData;
             print(ourData);
@@ -302,14 +324,30 @@ $(document).ready(function() {
         event.preventDefault();
         var datastring = $("#editForm").serializeArray();
         var dataEdit = JSON.stringify(datastring);
-        var url = urlFinal + 'editFormSubmit?array='+dataEdit;
+        var url = urlFinal + 'editFormSubmitUser?array='+dataEdit;
         var ourRequest = new XMLHttpRequest();
         ourRequest.open('POST', url, true);
 
 
-            document.getElementById("model").style.display = "block";
+        document.getElementById("model").style.display = "block";
 
 
+
+
+        ourRequest.send();
+
+    });
+
+    $("#editFormRights").submit(function(event) {
+        event.preventDefault();
+        var datastring = $("#editFormRights").serializeArray();
+        var dataEdit = JSON.stringify(datastring);
+        var url = urlFinal + 'editFormRightsSubmitUser?array='+dataEdit;
+        var ourRequest = new XMLHttpRequest();
+        ourRequest.open('POST', url, true);
+
+
+        document.getElementById("model").style.display = "block";
 
 
 
@@ -324,18 +362,19 @@ $(document).ready(function() {
 
 
 
-function querySearch(pin, firstName, middleName, lastName, relationName, relationMiddle, relationLast, minage, maxage, occ, occother, mobile, email, gender, mark) {
-console.log(document.getElementsByName('block')[0].value)
+function userSearch(pin, firstName, middleName, lastName, minage, maxage, occ, occother, mobile, email, gender, mark) {
+    console.log('started rubbbubbb');
+    console.log(document.getElementsByName('block')[0].value)
     console.log(document.getElementsByName('block')[1].value, 'asdsadf')
 
-   if(document.getElementsByName('state')[0].value){
-       state =  document.getElementsByName('state')[0].value;
-   }
-   else if (document.getElementsByName('state')[1].value){
-       state = document.getElementsByName('state')[1].value;
-   } else {
-       state = '00'
-   }
+    if(document.getElementsByName('state')[0].value){
+        state =  document.getElementsByName('state')[0].value;
+    }
+    else if (document.getElementsByName('state')[1].value){
+        state = document.getElementsByName('state')[1].value;
+    } else {
+        state = '00'
+    }
     if(document.getElementsByName('district')[0].value){
         district =  document.getElementsByName('district')[0].value;
     }
@@ -377,15 +416,7 @@ console.log(document.getElementsByName('block')[0].value)
     if(lastName===""){
         lastName = "00"
     }
-    if(relationName===""){
-        relationName = "00"
-    }
-    if(relationMiddle===""){
-        relationMiddle = "00"
-    }
-    if(relationLast===""){
-        relationLast = "00"
-    }
+
     if(minage===""){
         minage = "00"
     }
@@ -410,20 +441,20 @@ console.log(document.getElementsByName('block')[0].value)
     if(mark==="" || mark == null){
         mark = "00"
     }
-    var url = urlFinal +'buttonSearch/' + state + '/' + district + '/' + block + '/' + village + '/' + pin + '/' + firstName + '/' + middleName + '/' + lastName + '/' + relationName + '/' + relationMiddle + '/' + relationLast + '/' + minage + '/' + maxage + '/' + occ + '/' + occother + '/' + mobile + '/' + email + '/' + gender + '/' + mark;
+    var url = urlFinal +'buttonSearch3/' + state + '/' + district + '/' + block + '/' + village + '/' + pin + '/' + firstName + '/' + middleName + '/' + lastName + '/'  + minage + '/' + maxage + '/' + occ + '/' + occother + '/' + mobile + '/' + email + '/' + gender + '/' + mark;
     console.log(url)
     var ourRequest = new XMLHttpRequest();
     ourRequest.open('GET', url, true);
     ourRequest.onload = function () {
         var ourData = JSON.parse(ourRequest.responseText);
-        console.log('button')
+        console.log(ourData);
         start= 0;
         if(ourData.civilian.length>=20){
             end = start + 20;
             y=1;
+            print(ourData);
             outputObj = ourData;
             mainObj = ourData;
-            print(ourData);
         }
         else{
             end = ourData.civilian.length;
@@ -491,7 +522,7 @@ function sort(str,num) {
             }
             return true;
         });
-        }
+    }
     if (num===12){
         ageSort.age = str;
         console.log('reachedhere');
@@ -536,7 +567,7 @@ function sort(str,num) {
     start= 0;
     if(outputObj.civilian.length>=20){
         y=1;
-     end = start + 20;
+        end = start + 20;
         print(outputObj);
     }
     else{
@@ -552,19 +583,15 @@ function sort(str,num) {
 
 
 function print(printData) {
-var totalPages=  printData.civilian.length/20;
-var pages = Math.ceil(totalPages);
+    var totalPages=  printData.civilian.length/20;
+    var pages = Math.ceil(totalPages);
 
-console.log(pages)
+    console.log(pages)
     var txt = "<table class='table table-bordered' id='result' border='1'><tbody>" +
         "<tr>"+"<th>" + "<b>S No.</b>" + "</th>"+
         "<th>" + "<b>First Name</b>" + "</th>"
         +"<th>" + "<b>Middle Name</b>" + "</th>"
         +"<th>" + "<b>Last Name</b>" + "</th>"
-        +"<th>" + "<b>Relation</b>" + "</th>"
-        + "<th>" + "<b>Relation's Name</b>" + "</th>"
-        +"<th>" + "<b>R Middle Name</b>" + "</th>"
-        +"<th>" + "<b>R Last NAme</b>" + "</th>"
         + "<th>" + "<b>Mark</b>" + "</th>"
         + "<th>" + "<b>Age</b>" + "</th>"
         + "<th>" + "<b>Gender"+ "</th>"
@@ -576,11 +603,13 @@ console.log(pages)
         + "<th>" + "State"+ "</th>"
         + "<th>" + "<b>Pin Code</b>" + "</th>"
         + "<th>" + "Mobile"+ "</th>"
-        + "<th>" + "Secondary Mobile"+ "</th>"
-        + "<th>" + "Third Mobile"+ "</th>"
+        + "<th>" + "New Mobile"+ "</th>"
         + "<th>" + "<b>Email</b>" + "</th>"
         + "<th>" + "<b>Select</b>" + "</th>"
-        + "<th>" + "<b>Edit</b>" + "</th>"
+        + "<th>" + "<b>View/Edit</b>" + "</th>"
+        + "<th>" + "<b>Edit Rights</b>" + "</th>"
+        + "<th>" + "<b>Accept</b>" + "</th>"
+        + "<th>" + "<b>Reject</b>" + "</th>"
 
         + "</b></tr>"
 
@@ -593,9 +622,9 @@ console.log(pages)
         }
 
 
-if(printData.civilian[x].name== undefined){
-    printData.civilian[x].name ="-";
-}
+        if(printData.civilian[x].name== undefined){
+            printData.civilian[x].name ="-";
+        }
         if(printData.civilian[x].middleName== undefined){
             printData.civilian[x].middleName ="-";
         }
@@ -623,11 +652,11 @@ if(printData.civilian[x].name== undefined){
         if(printData.civilian[x].gender== undefined){
             printData.civilian[x].gender ="-";
         }
-        if(printData.civilian[x].profession== undefined){
-            printData.civilian[x].profession ="-";
+        if(printData.civilian[x].occupation== undefined){
+            printData.civilian[x].occupation ="-";
         }
-        if(printData.civilian[x].occother== undefined){
-            printData.civilian[x].occother ="-";
+        if(printData.civilian[x].occOther== undefined){
+            printData.civilian[x].occOther = "-";
         }
         if(printData.civilian[x].village== undefined){
             printData.civilian[x].village ="-";
@@ -660,26 +689,24 @@ if(printData.civilian[x].name== undefined){
             +"<th>" + printData.civilian[x].name + "</th>"
             + "<th>" + printData.civilian[x].middleName + "</th>"
             +"<th>" + printData.civilian[x].lastName + "</th>"
-            + "<th>" + printData.civilian[x].relation + "</th>"
-            + "<th>" + printData.civilian[x].relationName + "</th>"
-            +  "<th>" + printData.civilian[x].relationMiddle + "</th>"
-            + "<th>" + printData.civilian[x].relationLast + "</th>"
             + "<th>" + printData.civilian[x].mark + "</th>"
             + "<th>" + printData.civilian[x].age + "</th>"
             + "<th>" + printData.civilian[x].gender + "</th>"
-            + "<th>" + printData.civilian[x].profession+ "</th>"
-            + "<th>" + printData.civilian[x].professionOther+ "</th>"
+            + "<th>" + printData.civilian[x].occupation+ "</th>"
+            + "<th>" + printData.civilian[x].occOther+ "</th>"
             + "<th>" + printData.civilian[x].village+ "</th>"
             + "<th>" + printData.civilian[x].block+ "</th>"
             + "<th>" + printData.civilian[x].district+ "</th>"
             + "<th>" + printData.civilian[x].state+ "</th>"
             + "<th>" + printData.civilian[x].pin+ "</th>"
             + "<th>" + printData.civilian[x].mobile + "</th>"
-            + "<th>" + printData.civilian[x].secondMobile + "</th>"
-            + "<th>" + printData.civilian[x].thirdMobile + "</th>"
+            + "<th>" + printData.civilian[x].mobileReq + "</th>"
             + "<th>" + printData.civilian[x].email + "</th>"
             + "<th>" + "<input type='checkbox' data-value = "+ printData.civilian[x].mobile + "-"+ printData.civilian[x].name+ "-"+ printData.civilian[x].middleName+ "-"+ printData.civilian[x].lastName +">" + "</th>"
-            + "<th>" + "<button class='btn btn-default btn-xs disableButton' id='editCitizen' data-toggle='modal' data-target='#myModalEdit' value=" + printData.civilian[x]._id +  " onclick='printToEdit(value)' >Edit</button>" + "</th>"
+            + "<th>" + "<button class='btn btn-default fa fa-pencil-square-o' id='editCitizen' title='Edit Admin Profile' data-toggle='modal' data-target='#myModalEdit' value=" + printData.civilian[x]._id +  " onclick='printToEdit(value)' ></button>" + "</th>"
+            + "<th>" + "<button class='btn btn-default fa fa-cogs disableButtonEdit' title='Edit Admin Rights' id='editCitizen2'  data-toggle='modal' data-target='#myModal2'  value= "+ printData.civilian[x].email +  " onclick='printToEditRights(value)' ></button>" + "</th>"
+            + "<th>" + "<button class='btn btn-default' title='Block' value= "+ printData.civilian[x].email + "  onclick='acceptedReq(value)'>Accept</button>" + "</th>"
+            + "<th>" + "<button class='btn btn-default' title='Block' value= "+ printData.civilian[x].email + "  onclick='rejectedReq(value)'>Reject</button>" + "</th>"
 
             +"</tr>";
 
@@ -694,11 +721,11 @@ if(printData.civilian[x].name== undefined){
     document.getElementById("messageButton").innerHTML =
 
 
-'<ul class="pager">'+
+        '<ul class="pager">'+
         '<span class="text-center" id="pageno"><b>Page '+y+' of ' +pages+'</b></span>'+
         '<li class="previous" id="prevIt"><a class="btn btn-default" onClick="prevIt();">Previous</a></li>'+
-   '<li class="next" id="nextIt"><a class="btn btn-default"  onClick="nextIt();">Next</a></li>'+
-    '</ul>'
+        '<li class="next" id="nextIt"><a class="btn btn-default"  onClick="nextIt();">Next</a></li>'+
+        '</ul>'
         +
 
         '<button class="btn btn-primary pull-right disableButtonMessage" data-toggle="modal" data-target="#myModal" id="msgbtn">Message</button>' +
@@ -715,8 +742,8 @@ if(printData.civilian[x].name== undefined){
                 });
                 var stringify = JSON.stringify(listInput)
                 var text = $('#comment').val();
-                console.log($("#forMessaging").val());
-                if($("#forMessaging").val()>=listInput.length){
+                console.log($("#forMessage").val());
+                if($("#forMessage").val()>=listInput.length){
                     var url = urlFinal + 'message?array='+listInput+'&message='+text;
                     console.log(listInput)
                     var ourRequest = new XMLHttpRequest();
@@ -724,7 +751,7 @@ if(printData.civilian[x].name== undefined){
                     ourRequest.onload = function () {
                         var ourData = JSON.parse(ourRequest.responseText);
                         console.log(ourData.messageRights);
-                        document.getElementById('forMessaging').value=ourData.messageRights;
+                        document.getElementById('forMessage').value=ourData.messageRights;
                         console.log(typeof ourData.messageRights);
                         if(ourData.messageRights===0 || ourData.messageRights === '0'){
                             $('.disableButtonMessage').prop('disabled', true);
@@ -752,13 +779,19 @@ if(printData.civilian[x].name== undefined){
     if(document.getElementById('forMessage').disabled == true){
         $('.disableButton').prop('disabled', true);
     }
+    if(document.getElementById('forEditAdmin').disabled == true){
+        $('.disableButtonEdit').prop('disabled', true);
+    }
+    if(document.getElementById('forBlockAdmin').disabled == true){
+        $('.disableButtonBlock').prop('disabled', true);
+    }
     if(document.getElementById('forPrint').disabled == true){
         $('.disableButtonPrint').prop('disabled', true);
     } else {
         $('.disableButtonPrint').prop('disabled', false);
 
     }
-    if(document.getElementById('forMessaging').disabled == true){
+    if(document.getElementById('forMessage').disabled == true){
         $('.disableButtonMessage').prop('disabled', true);
     } else {
         $('.disableButtonMessage').prop('disabled', false);
@@ -768,17 +801,17 @@ if(printData.civilian[x].name== undefined){
 
 
     if(end>=printData.civilian.length-1){
-    $("#nextIt").hide();
-} else {
-    $("#nextIt").show();
-}
+        $("#nextIt").hide();
+    } else {
+        $("#nextIt").show();
+    }
 
-if(start == 0) {
-    $("#prevIt").hide();
+    if(start == 0) {
+        $("#prevIt").hide();
 
-} else {
-    $("#prevIt").show();
-}
+    } else {
+        $("#prevIt").show();
+    }
 }
 
 function prevIt()
@@ -799,9 +832,9 @@ function nextIt()
         start = end;
         end += 20;
         console.log(end, start)
-       print(outputObj);
+        print(outputObj);
     }
-else if(end!=outputObj.civilian.length){
+    else if(end!=outputObj.civilian.length){
         y++
         console.log('else r')
         start = end;
@@ -869,7 +902,7 @@ function printData() {
         $('.disableButtonPrint').prop('disabled', true);
         alert('You do not have enough print rights, please contact the admin.');
     }
-    }
+}
 
 
 

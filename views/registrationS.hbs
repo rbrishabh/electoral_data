@@ -145,6 +145,7 @@
                 <input type="hidden" id="forAdminEdit" value="123">
                 <input type="hidden" id="forAddressAED" value="123">
                 <input type="hidden" id="forCivilEdit" value="123">
+                <input type="hidden" id="forBlockAdmin" value="123">
 
                 <div class="row">
                     <div class="col-md-6"> <div class="row boxrow">
@@ -213,7 +214,7 @@
                             <div class="checkbox pull-left" style="margin-left: -15px; margin-right: -20px; margin-bottom: 20px;">
                                 <label>
                                     <input type="checkbox" id="adminAdd" class="disableAdminAdd" name="adminAdd">
-                                    <strong>Create New Admins</strong>
+                                    <strong>Create Admin</strong>
                                 </label>
                             </div>
                         </div>
@@ -222,7 +223,16 @@
                             <div class="checkbox pull-left" style="margin-left: -15px; margin-right: -20px; margin-bottom: 20px;">
                                 <label>
                                     <input type="checkbox" id="adminEdit" class="disableAdminEdit" name="adminEdit">
-                                    <strong>Edit Admins</strong>
+                                    <strong>Edit Admin</strong>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+
+                            <div class="checkbox pull-left" style="margin-left: -15px; margin-right: -20px; margin-bottom: 20px;">
+                                <label>
+                                    <input type="checkbox" id="adminEdit" class="disableAdminBlock" name="adminBlock">
+                                    <strong>Block Admin</strong>
                                 </label>
                             </div>
                         </div>
@@ -461,6 +471,9 @@
 <script>
     if('{{editC}}'!='on'){
         document.getElementById('forCivilEdit').disabled = true;
+    }
+    if('{{blockA}}'!='on'){
+        document.getElementById('forBlockAdmin').disabled = true;
     }
     if('{{editA}}'!='on'){
         document.getElementById('forAdminEdit').disabled = true;

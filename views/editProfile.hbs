@@ -6,7 +6,7 @@
     <link rel="icon" type="image/png" href="favicon.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="Author" content="hemant.me"/>
-    <title>Electoral - Registration</title>
+    <title>Electoral - Edit</title>
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
 
@@ -66,14 +66,14 @@
                         <li id="authCheckAdd">
                             <a href="/queryAdd">Add Data</a>
                         </li>
-                        <li class="active" id="authCheckAddUser">
+                        <li id="authCheckAddUser">
                             <a href="/registrationElectoral">Registration</a>
 
                         </li>
                         <li>
                             <a href="#">Change Password</a>
                         </li>
-                        <li>
+                        <li class="active">
                             <a href="/editProfile">Edit Profile</a>
                         </li>
                         <li class="dropdown">
@@ -108,8 +108,9 @@
     <div class="main main-raised">
         <div class="section">
             <div class="container">
-                <form action="/registrationElectoralData" autocomplete="off" method="post">
-                    <h2 class="text-center">Registration</h2>
+                <form action="/editAdminProfile" autocomplete="off" method="post">
+                    <h2 class="text-center">Edit Profile</h2>
+
                     <div class="row">
                         <input type="hidden" id="forAddData" value="123">
                         <input type="hidden" id="forAddAdmin" value="123">
@@ -124,19 +125,19 @@
                                 <div class="col-md-4">
                                     <div class="form-group label-floating">
                                         <label class="control-label">First Name <span style="color: red">&nbsp; &#42;</span></label>
-                                        <input required type="text" name="name" id="name" class="form-control">
+                                        <input required type="text" name="name" value="{{name}}" id="name" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Middle Name</label>
-                                        <input  type="text" name="middleName" id="middleName" class="form-control">
+                                        <input  type="text" name="middleName" value="{{middleName}}" id="middleName" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Last Name</label>
-                                        <input type="text" name="lastName" id="lastName" class="form-control">
+                                        <input type="text" name="lastName" id="lastName" value="{{lastName}}" class="form-control">
                                     </div>
                                 </div>
 
@@ -150,7 +151,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group label-floating">
                                             <label class="control-label">Email</label>
-                                            <input required type="email" name="email" id="email" class="form-control">
+                                            <input required type="email" readonly name="email" value="{{email}}" id="email" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -167,7 +168,7 @@
                                             <div class="col-xs-9">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Mobile</label>
-                                                    <input required type="text" id="mobile"  name="mobile" maxlength="10" class="form-control numeric maxLengthFilter">
+                                                    <input required type="text" id="mobile" value="{{mobile}}" name="mobile" maxlength="10" class="form-control numeric maxLengthFilter">
                                                     <div id="wrongmobile" class="errmsg">Number already exists!</div>
                                                 </div>
                                             </div>
@@ -186,7 +187,7 @@
                                             <div class="col-xs-12">
                                                 <div class="form-group label-floating ">
                                                     <label class="control-label">Enter OTP</label>
-                                                    <input type="text" name="otp" class="form-control numeric maxlengthfilter">
+                                                    <input type="text"  name="otp" class="form-control numeric maxlengthfilter">
 
                                                 </div>
                                             </div>
@@ -198,7 +199,6 @@
 
 
 
-
                             <div class="col-md-4">
                                 <div class=" row boxrow">
                                     <div class="col-md-12">
@@ -207,7 +207,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group label-floating">
                                             <label class="control-label">Age</label>
-                                            <input type="number" required name="age" id="age" max="100" min="0" class="form-control">                                    </div>
+                                            <input type="number" value="{{age}}" required name="age" id="age" max="100" min="0" class="form-control">                                    </div>
                                     </div>
                                 </div>
                             </div>
@@ -220,7 +220,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group label-floating">
                                             <label class="control-label">Gender</label>
-                                            <select name="gender" required class="form-control">
+                                            <select name="gender" id="gender" required class="form-control">
                                                 <option value="Male">Male</option>
                                                 <option value="Female">Female</option>
                                                 <option value="Other">Other</option>
@@ -238,7 +238,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group label-floating">
                                             <label class="control-label">Mark</label>
-                                            <select name="mark" class="form-control">
+                                            <select name="mark" id="mark" class="form-control">
 
                                                 <option value="" selected="selected"></option>
                                                 <option value="P">Pramukh</option>
@@ -253,7 +253,6 @@
                                                 <option value="YMD">Yowak Mongal Dal</option>
                                                 <option value="GPR">Gram Parhari</option>
                                                 <option value="WB">Well Wisher</option>
-                                                <option value="MO">Mule Owner</option>
 
                                             </select>
                                         </div>
@@ -268,7 +267,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group label-floating">
-                                            <select required name="occupation" class="form-control" onchange="otherBox()" id="otherselect">
+                                            <select required name="occupation"  class="form-control" onchange="otherBox()" id="otherselect">
 
                                                 <option value="doctor">Doctor</option>
                                                 <option value="advocate">Advocate</option>
@@ -287,35 +286,13 @@
                                     <div class="col-md-6" style="display: none;" id="otherocc">
                                         <div class="form-group label-floating">
                                             <label class="control-label">Enter Occupation</label>
-                                            <input required type="text"  name="occOther" id="otherOcc" class="form-control">
+                                            <input required type="text" value="{{occOther}}" name="occOther" id="otherOcc" class="form-control">
                                         </div>
                                     </div>
 
 
                                 </div>
                             </div>
-
-
-                            <div class="col-md-8">
-                                <div class=" row boxrow">
-                                    <div class="col-md-12">
-                                        <strong class="labelh">Password<span style="color: red">&nbsp; &#42;</span></strong>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group label-floating">
-                                            <label class="control-label">Enter Password</label>
-                                            <input required type="password" name="password" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group label-floating">
-                                            <label class="control-label">Confirm Password</label>
-                                            <input required type="password" name="confirm" class="form-control">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
                             <div class="col-md-12">
                                 <div class=" row boxrow">
                                     <div class="col-md-12">
@@ -324,11 +301,17 @@
                                     <div class="col-md-12">
                                         <div class="form-group label-floating">
                                             <label class="control-label">Notes</label>
-                                            <textarea type="text" rows="1" class="form-control"  style="border-right: 1px solid #eee;"></textarea>
+                                            <textarea type="text" rows="1" class="form-control" placeholder="{{notes}}" style="border-right: 1px solid #eee;"></textarea>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
+
+
+
+
+
 
                             <div class="col-md-12" style="margin: 0px !important;">
                                 <hr>
@@ -393,7 +376,7 @@
                                     <div class="col-md-4" style="margin: 0px !important;">
                                         <div class="form-group label-floating">
                                             <label class="control-label">Block/Nagar palika</label>
-                                            <select  name="blockOwn" id="block" onchange="getVillage()" class="form-control">
+                                            <select  name="blockOwn" id="block" onchange="getVillage()" onfocus="getBlock()" class="form-control">
                                             </select>
                                         </div>
                                     </div>
@@ -401,7 +384,7 @@
                                     <div class="col-md-4" style="margin: 0px !important;">
                                         <div class="form-group label-floating">
                                             <label class="control-label">Village</label>
-                                            <select name="villageOwn" id="village" class="form-control">
+                                            <select name="villageOwn" id="village" onfocus="getVillage()" class="form-control">
                                             </select>
                                         </div>
                                     </div>
@@ -409,7 +392,7 @@
                                     <div class="col-md-4" style="margin: 0px !important;">
                                         <div class="form-group label-floating">
                                             <label class="control-label">Pin Code</label>
-                                            <input type="text" name="pinOwn" maxlength="6"  class="form-control numeric maxLengthFilter">
+                                            <input type="text" value="{{pinOwn}}" name="pinOwn" maxlength="6"  class="form-control numeric maxLengthFilter">
                                         </div>
                                     </div>
 
@@ -430,16 +413,16 @@
 
                         <div class="row">
                             <div class="col-md-12">
-                                <button type="submit" class="btn btn-primary pull-right"  >Continue</button>
+                                <button type="submit" class="btn btn-primary pull-right"  >Update</button>
                             </div>
                         </div>
                         <br><br>
 
 
-
+                        <input type="hidden" id="districtHi" disabled>
                 </form>
             </div>
-            <div class="text-center" id="wrong"><h5><b>{{message}}</b></h5></div>
+
         </div>
     </div>
 
@@ -451,6 +434,31 @@
         </div>
     </div>
 </footer>
+<script>
+    $("#gender").val('{{gender}}');
+    $("#mark").val('{{mark}}');
+    $("#otherselect").val('{{occupation}}');
+    if("{{districtOwn}}"){
+
+        document.getElementById('districtHi').disabled = false;
+        document.getElementById('districtHi').value='{{districtOwn}}';
+
+    }
+
+    $('#block').append($('<option>', {
+        value: '{{blockOwn}}',
+        text: '{{blockOwn}}',
+        selected: true
+    }));
+
+    $('#village').append($('<option>', {
+        value: '{{villageOwn}}',
+        text: '{{villageOwn}}',
+        selected: true
+    }));
+</script>
+
+
 <script>
     function otherBox(){
         var othervalue = document.getElementById("otherselect").value;

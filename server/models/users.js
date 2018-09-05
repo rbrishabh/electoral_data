@@ -117,6 +117,10 @@ var userSchema = new mongoose.Schema({
         type: String,
         trim:true
     },
+    adminBlock: {
+        type: String,
+        trim:true
+    },
     addressAED: {
         type: String,
         trim:true
@@ -152,6 +156,18 @@ var userSchema = new mongoose.Schema({
     level: {
         type: String,
         trim:true
+    },
+    blocked:{
+        type: Boolean,
+        trim: true
+    },
+    mobileReq:{
+        type: Boolean,
+        trim: true
+    },
+    reqMobile:{
+        type: Number,
+        trim: true
     }
 });
 

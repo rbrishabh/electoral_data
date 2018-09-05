@@ -38,6 +38,10 @@ $(document).ready(function () {
         $('.disableCivilEdit').prop('disabled', true);
     }
 
+    if(document.getElementById('forBlockAdmin').disabled == true){
+        $('.disableAdminBlock').prop('disabled', true);
+    }
+
 
 
 

@@ -1,12 +1,12 @@
 
 $(document).ready(function() {
-    if(document.getElementById('state').disabled == true){
+    if(document.getElementById('stateEditAdmin').disabled == true){
 
-        var valueState =  $("[id='stateL']").val()
+        var valueState =  $("[id='stateLEditAdmin']").val()
 
     }
     else{
-        var valueState = $("#state option:selected").val();
+        var valueState = $("#stateEditAdmin option:selected").val();
     }
     var url = urlFinal+'state/'+valueState;
 
@@ -26,18 +26,18 @@ $(document).ready(function() {
 
 
 function getBlock() {
-    if(document.getElementById('state').disabled == true && document.getElementById('district').disabled == true){
+    if(document.getElementById('stateEditAdmin').disabled == true && document.getElementById('districtEditAdmin').disabled == true){
 
-        var valueState =  $("[id='stateL']").val()
-        var valueDistrict =  $("[id='districtL']").val()
+        var valueState =  $("[id='stateLEditAdmin']").val()
+        var valueDistrict =  $("[id='districtLEditAdmin']").val()
 
-    } else if(document.getElementById('state').disabled == true){
-        var valueState =  $("[id='stateL']").val()
-        var valueDistrict =  $("[id='district']").val()
+    } else if(document.getElementById('stateEditAdmin').disabled == true){
+        var valueState =  $("[id='stateLEditAdmin']").val()
+        var valueDistrict =  $("[id='districtEditAdmin']").val()
     }
     else {
-        var valueState = $("#state option:selected").val();
-        var valueDistrict = $("#district option:selected").text();
+        var valueState = $("#stateEditAdmin option:selected").val();
+        var valueDistrict = $("#districtEditAdmin option:selected").text();
     }
 
     console.log(valueDistrict)
@@ -56,21 +56,21 @@ function getBlock() {
 }
 
 function getVillage() {
-    if(document.getElementById('state').disabled == true && document.getElementById('district').disabled == true && document.getElementById('block').disabled == true){
+    if(document.getElementById('stateEditAdmin').disabled == true && document.getElementById('districtEditAdmin').disabled == true && document.getElementById('blockEditAdmin').disabled == true){
 
 
-        var valueState =  $("[id='stateL']").val()
-        var valueDistrict =  $("[id='districtL']").val()
-        var valueBlock =  $("[id='blockL']").val()
+        var valueState =  $("[id='stateLEditAdmin']").val()
+        var valueDistrict =  $("[id='districtLEditAdmin']").val()
+        var valueBlock =  $("[id='blockLEditAdmin']").val()
     }
-    else if(document.getElementById('state').disabled == true && document.getElementById('district').disabled == true) {
-        var valueState = $("[id='stateL']").val()
-        var valueDistrict = $("[id='districtL']").val()
-        var valueBlock = $("[id='block']").val()
+    else if(document.getElementById('stateEditAdmin').disabled == true && document.getElementById('districtEditAdmin').disabled == true) {
+        var valueState = $("[id='stateLEditAdmin']").val()
+        var valueDistrict = $("[id='districtLEditAdmin']").val()
+        var valueBlock = $("[id='blockEditAdmin']").val()
     } else {
-        var valueState = $("#stateL").val();
-        var valueDistrict = $("#district option:selected").text();
-        var valueBlock = $("#block option:selected").text();
+        var valueState = $("#stateLEditAdmin").val();
+        var valueDistrict = $("#districtEditAdmin option:selected").text();
+        var valueBlock = $("#blockEditAdmin option:selected").text();
     }
 
 
@@ -93,7 +93,7 @@ function addDataToDropdown(data) {
     for(var x in data){
         text = text + '<option>'+data[x]+'</option>'
     }
-    document.getElementById("district").innerHTML = text
+    document.getElementById("districtEditAdmin").innerHTML = text
 
 }
 function addDataToDropdownBlock(data) {
@@ -103,7 +103,7 @@ function addDataToDropdownBlock(data) {
     for(var x in data){
         text = text + '<option>'+data[x]+'</option>'
     }
-    document.getElementById("block").innerHTML = text
+    document.getElementById("blockEditAdmin").innerHTML = text
 
 }
 
@@ -114,6 +114,6 @@ function addDataToDropdownVillage(data) {
     for(var x in data){
         text = text + '<option>'+data[x]+'</option>'
     }
-    document.getElementById("village").innerHTML = text
+    document.getElementById("villageEditAdmin").innerHTML = text
 
 }
