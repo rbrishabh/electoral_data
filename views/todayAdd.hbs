@@ -1,0 +1,1662 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="76x76" href="apple-icon.png">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>Electoral - Search Users</title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+
+    <!--     Fonts and icons     -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+
+    <!-- CSS Files -->
+    <script src="/configjs.js"></script>
+
+    <script src="/jquery.js" type="text/javascript"></script>
+    <link href="/bootstrap.css" rel="stylesheet" />
+    <link href="/materialkit.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/inputtype.css">
+    <link rel="stylesheet" href="/style.css">
+
+    <script src="/areaAccessSearch.js"></script>
+    <script src="/address.js"></script>
+    <script src="/addressAdmin.js"></script>
+    <script src="/authenticationAddUser.js"></script>
+    <script src="/searchAddressEdit.js"></script>
+    <script src="/userRightSettings.js"></script>
+    <script src="/querySearchL4.js"></script>
+
+    <style>
+
+        .spin-btn{
+            display: block !important;
+            float: left !important;
+            height: 25px !important;
+            width: 10% !important;
+            border: none;
+            outline: none;
+
+            background-color: #068CD4;
+            color: #fff;
+        }
+        .spin-btn:hover{
+            background-color: #03A9F4;
+        }
+        .spin-txt{
+            display: block !important;
+            float: left !important;
+            height: 25px !important;
+            width: 70% !important;
+            padding-left: 5px;
+        }
+        .left-btn{
+            border-top-left-radius: 4px;
+            border-bottom-left-radius: 4px;
+        }
+        .right-btn{
+            border-top-right-radius: 4px;
+            border-bottom-right-radius: 4px;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body style="background-color: #eee;">
+<div class="section" style="margin-bottom: 15px; ">
+    <div class="container">
+        <nav class="navbar navbar-transparent navbar-fixed-top" role="navigation" >
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-index">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                    <a href="/querySearch">
+                        <div class="logo" style="line-height: 40px;">
+                            <img src="/logo.png" alt="Electoral Logo">
+                        </div>
+                    </a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="navigation-index">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="/querySearch">Search Data</a>
+                        </li>
+                        <li id="authCheckAdd">
+                            <a href="/queryAdd">Add Data</a>
+                        </li>
+
+                        <li id="authCheckAddUser">
+                            <a href="/registrationElectoral">Registration</a>
+
+                        </li>
+
+
+                        <li>
+                            <a href="#">Change Password</a>
+                        </li>
+                        <li>
+                            <a href="/editProfile">Edit Profile</a>
+                        </li>
+                        <li class="dropdown active">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Settings
+                                <b class="caret"></b>
+                                <div class="ripple-container"></div></a>
+                            <ul style="color: #1a1a1a !important;" class="dropdown-menu dropdown-menu-right">
+
+
+                                <li class="active"><a href="/userSearch">List of Admins</a></li>
+                                <li><a href="/blockedUsers">List of Blocked Users/Admins</a></li>
+                                <li><a href="/mobileReq">List Change Mobile User/Admin</a></li>
+                                <li id="authCheckAddress"> <a href="/addressSettings">Address Settings</a></li>
+
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="btn btn-primary btn-sm" style="margin-top: 10px;" href="/logout">Logout</a>
+                        </li>
+
+                    </ul>
+                </div>
+
+            </div><!-- /.container-fluid -->
+        </nav>
+    </div></div>
+
+<div class="wrapper">
+    <div class="main main-raised" style="padding: 20px;">
+        <form class="container">
+            <h2 class="text-center">Search Admin Data</h2>
+
+            <div class="row">
+                <form action="" autocomplete="off">
+
+
+                    <div class="col-md-12" style="margin: 0px !important;">
+                        <div class=" row boxrow">
+                            <div class="col-md-12">
+                                <strong class="labelh pull-left">Area Access</strong>
+                            </div>
+
+                            <div class="col-md-3" id="stateS" style="margin: 0px !important;">
+
+                                <div class="form-group label-floating">
+                                    <label class="control-label">State</label>
+                                    <input type="text" readonly name="state" id="stateL" value="" class="form-control">
+                                </div>
+
+                            </div>
+                            <div class="col-md-3" id="stateH" style="margin: 0px !important;">
+
+                                <div class="form-group label-floating">
+                                    <label class="control-label">State</label>
+                                    <select  name="state" id="state"  onchange="sort(value,0)" class="form-control">
+
+                                        <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                                        <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                        <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                                        <option value="Assam">Assam</option>
+                                        <option value="Bihar">Bihar</option>
+                                        <option value="Chandigarh">Chandigarh</option>
+                                        <option value="Chhattisgarh">Chhattisgarh</option>
+                                        <option value="Dadra and Nagar Haveli">Dadra and Nagar Haveli</option>
+                                        <option value="Daman and Diu">Daman and Diu</option>
+                                        <option value="Delhi">Delhi</option>
+                                        <option value="Goa">Goa</option>
+                                        <option value="Gujarat">Gujarat</option>
+                                        <option value="Haryana">Haryana</option>
+                                        <option value="Himachal Pradesh">Himachal Pradesh</option>
+                                        <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                                        <option value="Jharkhand">Jharkhand</option>
+                                        <option value="Karnataka">Karnataka</option>
+                                        <option value="Kerala">Kerala</option>
+                                        <option value="Lakshadweep">Lakshadweep</option>
+                                        <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                        <option value="Maharashtra">Maharashtra</option>
+                                        <option value="Manipur">Manipur</option>
+                                        <option value="Meghalaya">Meghalaya</option>
+                                        <option value="Mizoram">Mizoram</option>
+                                        <option value="Nagaland">Nagaland</option>
+                                        <option value="Orissa">Orissa</option>
+                                        <option value="Pondicherry">Pondicherry</option>
+                                        <option value="Punjab">Punjab</option>
+                                        <option value="Rajasthan">Rajasthan</option>
+                                        <option value="Sikkim">Sikkim</option>
+                                        <option value="Tamil Nadu">Tamil Nadu</option>
+                                        <option value="Tripura">Tripura</option>
+                                        <option value="Uttarakhand" selected="selected">Uttarakhand</option>
+                                        <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                        <option value="West Bengal">West Bengal</option>
+                                    </select>
+                                </div>
+
+                            </div>
+
+
+                            <div class="col-md-3" id="districtS" style="margin: 0px !important;">
+
+                                <div class="form-group label-floating">
+                                    <label class="control-label">District</label>
+                                    <input type="text" readonly name="district" id="districtL" value="" class="form-control">
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-2" id="blockS" style="margin: 0px !important;">
+
+                                <div class="form-group label-floating">
+                                    <label class="control-label">Block</label>
+                                    <input type="text" readonly name="block" id="blockL" value="" class="form-control">
+                                </div>
+
+                            </div>
+                            <div class="col-md-2" id="villageS" style="margin: 0px !important;">
+
+                                <div class="form-group label-floating">
+                                    <label class="control-label">Village</label>
+                                    <input type="text" readonly name="village" id="villageL" value="" class="form-control">
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-3" id="districtH" style="margin: 0px !important;">
+                                <div class="form-group label-floating">
+                                    <label class="control-label">District</label>
+                                    <select  name="district" id="district" onchange="getBlock(value,document.getElementById('state').value); sort(value,1);" required class="form-control">
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-2" id="blockH" style="margin: 0px !important;">
+                                <div class="form-group label-floating">
+                                    <label class="control-label">Block/Nagar palika</label>
+                                    <select  name="block" id="block" onchange="getVillage(document.getElementById('district').value,document.getElementById('state').value,value); sort(value,2);" class="form-control">
+                                    </select>
+
+                                </div>
+                            </div>
+
+                            <div class="col-md-2" id="villageH" style="margin: 0px !important;">
+                                <div class="form-group label-floating">
+                                    <label class="control-label">Village</label>
+                                    <select name="village" id="village" onchange="sort(value,3)" class="form-control">
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-2" style="margin: 0px !important;">
+                                <div class="form-group label-floating">
+                                    <label class="control-label">Pin Code</label>
+                                    <input  type="number" name="pin" id="pin" onchange="sort(value,4)" class="form-control">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <div class="col-md-12">
+                        <div class=" row boxrow">
+                            <div class="col-md-12">
+                                <strong class="labelh">Name</strong>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group label-floating">
+                                    <label class="control-label">First Name </label>
+                                    <input type="text" name="firstName" id="firstName" onchange="sort(value,5)" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group label-floating">
+                                    <label class="control-label">Middle Name</label>
+                                    <input  type="text" name="middleName" id="middleName" onchange="sort(value,6)" class="form-control">
+                                </div>
+
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group label-floating">
+                                    <label class="control-label">Last Name</label>
+                                    <input  type="text" name="lastName" id="lastName" onchange="sort(value,7)" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+                    </div>
+
+
+
+                    <div class="col-md-6" style="margin: 0px !important;">
+                        <div class=" row boxrow">
+                            <div class="col-md-12">
+                                <strong class="labelh pull-left">Age Range</strong>
+                            </div>
+                            <div class="col-md-6" style="margin: 0px !important;">
+
+                                <div class="form-group label-floating">
+                                    <label class="control-label">From Age</label>
+                                    <input  type="number" name="minage" id="minage" onchange="sort(value,11)" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6" style="margin: 0px !important;">
+
+                                <div class="form-group label-floating">
+                                    <label class="control-label">To Age</label>
+                                    <input  type="number" name="maxage" id="maxage"  onchange="sort(value,12)" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-md-6">
+                        <div class=" row boxrow">
+                            <div class="col-md-12">
+                                <strong class="labelh pull-left">Occupation</strong>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group label-floating">
+                                    <select class="form-control" id= "occupation" name="occupation" onchange="otherBox(); sort(value,13)">
+                                        <option value="" selected></option>
+                                        <option value="doctor">Doctor</option>
+                                        <option value="advocate">Advocate</option>
+                                        <option value="teacher">Teacher</option>
+                                        <option value="Ex. Serviceman">Ex. Serviceman</option>
+                                        <option value="Retired Employee">Retired Employee</option>
+                                        <option value="Farmer">Farmer</option>
+                                        <option value="Private Employee">Private Employee</option>
+                                        <option value="Govt. Employee">Govt. Employee</option>
+                                        <option value="Business Man">Business Man</option>
+                                        <option value="student">Student</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6" style="display: none;" id="otherocc">
+                                <div class="form-group label-floating">
+                                    <label class="control-label">Enter Occupation</label>
+                                    <input  type="text" name="occOther" id="occOther" class="form-control" onchange="sort(value,14)">
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="col-md-3">
+                        <div class="row boxrow">
+                            <div class="col-md-12">
+                                <strong class="labelh pull-left">Mobile</strong>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group label-floating">
+                                    <label class="control-label">Enter Mobile</label>
+                                    <input  type="number" name="mobile" id="mobile" onchange="sort(value,15)" class="form-control">
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="row boxrow">
+                            <div class="col-md-12">
+                                <strong class="labelh pull-left">Email</strong>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group label-floating">
+                                    <label class="control-label">Enter Email</label>
+                                    <input  type="email" name="email" onchange="sort(value,16)" id="email" class="form-control">
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="col-md-3" >
+                        <div class=" row boxrow">
+                            <div class="col-md-12">
+                                <strong class="labelh pull-left">Gender</strong>
+                            </div>
+                            <div class="col-md-12">
+
+                                <div class="form-group label-floating">
+
+                                    <select  name="gender" id="gender" onchange="sort(value,17)" class="form-control">
+                                        <option value="" selected></option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+                    <div class="col-md-3">
+                        <div class="row boxrow">
+                            <div class="col-md-12">
+                                <strong class="labelh pull-left">Mark</strong>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group label-floating is-empty">
+                                    <label class="control-label">Mark</label>
+                                    <select name="mark" id="mark" onchange="sort(value,18)" class="form-control">
+                                        <option value="" selected="selected"></option>
+                                        <option value="P">Pramukh</option>
+                                        <option value="Z">Zila Panchayat</option>
+                                        <option value="BDC">BDC Member</option>
+                                        <option value="GP">Gram Pradhan</option>
+                                        <option value="AS">Asha</option>
+                                        <option value="ANG">Aaganbadi</option>
+                                        <option value="EX">Ex Army</option>
+                                        <option value="YS">Youth Solder</option>
+                                        <option value="YF S">Youth Student</option>
+                                        <option value="YMD">Yowak Mongal Dal</option>
+                                        <option value="GPR">Gram Parhari</option>
+                                        <option value="WB">Well Wisher</option>
+                                        <option value="MO">Mule Owner</option>
+
+                                    </select>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+
+
+            </div><!-- main ROW end-->
+            <input type="text" id="yo" value="">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <input type="button" onclick="userSearch(
+                    document.getElementById('pin').value,
+                    document.getElementById('firstName').value,
+                    document.getElementById('middleName').value,
+                    document.getElementById('lastName').value,
+                    document.getElementById('minage').value,
+                    document.getElementById('maxage').value,
+                    document.getElementById('occ').value,
+                    document.getElementById('occother').value,
+                    document.getElementById('mobile').value,
+                    document.getElementById('email').value,
+                    document.getElementById('gender').value,
+                    document.getElementById('mark').value)"  class="btn btn-primary pull-right" value="Search" >
+                </div>
+            </div>
+        </form>
+        <br>
+        <div class="row">
+            <div class="col-md-12" style="overflow: auto;">
+                <table id="opTable">
+
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div id="messageButton"></div>
+
+        </div>
+        <br>
+    </div>
+</div>
+
+
+<footer class="footer footer-transparent">
+    <div class="container">
+        <div class="copyright">
+            &copy; 2018 Electoral | Powered by Genesis
+        </div>
+    </div>
+</footer>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Type Message:</h4>
+            </div>
+            <div class="modal-body">
+                <textarea class="form-control" rows="5" id="comment" style="border: 1px solid #ddd; border-bottom: none; border-radius: 4px;"></textarea>
+                <button type="button" id="msgsend" class="btn btn-primary pull-right" data-dismiss="modal">Message</button>
+
+
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+<!-- EDIT DATA MODAL START -------------------------------------------------------------------------------------------------->
+<!-- Modal -->
+<div class="modal fade" id="myModalEdit">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Edit Data</h4>
+            </div>
+            <div class="modal-body" >
+                <form action="/editFormSubmitUser" method="post" id="editForm">
+
+                    <div class="row">
+                        <div class="col-md-12" style="margin: 0px !important;">
+                            <div class="col-md-12">
+                                <div class=" row boxrow">
+                                    <div class="col-md-12">
+                                        <strong class="labelh" style="margin-bottom: 10px;">Name</strong>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="form-group label-fixed">
+                                            <label class="control-label">First Name <span style="color: red">&nbsp; &#42;</span></label>
+                                            <input required type="text" name="nameEdit" id="nameEdit" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group label-fixed">
+                                            <label class="control-label">Middle Name</label>
+                                            <input  type="text" name="middleNameEdit" id="middleNameEdit" class="form-control">
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group label-fixed">
+                                            <label class="control-label">Last Name</label>
+                                            <input  type="text" name="lastNameEdit" id="lastNameEdit" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-12">
+                                <div class=" row boxrow">
+                                    <div class="col-md-12">
+                                        <div class="col-xs-6">
+                                            <strong class="labelh pull-left">Mobile<span style="color: red">&nbsp; &#42;</span></strong>
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="col-md-12" id="mob-1" style="display: block;">
+                                        <div class="col-md-12">
+                                            <div class="row">
+
+                                                <div class="form-group label-fixed">
+                                                    <label class="control-label">Mobile</label>
+                                                    <input required type="number" name="mobileEdit" id="mobileEdit" class="form-control">
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                    </div><!-- First Mobile-->
+
+                                    <div class="col-md-12" id="mob-2" style="display: none;">
+                                        <div class="col-md-12">
+                                            <div class="row">
+
+                                                <div class="form-group label-fixed">
+                                                    <label class="control-label">Second Mobile</label>
+                                                    <input  type="number" name="secondMobileEdit" id="secondMobileEdit" class="form-control">
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+
+                                    </div><!-- Second Mobile-->
+
+                                    <div class="col-md-12" id="mob-3" style="display: none;">
+                                        <div class="col-md-12">
+                                            <div class="row">
+
+                                                <div class="form-group label-fixed">
+                                                    <label class="control-label">Third Mobile</label>
+                                                    <input  type="number" name="thirdMobileEdit" id="thirdMobileEdit" class="form-control">
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                    </div><!-- Third Mobile-->
+
+
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-12">
+                                <div class="row boxrow">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <strong class="labelh pull-left">Email</strong>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="row ">
+                                            <div class="col-xs-9">
+                                                <div class="form-group label-fixed">
+                                                    <label class="control-label">Enter Email</label>
+                                                    <input  type="email" name="emailEdit" id="emailEdit" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-3">
+                                                <a href="#" class="btn btn-simple btn-primary btn-md pull-right" style="margin-top: 25px; margin-right: -25px;  ">Send Code</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-xs-9">
+                                                <div class="form-group label-fixed ">
+                                                    <label class="control-label">Enter Code</label>
+                                                    <input type="number" class="form-control">
+                                                    <div id="" class="errmsg">Wrong OTP!</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-3">
+                                                <a href="#" class="btn btn-simple btn-primary btn-md pull-right " style="margin-top: 25px; margin-right: -25px;  ">Validate
+
+
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-12">
+                                <div class="row boxrow">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <strong class="labelh pull-left">Notes</strong>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <div class="form-group label-fixed">
+                                            <label class="control-label">Notes</label>
+                                            <textarea type="text" rows="2" class="form-control" name="notesEdit" id="notesEdit" style="border-right: 1px solid #eee;"></textarea>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+
+
+
+
+                        </div><!--- col-6 left-->
+
+
+
+
+                        <div class="col-md-12" style="margin: 0px !important;">
+
+
+
+                            <div class="col-md-12" style="margin: 0px !important;">
+                                <div class=" row boxrow">
+                                    <div class="col-md-12">
+                                        <strong class="labelh pull-left">Age/DOB<span style="color: red">&nbsp; &#42;</span></strong>
+                                    </div>
+                                    <div class="col-md-12" style="margin: 0px !important;">
+
+                                        <div class="form-group label-fixed">
+                                            <label class="control-label">Age</label>
+                                            <input required type="number" name="ageEdit" id="ageEdit" class="form-control">
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-12">
+                                <div class=" row boxrow">
+                                    <div class="col-md-12">
+                                        <strong class="labelh pull-left">Gender<span style="color: red">&nbsp; &#42;</span></strong>
+                                    </div>
+                                    <div class="col-md-12">
+
+                                        <div class="form-group label-fixed">
+
+                                            <select required name="genderEdit" id="genderEdit" class="form-control">
+                                                <option value="Male">Male</option>
+                                                <option value="Female">Female</option>
+                                                <option value="Other">Other</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class=" row boxrow">
+                                    <div class="col-md-12">
+                                        <strong class="labelh pull-left">Occupation<span style="color: red">&nbsp; &#42;</span></strong>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group label-fixed">
+                                            <select  name="occupationEdit" required class="form-control" onchange="otherBox2()" id="otherselect2">
+                                                <option value="" selected></option>
+                                                <option value="doctor">Doctor</option>
+                                                <option value="advocate">Advocate</option>
+                                                <option value="teacher">Teacher</option>
+                                                <option value="Ex. Serviceman">Ex. Serviceman</option>
+                                                <option value="Retired Employee">Retired Employee</option>
+                                                <option value="Farmer">Farmer</option>
+                                                <option value="Private Employee">Private Employee</option>
+                                                <option value="Govt. Employee">Govt. Employee</option>
+                                                <option value="Business Man">Business Man</option>
+                                                <option value="student">Student</option>
+                                                <option value="other">Other</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6" style="display: none;" id="otherocc2">
+                                        <div class="form-group label-fixed">
+                                            <label class="control-label">Enter Occupation</label>
+                                            <input required type="text" name="occOtherEdit" id="occOtherEdit"  class="form-control">
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-12">
+                                <div class="row boxrow">
+                                    <div class="col-md-12">
+                                        <strong class="labelh pull-left">Mark</strong>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group label-fixed is-empty">
+                                            <label class="control-label">Mark</label>
+                                            <select name="markEdit" id="markEdit"  class="form-control">
+                                                <option value="" selected="selected"></option>
+                                                <option value="P">Pramukh</option>
+                                                <option value="Z">Zila Panchayat</option>
+                                                <option value="BDC">BDC Member</option>
+                                                <option value="GP">Gram Pradhan</option>
+                                                <option value="AS">Asha</option>
+                                                <option value="ANG">Aaganbadi</option>
+                                                <option value="EX">Ex Army</option>
+                                                <option value="YS">Youth Solder</option>
+                                                <option value="YF S">Youth Student</option>
+                                                <option value="YMD">Yowak Mongal Dal</option>
+                                                <option value="GPR">Gram Parhari</option>
+                                                <option value="WB">Well Wisher</option>
+                                                <option value="MO">Mule Owner</option>
+
+                                            </select>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-12" style="margin: 0px !important;">
+                                <div class=" row boxrow">
+                                    <div class="col-md-12">
+                                        <strong class="labelh pull-left">Address<span style="color: red">&nbsp; &#42;</span></strong>
+                                    </div>
+                                    <div class="col-md-4" id="stateSE" style="margin: 0px !important;">
+
+                                        <div class="form-group label-fixed">
+                                            <label class="control-label">State</label>
+
+                                            <input type="text" readonly name="stateE" id="stateLE" value="" class="form-control">
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-md-4" id="districtSE" style="margin: 0px !important;">
+
+                                        <div class="form-group label-fixed">
+                                            <label class="control-label">District</label>
+                                            <input type="text" readonly name="districtE"  id="districtLE" value="" class="form-control">
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-md-4" id="blockSE" style="margin: 0px !important;">
+
+                                        <div class="form-group label-fixed">
+                                            <label class="control-label">Block</label>
+                                            <input type="text" readonly name="blockE" id="blockLE" value="" class="form-control">
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-4" id="villageSE" style="margin: 0px !important;">
+
+                                        <div class="form-group label-fixed">
+                                            <label class="control-label">Village</label>
+                                            <input type="text" readonly name="villageE" id="villageLE" value="" class="form-control">
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-4" id="stateHE" style="margin: 0px !important;">
+
+                                        <div class="form-group label-fixed">
+                                            <label class="control-label">State</label>
+                                            <select  name="stateE" id="stateE" class="form-control">
+
+                                                <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                                                <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                                <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                                                <option value="Assam">Assam</option>
+                                                <option value="Bihar">Bihar</option>
+                                                <option value="Chandigarh">Chandigarh</option>
+                                                <option value="Chhattisgarh">Chhattisgarh</option>
+                                                <option value="Dadra and Nagar Haveli">Dadra and Nagar Haveli</option>
+                                                <option value="Daman and Diu">Daman and Diu</option>
+                                                <option value="Delhi">Delhi</option>
+                                                <option value="Goa">Goa</option>
+                                                <option value="Gujarat">Gujarat</option>
+                                                <option value="Haryana">Haryana</option>
+                                                <option value="Himachal Pradesh">Himachal Pradesh</option>
+                                                <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                                                <option value="Jharkhand">Jharkhand</option>
+                                                <option value="Karnataka">Karnataka</option>
+                                                <option value="Kerala">Kerala</option>
+                                                <option value="Lakshadweep">Lakshadweep</option>
+                                                <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                                <option value="Maharashtra">Maharashtra</option>
+                                                <option value="Manipur">Manipur</option>
+                                                <option value="Meghalaya">Meghalaya</option>
+                                                <option value="Mizoram">Mizoram</option>
+                                                <option value="Nagaland">Nagaland</option>
+                                                <option value="Orissa">Orissa</option>
+                                                <option value="Pondicherry">Pondicherry</option>
+                                                <option value="Punjab">Punjab</option>
+                                                <option value="Rajasthan">Rajasthan</option>
+                                                <option value="Sikkim">Sikkim</option>
+                                                <option value="Tamil Nadu">Tamil Nadu</option>
+                                                <option value="Tripura">Tripura</option>
+                                                <option value="Uttarakhand" selected="selected">Uttarakhand</option>
+                                                <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                                <option value="West Bengal">West Bengal</option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-md-4" id="districtHE" style="margin: 0px !important;">
+                                        <div class="form-group label-fixed">
+                                            <label class="control-label">District</label>
+                                            <select  name="districtE" id="districtE" onchange="getEditBlock(value,document.getElementById('state').value); "  class="form-control">
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4" id="blockHE" style="margin: 0px !important;">
+                                        <div class="form-group label-fixed">
+                                            <label class="control-label">Block/Nagar palika</label>
+                                            <select  name="blockE" id="blockE" onfocus="getEditBlock()" onchange="getEditVillage();" class="form-control">
+                                            </select>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4" id="villageHE" style="margin: 0px !important;">
+                                        <div class="form-group label-fixed">
+                                            <label class="control-label">Village</label>
+                                            <select name="villageE" id="villageE" onfocus="getEditVillage()"  class="form-control">
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4" style="margin: 0px !important;">
+                                        <div class="form-group label-fixed">
+                                            <label class="control-label">Pin Code</label>
+                                            <input  type="number" name="pinE" id="pinE" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div><!-- Col md 6 right-->
+                    </div><!-- main ROW end-->
+
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div><span style="color: red">&nbsp; &#42;</span> Mandatory</div>
+                            <div><span style="color: red">&nbsp; &#42;</span> Changes will be shown on page refresh</div>
+                            <button class="btn btn-primary pull-right editIt disableButtonEdit" type="submit" id="submit">Edit</button>
+                        </div>
+                    </div>
+                    <br><br>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <!--          <button type="button" class="btn btn-xs btn-primary" data-dismiss="modal">Close</button>-->
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="bgblack" id="model">
+    <div class="model" >
+        Data Succesfully Saved !
+        <br>
+        <button class="btn btn-xs btn-danger" onclick="showModel()"  data-dismiss="modal">Close</button>
+    </div>
+</div>
+
+
+
+
+<!-- EDIT DATA MODAL END -------------------------------------------------------------------------------------------------->
+
+
+
+
+
+
+
+
+<!-- Registration MODAL START -------------------------------------------------------------------------------------------------->
+<!-- Modal -->
+<div class="modal fade" id="myModal2"  >
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Edit Admin Rights</h4>
+            </div>
+            <div class="modal-body" >
+
+
+                <form action="/editAdminRights" id="editFormRights" autocomplete="off" method="post">
+
+                    <input type="hidden" id="forMessage" value="123">
+                    <input type="hidden" id="forPrint" value="123">
+                    <input type="hidden" id="forPrintOthers" value="123">
+                    <input type="hidden" id="forAdminAdd" value="123">
+                    <input type="hidden" id="forCivilAdd" value="123">
+                    <input type="hidden" id="forEditAdmin" value="123">
+                    <input type="hidden" id="forAddressAED" value="123">
+                    <input type="hidden" id="forAddData" value="123">
+                    <input type="hidden" id="forCivilEdit" value="123">
+                    <input type="hidden" id="forBlockAdmin" value="123">
+
+
+                    <div class="row">
+                        <div class="col-md-12"> <div class="row boxrow">
+                            <strong class="labelh">Message and Print Settings</strong>
+                            <div class="col-md-6  number-spinner">
+                                <div class="form-group label-fixed">
+                                    <label class="control-label">Message Rights</label>
+                                    <div class="slidecontainer">
+
+
+
+                                        <button type="button" class="spin-btn left-btn disableMessage" data-dir="dwn"><i class="fa fa-minus"></i></button>
+
+
+                                        <input type="number" min="0" max="1000" class="disableMessage spin-txt" value="0" name="messageRights" id="myRange">
+                                        <button type="button" class="spin-btn right-btn disableMessage" data-dir="up"><i class="fa fa-plus"></i></button>
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6  number-spinner">
+                                <div class="form-group label-fixed">
+                                    <label class="control-label">Print Rights</label>
+                                    <div class="slidecontainer">
+
+                                        <button type="button" class="spin-btn left-btn disablePrint" data-dir="dwn"><i class="fa fa-minus"></i></button>
+                                        <input type="number" min="0" class="disablePrint spin-txt" max="1000" value="0" name="printRights" id="myRange1">
+                                        <button type="button" class="spin-btn right-btn disablePrint" data-dir="up"><i class="fa fa-plus"></i></button>
+
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div></div>
+
+                        <div class="col-md-12"> <div class="row boxrow">
+                            <strong class="labelh">Citizen Settings</strong>
+                            <div class="col-md-6">
+
+                                <div class="checkbox pull-left" style="margin-left: -15px; margin-right: -20px; margin-bottom: 20px;">
+                                    <label>
+                                        <input type="checkbox" name="citizenAdd" class="disableCivilAdd" id="citizenAdd">
+                                        <strong>Add New Citizens</strong>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+
+                                <div class="checkbox pull-left" style="margin-left: -15px; margin-right: -20px; margin-bottom: 20px;">
+                                    <label>
+                                        <input type="checkbox" id="citizenEdit" class="disableCivilEdit" name="citizenEdit">
+                                        <strong>Edit Existing Citizens</strong>
+                                    </label>
+                                </div>
+                            </div>
+                        </div></div>
+                        <div class="col-md-12"> <div class="row boxrow">
+                            <strong class="labelh">Admin Settings</strong>
+
+                            <div class="col-md-6">
+
+                                <div class="checkbox pull-left" style="margin-left: -15px; margin-right: -20px; margin-bottom: 20px;">
+                                    <label>
+                                        <input type="checkbox" id="adminAdd" class="disableAdminAdd" name="adminAdd">
+                                        <strong>Create Admin</strong>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+
+                                <div class="checkbox pull-left" style="margin-left: -15px; margin-right: -20px; margin-bottom: 20px;">
+                                    <label>
+                                        <input type="checkbox" id="adminEdit" class="disableAdminEdit" name="adminEdit">
+                                        <strong>Edit Admin</strong>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" readonly id="emailRights" value="" name="emailRights">
+
+                                <div class="checkbox pull-left" style="margin-left: -15px; margin-right: -20px; margin-bottom: 20px;">
+                                    <label>
+                                        <input type="checkbox" id="adminEdit" class="disableAdminBlock" name="adminBlock">
+                                        <strong>Block Admin</strong>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                            <div class="row boxrow">
+                                <strong class="labelh">Address Settings</strong>
+
+                                <div class="col-md-6">
+
+                                    <div class="checkbox pull-left" style="margin-left: -15px; margin-right: -20px; margin-bottom: 20px;">
+                                        <label>
+                                            <input type="checkbox" id="addressAED" class="disableAddress" name="addressAED">
+                                            <strong>Add/Edit/Delete Address Settings</strong>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div><!-- main ROW end-->
+
+
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row boxrow">
+                                <strong class="labelh">Area Access Level</strong>
+
+                                <div class="row col-md-12">
+                                    <div class="col-md-3" id="stateRad">
+                                        <div class="checkbox pull-left" style="margin-left: -15px; margin-right: -20px; margin-bottom: 20px;">
+                                            <label>
+                                                <input type="radio" id="stateRadio" required onclick="checkRadio()" value="state" name="optionsRadio">
+                                                <strong>State</strong>
+                                            </label>
+                                        </div></div>
+                                    <div class="col-md-3" id="districtRad">
+                                        <div class="checkbox pull-left" style="margin-left: -15px; margin-right: -20px; margin-bottom: 20px;">
+                                            <label>
+                                                <input type="radio" id="districtRadio" required onchange="checkRadio()" value="district" name="optionsRadio">
+                                                <strong>District</strong>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3" id="blockRad">
+                                        <div class="checkbox pull-left" style="margin-left: -15px; margin-right: -20px; margin-bottom: 20px;">
+                                            <label>
+                                                <input type="radio" id="blockRadio" required onchange="checkRadio()" value="block" name="optionsRadio">
+                                                <strong>Block</strong>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3" id="villageRad">
+                                        <div class="checkbox pull-left" style="margin-left: -15px; margin-right: -20px; margin-bottom: 20px;">
+                                            <label>
+                                                <input type="radio" name="optionsRadio" required onchange="checkRadio()" value="village" id="villageRadio">
+                                                <strong>Village</strong>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                                <div id="stateREditAdmin">
+                                    <div class="col-md-3" id="stateSEditAdmin" style="margin: 0px !important;">
+
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">State</label>
+                                            <input type="text" required readonly name="state" id="stateLEditAdmin" value="" class="form-control">
+                                        </div>
+
+                                    </div>
+                                    <div id="stateHEditAdmin"  class="col-md-3" style="margin: 0px !important;">
+                                        <div  class="form-group label-floating">
+                                            <label class="control-label">State</label>
+                                            <select name="state" required id="stateEditAdmin" class="form-control">
+                                                <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                                                <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                                <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                                                <option value="Assam">Assam</option>
+                                                <option value="Bihar">Bihar</option>
+                                                <option value="Chandigarh">Chandigarh</option>
+                                                <option value="Chhattisgarh">Chhattisgarh</option>
+                                                <option value="Dadra and Nagar Haveli">Dadra and Nagar Haveli</option>
+                                                <option value="Daman and Diu">Daman and Diu</option>
+                                                <option value="Delhi" selected="selected">Delhi</option>
+                                                <option value="Goa">Goa</option>
+                                                <option value="Gujarat">Gujarat</option>
+                                                <option value="Haryana">Haryana</option>
+                                                <option value="Himachal Pradesh">Himachal Pradesh</option>
+                                                <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                                                <option value="Jharkhand">Jharkhand</option>
+                                                <option value="Karnataka">Karnataka</option>
+                                                <option value="Kerala">Kerala</option>
+                                                <option value="Lakshadweep">Lakshadweep</option>
+                                                <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                                <option value="Maharashtra">Maharashtra</option>
+                                                <option value="Manipur">Manipur</option>
+                                                <option value="Meghalaya">Meghalaya</option>
+                                                <option value="Mizoram">Mizoram</option>
+                                                <option value="Nagaland">Nagaland</option>
+                                                <option value="Orissa">Orissa</option>
+                                                <option value="Pondicherry">Pondicherry</option>
+                                                <option value="Punjab">Punjab</option>
+                                                <option value="Rajasthan">Rajasthan</option>
+                                                <option value="Sikkim">Sikkim</option>
+                                                <option value="Tamil Nadu">Tamil Nadu</option>
+                                                <option value="Tripura">Tripura</option>
+                                                <option value="Uttarakhand" selected>Uttarakhand</option>
+                                                <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                                <option value="West Bengal">West Bengal</option>
+                                            </select>
+                                        </div></div>
+
+                                </div>
+                                <div id="districtREditAdmin">
+                                    <div class="col-md-3" id="districtSEditAdmin" style="margin: 0px !important;">
+
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">District</label>
+                                            <input type="text" required readonly name="district" id="districtLEditAdmin" value="" class="form-control">
+                                        </div>
+
+                                    </div>
+                                    <div id="districtHEditAdmin" class="col-md-3" style="margin: 0px !important;">
+                                        <div   class="form-group label-floating">
+                                            <label class="control-label">District</label>
+                                            <select  name="district" id="districtEditAdmin"  onchange="getBlock()"  class="form-control">
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div id="blockREditAdmin">
+                                    <div class="col-md-3" id="blockSEditAdmin" style="margin: 0px !important;">
+
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Block</label>
+                                            <input type="text" readonly name="block" required id="blockLEditAdmin" value="" class="form-control">
+                                        </div>
+
+                                    </div>
+                                    <div id="blockHEditAdmin" class="col-md-3" style="margin: 0px !important;">
+                                        <div   class="form-group label-floating">
+                                            <label class="control-label">Block/Nagar palika</label>
+                                            <select  name="block" id="blockEditAdmin"  onchange="getVillage()" class="form-control">
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div id="villageREditAdmin">
+                                    <div class="col-md-3" id="villageSEditAdmin" style="margin: 0px !important;">
+
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Village</label>
+                                            <input type="text" readonly required name="village" id="villageLEditAdmin" value="" class="form-control">
+                                        </div>
+
+                                    </div>
+                                    <div  id="villageHEditAdmin" class="col-md-3" style="margin: 0px !important;">
+                                        <div   class="form-group label-floating">
+                                            <label class="control-label">Village</label>
+                                            <select name="village" id="villageEditAdmin"  class="form-control">
+                                            </select>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+                    <div class="row">
+                        <div class="col-md-12">
+
+                            <button type="submit" class="btn btn-primary pull-right"  onclick="showModel()" >Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <br><br>
+
+
+        </div>
+        <div class="modal-footer">
+            <!--          <button type="button" class="btn btn-xs btn-primary" data-dismiss="modal">Close</button>-->
+        </div>
+    </div>
+
+</div>
+
+
+
+<div class="bgblack" id="model">
+    <div class="model" >
+        Data Succesfully Saved !
+        <br>
+        <button class="btn btn-xs btn-danger" onclick="showModel()"  data-dismiss="modal">Close</button>
+    </div>
+</div>
+
+
+
+
+<!-- Registration MODAL END -------------------------------------------------------------------------------------------------->
+
+
+
+<!--        -----------------------------------------------------------      -->
+<div class="modal fade" id="his" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <i class="material-icons">clear</i>
+                </button>
+                <h4 class="modal-title">History</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <strong>Title</strong>
+                        <p>Civilians registered</p>
+                        <p>Block Added</p>
+                        <p>Block Edited</p>
+                        <p>Village Added</p>
+                        <p>Village Edited</p>
+                        <p>Applications Recieved</p>
+                        <p>Applications Resolved</p>
+                    </div>
+
+                    <div class="col-xs-3" style="border-left: 1px solid #ccc;">
+                        <strong>Total</strong>
+
+                        <p id="civilianTotal">0</p>
+                        <p id="blockTotal">0</p>
+                        <p id="blockEditedTotal">0</p>
+                        <p id="villageTotal">0</p>
+                        <p id="villageEditedTotal">0</p>
+                        <p>0</p>
+                        <p>0</p>
+                    </div>
+                    <div class="col-xs-3" style="border-left: 1px solid #ccc;">
+                        <strong>Today</strong>
+                        <p id="civilianToday">0</p>
+                        <p id="blockToday">0</p>
+                        <p id="blockEditedToday">0</p>
+                        <p id="villageToday">0</p>
+                        <p id="villageEditedToday">0</p>
+                        <p>0</p>
+                        <p>0</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger btn-simple" data-dismiss="modal">Close<div class="ripple-container"><div class="ripple ripple-on ripple-out" style="left: 33.5781px; top: 27px; background-color: rgb(244, 67, 54); transform: scale(8.5);"></div></div></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+
+
+    function otherBox(){
+        console.log('other selected')
+        var othervalue = document.getElementById("occ").value;
+
+        if(othervalue=="other"){
+            document.getElementById("otherocc").style.display = "block";
+        }
+        else {
+            document.getElementById("otherocc").style.display = "none";
+        }
+    };
+
+
+
+    function otherBox2(){
+        var othervalue1 = document.getElementById("otherselect2").value;
+
+        if(othervalue1=="other"){
+            document.getElementById('occOtherEdit').disabled = false;
+
+            document.getElementById("otherocc2").style.display = "block";
+        }
+        else {
+            document.getElementById("otherocc2").style.display = "none";
+        }
+    };
+
+
+</script>
+
+<script>
+    if('{{level}}'==='village'){
+        document.getElementById('stateE').disabled = true;
+        document.getElementById('districtE').disabled = true;
+        document.getElementById('villageE').disabled = true;
+        document.getElementById('blockE').disabled = true;
+
+        document.getElementById('villageLE').value='{{village}}';
+        document.getElementById('blockLE').value='{{block}}';
+        document.getElementById('districtLE').value='{{district}}';
+        document.getElementById('stateLE').value='{{state}}';
+    }
+    if('{{level}}'==='block'){
+        document.getElementById('stateE').disabled = true;
+        document.getElementById('districtE').disabled = true;
+        document.getElementById('blockE').disabled = true;
+
+        document.getElementById('blockLE').value='{{state}}';
+        document.getElementById('districtLE').value='{{district}}';
+        document.getElementById('stateLE').value='{{state}}';
+    }
+    if('{{level}}'==='district'){
+        document.getElementById('stateE').disabled = true;
+        document.getElementById('districtE').disabled = true;
+
+        document.getElementById('districtLE').value='{{district}}';
+        document.getElementById('stateLE').value='{{state}}';
+    }
+    if('{{level}}'==='state'){
+        document.getElementById('stateE').disabled = true;
+        document.getElementById('stateLE').value='{{state}}';
+    }
+</script>
+
+<script>
+    if('{{level}}'==='village'){
+        document.getElementById('state').disabled = true;
+        document.getElementById('district').disabled = true;
+        document.getElementById('village').disabled = true;
+        document.getElementById('block').disabled = true;
+
+        document.getElementById('villageL').value='{{village}}';
+        document.getElementById('blockL').value='{{block}}';
+        document.getElementById('districtL').value='{{district}}';
+        document.getElementById('stateL').value='{{state}}';
+    }
+    if('{{level}}'==='block'){
+        document.getElementById('state').disabled = true;
+        document.getElementById('district').disabled = true;
+        document.getElementById('block').disabled = true;
+
+        document.getElementById('blockL').value='{{block}}';
+        document.getElementById('districtL').value='{{district}}';
+        document.getElementById('stateL').value='{{state}}';
+    }
+    if('{{level}}'==='district'){
+        document.getElementById('state').disabled = true;
+        document.getElementById('district').disabled = true;
+
+        document.getElementById('districtL').value='{{district}}';
+        document.getElementById('stateL').value='{{state}}';
+    }
+    if('{{level}}'==='state'){
+        document.getElementById('state').disabled = true;
+        document.getElementById('stateL').value='{{state}}';
+    }
+</script>
+
+
+<script>
+
+    var x =1;
+    function addMobile(){
+        var a = document.getElementById("mob-2");
+        var b = document.getElementById("mob-3");
+        if(x==1) {
+            a.style.display = "block";
+            x = x+1;
+        }
+        else if(x==2){
+            b.style.display = "block";
+            x = x+1;
+        }
+        else {
+            alert("You can add maximum 3 mobile numbers.");
+        }
+    };
+
+
+    function showModel(){
+        if(document.getElementById("model").style.display == "none"){
+            document.getElementById("model").style.display = "block";
+        }
+        else {
+            document.getElementById("model").style.display = "none";
+        }
+    };
+</script>
+<script>
+    $(document).on('click', '.number-spinner button', function () {
+        var btn = $(this),
+                oldValue = btn.closest('.number-spinner').find('input').val().trim(),
+                newVal = 0;
+
+        if (btn.attr('data-dir') == 'up') {
+            newVal = parseInt(oldValue) + 1;
+        } else {
+            if (oldValue > 0) {
+                newVal = parseInt(oldValue) - 1;
+            } else {
+                newVal = 0;
+            }
+        }
+        btn.closest('.number-spinner').find('input').val(newVal);
+    });
+</script>
+<script>
+    if('{{editC}}'!='on'){
+        document.getElementById('forCivilEdit').disabled = true;
+    }
+    if('{{blockA}}'!='on'){
+        document.getElementById('forBlockAdmin').disabled = true;
+    }
+    if('{{editA}}'!='on'){
+        document.getElementById('forEditAdmin').disabled = true;
+    }
+    if('{{aedAddress}}'!='on'){
+        document.getElementById('forAddressAED').disabled = true;
+    }
+    if('{{addC}}'!='on'){
+        document.getElementById('forCivilAdd').disabled = true;
+    }
+    if('{{addA}}'!='on'){
+        document.getElementById('forAdminAdd').disabled = true;
+    }
+    if('{{message}}'=='0'){
+        document.getElementById('forMessage').disabled = true;
+    }
+    else{
+        document.getElementById('forMessage').value='{{message}}';
+        document.getElementById('forMessage').disabled = false;
+    }
+    if('{{print}}'=='0'){
+        document.getElementById('forPrint').disabled = true;
+    }
+    else{
+        document.getElementById('forPrint').value='{{print}}';
+        document.getElementById('forPrint').disabled = false;
+    }
+
+    if('{{printOthers}}'=='0'){
+        document.getElementById('forPrintOthers').disabled = true;
+    }
+    else{
+        document.getElementById('forPrintOthers').disabled = false;
+
+        document.getElementById('forPrintOthers').value='{{printOthers}}';
+    }
+
+</script>
+<script>
+    if('{{level}}'==='village'){
+        document.getElementById('stateRadio').disabled = true;
+        document.getElementById('districtRadio').disabled = true;
+        document.getElementById('blockRadio').disabled = true;
+
+        document.getElementById('stateEditAdmin').disabled = true;
+        document.getElementById('districtEditAdmin').disabled = true;
+        document.getElementById('villageEditAdmin').disabled = true;
+        document.getElementById('blockEditAdmin').disabled = true;
+
+        document.getElementById('villageLEditAdmin').value='{{village}}';
+        document.getElementById('blockLEditAdmin').value='{{block}}';
+        document.getElementById('districtLEditAdmin').value='{{district}}';
+        document.getElementById('stateLEditAdmin').value='{{state}}';
+    }
+    if('{{level}}'==='block'){
+        document.getElementById('stateRadio').disabled = true;
+        document.getElementById('districtRadio').disabled = true;
+
+        document.getElementById('stateEditAdmin').disabled = true;
+        document.getElementById('districtEditAdmin').disabled = true;
+        document.getElementById('blockEditAdmin').disabled = true;
+
+        document.getElementById('blockLEditAdmin').value='{{block}}';
+        document.getElementById('districtLEditAdmin').value='{{district}}';
+        document.getElementById('stateLEditAdmin').value='{{state}}';
+    }
+    if('{{level}}'==='district'){
+        document.getElementById('stateRadio').disabled = true;
+
+        document.getElementById('stateEditAdmin').disabled = true;
+        document.getElementById('districtEditAdmin').disabled = true;
+
+        document.getElementById('districtLEditAdmin').value='{{district}}';
+        document.getElementById('stateLEditAdmin').value='{{state}}';
+    }
+    if('{{level}}'==='state'){
+        document.getElementById('stateEditAdmin').disabled = true;
+        document.getElementById('stateLEditAdmin').value='{{state}}';
+    }
+</script>
+<script>
+
+
+
+
+
+
+</script>
+</body>
+<script src="/bootstrapjs.js" type="text/javascript"></script>
+<script src="/material.min.js"></script>
+<script src="/bootstrap-datepicker.js" type="text/javascript"></script>
+
+<!-- Control Center for Material Kit: activating the ripples, parallax effects, scripts from the example pages etc -->
+<script src="/materialkitjs.js" type="text/javascript"></script>
+</html>

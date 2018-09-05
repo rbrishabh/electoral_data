@@ -450,6 +450,42 @@ app.get('/userSearch',authenticate,(req,res)=> {
     });
 
 });
+app.get('/todayAdd',authenticate,(req,res)=> {
+    var user = req.session.userId;
+    var obj = {};
+    Users.findById(user).then((user)=>{
+        console.log(user);
+        if(user.state){
+            obj.state = user.state
+        }
+        if(user.village){
+            obj.village = user.village
+        }
+        if(user.block){
+            obj.block = user.block
+        }
+        if(user.district){
+            obj.district = user.district
+        }
+
+
+            obj.level = user.level;
+            obj.message= user.messageRights;
+            obj.print= user.printRightsL;
+            obj.printOthers= user.printRights;
+
+            obj.addC = user.citizenAdd;
+        obj.aedAddress = user.addressAED;
+        obj.addA = user.adminAdd;
+            obj.editC= user.citizenEdit;
+            obj.editA= user.adminEdit;
+        obj.blockA = user.adminBlock;
+        console.log(obj);
+
+        res.render('todayAdd.hbs', obj);
+    });
+
+});
 
 app.get('/mobileReq',authenticate,(req,res)=> {
     var user = req.session.userId;
@@ -1690,6 +1726,140 @@ app.get('/initialSearch3/state/:state/district/:district/block/:block/village/:v
                     pin: user[i].pin});
             }
             console.log(obj)
+            res.send(JSON.stringify(obj));
+        }
+    },(e)=>{
+        res.status(400).send();
+    }).catch((e)=>{
+        res.status(400).send();
+    });
+
+});
+
+
+app.get('/getHistory/:email',(req,res)=>{
+    var email = req.params.email;
+    address.find({block: { $exists: true }, dateTimeBlock:moment().utcOffset("+05:30").format('DD-MM-YYYY'), addedByBlock: email}).count().then((countTotal)=>{
+      var blockToday = countTotal
+        address.find({village: { $exists: true }, dateTimeBlock:moment().utcOffset("+05:30").format('DD-MM-YYYY'), addedByVillage: email}).count().then((countTotal)=>{
+            var villageToday = countTotal
+
+            address.find({block: { $exists: true }, addedByBlock: email}).count().then((countTotal)=>{
+                var blockTotal = countTotal
+                address.find({village: { $exists: true }, addedByVillage: email}).count().then((countTotal)=>{
+                    var villageTotal = countTotal
+
+                    address.distinct("block",{dateTimeBlock:moment().utcOffset("+05:30").format('DD-MM-YYYY'), editedByBlock: email}).then((countTotal)=>{
+                        var  blockTodayEdit = countTotal.length;
+                        address.distinct("village",{ dateTimeBlock:moment().utcOffset("+05:30").format('DD-MM-YYYY'), editedByVillage: email}).then((countTotal)=>{
+                            var villageTodayEdit = countTotal.length;
+
+                            address.distinct("block",{editedByBlock: email}).then((countTotal)=>{
+                                var blockTotalEdit = countTotal.length;
+                                address.distinct("village",{editedByVillage: email}).then((countTotal)=>{
+
+
+                                    var   villageTotalEdit = countTotal.length;
+                                    civilian.find({createdBy:email}).count().then((count)=>{
+                                        var civilTotal = count;
+
+                                        civilian.find({createdBy:email, dateTimeBlock:moment().utcOffset("+05:30").format('DD-MM-YYYY')}).count().then((count)=>{
+
+
+                                            var civilToday = count;
+                                            var obj = {
+                                                blockToday: blockToday.toString(),
+                                                villageToday: villageToday.toString(),
+                                                blockTodayEdit: blockTodayEdit.toString(),
+                                                villageTodayEdit: villageTodayEdit.toString(),
+                                                blockTotal: blockTotal.toString(),
+                                                villageTotal: villageTotal.toString(),
+                                                blockTotalEdit: blockTotalEdit.toString(),
+                                                villageTotalEdit: villageTotalEdit.toString(),
+                                                civilToday: civilToday.toString(),
+                                                civilTotal: civilTotal.toString()
+                                            };
+
+                                            res.send({obj});
+                                        });
+
+                                    });
+                                });
+
+                            });
+                        });
+
+
+
+                    });
+
+                });
+
+            });
+
+        });
+
+    });
+
+
+
+
+
+
+
+
+});
+
+
+
+app.get('/initialSearch4/state/:state/district/:district/block/:block/village/:village', (req,res)=>{
+ console.log('reached here asfjlfjb');
+ var query = {};
+
+    if(req.params.state != "00") {
+     query.state = req.params.state;
+    }
+    if(req.params.district!="00"){
+        query.district = req.params.district
+    }
+    if(req.params.block!="00"){
+        query.block = req.params.block
+    }
+    if(req.params.village!="00"){
+        query.village= req.params.village
+    }
+    query.blocked = false;
+    console.log(query)
+    Users.find(query).then((user)=>{
+        if(!user){
+            res.send();
+        } else {
+          var obj1 = {};
+          var obj = {
+                civilian : []
+            };
+
+           for(var i = 0; i < user.length; i ++)
+            {
+
+                obj['civilian'].push(
+
+                        {_id: user[i]._id, 
+                            name: user[i].name,
+                    lastName: user[i].lastName,
+                    middleName: user[i].middleName,
+                  
+                    mobile: user[i].mobile,
+
+                  
+                    state: user[i].state,
+                    village: user[i].village,
+                    block: user[i].block,
+                    district: user[i].district,
+                    email: user[i].email,
+                        });
+            }
+console.log(obj);
             res.send(JSON.stringify(obj));
         }
     },(e)=>{
