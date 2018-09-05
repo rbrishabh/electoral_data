@@ -4,7 +4,9 @@
     <option name="SCOPE_TYPE" value="3" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="08b0d45d-fc30-493e-b719-7478e6d82225" name="Default" comment="" />
+    <list default="true" id="08b0d45d-fc30-493e-b719-7478e6d82225" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/server/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/server.js" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -56,7 +58,7 @@
           <entry key="css" value="50" />
           <entry key="hbs" value="9632" />
           <entry key="html" value="4" />
-          <entry key="js" value="18989" />
+          <entry key="js" value="19013" />
           <entry key="rnc" value="1" />
           <entry key="ts" value="1" />
         </counts>
@@ -66,7 +68,7 @@
           <entry key="CSS" value="50" />
           <entry key="HTML" value="8" />
           <entry key="Handlebars/Mustache" value="9632" />
-          <entry key="JavaScript" value="18985" />
+          <entry key="JavaScript" value="19009" />
           <entry key="RNG Compact" value="1" />
           <entry key="TypeScript" value="1" />
         </counts>
@@ -102,11 +104,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
+            <state relative-caret-position="209">
+              <caret line="1739" lean-forward="true" selection-start-line="1739" selection-start-column="3" selection-end-line="1803" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -218,10 +220,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/hbsJS/configjs.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="18">
+            <state relative-caret-position="57">
               <caret line="3" column="19" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
             </state>
           </provider>
@@ -376,9 +378,9 @@
         <option value="$PROJECT_DIR$/playground/try.js" />
         <option value="$PROJECT_DIR$/views/todayAdd.hbs" />
         <option value="$PROJECT_DIR$/views/hbsJS/querySearchL4.js" />
-        <option value="$PROJECT_DIR$/server/server.js" />
         <option value="$PROJECT_DIR$/server/db/mongoose.js" />
         <option value="$PROJECT_DIR$/views/hbsJS/configjs.js" />
+        <option value="$PROJECT_DIR$/server/server.js" />
       </list>
     </option>
   </component>
@@ -606,12 +608,12 @@
       <workItem from="1535832426156" duration="86000" />
       <workItem from="1535968610789" duration="794000" />
       <workItem from="1536043708296" duration="4973000" />
-      <workItem from="1536053191274" duration="53851000" />
+      <workItem from="1536053191274" duration="54100000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="781579000" />
+    <option name="totallyTimeSpent" value="781828000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -624,6 +626,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1376" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.7975133" visible="true" weight="0.1748879" />
       <window_info id="Structure" order="1" sideWeight="0.20248668" side_tool="true" weight="0.16890882" />
@@ -636,7 +639,7 @@
       <window_info anchor="bottom" id="Favorites" order="6" sideWeight="0.49925262" side_tool="true" weight="0.32838285" />
       <window_info anchor="bottom" id="TODO" order="7" weight="0.32786885" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.8632287" visible="true" weight="0.83934426" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.8632287" visible="true" weight="0.091803275" />
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.32786885" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.1367713" side_tool="true" weight="0.3737705" />
       <window_info anchor="bottom" id="Inspection Results" order="12" weight="0.32838285" />
@@ -1055,13 +1058,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/db/mongoose.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="57">
@@ -1071,8 +1067,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/hbsJS/configjs.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
+        <state relative-caret-position="57">
           <caret line="3" column="19" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="1739" lean-forward="true" selection-start-line="1739" selection-start-column="3" selection-end-line="1803" selection-end-column="6" />
         </state>
       </provider>
     </entry>
