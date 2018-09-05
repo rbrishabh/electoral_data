@@ -1737,71 +1737,71 @@ app.get('/initialSearch3/state/:state/district/:district/block/:block/village/:v
 });
 
 
-// app.get('/getHistory/:email',(req,res)=>{
-//     var email = req.params.email;
-//     address.find({block: { $exists: true }, dateTimeBlock:moment().utcOffset("+05:30").format('DD-MM-YYYY'), addedByBlock: email}).count().then((countTotal)=>{
-//       var blockToday = countTotal
-//         address.find({village: { $exists: true }, dateTimeBlock:moment().utcOffset("+05:30").format('DD-MM-YYYY'), addedByVillage: email}).count().then((countTotal)=>{
-//             var villageToday = countTotal
-//
-//             address.find({block: { $exists: true }, addedByBlock: email}).count().then((countTotal)=>{
-//                 var blockTotal = countTotal
-//                 address.find({village: { $exists: true }, addedByVillage: email}).count().then((countTotal)=>{
-//                     var villageTotal = countTotal
-//
-//                     address.distinct("block",{dateTimeBlock:moment().utcOffset("+05:30").format('DD-MM-YYYY'), editedByBlock: email}).then((countTotal)=>{
-//                         var  blockTodayEdit = countTotal.length;
-//                         address.distinct("village",{ dateTimeBlock:moment().utcOffset("+05:30").format('DD-MM-YYYY'), editedByVillage: email}).then((countTotal)=>{
-//                             var villageTodayEdit = countTotal.length;
-//
-//                             address.distinct("block",{editedByBlock: email}).then((countTotal)=>{
-//                                 var blockTotalEdit = countTotal.length;
-//                                 address.distinct("village",{editedByVillage: email}).then((countTotal)=>{
-//
-//
-//                                     var   villageTotalEdit = countTotal.length;
-//                                     civilian.find({createdBy:email}).count().then((count)=>{
-//                                         var civilTotal = count;
-//
-//                                         civilian.find({createdBy:email, dateTimeBlock:moment().utcOffset("+05:30").format('DD-MM-YYYY')}).count().then((count)=>{
-//
-//
-//                                             var civilToday = count;
-//                                             var obj = {
-//                                                 blockToday: blockToday.toString(),
-//                                                 villageToday: villageToday.toString(),
-//                                                 blockTodayEdit: blockTodayEdit.toString(),
-//                                                 villageTodayEdit: villageTodayEdit.toString(),
-//                                                 blockTotal: blockTotal.toString(),
-//                                                 villageTotal: villageTotal.toString(),
-//                                                 blockTotalEdit: blockTotalEdit.toString(),
-//                                                 villageTotalEdit: villageTotalEdit.toString(),
-//                                                 civilToday: civilToday.toString(),
-//                                                 civilTotal: civilTotal.toString()
-//                                             };
-//
-//                                             res.send({obj});
-//                                         });
-//
-//                                     });
-//                                 });
-//
-//                             });
-//                         });
-//
-//
-//
-//                     });
-//
-//                 });
-//
-//             });
-//
-//         });
-//
-//     });
-//
-// });
+app.get('/getHistory/:email',(req,res)=>{
+    var email = req.params.email;
+    address.find({block: { $exists: true }, dateTimeBlock:moment().utcOffset("+05:30").format('DD-MM-YYYY'), addedByBlock: email}).count().then((countTotal)=>{
+      var blockToday = countTotal
+        address.find({village: { $exists: true }, dateTimeBlock:moment().utcOffset("+05:30").format('DD-MM-YYYY'), addedByVillage: email}).count().then((countTotal)=>{
+            var villageToday = countTotal
+
+            address.find({block: { $exists: true }, addedByBlock: email}).count().then((countTotal)=>{
+                var blockTotal = countTotal
+                address.find({village: { $exists: true }, addedByVillage: email}).count().then((countTotal)=>{
+                    var villageTotal = countTotal
+
+                    address.distinct("block",{dateTimeBlock:moment().utcOffset("+05:30").format('DD-MM-YYYY'), editedByBlock: email}).then((countTotal)=>{
+                        var  blockTodayEdit = countTotal.length;
+                        address.distinct("village",{ dateTimeBlock:moment().utcOffset("+05:30").format('DD-MM-YYYY'), editedByVillage: email}).then((countTotal)=>{
+                            var villageTodayEdit = countTotal.length;
+
+                            address.distinct("block",{editedByBlock: email}).then((countTotal)=>{
+                                var blockTotalEdit = countTotal.length;
+                                address.distinct("village",{editedByVillage: email}).then((countTotal)=>{
+
+
+                                    var   villageTotalEdit = countTotal.length;
+                                    civilian.find({createdBy:email}).count().then((count)=>{
+                                        var civilTotal = count;
+
+                                        civilian.find({createdBy:email, dateTimeBlock:moment().utcOffset("+05:30").format('DD-MM-YYYY')}).count().then((count)=>{
+
+
+                                            var civilToday = count;
+                                            var obj = {
+                                                blockToday: blockToday.toString(),
+                                                villageToday: villageToday.toString(),
+                                                blockTodayEdit: blockTodayEdit.toString(),
+                                                villageTodayEdit: villageTodayEdit.toString(),
+                                                blockTotal: blockTotal.toString(),
+                                                villageTotal: villageTotal.toString(),
+                                                blockTotalEdit: blockTotalEdit.toString(),
+                                                villageTotalEdit: villageTotalEdit.toString(),
+                                                civilToday: civilToday.toString(),
+                                                civilTotal: civilTotal.toString()
+                                            };
+
+                                            res.send({obj});
+                                        });
+
+                                    });
+                                });
+
+                            });
+                        });
+
+
+
+                    });
+
+                });
+
+            });
+
+        });
+
+    });
+
+});
 
 
 
