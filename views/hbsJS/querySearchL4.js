@@ -905,8 +905,8 @@ function printData() {
             $("#abc").val(history.obj.blockTotal);
 
 
-             $("#civilianToday").innerHTML=history.obj.civilToday;
-            $("#civilianTotal").text(history.obj.civilTotal)
+             $("#civilianToday").text(history.obj.civilToday);
+            $("#civilianTotal").text(history.obj.civilTotal);
             $("#blockToday").text(history.obj.blockToday);
             $("#blockTotal").text(history.obj.blockTotal);
             $("#blockEditedToday").text(history.obj.blockTodayEdit);
