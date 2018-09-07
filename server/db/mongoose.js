@@ -10,7 +10,9 @@ db.once('open', function () {
     // we're connected!
 });
 mongoose.Promise = global.Promise;
-mongoose.connect(database);
+mongoose.connect(database,{
+    useMongoClient: true
+});
 
 
 module.exports = {mongoose,db};

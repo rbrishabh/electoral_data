@@ -169,7 +169,7 @@
                                             <div class="col-xs-9">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Mobile</label>
-                                                    <input required type="text" id="mobile" value="{{mobile}}" name="mobile" maxlength="10" class="form-control numeric maxLengthFilter">
+                                                    <input required type="text" onchange="$('#reqTrueSet').prop('required',true);" id="mobile" value="{{mobile}}" name="mobile" maxlength="10" class="form-control numeric maxLengthFilter">
                                                     <div id="wrongmobile" class="errmsg">Number already exists!</div>
                                                 </div>
                                             </div>
@@ -188,7 +188,7 @@
                                             <div class="col-xs-12">
                                                 <div class="form-group label-floating ">
                                                     <label class="control-label">Enter OTP</label>
-                                                    <input type="text" required name="otp" class="form-control numeric maxlengthfilter">
+                                                    <input type="text" name="otp" id="reqTrueSet" class="form-control numeric maxlengthfilter">
 
                                                 </div>
                                             </div>

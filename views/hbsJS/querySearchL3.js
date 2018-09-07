@@ -700,7 +700,7 @@ function print(printData) {
             + "<th>" + printData.civilian[x].state+ "</th>"
             + "<th>" + printData.civilian[x].pin+ "</th>"
             + "<th>" + printData.civilian[x].mobile + "</th>"
-            + "<th>" + printData.civilian[x].mobileReq + "</th>"
+            + "<th>" + printData.civilian[x].reqMobile + "</th>"
             + "<th>" + printData.civilian[x].email + "</th>"
             + "<th>" + "<input type='checkbox' data-value = "+ printData.civilian[x].mobile + "-"+ printData.civilian[x].name+ "-"+ printData.civilian[x].middleName+ "-"+ printData.civilian[x].lastName +">" + "</th>"
             + "<th>" + "<button class='btn btn-default fa fa-pencil-square-o' id='editCitizen' title='Edit Admin Profile' data-toggle='modal' data-target='#myModalEdit' value=" + printData.civilian[x]._id +  " onclick='printToEdit(value)' ></button>" + "</th>"
