@@ -14,9 +14,9 @@ $(document).ready(function() {
     ourRequest.open('GET',url, true);
     ourRequest.onload = function() {
         var ourData = JSON.parse(ourRequest.responseText);
-        console.log(ourData.address)
-        getBlock();
-        addDataToDropdown(ourData.address);
+        //console.log(ourData.address)
+        getBlockEdit();
+        addDataToDropdownEdit(ourData.address);
     }
     ourRequest.send();
 
@@ -25,7 +25,7 @@ $(document).ready(function() {
 
 
 
-function getBlock() {
+function getBlockEdit() {
     if(document.getElementById('stateEditAdmin').disabled == true && document.getElementById('districtEditAdmin').disabled == true){
 
         var valueState =  $("[id='stateLEditAdmin']").val()
@@ -40,22 +40,22 @@ function getBlock() {
         var valueDistrict = $("#districtEditAdmin option:selected").text();
     }
 
-    console.log(valueDistrict)
+    //console.log(valueDistrict)
     var url = urlFinal+'district/' + valueDistrict+'/state/'+valueState;
-    console.log('asfsdasaasfgeaga', url)
+    //console.log('asfsdasaasfgeaga', url)
     var ourRequest = new XMLHttpRequest();
     ourRequest.open('GET',url, true);
     ourRequest.onload = function() {
         var ourData = JSON.parse(ourRequest.responseText);
-        console.log(ourData.address);
-        getVillage();
-        addDataToDropdownBlock(ourData.address);
+        //console.log(ourData.address);
+        getVillageEdit();
+        addDataToDropdownBlockEdit(ourData.address);
 
     }
     ourRequest.send();
 }
 
-function getVillage() {
+function getVillageEdit() {
     if(document.getElementById('stateEditAdmin').disabled == true && document.getElementById('districtEditAdmin').disabled == true && document.getElementById('blockEditAdmin').disabled == true){
 
 
@@ -75,18 +75,18 @@ function getVillage() {
 
 
     var url = urlFinal + 'district/' + valueDistrict+'/state/'+valueState+'/block/'+valueBlock;
-    console.log(url);
+    //console.log(url);
     var ourRequest = new XMLHttpRequest();
     ourRequest.open('GET',url, true);
     ourRequest.onload = function() {
         var ourData = JSON.parse(ourRequest.responseText);
-        console.log(ourData.address)
-        addDataToDropdownVillage(ourData.address);
+        //console.log(ourData.address)
+        addDataToDropdownVillageEdit(ourData.address);
     }
     ourRequest.send();
 
 }
-function addDataToDropdown(data) {
+function addDataToDropdownEdit(data) {
     text = "";
 
     text = '<option selected"></option>'
@@ -96,7 +96,7 @@ function addDataToDropdown(data) {
     document.getElementById("districtEditAdmin").innerHTML = text
 
 }
-function addDataToDropdownBlock(data) {
+function addDataToDropdownBlockEdit(data) {
     text = "";
 
     text = '<option selected"></option>'
@@ -107,7 +107,7 @@ function addDataToDropdownBlock(data) {
 
 }
 
-function addDataToDropdownVillage(data) {
+function addDataToDropdownVillageEdit(data) {
     text = "";
 
     text = '<option selected"></option>'
