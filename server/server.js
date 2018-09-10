@@ -1567,177 +1567,219 @@ app.get('/initialSearch/state/:state/district/:district/block/:block/village/:vi
 app.get('/initialSearch1/state/:state/district/:district/block/:block/village/:village', (req,res)=>{
  //console.log('reached here asfjlfjb');
  var query = {};
+    var userNE = req.session.userId;
 
-    if(req.params.state != "00") {
-     query.state = req.params.state;
-    }
-    if(req.params.district!="00"){
-        query.district = req.params.district
-    }
-    if(req.params.block!="00"){
-        query.block = req.params.block
-    }
-    if(req.params.village!="00"){
-        query.village= req.params.village
-    }
-    query.blocked = false;
-    //console.log(query)
-    Users.find(query).then((user)=>{
-        if(!user){
-            res.send();
-        } else {
+    Users.findById(userNE).then((userNE) => {
+        if(req.params.state != "00") {
+            query.state = req.params.state;
+        }
+        if(req.params.district!="00"){
+            query.district = req.params.district
+        }
+        if(req.params.block!="00"){
+            query.block = req.params.block
+        }
+        if(req.params.village!="00"){
+            query.village= req.params.village
+        }
+        query.blocked = false;
+        query.email ={$ne:userNE.email};
+        if(userNE.superAdmin==false){
+            query.level ={$ne:userNE.level};
+        }
+        query.superAdmin = false;
+         // console.log(query)
 
-          var obj = {
-                civilian : []
-            };
+        Users.find(query).then((user)=>{
+            if(!user){
+                res.send();
+            } else {
 
-           for(var i = 0; i < user.length; i ++)
-            {
-                obj['civilian'].push(
+                var obj = {
+                    civilian : []
+                };
+
+                for(var i = 0; i < user.length; i ++)
+                {
+                    obj['civilian'].push(
 
                         {_id: user[i]._id,
                             name: user[i].name,
-                    lastName: user[i].lastName,
-                    middleName: user[i].middleName,
-                    age: user[i].age,
-                    gender: user[i].gender,
-                    mobile: user[i].mobile,
+                            lastName: user[i].lastName,
+                            middleName: user[i].middleName,
+                            age: user[i].age,
+                            gender: user[i].gender,
+                            mobile: user[i].mobile,
                             occupation: user[i].occupation,
-                    occOther: user[i].occOther,
-                    state: user[i].state,
-                    village: user[i].village,
-                    block: user[i].block,
-                    district: user[i].district,
-                    email: user[i].email,
-                    mark: user[i].mark,
-                    pin: user[i].pin});
+                            occOther: user[i].occOther,
+                            state: user[i].state,
+                            village: user[i].village,
+                            block: user[i].block,
+                            district: user[i].district,
+                            email: user[i].email,
+                            mark: user[i].mark,
+                            pin: user[i].pin});
+                }
+                //console.log(obj)
+                res.send(JSON.stringify(obj));
             }
-            //console.log(obj)
-            res.send(JSON.stringify(obj));
-        }
+        },(e)=>{
+            res.status(400).send();
+        }).catch((e)=>{
+            res.status(400).send();
+        });
+
     },(e)=>{
-        res.status(400).send();
+        res.send();
     }).catch((e)=>{
-        res.status(400).send();
+        res.send();
     });
 
 });
 
 app.get('/initialSearch2/state/:state/district/:district/block/:block/village/:village', (req,res)=>{
- //console.log('reached here asfjlfjb');
- var query = {};
+    var userNE = req.session.userId;
+    Users.findById(userNE).then((userNE) => {
+        var query = {};
 
-    if(req.params.state != "00") {
-     query.state = req.params.state;
-    }
-    if(req.params.district!="00"){
-        query.district = req.params.district
-    }
-    if(req.params.block!="00"){
-        query.block = req.params.block
-    }
-    if(req.params.village!="00"){
-        query.village= req.params.village
-    }
-    query.blocked = true;
-    //console.log(query)
-    Users.find(query).then((user)=>{
-        if(!user){
-            res.send();
-        } else {
+        if(req.params.state != "00") {
+            query.state = req.params.state;
+        }
+        if(req.params.district!="00"){
+            query.district = req.params.district
+        }
+        if(req.params.block!="00"){
+            query.block = req.params.block
+        }
+        if(req.params.village!="00"){
+            query.village= req.params.village
+        }
+        query.blocked = true;
+        query.email ={$ne:userNE.email};
+        if(userNE.superAdmin==false){
+            query.level ={$ne:userNE.level};
+        }
+        query.superAdmin = false;
+        //console.log(query)
+        Users.find(query).then((user)=>{
+            if(!user){
+                res.send();
+            } else {
 
-          var obj = {
-                civilian : []
-            };
+                var obj = {
+                    civilian : []
+                };
 
-           for(var i = 0; i < user.length; i ++)
-            {
-                obj['civilian'].push(
+                for(var i = 0; i < user.length; i ++)
+                {
+                    obj['civilian'].push(
 
                         {_id: user[i]._id,
                             name: user[i].name,
-                    lastName: user[i].lastName,
-                    middleName: user[i].middleName,
-                    age: user[i].age,
-                    gender: user[i].gender,
-                    mobile: user[i].mobile,
+                            lastName: user[i].lastName,
+                            middleName: user[i].middleName,
+                            age: user[i].age,
+                            gender: user[i].gender,
+                            mobile: user[i].mobile,
                             occupation: user[i].occupation,
-                    occOther: user[i].occOther,
-                    state: user[i].state,
-                    village: user[i].village,
-                    block: user[i].block,
-                    district: user[i].district,
-                    email: user[i].email,
-                    mark: user[i].mark,
-                    pin: user[i].pin});
+                            occOther: user[i].occOther,
+                            state: user[i].state,
+                            village: user[i].village,
+                            block: user[i].block,
+                            district: user[i].district,
+                            email: user[i].email,
+                            mark: user[i].mark,
+                            pin: user[i].pin});
+                }
+                //console.log(obj)
+                res.send(JSON.stringify(obj));
             }
-            //console.log(obj)
-            res.send(JSON.stringify(obj));
-        }
+        },(e)=>{
+            res.status(400).send();
+        }).catch((e)=>{
+            res.status(400).send();
+        });
+
     },(e)=>{
-        res.status(400).send();
+        res.send();
     }).catch((e)=>{
-        res.status(400).send();
+        res.send();
     });
+
+    //console.log('reached here asfjlfjb');
 
 });
 
 app.get('/initialSearch3/state/:state/district/:district/block/:block/village/:village', (req,res)=>{
  //console.log('reached here asfjlfjb');
- var query = {};
+    var userNE = req.session.userId;
+    Users.findById(userNE).then((userNE) => {
+        var query = {};
 
-    if(req.params.state != "00") {
-     query.state = req.params.state;
-    }
-    if(req.params.district!="00"){
-        query.district = req.params.district
-    }
-    if(req.params.block!="00"){
-        query.block = req.params.block
-    }
-    if(req.params.village!="00"){
-        query.village= req.params.village
-    }
-    query.mobileReq = true;
-    //console.log(query)
-    Users.find(query).then((user)=>{
-        if(!user){
-            res.send();
-        } else {
+        if(req.params.state != "00") {
+            query.state = req.params.state;
+        }
+        if(req.params.district!="00"){
+            query.district = req.params.district
+        }
+        if(req.params.block!="00"){
+            query.block = req.params.block
+        }
+        if(req.params.village!="00"){
+            query.village= req.params.village
+        }
+        query.mobileReq = true;
+        query.email ={$ne:userNE.email};
+        query.level ={$ne:userNE.level};
+        if(userNE.superAdmin==false){
+            query.level ={$ne:userNE.level};
+        }
+        query.superAdmin = false;
+        //console.log(query)
+        Users.find(query).then((user)=>{
+            if(!user){
+                res.send();
+            } else {
 
-          var obj = {
-                civilian : []
-            };
+                var obj = {
+                    civilian : []
+                };
 
-           for(var i = 0; i < user.length; i ++)
-            {
-                obj['civilian'].push(
+                for(var i = 0; i < user.length; i ++)
+                {
+                    obj['civilian'].push(
 
                         {_id: user[i]._id,
                             name: user[i].name,
-                    lastName: user[i].lastName,
-                    middleName: user[i].middleName,
-                    age: user[i].age,
-                    gender: user[i].gender,
-                    mobile: user[i].mobile,
-                    reqMobile: user[i].reqMobile,
+                            lastName: user[i].lastName,
+                            middleName: user[i].middleName,
+                            age: user[i].age,
+                            gender: user[i].gender,
+                            mobile: user[i].mobile,
+                            reqMobile: user[i].reqMobile,
                             occupation: user[i].occupation,
-                    occOther: user[i].occOther,
-                    state: user[i].state,
-                    village: user[i].village,
-                    block: user[i].block,
-                    district: user[i].district,
-                    email: user[i].email,
-                    mark: user[i].mark,
-                    pin: user[i].pin});
+                            occOther: user[i].occOther,
+                            state: user[i].state,
+                            village: user[i].village,
+                            block: user[i].block,
+                            district: user[i].district,
+                            email: user[i].email,
+                            mark: user[i].mark,
+                            pin: user[i].pin});
+                }
+                //console.log(obj)
+                res.send(JSON.stringify(obj));
             }
-            //console.log(obj)
-            res.send(JSON.stringify(obj));
-        }
+        },(e)=>{
+            res.status(400).send();
+        }).catch((e)=>{
+            res.status(400).send();
+        });
+
     },(e)=>{
-        res.status(400).send();
+        res.send();
     }).catch((e)=>{
-        res.status(400).send();
+        res.send();
     });
 
 });
@@ -1814,58 +1856,72 @@ app.get('/getHistory/:email',(req,res)=>{
 app.get('/initialSearch4/state/:state/district/:district/block/:block/village/:village', (req,res)=>{
  //console.log('reached here asfjlfjb');
  var query = {};
+    var userNE = req.session.userId;
 
-    if(req.params.state != "00") {
-     query.state = req.params.state;
-    }
-    if(req.params.district!="00"){
-        query.district = req.params.district
-    }
-    if(req.params.block!="00"){
-        query.block = req.params.block
-    }
-    if(req.params.village!="00"){
-        query.village= req.params.village
-    }
-    query.blocked = false;
-    //console.log(query)
-    Users.find(query).then((user)=>{
-        if(!user){
-            res.send();
-        } else {
-          var obj1 = {};
-          var obj = {
-                civilian : []
-            };
+    Users.findById(userNE).then((userNE) => {
 
-           for(var i = 0; i < user.length; i ++)
-            {
-
-                obj['civilian'].push(
-
-                        {_id: user[i]._id, 
-                            name: user[i].name,
-                    lastName: user[i].lastName,
-                    middleName: user[i].middleName,
-                  
-                    mobile: user[i].mobile,
-
-                  
-                    state: user[i].state,
-                    village: user[i].village,
-                    block: user[i].block,
-                    district: user[i].district,
-                    email: user[i].email,
-                        });
-            }
-//console.log(obj);
-            res.send(JSON.stringify(obj));
+        if(req.params.state != "00") {
+            query.state = req.params.state;
         }
+        if(req.params.district!="00"){
+            query.district = req.params.district
+        }
+        if(req.params.block!="00"){
+            query.block = req.params.block
+        }
+        if(req.params.village!="00"){
+            query.village= req.params.village
+        }
+        query.blocked = false;
+        if(userNE.superAdmin==false){
+            query.superAdmin = false;
+        }
+
+
+        //console.log(query)
+        Users.find(query).then((user)=>{
+            if(!user){
+                res.send();
+            } else {
+                var obj1 = {};
+                var obj = {
+                    civilian : []
+                };
+
+                for(var i = 0; i < user.length; i ++)
+                {
+
+                    obj['civilian'].push(
+
+                        {_id: user[i]._id,
+                            name: user[i].name,
+                            lastName: user[i].lastName,
+                            middleName: user[i].middleName,
+
+                            mobile: user[i].mobile,
+
+
+                            state: user[i].state,
+                            village: user[i].village,
+                            block: user[i].block,
+                            district: user[i].district,
+                            email: user[i].email,
+                        });
+                }
+//console.log(obj);
+                res.send(JSON.stringify(obj));
+            }
+        },(e)=>{
+            res.status(400).send();
+        }).catch((e)=>{
+            res.status(400).send();
+        });
+
     },(e)=>{
-        res.status(400).send();
-    }).catch((e)=>{
-        res.status(400).send();
-    });
+            res.send();
+        }).catch((e)=>{
+            res.send();
+        });
 
 });
 
@@ -1949,345 +2005,386 @@ app.get('/buttonSearch/:state/:district/:block/:village/:pin/:firstName/:middleN
 
 app.get('/buttonSearch1/:state/:district/:block/:village/:pin/:firstName/:middleName/:lastName/:minage/:maxage/:occ/:occother/:mobile/:email/:gender/:mark', (req,res)=>{
     //console.log('search botton reached server');
-    var query = {};
-    var age = {};
-    if(req.params.state != "00") {
-        query.state = req.params.state;
-    }
-    if(req.params.district!="00"){
-        query.district = req.params.district
-    }
-    if(req.params.block!="00"){
-        query.block = req.params.block
-    }
-    if(req.params.village!="00"){
-        query.village= req.params.village
-    }
-    if(req.params.pin!="00"){
-        query.pin= req.params.pin
-    }
-    if(req.params.firstName!="00"){
-       query.name= req.params.firstName
-
-
-    }
-    if(req.params.middleName!="00"){
-        query.middleName= req.params.middleName
-
-    }
-    if(req.params.lastName!="00"){
-       query.lastName= req.params.lastName
-
-    }
-    if(req.params.relationName!="00"){
-        query.relationName= req.params.relationName
-
-
-    }
-    if(req.params.relationMiddle!="00"){
-        query.relationMiddle= req.params.relationMiddle
-
-    }
-    if(req.params.relationLast!="00"){
-        query.relationLast= req.params.relationLast
-    }
-    if(req.params.minage!="00" && req.params.maxage == "00"){
-        query.age= {$gte: req.params.minage}
-    }
-    if(req.params.maxage!="00" && req.params.minage == "00"){
-        query.age= {$lte: req.params.maxage}
-    }
-    if(req.params.minage!="00" && req.params.maxage != "00"){
-        query.age= {$lte: req.params.maxage, $gte: req.params.minage}
+    var userNE = req.session.userId;
+    Users.findById(userNE).then((userNE) => {
+        var query = {};
+        var age = {};
+        if(req.params.state != "00") {
+            query.state = req.params.state;
         }
-    if(req.params.occ!="00"){
-        query.profession= req.params.occ
-    }
-    if(req.params.occother!="00"){
-        query.professionOther= req.params.occother
-    }
-    if(req.params.mobile!="00"){
-        query.mobile= req.params.mobile
-    }
-    if(req.params.email!="00"){
-        query.email= req.params.email
-    }
-    if(req.params.gender!="00"){
-        query.gender= req.params.gender
-    }
-    if(req.params.mark!="00"){
-        query.mark= req.params.mark
-    }
-    query.blocked = false;
-    //console.log(query, '123');
-    Users.find(query).then((user)=>{
-        if(!user){
-            //console.log('if running')
-            res.send();
-        } else {
-            var obj = {
-                civilian : []
-            };
+        if(req.params.district!="00"){
+            query.district = req.params.district
+        }
+        if(req.params.block!="00"){
+            query.block = req.params.block
+        }
+        if(req.params.village!="00"){
+            query.village= req.params.village
+        }
+        if(req.params.pin!="00"){
+            query.pin= req.params.pin
+        }
+        if(req.params.firstName!="00"){
+            query.name= req.params.firstName
 
-            for(var i = 0; i < user.length; i ++)
-            {
-                obj['civilian'].push(
-                    {
-                        _id: user[i]._id,
-                        _id: user[i]._id,
-                        name: user[i].name,
-                        lastName: user[i].lastName,
-                        middleName: user[i].middleName,
-                        age: user[i].age,
-                        gender: user[i].gender,
-                        mobile: user[i].mobile,
-                        occupation: user[i].occupation,
-                        occOther: user[i].occOther,
-                        state: user[i].state,
-                        village: user[i].village,
-                        block: user[i].block,
-                        district: user[i].district,
-                        email: user[i].email,
-                        mark: user[i].mark,
-                        pin: user[i].pin});
+
+        }
+        if(req.params.middleName!="00"){
+            query.middleName= req.params.middleName
+
+        }
+        if(req.params.lastName!="00"){
+            query.lastName= req.params.lastName
+
+        }
+        if(req.params.relationName!="00"){
+            query.relationName= req.params.relationName
+
+
+        }
+        if(req.params.relationMiddle!="00"){
+            query.relationMiddle= req.params.relationMiddle
+
+        }
+        if(req.params.relationLast!="00"){
+            query.relationLast= req.params.relationLast
+        }
+        if(req.params.minage!="00" && req.params.maxage == "00"){
+            query.age= {$gte: req.params.minage}
+        }
+        if(req.params.maxage!="00" && req.params.minage == "00"){
+            query.age= {$lte: req.params.maxage}
+        }
+        if(req.params.minage!="00" && req.params.maxage != "00"){
+            query.age= {$lte: req.params.maxage, $gte: req.params.minage}
+        }
+        if(req.params.occ!="00"){
+            query.profession= req.params.occ
+        }
+        if(req.params.occother!="00"){
+            query.professionOther= req.params.occother
+        }
+        if(req.params.mobile!="00"){
+            query.mobile= req.params.mobile
+        }
+        if(req.params.email!="00"){
+            query.email= req.params.email
+        }
+        if(req.params.gender!="00"){
+            query.gender= req.params.gender
+        }
+        if(req.params.mark!="00"){
+            query.mark= req.params.mark
+        }
+        query.blocked = false;
+        query.email ={$ne:userNE.email};
+        if(userNE.superAdmin==false){
+            query.level ={$ne:userNE.level};
+        }
+        query.superAdmin = false;
+        //console.log(query, '123');
+        Users.find(query).then((user)=>{
+            if(!user){
+                //console.log('if running')
+                res.send();
+            } else {
+                var obj = {
+                    civilian : []
+                };
+
+                for(var i = 0; i < user.length; i ++)
+                {
+                    obj['civilian'].push(
+                        {
+                            _id: user[i]._id,
+                            _id: user[i]._id,
+                            name: user[i].name,
+                            lastName: user[i].lastName,
+                            middleName: user[i].middleName,
+                            age: user[i].age,
+                            gender: user[i].gender,
+                            mobile: user[i].mobile,
+                            occupation: user[i].occupation,
+                            occOther: user[i].occOther,
+                            state: user[i].state,
+                            village: user[i].village,
+                            block: user[i].block,
+                            district: user[i].district,
+                            email: user[i].email,
+                            mark: user[i].mark,
+                            pin: user[i].pin});
+                }
+                //console.log(obj)
+                res.send(JSON.stringify(obj));
             }
-            //console.log(obj)
-            res.send(JSON.stringify(obj));
-        }
+        },(e)=>{
+            res.status(400).send();
+        }).catch((e)=>{
+            res.status(400).send();
+        });
     },(e)=>{
-        res.status(400).send();
+        res.send();
     }).catch((e)=>{
-        res.status(400).send();
+        res.send();
     });
+
 
 });
 
 app.get('/buttonSearch2/:state/:district/:block/:village/:pin/:firstName/:middleName/:lastName/:minage/:maxage/:occ/:occother/:mobile/:email/:gender/:mark', (req,res)=>{
     //console.log('search botton reached server');
-    var query = {};
-    var age = {};
-    if(req.params.state != "00") {
-        query.state = req.params.state;
-    }
-    if(req.params.district!="00"){
-        query.district = req.params.district
-    }
-    if(req.params.block!="00"){
-        query.block = req.params.block
-    }
-    if(req.params.village!="00"){
-        query.village= req.params.village
-    }
-    if(req.params.pin!="00"){
-        query.pin= req.params.pin
-    }
-    if(req.params.firstName!="00"){
-       query.name= req.params.firstName
-
-
-    }
-    if(req.params.middleName!="00"){
-        query.middleName= req.params.middleName
-
-    }
-    if(req.params.lastName!="00"){
-       query.lastName= req.params.lastName
-
-    }
-    if(req.params.relationName!="00"){
-        query.relationName= req.params.relationName
-
-
-    }
-    if(req.params.relationMiddle!="00"){
-        query.relationMiddle= req.params.relationMiddle
-
-    }
-    if(req.params.relationLast!="00"){
-        query.relationLast= req.params.relationLast
-    }
-    if(req.params.minage!="00" && req.params.maxage == "00"){
-        query.age= {$gte: req.params.minage}
-    }
-    if(req.params.maxage!="00" && req.params.minage == "00"){
-        query.age= {$lte: req.params.maxage}
-    }
-    if(req.params.minage!="00" && req.params.maxage != "00"){
-        query.age= {$lte: req.params.maxage, $gte: req.params.minage}
+    var userNE = req.session.userId;
+    Users.findById(userNE).then((userNE) => {
+        var query = {};
+        var age = {};
+        if(req.params.state != "00") {
+            query.state = req.params.state;
         }
-    if(req.params.occ!="00"){
-        query.profession= req.params.occ
-    }
-    if(req.params.occother!="00"){
-        query.professionOther= req.params.occother
-    }
-    if(req.params.mobile!="00"){
-        query.mobile= req.params.mobile
-    }
-    if(req.params.email!="00"){
-        query.email= req.params.email
-    }
-    if(req.params.gender!="00"){
-        query.gender= req.params.gender
-    }
-    if(req.params.mark!="00"){
-        query.mark= req.params.mark
-    }
-    query.blocked = true;
-    //console.log(query, '123');
-    Users.find(query).then((user)=>{
-        if(!user){
-            //console.log('if running')
-            res.send();
-        } else {
-            var obj = {
-                civilian : []
-            };
+        if(req.params.district!="00"){
+            query.district = req.params.district
+        }
+        if(req.params.block!="00"){
+            query.block = req.params.block
+        }
+        if(req.params.village!="00"){
+            query.village= req.params.village
+        }
+        if(req.params.pin!="00"){
+            query.pin= req.params.pin
+        }
+        if(req.params.firstName!="00"){
+            query.name= req.params.firstName
 
-            for(var i = 0; i < user.length; i ++)
-            {
-                obj['civilian'].push(
-                    {
-                        _id: user[i]._id,
-                        _id: user[i]._id,
-                        name: user[i].name,
-                        lastName: user[i].lastName,
-                        middleName: user[i].middleName,
-                        age: user[i].age,
-                        gender: user[i].gender,
-                        mobile: user[i].mobile,
-                        occupation: user[i].occupation,
-                        occOther: user[i].occOther,
-                        state: user[i].state,
-                        village: user[i].village,
-                        block: user[i].block,
-                        district: user[i].district,
-                        email: user[i].email,
-                        mark: user[i].mark,
-                        pin: user[i].pin});
+
+        }
+        if(req.params.middleName!="00"){
+            query.middleName= req.params.middleName
+
+        }
+        if(req.params.lastName!="00"){
+            query.lastName= req.params.lastName
+
+        }
+        if(req.params.relationName!="00"){
+            query.relationName= req.params.relationName
+
+
+        }
+        if(req.params.relationMiddle!="00"){
+            query.relationMiddle= req.params.relationMiddle
+
+        }
+        if(req.params.relationLast!="00"){
+            query.relationLast= req.params.relationLast
+        }
+        if(req.params.minage!="00" && req.params.maxage == "00"){
+            query.age= {$gte: req.params.minage}
+        }
+        if(req.params.maxage!="00" && req.params.minage == "00"){
+            query.age= {$lte: req.params.maxage}
+        }
+        if(req.params.minage!="00" && req.params.maxage != "00"){
+            query.age= {$lte: req.params.maxage, $gte: req.params.minage}
+        }
+        if(req.params.occ!="00"){
+            query.profession= req.params.occ
+        }
+        if(req.params.occother!="00"){
+            query.professionOther= req.params.occother
+        }
+        if(req.params.mobile!="00"){
+            query.mobile= req.params.mobile
+        }
+        if(req.params.email!="00"){
+            query.email= req.params.email
+        }
+        if(req.params.gender!="00"){
+            query.gender= req.params.gender
+        }
+        if(req.params.mark!="00"){
+            query.mark= req.params.mark
+        }
+        query.blocked = true;
+        query.email ={$ne:userNE.email};
+        if(userNE.superAdmin==false){
+            query.level ={$ne:userNE.level};
+        }
+        query.superAdmin = false;
+        //console.log(query, '123');
+        Users.find(query).then((user)=>{
+            if(!user){
+                //console.log('if running')
+                res.send();
+            } else {
+                var obj = {
+                    civilian : []
+                };
+
+                for(var i = 0; i < user.length; i ++)
+                {
+                    obj['civilian'].push(
+                        {
+                            _id: user[i]._id,
+                            _id: user[i]._id,
+                            name: user[i].name,
+                            lastName: user[i].lastName,
+                            middleName: user[i].middleName,
+                            age: user[i].age,
+                            gender: user[i].gender,
+                            mobile: user[i].mobile,
+                            occupation: user[i].occupation,
+                            occOther: user[i].occOther,
+                            state: user[i].state,
+                            village: user[i].village,
+                            block: user[i].block,
+                            district: user[i].district,
+                            email: user[i].email,
+                            mark: user[i].mark,
+                            pin: user[i].pin});
+                }
+                //console.log(obj)
+                res.send(JSON.stringify(obj));
             }
-            //console.log(obj)
-            res.send(JSON.stringify(obj));
-        }
+        },(e)=>{
+            res.status(400).send();
+        }).catch((e)=>{
+            res.status(400).send();
+        });
+
     },(e)=>{
-        res.status(400).send();
+        res.send();
     }).catch((e)=>{
-        res.status(400).send();
+        res.send();
     });
+
 
 });
 app.get('/buttonSearch3/:state/:district/:block/:village/:pin/:firstName/:middleName/:lastName/:minage/:maxage/:occ/:occother/:mobile/:email/:gender/:mark', (req,res)=>{
-    //console.log('search botton reached server');
-    var query = {};
-    var age = {};
-    if(req.params.state != "00") {
-        query.state = req.params.state;
-    }
-    if(req.params.district!="00"){
-        query.district = req.params.district
-    }
-    if(req.params.block!="00"){
-        query.block = req.params.block
-    }
-    if(req.params.village!="00"){
-        query.village= req.params.village
-    }
-    if(req.params.pin!="00"){
-        query.pin= req.params.pin
-    }
-    if(req.params.firstName!="00"){
-       query.name= req.params.firstName
+    var userNE = req.session.userId;
+    Users.findById(userNE).then((userNE) => {
 
-
-    }
-    if(req.params.middleName!="00"){
-        query.middleName= req.params.middleName
-
-    }
-    if(req.params.lastName!="00"){
-       query.lastName= req.params.lastName
-
-    }
-    if(req.params.relationName!="00"){
-        query.relationName= req.params.relationName
-
-
-    }
-    if(req.params.relationMiddle!="00"){
-        query.relationMiddle= req.params.relationMiddle
-
-    }
-    if(req.params.relationLast!="00"){
-        query.relationLast= req.params.relationLast
-    }
-    if(req.params.minage!="00" && req.params.maxage == "00"){
-        query.age= {$gte: req.params.minage}
-    }
-    if(req.params.maxage!="00" && req.params.minage == "00"){
-        query.age= {$lte: req.params.maxage}
-    }
-    if(req.params.minage!="00" && req.params.maxage != "00"){
-        query.age= {$lte: req.params.maxage, $gte: req.params.minage}
+        //console.log('search botton reached server');
+        var query = {};
+        var age = {};
+        if(req.params.state != "00") {
+            query.state = req.params.state;
         }
-    if(req.params.occ!="00"){
-        query.profession= req.params.occ
-    }
-    if(req.params.occother!="00"){
-        query.professionOther= req.params.occother
-    }
-    if(req.params.mobile!="00"){
-        query.mobile= req.params.mobile
-    }
-    if(req.params.email!="00"){
-        query.email= req.params.email
-    }
-    if(req.params.gender!="00"){
-        query.gender= req.params.gender
-    }
-    if(req.params.mark!="00"){
-        query.mark= req.params.mark
-    }
-    query.mobileReq = true;
-    //console.log(query, '123');
-    Users.find(query).then((user)=>{
-        if(!user){
-            //console.log('if running')
-            res.send();
-        } else {
-            var obj = {
-                civilian : []
-            };
+        if(req.params.district!="00"){
+            query.district = req.params.district
+        }
+        if(req.params.block!="00"){
+            query.block = req.params.block
+        }
+        if(req.params.village!="00"){
+            query.village= req.params.village
+        }
+        if(req.params.pin!="00"){
+            query.pin= req.params.pin
+        }
+        if(req.params.firstName!="00"){
+            query.name= req.params.firstName
 
-            for(var i = 0; i < user.length; i ++)
-            {
-                obj['civilian'].push(
-                    {
-                        _id: user[i]._id,
-                        _id: user[i]._id,
-                        name: user[i].name,
-                        lastName: user[i].lastName,
-                        middleName: user[i].middleName,
-                        age: user[i].age,
-                        gender: user[i].gender,
-                        mobile: user[i].mobile,
-                        reqMobile: user[i].reqMobile,
-                        occupation: user[i].occupation,
-                        occOther: user[i].occOther,
-                        state: user[i].state,
-                        village: user[i].village,
-                        block: user[i].block,
-                        district: user[i].district,
-                        email: user[i].email,
-                        mark: user[i].mark,
-                        pin: user[i].pin});
+
+        }
+        if(req.params.middleName!="00"){
+            query.middleName= req.params.middleName
+
+        }
+        if(req.params.lastName!="00"){
+            query.lastName= req.params.lastName
+
+        }
+        if(req.params.relationName!="00"){
+            query.relationName= req.params.relationName
+
+
+        }
+        if(req.params.relationMiddle!="00"){
+            query.relationMiddle= req.params.relationMiddle
+
+        }
+        if(req.params.relationLast!="00"){
+            query.relationLast= req.params.relationLast
+        }
+        if(req.params.minage!="00" && req.params.maxage == "00"){
+            query.age= {$gte: req.params.minage}
+        }
+        if(req.params.maxage!="00" && req.params.minage == "00"){
+            query.age= {$lte: req.params.maxage}
+        }
+        if(req.params.minage!="00" && req.params.maxage != "00"){
+            query.age= {$lte: req.params.maxage, $gte: req.params.minage}
+        }
+        if(req.params.occ!="00"){
+            query.profession= req.params.occ
+        }
+        if(req.params.occother!="00"){
+            query.professionOther= req.params.occother
+        }
+        if(req.params.mobile!="00"){
+            query.mobile= req.params.mobile
+        }
+        if(req.params.email!="00"){
+            query.email= req.params.email
+        }
+        if(req.params.gender!="00"){
+            query.gender= req.params.gender
+        }
+        if(req.params.mark!="00"){
+            query.mark= req.params.mark
+        }
+        query.mobileReq = true;
+        query.email ={$ne:userNE.email};
+        if(userNE.superAdmin==false){
+            query.level ={$ne:userNE.level};
+        }
+        query.superAdmin = false;
+        //console.log(query, '123');
+        Users.find(query).then((user)=>{
+            if(!user){
+                //console.log('if running')
+                res.send();
+            } else {
+                var obj = {
+                    civilian : []
+                };
+
+                for(var i = 0; i < user.length; i ++)
+                {
+                    obj['civilian'].push(
+                        {
+                            _id: user[i]._id,
+                            _id: user[i]._id,
+                            name: user[i].name,
+                            lastName: user[i].lastName,
+                            middleName: user[i].middleName,
+                            age: user[i].age,
+                            gender: user[i].gender,
+                            mobile: user[i].mobile,
+                            reqMobile: user[i].reqMobile,
+                            occupation: user[i].occupation,
+                            occOther: user[i].occOther,
+                            state: user[i].state,
+                            village: user[i].village,
+                            block: user[i].block,
+                            district: user[i].district,
+                            email: user[i].email,
+                            mark: user[i].mark,
+                            pin: user[i].pin});
+                }
+                //console.log(obj)
+                res.send(JSON.stringify(obj));
             }
-            //console.log(obj)
-            res.send(JSON.stringify(obj));
-        }
+        },(e)=>{
+            res.status(400).send();
+        }).catch((e)=>{
+            res.status(400).send();
+        });
+
     },(e)=>{
-        res.status(400).send();
+        res.send();
     }).catch((e)=>{
-        res.status(400).send();
+        res.send();
     });
 
 });
@@ -2295,113 +2392,128 @@ app.get('/buttonSearch3/:state/:district/:block/:village/:pin/:firstName/:middle
 
 app.get('/buttonSearch4/:state/:district/:block/:village/:pin/:firstName/:middleName/:lastName/:minage/:maxage/:occ/:occother/:mobile/:email/:gender/:mark', (req,res)=>{
     //console.log('search botton reached server');
-    var query = {};
-    var age = {};
-    if(req.params.state != "00") {
-        query.state = req.params.state;
-    }
-    if(req.params.district!="00"){
-        query.district = req.params.district
-    }
-    if(req.params.block!="00"){
-        query.block = req.params.block
-    }
-    if(req.params.village!="00"){
-        query.village= req.params.village
-    }
-    if(req.params.pin!="00"){
-        query.pin= req.params.pin
-    }
-    if(req.params.firstName!="00"){
-       query.name= req.params.firstName
 
+    var userNE = req.session.userId;
 
-    }
-    if(req.params.middleName!="00"){
-        query.middleName= req.params.middleName
-
-    }
-    if(req.params.lastName!="00"){
-       query.lastName= req.params.lastName
-
-    }
-    if(req.params.relationName!="00"){
-        query.relationName= req.params.relationName
-
-
-    }
-    if(req.params.relationMiddle!="00"){
-        query.relationMiddle= req.params.relationMiddle
-
-    }
-    if(req.params.relationLast!="00"){
-        query.relationLast= req.params.relationLast
-    }
-    if(req.params.minage!="00" && req.params.maxage == "00"){
-        query.age= {$gte: req.params.minage}
-    }
-    if(req.params.maxage!="00" && req.params.minage == "00"){
-        query.age= {$lte: req.params.maxage}
-    }
-    if(req.params.minage!="00" && req.params.maxage != "00"){
-        query.age= {$lte: req.params.maxage, $gte: req.params.minage}
+    Users.findById(userNE).then((userNE) => {
+        var query = {};
+        var age = {};
+        if(req.params.state != "00") {
+            query.state = req.params.state;
         }
-    if(req.params.occ!="00"){
-        query.profession= req.params.occ
-    }
-    if(req.params.occother!="00"){
-        query.professionOther= req.params.occother
-    }
-    if(req.params.mobile!="00"){
-        query.mobile= req.params.mobile
-    }
-    if(req.params.email!="00"){
-        query.email= req.params.email
-    }
-    if(req.params.gender!="00"){
-        query.gender= req.params.gender
-    }
-    if(req.params.mark!="00"){
-        query.mark= req.params.mark
-    }
-    query.mobileReq = true;
-    //console.log(query, '123');
-    Users.find(query).then((user)=>{
-        if(!user){
-            res.send();
-        } else {
-            var obj1 = {};
-            var obj = {
-                civilian : []
-            };
-
-            for(var i = 0; i < user.length; i ++)
-            {
-
-                obj['civilian'].push(
-
-                    {_id: user[i]._id,
-                        name: user[i].name,
-                        lastName: user[i].lastName,
-                        middleName: user[i].middleName,
-
-                        mobile: user[i].mobile,
+        if(req.params.district!="00"){
+            query.district = req.params.district
+        }
+        if(req.params.block!="00"){
+            query.block = req.params.block
+        }
+        if(req.params.village!="00"){
+            query.village= req.params.village
+        }
+        if(req.params.pin!="00"){
+            query.pin= req.params.pin
+        }
+        if(req.params.firstName!="00"){
+            query.name= req.params.firstName
 
 
-                        state: user[i].state,
-                        village: user[i].village,
-                        block: user[i].block,
-                        district: user[i].district,
-                        email: user[i].email,
-                    });
+        }
+        if(req.params.middleName!="00"){
+            query.middleName= req.params.middleName
+
+        }
+        if(req.params.lastName!="00"){
+            query.lastName= req.params.lastName
+
+        }
+        if(req.params.relationName!="00"){
+            query.relationName= req.params.relationName
+
+
+        }
+        if(req.params.relationMiddle!="00"){
+            query.relationMiddle= req.params.relationMiddle
+
+        }
+        if(req.params.relationLast!="00"){
+            query.relationLast= req.params.relationLast
+        }
+        if(req.params.minage!="00" && req.params.maxage == "00"){
+            query.age= {$gte: req.params.minage}
+        }
+        if(req.params.maxage!="00" && req.params.minage == "00"){
+            query.age= {$lte: req.params.maxage}
+        }
+        if(req.params.minage!="00" && req.params.maxage != "00"){
+            query.age= {$lte: req.params.maxage, $gte: req.params.minage}
+        }
+        if(req.params.occ!="00"){
+            query.profession= req.params.occ
+        }
+        if(req.params.occother!="00"){
+            query.professionOther= req.params.occother
+        }
+        if(req.params.mobile!="00"){
+            query.mobile= req.params.mobile
+        }
+        if(req.params.email!="00"){
+            query.email= req.params.email
+        }
+        if(req.params.gender!="00"){
+            query.gender= req.params.gender
+        }
+        if(req.params.mark!="00"){
+            query.mark= req.params.mark
+        }
+        query.mobileReq = true;
+
+        if(userNE.superAdmin==false){
+            query.superAdmin = false;
+        }
+
+        //console.log(query, '123');
+        Users.find(query).then((user)=>{
+            if(!user){
+                res.send();
+            } else {
+                var obj1 = {};
+                var obj = {
+                    civilian : []
+                };
+
+                for(var i = 0; i < user.length; i ++)
+                {
+
+                    obj['civilian'].push(
+
+                        {_id: user[i]._id,
+                            name: user[i].name,
+                            lastName: user[i].lastName,
+                            middleName: user[i].middleName,
+
+                            mobile: user[i].mobile,
+
+
+                            state: user[i].state,
+                            village: user[i].village,
+                            block: user[i].block,
+                            district: user[i].district,
+                            email: user[i].email,
+                        });
+                }
+                //console.log(obj);
+                res.send(JSON.stringify(obj));
             }
-            //console.log(obj);
-            res.send(JSON.stringify(obj));
-        }
+        },(e)=>{
+            res.status(400).send();
+        }).catch((e)=>{
+            res.status(400).send();
+        });
+
     },(e)=>{
-        res.status(400).send();
+        res.send();
     }).catch((e)=>{
-        res.status(400).send();
+        res.send();
     });
 
 });
@@ -2496,6 +2608,7 @@ app.post('/addedAdmin', authenticate, (req,res)=>{
     if(req.body.state){
         obj.state = req.body.state
     }
+    obj.superAdmin = false;
     if(req.body.district){
         obj.district = req.body.district
     }

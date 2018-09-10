@@ -168,6 +168,10 @@ var userSchema = new mongoose.Schema({
     reqMobile:{
         type: Number,
         trim: true
+    },
+    superAdmin : {
+        type: Boolean,
+        trim: true
     }
 });
 
