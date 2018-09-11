@@ -927,7 +927,56 @@ app.get('/valueForEdit1/:id', (req,res)=> {
                         district: user[i].district,
                         email: user[i].email,
                         mark: user[i].mark,
-                        pin: user[i].pin});
+                        addressAED: user[i].addressAED,
+                        adminEdit: user[i].adminEdit,
+                        adminAdd: user[i].adminAdd,
+                        citizenAdd: user[i].citizenAdd,
+                        citizenEdit: user[i].citizenEdit,
+                        printRightsL : user[i].printRightsL,
+                        messageRights: user[i].messageRights,
+                        adminBlock: user[i].adminBlock,
+                        pin: user[i].pin
+
+
+                    });
+            }
+            //console.log(obj)
+            res.send(JSON.stringify(obj));
+        }
+    },(e)=>{
+        res.status(400).send();
+    }).catch((e)=>{
+        res.status(400).send();
+    });
+});
+
+app.get('/valueForEdit2/:id', (req,res)=> {
+    var email = req.params.id;
+    Users.find({
+        email:email,
+        blocked:false
+    }).then((user)=>{
+        if(!user){
+            res.send();
+        } else {
+            var obj = {
+                civilian : []
+            };
+
+            for(var i = 0; i < user.length; i ++)
+            {
+                obj['civilian'].push(
+                    {    _id: user[i]._id,
+                        addressAED: user[i].addressAED,
+                        adminEdit: user[i].adminEdit,
+                        adminAdd: user[i].adminAdd,
+                        citizenAdd: user[i].citizenAdd,
+                        citizenEdit: user[i].citizenEdit,
+                        printRightsL : user[i].printRightsL,
+                        messageRights: user[i].messageRights,
+                        adminBlock: user[i].adminBlock,
+
+                    });
             }
             //console.log(obj)
             res.send(JSON.stringify(obj));

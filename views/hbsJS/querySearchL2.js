@@ -12,10 +12,6 @@ ageArray = [];
 
 
 
-
-
-
-
 function printToEdit (value){
     document.getElementById('idToUpdate').value=value;
     var url = urlFinal + 'valueForEdit1/'+value
@@ -29,7 +25,6 @@ function printToEdit (value){
     ourRequest.send();
 }
 function printToEditRights (value){
-
     document.getElementById('emailRights').value=value;
 }
 
@@ -596,7 +591,6 @@ function print(printData) {
         + "<th>" + "Mobile"+ "</th>"
         + "<th>" + "<b>Select</b>" + "</th>"
         + "<th>" + "<b>View/Edit</b>" + "</th>"
-        + "<th>" + "<b>Edit Rights</b>" + "</th>"
         + "<th>" + "<b>Block</b>" + "</th>"
 
         + "</b></tr>"
@@ -690,7 +684,7 @@ function print(printData) {
             + "<th>" + printData.civilian[x].mobile + "</th>"
             + "<th>" + "<input type='checkbox' data-value = "+ printData.civilian[x].mobile + "-"+ printData.civilian[x].name+ "-"+ printData.civilian[x].middleName+ "-"+ printData.civilian[x].lastName +">" + "</th>"
             + "<th>" + "<button class='btn btn-default fa fa-pencil-square-o' id='editCitizen' title='Edit Admin Profile' data-toggle='modal' data-target='#myModalEdit' value=" + printData.civilian[x]._id +  " onclick='printToEdit(value)' ></button>" + "</th>"
-            + "<th>" + "<button class='btn btn-default fa fa-cogs disableButtonEdit' title='Edit Admin Rights' id='editCitizen2'  data-toggle='modal' data-target='#myModal2'  value= "+ printData.civilian[x].email +  " onclick='printToEditRights(value)' ></button>" + "</th>"
+
             + "<th>" + "<button class='btn btn-default disableButtonBlock' title='Block' value= "+ printData.civilian[x].mobile+" onclick='unblockHim(value)'>UnBlock</button>" + "</th>"
 
 

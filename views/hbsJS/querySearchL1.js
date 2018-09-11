@@ -10,12 +10,6 @@ ageArray = [];
 
 
 
-
-
-
-
-
-
 function printToEdit (value){
     document.getElementById('idToUpdate').value=value;
     var url = urlFinal + 'valueForEdit1/'+value
@@ -37,9 +31,19 @@ function blockHim(value){
 
 }
 
-function printToEditRights (value){
+function printToEditRights (email){
 
-    document.getElementById('emailRights').value=value;
+    document.getElementById('emailRights').value=email;
+    var url = urlFinal + 'valueForEdit2/'+email;
+    var ourRequest = new XMLHttpRequest();
+    ourRequest.open('GET', url, true);
+    ourRequest.onload = function () {
+        var ourData = JSON.parse(ourRequest.responseText);
+
+        printingToEditRights(ourData.civilian[0]);
+    }
+    ourRequest.send();
+
 }
 
 function printingToEdit(value) {
@@ -139,6 +143,33 @@ function printingToEdit(value) {
 
         $("#markEdit").val(value.mark);
 
+    }
+
+
+}
+
+function printingToEditRights(value) {
+
+    $('#editFormRights').trigger("reset");
+    if(value.messageRights){
+        $("#myRange").val(value.messageRights);
+
+    }if(value.printRightsL){
+        $("#myRange1").val(value.messageRights);
+
+    }
+    if(value.citizenAdd=="on") {
+        $('#citizenAdd').prop('checked', true);
+    }if(value.citizenEdit=="on") {
+        $('#citizenEdit').prop('checked', true);
+    }if(value.adminAdd=="on") {
+        $('#adminAdd').prop('checked', true);
+    }if(value.adminEdit=="on") {
+        $('#adminEdit').prop('checked', true);
+    }if(value.adminBlock=="on") {
+        $('#adminBlock').prop('checked', true);
+    }if(value.addressAED=="on") {
+        $('#addressAED').prop('checked', true);
     }
 
 
@@ -697,7 +728,7 @@ function print(printData) {
             + "<th>" + printData.civilian[x].email + "</th>"
             + "<th>" + "<input type='checkbox' data-value = "+ printData.civilian[x].mobile + "-"+ printData.civilian[x].name+ "-"+ printData.civilian[x].middleName+ "-"+ printData.civilian[x].lastName +">" + "</th>"
             + "<th>" + "<button class='btn btn-default fa fa-pencil-square-o' id='editCitizen' title='Edit Admin Profile' data-toggle='modal' data-target='#myModalEdit' value=" + printData.civilian[x]._id +  " onclick='printToEdit(value)' ></button>" + "</th>"
-            + "<th>" + "<button class='btn btn-default fa fa-cogs disableButtonEdit' title='Edit Admin Rights' id='editCitizen2'  data-toggle='modal' data-target='#myModal2'  value= "+ printData.civilian[x].email +  " onclick='printToEditRights(value)' ></button>" + "</th>"
+            + "<th>" + "<button class='btn btn-default fa fa-cogs disableButtonEdit' title='Edit Admin Rights' id='editCitizen2'  data-toggle='modal' data-target='#myModal2'  value= "+ printData.civilian[x].email +" onclick='printToEditRights(value)' ></button>" + "</th>"
             + "<th>" + "<button class='btn btn-default disableButtonBlock' title='Block' value= "+ printData.civilian[x].mobile+" onclick='blockHim(value)'>Block</button>" + "</th>"
 
             +"</tr>";
