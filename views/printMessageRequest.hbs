@@ -21,12 +21,13 @@
     <link href="/materialkit.css" rel="stylesheet"/>
     <link rel="stylesheet" href="/inputtype.css">
     <link rel="stylesheet" href="/style.css">
-    <script src="/querySearchL1.js"></script>
-    s<script src="/areaAccessSearch.js"></script>
+    <script src="/querySearchL5.js"></script>
+
+    <script src="/areaAccessSearch.js"></script>
     <script src="/address.js"></script>
     <script src="/addressAdmin.js"></script>
     <script src="/authenticationAddUser.js"></script>
-    <script src="/searchAddressEdit.js"></script>
+
     <script src="/userRightSettings.js"></script>
     <style>
 
@@ -112,11 +113,11 @@
                             <ul style="color: #1a1a1a !important;" class="dropdown-menu dropdown-menu-right">
 
 
-                                <li class="active"><a href="/userSearch">List of Admins</a></li>
+                                <li><a href="/userSearch">List of Admins</a></li>
                                 <li><a href="/blockedUsers">List of Blocked Users/Admins</a></li>
                                 <li><a href="/mobileReq">List Change Mobile User/Admin</a></li>
-                                <li><a href="/todayAdd">User History</a>
-                                <li><a href="/printmessagerequest">Print/Message Request</a></li>
+                                <li><a href="/todayAdd">User History</a></li>
+                                <li class="active"><a href="/printmessagerequest">Print/Message Request</a></li>
                                 <li id="authCheckAddress"> <a href="/addressSettings">Address Settings</a></li>
 
                             </ul>
@@ -148,7 +149,7 @@
 <div class="wrapper">
     <div class="main main-raised" style="padding: 20px;">
         <form class="container">
-            <h2 class="text-center">Search Admin Data</h2>
+            <h2 class="text-center">Search Admins with Message/Print Right Requests</h2>
 
             <div class="row">
                 <form action="" autocomplete="off">
@@ -501,8 +502,9 @@
                                         <option value="YF S">Youth Student</option>
                                         <option value="YMD">Yowak Mongal Dal</option>
                                         <option value="GPR">Gram Parhari</option>
-                                        <option value="WB">Well Wisher</option>
+                                        <option value="WB">Well Wisher</option>                                                <option value="MO">Mule Owner</option>
                                         <option value="MO">Mule Owner</option>
+
 
                                     </select>
                                 </div>
@@ -1041,7 +1043,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Edit Admin Rights</h4>
+                <h4 class="modal-title">Grant Print/Message Rights</h4>
             </div>
             <div class="modal-body" >
 
@@ -1049,8 +1051,8 @@
                 <form action="/editAdminRights" id="editFormRights" autocomplete="off" method="post">
 
                     <input type="hidden" id="forMessage" value="123">
-                    <input type="hidden" id="forPrint" value="123">
                     <input type="hidden" id="forRequest" value="123">
+                    <input type="hidden" id="forPrint" value="123">
                     <input type="hidden" id="forPrintOthers" value="123">
                     <input type="hidden" id="forAdminAdd" value="123">
                     <input type="hidden" id="forCivilAdd" value="123">
@@ -1059,312 +1061,80 @@
                     <input type="hidden" id="forAddData" value="123">
                     <input type="hidden" id="forCivilEdit" value="123">
                     <input type="hidden" id="forBlockAdmin" value="123">
-                    <input type="hidden" id="forAdminBlock" value="123">
 
 
-                <div class="row">
-                    <div class="col-md-12"> <div class="row boxrow">
-                        <strong class="labelh">Message and Print Settings</strong>
-                        <div class="col-md-6  number-spinner">
-                            <div class="form-group label-fixed">
-                                <label class="control-label">Message Rights</label>
-                                <div class="slidecontainer">
+                    <div class="row">
+                        <div class="col-md-12"> <div class="row boxrow">
+                            <strong class="labelh">Message and Print Settings</strong>
+                            <div class="col-md-6  number-spinner">
+                                <div class="form-group label-fixed">
+                                    <label class="control-label">Message Rights</label>
+                                    <div class="slidecontainer">
 
 
 
-                                    <button type="button" class="spin-btn left-btn disableMessage" data-dir="dwn"><i class="fa fa-minus"></i></button>
+                                        <button type="button" class="spin-btn left-btn disableMessage" data-dir="dwn"><i class="fa fa-minus"></i></button>
 
 
-                                    <input type="number" min="0" max="1000" class="disableMessage spin-txt" value="0" name="messageRights" id="myRange">
-                                    <button type="button" class="spin-btn right-btn disableMessage" data-dir="up"><i class="fa fa-plus"></i></button>
+                                        <input type="number" min="0" max="1000" class="disableMessage spin-txt" value="0" name="messageRights" id="myRange">
+                                        <button type="button" class="spin-btn right-btn disableMessage" data-dir="up"><i class="fa fa-plus"></i></button>
 
 
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                            <input type="hidden" readonly id="emailRights" value="" name="emailRights">
+                            <div class="col-md-6  number-spinner">
+                                <div class="form-group label-fixed">
+                                    <label class="control-label">Print Rights</label>
+                                    <div class="slidecontainer">
 
-                        <div class="col-md-6  number-spinner">
-                            <div class="form-group label-fixed">
-                                <label class="control-label">Print Rights</label>
-                                <div class="slidecontainer">
-
-                                    <button type="button" class="spin-btn left-btn disablePrint" data-dir="dwn"><i class="fa fa-minus"></i></button>
-                                    <input type="number" min="0" class="disablePrint spin-txt" max="1000" value="0" name="printRights" id="myRange1">
-                                    <button type="button" class="spin-btn right-btn disablePrint" data-dir="up"><i class="fa fa-plus"></i></button>
-
+                                        <button type="button" class="spin-btn left-btn disablePrint" data-dir="dwn"><i class="fa fa-minus"></i></button>
+                                        <input type="number" min="0" class="disablePrint spin-txt" max="1000" value="0" name="printRights" id="myRange1">
+                                        <button type="button" class="spin-btn right-btn disablePrint" data-dir="up"><i class="fa fa-plus"></i></button>
 
 
 
+
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div></div>
-
-                    <div class="col-md-12"> <div class="row boxrow">
-                        <strong class="labelh">Citizen Settings</strong>
-                        <div class="col-md-6">
-
-                            <div class="checkbox pull-left" style="margin-left: -15px; margin-right: -20px; margin-bottom: 20px;">
-                                <label>
-                                    <input type="checkbox" name="citizenAdd" class="disableCivilAdd" id="citizenAdd">
-                                    <strong>Add New Citizens</strong>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-
-                            <div class="checkbox pull-left" style="margin-left: -15px; margin-right: -20px; margin-bottom: 20px;">
-                                <label>
-                                    <input type="checkbox" id="citizenEdit" class="disableCivilEdit" name="citizenEdit">
-                                    <strong>Edit Existing Citizens</strong>
-                                </label>
-                            </div>
-                        </div>
-                    </div></div>
-                    <div class="col-md-12"> <div class="row boxrow">
-                        <strong class="labelh">Admin Settings</strong>
-
-                        <div class="col-md-6">
-
-                            <div class="checkbox pull-left" style="margin-left: -15px; margin-right: -20px; margin-bottom: 20px;">
-                                <label>
-                                    <input type="checkbox" id="adminAdd" class="disableAdminAdd" name="adminAdd">
-                                    <strong>Create Admin</strong>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-
-                            <div class="checkbox pull-left" style="margin-left: -15px; margin-right: -20px; margin-bottom: 20px;">
-                                <label>
-                                    <input type="checkbox" id="adminEdit" class="disableAdminEdit" name="adminEdit">
-                                    <strong>Edit Admin</strong>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <input type="text" readonly id="emailRights" value="" name="emailRights">
-
-                            <div class="checkbox pull-left" style="margin-left: -15px; margin-right: -20px; margin-bottom: 20px;">
-                                <label>
-                                    <input type="checkbox" id="adminEdit" class="disableAdminBlock" name="adminBlock">
-                                    <strong>Block Admin</strong>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                        <div class="row boxrow">
-                            <strong class="labelh">Address Settings</strong>
-
-                            <div class="col-md-6">
-
-                                <div class="checkbox pull-left" style="margin-left: -15px; margin-right: -20px; margin-bottom: 20px;">
-                                    <label>
-                                        <input type="checkbox" id="addressAED" class="disableAddress" name="addressAED">
-                                        <strong>Add/Edit/Delete Address Settings</strong>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div><!-- main ROW end-->
-
+                        </div></div>
 
 
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="row boxrow">
-                                <strong class="labelh">Area Access Level</strong>
 
-                                <div class="row col-md-12">
-                                    <div class="col-md-3" id="stateRad">
-                                        <div class="checkbox pull-left" style="margin-left: -15px; margin-right: -20px; margin-bottom: 20px;">
-                                            <label>
-                                                <input type="radio" id="stateRadio" required onclick="checkRadio()" value="state" name="optionsRadio">
-                                                <strong>State</strong>
-                                            </label>
-                                        </div></div>
-                                    <div class="col-md-3" id="districtRad">
-                                        <div class="checkbox pull-left" style="margin-left: -15px; margin-right: -20px; margin-bottom: 20px;">
-                                            <label>
-                                                <input type="radio" id="districtRadio" required onchange="checkRadio()" value="district" name="optionsRadio">
-                                                <strong>District</strong>
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3" id="blockRad">
-                                        <div class="checkbox pull-left" style="margin-left: -15px; margin-right: -20px; margin-bottom: 20px;">
-                                            <label>
-                                                <input type="radio" id="blockRadio" required onchange="checkRadio()" value="block" name="optionsRadio">
-                                                <strong>Block</strong>
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3" id="villageRad">
-                                        <div class="checkbox pull-left" style="margin-left: -15px; margin-right: -20px; margin-bottom: 20px;">
-                                            <label>
-                                                <input type="radio" name="optionsRadio" required onchange="checkRadio()" value="village" id="villageRadio">
-                                                <strong>Village</strong>
-                                            </label>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-
-                                <div id="stateREditAdmin">
-                                    <div class="col-md-3" id="stateSEditAdmin" style="margin: 0px !important;">
-
-                                        <div class="form-group label-floating">
-                                            <label class="control-label">State</label>
-                                            <input type="text" required readonly name="state" id="stateLEditAdmin" value="" class="form-control">
-                                        </div>
-
-                                    </div>
-                                    <div id="stateHEditAdmin"  class="col-md-3" style="margin: 0px !important;">
-                                        <div  class="form-group label-floating">
-                                            <label class="control-label">State</label>
-                                            <select name="state" required id="stateEditAdmin" class="form-control">
-                                                <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
-                                                <option value="Andhra Pradesh">Andhra Pradesh</option>
-                                                <option value="Arunachal Pradesh">Arunachal Pradesh</option>
-                                                <option value="Assam">Assam</option>
-                                                <option value="Bihar">Bihar</option>
-                                                <option value="Chandigarh">Chandigarh</option>
-                                                <option value="Chhattisgarh">Chhattisgarh</option>
-                                                <option value="Dadra and Nagar Haveli">Dadra and Nagar Haveli</option>
-                                                <option value="Daman and Diu">Daman and Diu</option>
-                                                <option value="Delhi" selected="selected">Delhi</option>
-                                                <option value="Goa">Goa</option>
-                                                <option value="Gujarat">Gujarat</option>
-                                                <option value="Haryana">Haryana</option>
-                                                <option value="Himachal Pradesh">Himachal Pradesh</option>
-                                                <option value="Jammu and Kashmir">Jammu and Kashmir</option>
-                                                <option value="Jharkhand">Jharkhand</option>
-                                                <option value="Karnataka">Karnataka</option>
-                                                <option value="Kerala">Kerala</option>
-                                                <option value="Lakshadweep">Lakshadweep</option>
-                                                <option value="Madhya Pradesh">Madhya Pradesh</option>
-                                                <option value="Maharashtra">Maharashtra</option>
-                                                <option value="Manipur">Manipur</option>
-                                                <option value="Meghalaya">Meghalaya</option>
-                                                <option value="Mizoram">Mizoram</option>
-                                                <option value="Nagaland">Nagaland</option>
-                                                <option value="Orissa">Orissa</option>
-                                                <option value="Pondicherry">Pondicherry</option>
-                                                <option value="Punjab">Punjab</option>
-                                                <option value="Rajasthan">Rajasthan</option>
-                                                <option value="Sikkim">Sikkim</option>
-                                                <option value="Tamil Nadu">Tamil Nadu</option>
-                                                <option value="Tripura">Tripura</option>
-                                                <option value="Uttarakhand" selected>Uttarakhand</option>
-                                                <option value="Uttar Pradesh">Uttar Pradesh</option>
-                                                <option value="West Bengal">West Bengal</option>
-                                            </select>
-                                        </div></div>
-
-                                </div>
-                                <div id="districtREditAdmin">
-                                    <div class="col-md-3" id="districtSEditAdmin" style="margin: 0px !important;">
-
-                                        <div class="form-group label-floating">
-                                            <label class="control-label">District</label>
-                                            <input type="text" required readonly name="district" id="districtLEditAdmin" value="" class="form-control">
-                                        </div>
-
-                                    </div>
-                                    <div id="districtHEditAdmin" class="col-md-3" style="margin: 0px !important;">
-                                        <div   class="form-group label-floating">
-                                            <label class="control-label">District</label>
-                                            <select  name="district" id="districtEditAdmin"  onchange="getBlock()"  class="form-control">
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <div id="blockREditAdmin">
-                                    <div class="col-md-3" id="blockSEditAdmin" style="margin: 0px !important;">
-
-                                        <div class="form-group label-floating">
-                                            <label class="control-label">Block</label>
-                                            <input type="text" readonly name="block" required id="blockLEditAdmin" value="" class="form-control">
-                                        </div>
-
-                                    </div>
-                                    <div id="blockHEditAdmin" class="col-md-3" style="margin: 0px !important;">
-                                        <div   class="form-group label-floating">
-                                            <label class="control-label">Block/Nagar palika</label>
-                                            <select  name="block" id="blockEditAdmin"  onchange="getVillage()" class="form-control">
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <div id="villageREditAdmin">
-                                    <div class="col-md-3" id="villageSEditAdmin" style="margin: 0px !important;">
-
-                                        <div class="form-group label-floating">
-                                            <label class="control-label">Village</label>
-                                            <input type="text" readonly required name="village" id="villageLEditAdmin" value="" class="form-control">
-                                        </div>
-
-                                    </div>
-                                    <div  id="villageHEditAdmin" class="col-md-3" style="margin: 0px !important;">
-                                        <div   class="form-group label-floating">
-                                            <label class="control-label">Village</label>
-                                            <select name="village" id="villageEditAdmin"  class="form-control">
-                                            </select>
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
+                            <button type="submit" class="btn btn-primary pull-right"  onclick="showModel()" >Submit</button>
                         </div>
                     </div>
-
-
-
-
-
-
-                <div class="row">
-                    <div class="col-md-12">
-
-                        <button type="submit" class="btn btn-primary pull-right"  onclick="showModel()" >Submit</button>
-                    </div>
-                    </div>
                 </form>
-                </div>
-                <br><br>
+            </div>
+            <br><br>
 
 
-            </div>
-            <div class="modal-footer">
-                <!--          <button type="button" class="btn btn-xs btn-primary" data-dismiss="modal">Close</button>-->
-            </div>
         </div>
-
-    </div>
-
-
-
-    <div class="bgblack" id="model">
-        <div class="model" >
-            Data Succesfully Saved !
-            <br>
-            <button class="btn btn-xs btn-danger" onclick="showModel()"  data-dismiss="modal">Close</button>
+        <div class="modal-footer">
+            <!--          <button type="button" class="btn btn-xs btn-primary" data-dismiss="modal">Close</button>-->
         </div>
     </div>
 
+</div>
 
 
 
-    <!-- Registration MODAL END -------------------------------------------------------------------------------------------------->
+<div class="bgblack" id="model">
+    <div class="model" >
+        Data Succesfully Saved !
+        <br>
+        <button class="btn btn-xs btn-danger" onclick="showModel()"  data-dismiss="modal">Close</button>
+    </div>
+</div>
+
+
+
+
+<!-- Registration MODAL END -------------------------------------------------------------------------------------------------->
 
 
 
@@ -1377,7 +1147,7 @@
 
 
 
-    <script type="text/javascript">
+<script type="text/javascript">
 
 
     function otherBox(){
@@ -1508,71 +1278,71 @@
         }
     };
 </script>
-    <script>
-        $(document).on('click', '.number-spinner button', function () {
-            var btn = $(this),
-                    oldValue = btn.closest('.number-spinner').find('input').val().trim(),
-                    newVal = 0;
+<script>
+    $(document).on('click', '.number-spinner button', function () {
+        var btn = $(this),
+                oldValue = btn.closest('.number-spinner').find('input').val().trim(),
+                newVal = 0;
 
-            if (btn.attr('data-dir') == 'up') {
-                newVal = parseInt(oldValue) + 1;
+        if (btn.attr('data-dir') == 'up') {
+            newVal = parseInt(oldValue) + 1;
+        } else {
+            if (oldValue > 0) {
+                newVal = parseInt(oldValue) - 1;
             } else {
-                if (oldValue > 0) {
-                    newVal = parseInt(oldValue) - 1;
-                } else {
-                    newVal = 0;
-                }
+                newVal = 0;
             }
-            btn.closest('.number-spinner').find('input').val(newVal);
-        });
-    </script>
-    <script>
-        if('{{editC}}'!='on'){
-            document.getElementById('forCivilEdit').disabled = true;
         }
-        if('{{blockA}}'!='on'){
-            document.getElementById('forBlockAdmin').disabled = true;
-        }
-        if('{{editA}}'!='on'){
-            document.getElementById('forEditAdmin').disabled = true;
-        }
-        if('{{aedAddress}}'!='on'){
-            document.getElementById('forAddressAED').disabled = true;
-        }
-        if('{{addC}}'!='on'){
-            document.getElementById('forCivilAdd').disabled = true;
-        }
-        if('{{addA}}'!='on'){
-            document.getElementById('forAdminAdd').disabled = true;
-        }
-        if('{{superAdmin}}'!='false'){
-            document.getElementById('forRequest').disabled = true;
-        }
-        if('{{message}}'=='0'){
-            document.getElementById('forMessage').disabled = true;
-        }
-        else{
-            document.getElementById('forMessage').value='{{message}}';
-            document.getElementById('forMessage').disabled = false;
-        }
-        if('{{print}}'=='0'){
-            document.getElementById('forPrint').disabled = true;
-        }
-        else{
-            document.getElementById('forPrint').value='{{print}}';
-            document.getElementById('forPrint').disabled = false;
-        }
+        btn.closest('.number-spinner').find('input').val(newVal);
+    });
+</script>
+<script>
+    if('{{editC}}'!='on'){
+        document.getElementById('forCivilEdit').disabled = true;
+    }
+    if('{{blockA}}'!='on'){
+        document.getElementById('forBlockAdmin').disabled = true;
+    }
+    if('{{editA}}'!='on'){
+        document.getElementById('forEditAdmin').disabled = true;
+    }
+    if('{{aedAddress}}'!='on'){
+        document.getElementById('forAddressAED').disabled = true;
+    }
+    if('{{addC}}'!='on'){
+        document.getElementById('forCivilAdd').disabled = true;
+    }
+    if('{{superAdmin}}'!='false'){
+        document.getElementById('forRequest').disabled = true;
+    }
+    if('{{addA}}'!='on'){
+        document.getElementById('forAdminAdd').disabled = true;
+    }
+    if('{{message}}'=='0'){
+        document.getElementById('forMessage').disabled = true;
+    }
+    else{
+        document.getElementById('forMessage').value='{{message}}';
+        document.getElementById('forMessage').disabled = false;
+    }
+    if('{{print}}'=='0'){
+        document.getElementById('forPrint').disabled = true;
+    }
+    else{
+        document.getElementById('forPrint').value='{{print}}';
+        document.getElementById('forPrint').disabled = false;
+    }
 
-        if('{{printOthers}}'=='0'){
-            document.getElementById('forPrintOthers').disabled = true;
-        }
-        else{
-            document.getElementById('forPrintOthers').disabled = false;
+    if('{{printOthers}}'=='0'){
+        document.getElementById('forPrintOthers').disabled = true;
+    }
+    else{
+        document.getElementById('forPrintOthers').disabled = false;
 
-            document.getElementById('forPrintOthers').value='{{printOthers}}';
-        }
+        document.getElementById('forPrintOthers').value='{{printOthers}}';
+    }
 
-    </script>
+</script>
 <script>
     if('{{level}}'==='village'){
         document.getElementById('stateRadio').disabled = true;
@@ -1614,8 +1384,6 @@
         document.getElementById('stateEditAdmin').disabled = true;
         document.getElementById('stateLEditAdmin').value='{{state}}';
     }
-
-
 </script>
 
 </body>

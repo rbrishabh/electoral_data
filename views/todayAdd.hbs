@@ -118,10 +118,24 @@
                                 <li><a href="/blockedUsers">List of Blocked Users/Admins</a></li>
                                 <li><a href="/mobileReq">List Change Mobile User/Admin</a></li>
                                 <li class="active"><a href="/todayAdd">User History</a></li>
+                                <li><a href="/printmessagerequest">Print/Message Request</a></li>
                                 <li id="authCheckAddress"> <a href="/addressSettings">Address Settings</a></li>
 
                             </ul>
                         </li>
+                        <!------Request Menu item---------------->
+                        <li id="authCheckRequest" class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Request
+                                <b class="caret"></b>
+                                <div class="ripple-container"></div></a>
+                            <ul class="dropdown-menu dropdown-menu-right">
+
+                                <li><a href="" onclick="messageRequest()"><i class="fa fa-envelope"> </i> Request Message</a></li>
+                                <li><a href="" onclick="printRequest()"><i class="fa fa-print"> </i> Request Print</a></li>
+
+                            </ul>
+                        </li>
+                        <!------/Request Menu item---------------->
                         <li>
                             <a class="btn btn-primary btn-sm" style="margin-top: 10px;" href="/logout">Logout</a>
                         </li>
@@ -1032,6 +1046,7 @@
                 <form action="/editAdminRights" id="editFormRights" autocomplete="off" method="post">
 
                     <input type="hidden" id="forMessage" value="123">
+                    <input type="hidden" id="forRequest" value="123">
                     <input type="hidden" id="forPrint" value="123">
                     <input type="hidden" id="forPrintOthers" value="123">
                     <input type="hidden" id="forAdminAdd" value="123">
@@ -1592,10 +1607,13 @@
         document.getElementById('forPrint').value='{{print}}';
         document.getElementById('forPrint').disabled = false;
     }
-
+    if('{{superAdmin}}'!='false'){
+        document.getElementById('forRequest').disabled = true;
+    }
     if('{{printOthers}}'=='0'){
         document.getElementById('forPrintOthers').disabled = true;
     }
+
     else{
         document.getElementById('forPrintOthers').disabled = false;
 

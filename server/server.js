@@ -122,7 +122,8 @@ app.get('/addressSettings', authenticate, (req,res)=> {
             obj.aedAddress = user.addressAED
             obj.addA = user.adminAdd
             obj.editC = user.citizenEdit
-            obj.addA = user.adminAdd
+            obj.superAdmin = user.superAdmin
+
             obj.pageTitle = "Address Settings Page";
             res.render('addressSettings.hbs', obj);
         }
@@ -331,7 +332,8 @@ var obj ={};
             obj.aedAddress = user.addressAED
             obj.addA = user.adminAdd
             obj.editC = user.citizenEdit
-            obj.addA = user.adminAdd
+            obj.superAdmin = user.superAdmin
+
             res.render('registration.hbs', obj)
         }
          else {
@@ -366,7 +368,8 @@ app.get('/queryAdd',authenticate,(req,res)=> {
             obj.aedAddress = user.addressAED
             obj.addA = user.adminAdd
             obj.editC = user.citizenEdit
-            obj.addA = user.adminAdd
+            obj.superAdmin = user.superAdmin
+
             res.render('queryAdd.hbs', obj)
         }
       else
@@ -406,6 +409,7 @@ app.get('/querySearch',authenticate,(req,res)=> {
         obj.aedAddress = user.addressAED
         obj.addA = user.adminAdd
             obj.editC= user.citizenEdit
+        obj.superAdmin = user.superAdmin
             obj.blockA = user.adminBlock
 
         res.render('querySearchNew.hbs', obj);
@@ -442,6 +446,7 @@ app.get('/userSearch',authenticate,(req,res)=> {
         obj.aedAddress = user.addressAED;
         obj.addA = user.adminAdd;
             obj.editC= user.citizenEdit;
+        obj.superAdmin = user.superAdmin
             obj.editA= user.adminEdit;
         obj.blockA = user.adminBlock;
         //console.log(obj);
@@ -478,6 +483,7 @@ app.get('/todayAdd',authenticate,(req,res)=> {
         obj.aedAddress = user.addressAED;
         obj.addA = user.adminAdd;
             obj.editC= user.citizenEdit;
+        obj.superAdmin = user.superAdmin
             obj.editA= user.adminEdit;
         obj.blockA = user.adminBlock;
         //console.log(obj);
@@ -515,11 +521,51 @@ app.get('/mobileReq',authenticate,(req,res)=> {
         obj.aedAddress = user.addressAED;
         obj.addA = user.adminAdd;
             obj.editC= user.citizenEdit;
+        obj.superAdmin = user.superAdmin
             obj.editA= user.adminEdit;
         obj.blockA = user.adminBlock;
         //console.log(obj);
 
         res.render('mobileReq.hbs', obj);
+    });
+
+});
+
+
+app.get('/printMessageRequest',authenticate,(req,res)=> {
+    var user = req.session.userId;
+    var obj = {};
+    Users.findById(user).then((user)=>{
+        //console.log(user);
+        if(user.state){
+            obj.state = user.state
+        }
+        if(user.village){
+            obj.village = user.village
+        }
+        if(user.block){
+            obj.block = user.block
+        }
+        if(user.district){
+            obj.district = user.district
+        }
+
+
+            obj.level = user.level;
+            obj.message= user.messageRights;
+            obj.print= user.printRightsL;
+            obj.printOthers= user.printRights;
+
+            obj.addC = user.citizenAdd;
+        obj.aedAddress = user.addressAED;
+        obj.addA = user.adminAdd;
+            obj.editC= user.citizenEdit;
+        obj.superAdmin = user.superAdmin
+            obj.editA= user.adminEdit;
+        obj.blockA = user.adminBlock;
+        //console.log(obj);
+
+        res.render('printMessageRequest.hbs', obj);
     });
 
 });
@@ -552,6 +598,7 @@ app.get('/blockedUsers',authenticate,(req,res)=> {
         obj.aedAddress = user.addressAED;
         obj.addA = user.adminAdd;
             obj.editC= user.citizenEdit;
+        obj.superAdmin = user.superAdmin
             obj.editA= user.adminEdit;
         obj.blockA = user.adminBlock;
         //console.log(obj);
@@ -748,7 +795,8 @@ app.post('/queryAddedCivilAuth', authenticate, function (req, res) {
                 obj.aedAddress = user.addressAED
                 obj.addA = user.adminAdd
                 obj.editC = user.citizenEdit
-                obj.addA = user.adminAdd
+                obj.superAdmin = user.superAdmin
+
                 obj.message = "Data Succesfully Added!";
                 obj.pageReturn = "1"
                 res.render('queryAdd.hbs', obj);
@@ -781,7 +829,8 @@ app.post('/queryAddedCivilAuth', authenticate, function (req, res) {
                 obj.aedAddress = user.addressAED
                 obj.addA = user.adminAdd
                 obj.editC = user.citizenEdit
-                obj.addA = user.adminAdd
+                obj.superAdmin = user.superAdmin
+
                 obj.message = "Mobile/Email already exists.";
                 obj.pageReturn = "1"
                 res.render('queryAdd.hbs', obj);
@@ -812,7 +861,8 @@ app.post('/queryAddedCivilAuth', authenticate, function (req, res) {
                 obj.aedAddress = user.addressAED
                 obj.addA = user.adminAdd
                 obj.editC = user.citizenEdit
-                obj.addA = user.adminAdd
+                obj.superAdmin = user.superAdmin
+
                 obj.message =  "Mobile/Email already exists.";
                 obj.pageReturn = "1"
                 res.render('queryAdd.hbs', obj);
@@ -928,6 +978,52 @@ app.get('/valueForUnBlock/:mobile', (req,res)=> {
         }
     });
 });
+
+
+
+
+app.get('/newMessageRequest', (req,res)=> {
+    var user = req.session.userId;
+    Users.findById(user).then((user) => {
+      var obj = {};
+      obj.messageRequest = true;
+      obj.mobile = user.mobile;
+      var mobile = user.mobile;
+
+
+        Users.update({"mobile":mobile},
+            {$set:obj}).then((civilian)=>{
+            //done
+        });
+    },(e)=>{
+        res.send();
+    }).catch((e)=>{
+       res.send();
+    });
+
+});
+
+app.get('/newPrintRequest', (req,res)=> {
+    var user = req.session.userId;
+    Users.findById(user).then((user) => {
+        var obj = {};
+        obj.printRequest = true;
+        obj.mobile = user.mobile;
+        var mobile = user.mobile;
+
+        Users.update({"mobile":mobile},
+            {$set:obj}).then((civilian)=>{
+            //done
+        });
+    },(e)=>{
+        res.send();
+    }).catch((e)=>{
+        res.send();
+    });
+
+});
+
+
 
 app.get('/acceptedReq/:email', (req,res)=> {
 
@@ -1228,6 +1324,98 @@ app.post("/editFormRightsSubmitUser", (req,res)=>{
         //     //console.log(obj)
         //     res.send(JSON.stringify(obj));
         // });
+
+        }, (e) => {
+        res.send(e);
+    }).catch((e)=>{
+        res.send(e);
+    });
+});
+
+app.post("/editFormRightsSubmitUserMP", (req,res)=>{
+
+    var user = req.session.userId;
+
+    Users.findById(user).then((user) => {
+
+        var data = req.query.array;
+        var toEdit = JSON.parse(data);
+        var updateObj = {};
+        var obj = {};
+        for (var i = 0; i < toEdit.length; i++) {
+            updateObj[toEdit[i].name] = toEdit[i].value;
+        }
+
+        var email = updateObj.emailRights;
+
+        if(updateObj.messageRights) {
+            var obj1 = {};
+            var no = updateObj.messageRights;
+            //console.log(no);
+            Users.findById(user).then((user) => {
+                var mobile = user.mobile;
+               // console.log(user.messageRights);
+                if (user.messageRights > 0 && !isNaN(user.messageRights)) {
+                    var messageRights = user.messageRights - no;
+
+                        obj1.messageRights = messageRights;
+                        Users.update({"mobile": mobile},
+                            {$set: obj1}).then((user) => {
+                            // console.log(user);
+                        });
+
+                    Users.find({"email": email}).then((userCur) => {
+
+
+                        var messagePrevious = Number(userCur[0].messageRights);
+                        if(isNaN(messagePrevious)){
+                            messagePrevious = 0;
+                        }
+
+
+                        messageRightsUpdate = Number(updateObj.messageRights) + messagePrevious;
+
+                       Users.update({"email":email},
+                           {$set: {"messageRights":messageRightsUpdate}}).then((user) => {
+                           // console.log(user);
+                       });
+                    });
+
+                }
+            });
+        } else{
+            obj.messageRights = '0';
+        }
+        if(updateObj.printRights){
+
+                Users.find({"email": email}).then((user) => {
+                          var updatePrint = {};
+                    var previousPrintRights = Number(user[0].printRightsL);
+
+                    updatePrint.printRightsL = Number(updateObj.printRights)+previousPrintRights;
+
+                    if(previousPrintRights<updateObj.printRights){
+                        updatePrint.printRights = updatePrint.printRightsL;
+                    }
+                    Users.update({"email":email},
+                        {$set: updatePrint}).then((user) => {
+                        // console.log(user);
+                    });
+                });
+
+
+        } else{
+            obj.printRights = '0';
+            obj.printRightsL = '0';
+        }
+
+        obj.messageRequest = false;
+         obj.printRequest = false;
+
+        Users.update({"email": email},
+            {$set:obj}).then((civilian)=>{
+           //done
+            });
 
         }, (e) => {
         res.send(e);
@@ -1730,7 +1918,7 @@ app.get('/initialSearch3/state/:state/district/:district/block/:block/village/:v
         }
         query.mobileReq = true;
         query.email ={$ne:userNE.email};
-        query.level ={$ne:userNE.level};
+
         if(userNE.superAdmin==false){
             query.level ={$ne:userNE.level};
         }
@@ -1924,6 +2112,81 @@ app.get('/initialSearch4/state/:state/district/:district/block/:block/village/:v
         });
 
 });
+
+
+app.get('/initialSearch5/state/:state/district/:district/block/:block/village/:village', (req,res)=>{
+    //console.log('reached here asfjlfjb');
+    var userNE = req.session.userId;
+    Users.findById(userNE).then((userNE) => {
+        var query = {};
+
+        if(req.params.state != "00") {
+            query.state = req.params.state;
+        }
+        if(req.params.district!="00"){
+            query.district = req.params.district
+        }
+        if(req.params.block!="00"){
+            query.block = req.params.block
+        }
+        if(req.params.village!="00"){
+            query.village= req.params.village
+        }
+        query.email ={$ne:userNE.email};
+
+        if(userNE.superAdmin==false){
+            query.level ={$ne:userNE.level};
+        }
+
+
+        query.superAdmin = false;
+
+        Users.find({$and:[query, {$or: [ { messageRequest:true }, { printRequest:true } ]} ]}).then((user)=>{
+            if(!user){
+                res.send();
+            } else {
+
+                var obj = {
+                    civilian : []
+                };
+
+                for(var i = 0; i < user.length; i ++)
+                {
+                    obj['civilian'].push(
+
+                        {_id: user[i]._id,
+                            name: user[i].name,
+                            lastName: user[i].lastName,
+                            middleName: user[i].middleName,
+                            email: user[i].email,
+                            mobile: user[i].mobile,
+                            state: user[i].state,
+                            village: user[i].village,
+                            block: user[i].block,
+                            district: user[i].district,
+                            messageRights: user[i].messageRights,
+                            printRightsL: user[i].printRightsL,
+                            messageRequest: user[i].messageRequest,
+                            printRequest: user[i].printRequest
+                            });
+                }
+                //console.log(obj)
+                res.send(JSON.stringify(obj));
+            }
+        },(e)=>{
+            res.status(400).send();
+        }).catch((e)=>{
+            res.status(400).send();
+        });
+
+    },(e)=>{
+        res.send();
+    }).catch((e)=>{
+        res.send();
+    });
+
+});
+
 
 app.get('/buttonSearch/:state/:district/:block/:village/:pin/:firstName/:middleName/:lastName/:relationName/:relationMiddle/:relationLast/:minage/:maxage/:occ/:occother/:mobile/:email/:gender/:mark', (req,res)=>{
     //console.log('search botton reached server');
@@ -2259,6 +2522,8 @@ app.get('/buttonSearch2/:state/:district/:block/:village/:pin/:firstName/:middle
 
 
 });
+
+
 app.get('/buttonSearch3/:state/:district/:block/:village/:pin/:firstName/:middleName/:lastName/:minage/:maxage/:occ/:occother/:mobile/:email/:gender/:mark', (req,res)=>{
     var userNE = req.session.userId;
     Users.findById(userNE).then((userNE) => {
@@ -2390,6 +2655,12 @@ app.get('/buttonSearch3/:state/:district/:block/:village/:pin/:firstName/:middle
 });
 
 
+
+
+
+
+
+
 app.get('/buttonSearch4/:state/:district/:block/:village/:pin/:firstName/:middleName/:lastName/:minage/:maxage/:occ/:occother/:mobile/:email/:gender/:mark', (req,res)=>{
     //console.log('search botton reached server');
 
@@ -2517,6 +2788,136 @@ app.get('/buttonSearch4/:state/:district/:block/:village/:pin/:firstName/:middle
     });
 
 });
+
+
+app.get('/buttonSearch5/:state/:district/:block/:village/:pin/:firstName/:middleName/:lastName/:minage/:maxage/:occ/:occother/:mobile/:email/:gender/:mark', (req,res)=>{
+    var userNE = req.session.userId;
+    Users.findById(userNE).then((userNE) => {
+
+        //console.log('search botton reached server');
+        var query = {};
+        var age = {};
+        if(req.params.state != "00") {
+            query.state = req.params.state;
+        }
+        if(req.params.district!="00"){
+            query.district = req.params.district
+        }
+        if(req.params.block!="00"){
+            query.block = req.params.block
+        }
+        if(req.params.village!="00"){
+            query.village= req.params.village
+        }
+        if(req.params.pin!="00"){
+            query.pin= req.params.pin
+        }
+        if(req.params.firstName!="00"){
+            query.name= req.params.firstName
+
+
+        }
+        if(req.params.middleName!="00"){
+            query.middleName= req.params.middleName
+
+        }
+        if(req.params.lastName!="00"){
+            query.lastName= req.params.lastName
+
+        }
+        if(req.params.relationName!="00"){
+            query.relationName= req.params.relationName
+
+
+        }
+        if(req.params.relationMiddle!="00"){
+            query.relationMiddle= req.params.relationMiddle
+
+        }
+        if(req.params.relationLast!="00"){
+            query.relationLast= req.params.relationLast
+        }
+        if(req.params.minage!="00" && req.params.maxage == "00"){
+            query.age= {$gte: req.params.minage}
+        }
+        if(req.params.maxage!="00" && req.params.minage == "00"){
+            query.age= {$lte: req.params.maxage}
+        }
+        if(req.params.minage!="00" && req.params.maxage != "00"){
+            query.age= {$lte: req.params.maxage, $gte: req.params.minage}
+        }
+        if(req.params.occ!="00"){
+            query.profession= req.params.occ
+        }
+        if(req.params.occother!="00"){
+            query.professionOther= req.params.occother
+        }
+        if(req.params.mobile!="00"){
+            query.mobile= req.params.mobile
+        }
+        if(req.params.email!="00"){
+            query.email= req.params.email
+        }
+        if(req.params.gender!="00"){
+            query.gender= req.params.gender
+        }
+        if(req.params.mark!="00"){
+            query.mark= req.params.mark
+        }
+        query.mobileReq = true;
+        query.email ={$ne:userNE.email};
+        if(userNE.superAdmin==false){
+            query.level ={$ne:userNE.level};
+        }
+        query.superAdmin = false;
+        Users.find({$and:[query, {$or: [ { messageRequest:true }, { printRequest:true } ]} ]}).then((user)=>{
+            if(!user){
+                res.send();
+            } else {
+
+                var obj = {
+                    civilian : []
+                };
+
+                for(var i = 0; i < user.length; i ++)
+                {
+                    obj['civilian'].push(
+
+                        {_id: user[i]._id,
+                            name: user[i].name,
+                            lastName: user[i].lastName,
+                            middleName: user[i].middleName,
+                            email: user[i].email,
+                            mobile: user[i].mobile,
+                            state: user[i].state,
+                            village: user[i].village,
+                            block: user[i].block,
+                            district: user[i].district,
+                            messageRights: user[i].messageRights,
+                            printRightsL: user[i].printRightsL,
+                            messageRequest: user[i].messageRequest,
+                            printRequest: user[i].printRequest
+                        });
+                }
+                //console.log(obj)
+                res.send(JSON.stringify(obj));
+            }
+        },(e)=>{
+            res.status(400).send();
+        }).catch((e)=>{
+            res.status(400).send();
+        });
+
+    },(e)=>{
+        res.send();
+    }).catch((e)=>{
+        res.send();
+    });
+
+});
+
+
+
 
 
 
@@ -2756,6 +3157,7 @@ if(req.body.password !== req.body.confirm){
                 obj.level = user1.level
                 obj.addC = user1.citizenAdd
                 obj.editC = user1.citizenEdit
+                obj.superAdmin = user1.superAdmin
                 obj.editA = user1.adminEdit
                 obj.blockA = user1.adminBlock
                 obj.aedAddress = user1.addressAED
@@ -2796,7 +3198,8 @@ if(req.body.password !== req.body.confirm){
                 obj.aedAddress = user.addressAED
                 obj.addA = user.adminAdd
                 obj.editC = user.citizenEdit
-                obj.addA = user.adminAdd
+                obj.superAdmin = user.superAdmin
+
                 obj.message = "Mobile/Email already exists.";
                 obj.pageReturn = "1"
                 obj.name = req.body.name;
@@ -2828,7 +3231,8 @@ if(req.body.password !== req.body.confirm){
                 obj.aedAddress = user.addressAED
                 obj.addA = user.adminAdd
                 obj.editC = user.citizenEdit
-                obj.addA = user.adminAdd
+                obj.superAdmin = user.superAdmin
+
                 obj.message = "Mobile/Email already exists.";
                 obj.pageReturn = "1"
                 res.render('registration.hbs', obj);
@@ -2924,7 +3328,7 @@ app.get('/editProfile', authenticate, (req,res)=>{
         obj.aedAddress = user.addressAED;
         obj.addA = user.adminAdd;
         obj.editC = user.citizenEdit;
-
+        obj.superAdmin = user.superAdmin
         res.render('editProfile.hbs', obj);
     },(e)=>{
         res.send(e);

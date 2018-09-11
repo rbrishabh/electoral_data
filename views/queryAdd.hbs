@@ -25,6 +25,8 @@
     <link rel="stylesheet" href="/materialkit.css">
     <script src="/areaAccess.js"></script>
     <script src="/address.js"></script>
+    <script src="/authenticationAdd.js"></script>
+
 
     <script>
         $('input[type=number]').numeric();
@@ -84,10 +86,24 @@
                                 <li><a href="/blockedUsers">List of Blocked Users/Admins</a></li>
                                 <li><a href="/mobileReq">List Change Mobile User/Admin</a></li>
                                 <li><a href="/todayAdd">User History</a></li>
+                                <li><a href="/printmessagerequest">Print/Message Request</a></li>
                                 <li id="authCheckAddress"><a href="/addressSettings">Address Settings</a></li>
 
                             </ul>
                         </li>
+                        <!------Request Menu item---------------->
+                        <li id="authCheckRequest" class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Request
+                                <b class="caret"></b>
+                                <div class="ripple-container"></div></a>
+                            <ul class="dropdown-menu dropdown-menu-right">
+
+                                <li><a href="" onclick="messageRequest()"><i class="fa fa-envelope"> </i> Request Message</a></li>
+                                <li><a href="" onclick="printRequest()"><i class="fa fa-print"> </i> Request Print</a></li>
+
+                            </ul>
+                        </li>
+                        <!------/Request Menu item---------------->
                         <li>
                             <a class="btn btn-primary btn-sm" style="margin-top: 10px;" href="/logout">Logout</a>
                         </li>
@@ -107,6 +123,7 @@
 
 
                 <input type="hidden" id="forAddData" value="123">
+                <input type="hidden" id="forRequest" value="123">
                 <input type="hidden" id="forAddAdmin" value="123">
                 <input type="hidden" id="forAddress" value="123">
 
@@ -725,6 +742,9 @@
     }
     if('{{addC}}'!='on'){
         document.getElementById('forAddData').disabled = true;
+    }
+    if('{{superAdmin}}'!='false'){
+        document.getElementById('forRequest').disabled = true;
     }
 
     if('{{level}}'==='village'){

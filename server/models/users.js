@@ -172,6 +172,14 @@ var userSchema = new mongoose.Schema({
     superAdmin : {
         type: Boolean,
         trim: true
+    },
+    messageRequest : {
+        type: Boolean,
+        trim: true
+    },
+    printRequest : {
+        type: Boolean,
+        trim: true
     }
 });
 
