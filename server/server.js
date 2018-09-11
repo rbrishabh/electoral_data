@@ -975,6 +975,11 @@ app.get('/valueForEdit2/:id', (req,res)=> {
                         printRightsL : user[i].printRightsL,
                         messageRights: user[i].messageRights,
                         adminBlock: user[i].adminBlock,
+                        state: user[i].state,
+                        village: user[i].village,
+                        block: user[i].block,
+                        district: user[i].district,
+                        level: user[i].level
 
                     });
             }

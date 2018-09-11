@@ -171,6 +171,51 @@ function printingToEditRights(value) {
     }if(value.addressAED=="on") {
         $('#addressAED').prop('checked', true);
     }
+    if(value.state){
+        $("#stateE").val(value.state);
+        $("#stateLE").val(value.state);
+
+    }
+    if(value.district){
+        $("#districtE").val(value.district);
+        $("#districtLE").val(value.district);
+
+    }
+    if(value.block){
+        console.log(value.block)
+        $('#blockE').append($('<option>', {
+            value: value.block,
+            text: value.block,
+            selected: true
+        }));
+
+        $("#blockLE").val(value.block);
+
+    }
+    if(value.village){
+        $('#villageE').append($('<option>', {
+            value: value.village,
+            text: value.village,
+            selected: true
+        }));
+
+        $("#villageLE").val(value.village);
+
+    }
+    if(value.level){
+        if(value.level==="state"){
+            $("#stateRadio").prop("checked", true);
+        }
+        if(value.level==="district"){
+            $("#districtRadio").prop("checked", true);
+        }
+        if(value.level==="block"){
+            $("#blockRadio").prop("checked", true);
+        }
+        if(value.level==="village"){
+            $("#villageRadio").prop("checked", true);
+        }
+    }
 
 
 }
