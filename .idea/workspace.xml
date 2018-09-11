@@ -5,17 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="08b0d45d-fc30-493e-b719-7478e6d82225" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/views/addressSettings.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/addressSettings.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/blockedUsers.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/blockedUsers.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/editProfile.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/editProfile.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/hbsJS/querySearchL4.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/hbsJS/querySearchL4.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/mobileReq.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/mobileReq.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/printMessageRequest.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/printMessageRequest.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/queryAdd.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/queryAdd.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/querySearchNew.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/querySearchNew.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/registration.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/registration.hbs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/todayAdd.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/todayAdd.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/userSearchNew.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/userSearchNew.hbs" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -69,7 +59,7 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="css" value="50" />
-          <entry key="hbs" value="11018" />
+          <entry key="hbs" value="11033" />
           <entry key="html" value="4" />
           <entry key="js" value="23276" />
           <entry key="rnc" value="1" />
@@ -80,7 +70,7 @@
         <counts>
           <entry key="CSS" value="50" />
           <entry key="HTML" value="8" />
-          <entry key="Handlebars/Mustache" value="11018" />
+          <entry key="Handlebars/Mustache" value="11033" />
           <entry key="JavaScript" value="23272" />
           <entry key="RNG Compact" value="1" />
           <entry key="TypeScript" value="1" />
@@ -189,16 +179,16 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/todayAdd.hbs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="121" column="106" selection-start-line="121" selection-start-column="106" selection-end-line="121" selection-end-column="106" />
+            <state relative-caret-position="132">
+              <caret line="1374" column="54" selection-start-line="1374" selection-start-column="54" selection-end-line="1374" selection-end-column="54" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/userSearchNew.hbs">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="285">
@@ -325,13 +315,13 @@
         <option value="$PROJECT_DIR$/views/printMessageRequest.hbs" />
         <option value="$PROJECT_DIR$/views/querySearchNew.hbs" />
         <option value="$PROJECT_DIR$/views/queryAdd.hbs" />
-        <option value="$PROJECT_DIR$/views/todayAdd.hbs" />
         <option value="$PROJECT_DIR$/views/mobileReq.hbs" />
         <option value="$PROJECT_DIR$/views/addressSettings.hbs" />
         <option value="$PROJECT_DIR$/views/blockedUsers.hbs" />
         <option value="$PROJECT_DIR$/views/editProfile.hbs" />
         <option value="$PROJECT_DIR$/views/registration.hbs" />
         <option value="$PROJECT_DIR$/views/userSearchNew.hbs" />
+        <option value="$PROJECT_DIR$/views/todayAdd.hbs" />
       </list>
     </option>
   </component>
@@ -573,12 +563,12 @@
       <workItem from="1536552076601" duration="2450000" />
       <workItem from="1536576979056" duration="5217000" />
       <workItem from="1536603856520" duration="280000" />
-      <workItem from="1536635671444" duration="25875000" />
+      <workItem from="1536635671444" duration="26086000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="829161000" />
+    <option name="totallyTimeSpent" value="829372000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -593,7 +583,7 @@
     <frame x="-8" y="-8" width="1376" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.795082" visible="true" weight="0.17781155" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.795082" visible="true" weight="0.17781155" />
       <window_info id="Structure" order="1" sideWeight="0.20491803" side_tool="true" weight="0.17781155" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32786885" />
@@ -604,7 +594,7 @@
       <window_info anchor="bottom" id="Favorites" order="6" sideWeight="0.49925262" side_tool="true" weight="0.32838285" />
       <window_info anchor="bottom" id="TODO" order="7" weight="0.32786885" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.8632287" visible="true" weight="0.22131148" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.8632287" visible="true" weight="0.22131148" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.1367713" side_tool="true" weight="0.3737705" />
       <window_info anchor="bottom" id="Inspection Results" order="11" weight="0.32838285" />
       <window_info anchor="bottom" id="Version Control" order="12" weight="0.32786885" />
@@ -934,17 +924,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/todayAdd.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="121" column="106" selection-start-line="121" selection-start-column="106" selection-end-line="121" selection-end-column="106" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/userSearchNew.hbs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="119" column="106" selection-start-line="119" selection-start-column="106" selection-end-line="119" selection-end-column="106" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/todayAdd.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="1374" column="54" selection-start-line="1374" selection-start-column="54" selection-end-line="1374" selection-end-column="54" />
         </state>
       </provider>
     </entry>
