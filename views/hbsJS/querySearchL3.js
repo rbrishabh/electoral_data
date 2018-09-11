@@ -606,8 +606,6 @@ function print(printData) {
         + "<th>" + "New Mobile"+ "</th>"
         + "<th>" + "<b>Email</b>" + "</th>"
         + "<th>" + "<b>Select</b>" + "</th>"
-        + "<th>" + "<b>View/Edit</b>" + "</th>"
-        + "<th>" + "<b>Edit Rights</b>" + "</th>"
         + "<th>" + "<b>Accept</b>" + "</th>"
         + "<th>" + "<b>Reject</b>" + "</th>"
 
@@ -703,8 +701,6 @@ function print(printData) {
             + "<th>" + printData.civilian[x].reqMobile + "</th>"
             + "<th>" + printData.civilian[x].email + "</th>"
             + "<th>" + "<input type='checkbox' data-value = "+ printData.civilian[x].mobile + "-"+ printData.civilian[x].name+ "-"+ printData.civilian[x].middleName+ "-"+ printData.civilian[x].lastName +">" + "</th>"
-            + "<th>" + "<button class='btn btn-default fa fa-pencil-square-o' id='editCitizen' title='Edit Admin Profile' data-toggle='modal' data-target='#myModalEdit' value=" + printData.civilian[x]._id +  " onclick='printToEdit(value)' ></button>" + "</th>"
-            + "<th>" + "<button class='btn btn-default fa fa-cogs disableButtonEdit' title='Edit Admin Rights' id='editCitizen2'  data-toggle='modal' data-target='#myModal2'  value= "+ printData.civilian[x].email +  " onclick='printToEditRights(value)' ></button>" + "</th>"
             + "<th>" + "<button class='btn btn-default' title='Block' value= "+ printData.civilian[x].email + "  onclick='acceptedReq(value)'>Accept</button>" + "</th>"
             + "<th>" + "<button class='btn btn-default' title='Block' value= "+ printData.civilian[x].email + "  onclick='rejectedReq(value)'>Reject</button>" + "</th>"
 

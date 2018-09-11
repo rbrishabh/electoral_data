@@ -17,6 +17,7 @@ ageArray = [];
 
 
 function printToEdit (value){
+    document.getElementById('idToUpdate').value=value;
     var url = urlFinal + 'valueForEdit1/'+value
     var ourRequest = new XMLHttpRequest();
     ourRequest.open('GET', url, true);

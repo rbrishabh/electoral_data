@@ -1169,7 +1169,7 @@ app.post("/editFormSubmitUser", (req,res)=>{
             time: time
         }
 
-        Users.update({"mobile": obj.mobile},
+        Users.update({"_id": updateObj.idToUpdate },
             {$set:obj}).then((civilian)=>{
            //done
             });
