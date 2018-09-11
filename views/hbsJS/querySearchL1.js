@@ -319,8 +319,13 @@ $(document).ready(function() {
         var ourRequest = new XMLHttpRequest();
         ourRequest.open('POST', url, true);
 
+          ourRequest.onload = function(){
+              var response = ourRequest.responseText;
+              console.log(response);
+              document.getElementById('editAdminResponse').innerText=response;
+              document.getElementById("model").style.display = "block";
+          }
 
-            document.getElementById("model").style.display = "block";
 
 
 

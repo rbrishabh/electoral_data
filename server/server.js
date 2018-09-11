@@ -1171,8 +1171,12 @@ app.post("/editFormSubmitUser", (req,res)=>{
 
         Users.update({"_id": updateObj.idToUpdate },
             {$set:obj}).then((civilian)=>{
-           //done
-            });
+           res.send("Data Succesfully Saved.");
+            },(e)=>{
+            res.send("Error! Please check all values and try again.")
+        }).catch((e)=>{
+            res.send("Error! Please check all values and try again.")
+        });
         // Users.find().then((user)=>{
         //     var obj = {
         //         civilian : []

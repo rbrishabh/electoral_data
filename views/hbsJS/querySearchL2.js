@@ -336,12 +336,12 @@ $(document).ready(function() {
         var url = urlFinal + 'editFormRightsSubmitUser?array='+dataEdit;
         var ourRequest = new XMLHttpRequest();
         ourRequest.open('POST', url, true);
-
-
-        document.getElementById("model").style.display = "block";
-
-
-
+        ourRequest.onload = function(){
+            var response = ourRequest.responseText;
+            console.log(response);
+            document.getElementById('editAdminResponse').innerText=response;
+            document.getElementById("model").style.display = "block";
+        }
 
         ourRequest.send();
 
