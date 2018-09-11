@@ -3010,6 +3010,10 @@ app.post('/addedAdmin', authenticate, (req,res)=>{
         obj.state = req.body.state
     }
     obj.superAdmin = false;
+    obj.printRequest = false;
+    obj.messageRequest = false;
+    obj.mobileReq = false;
+    obj.blocked = false;
     if(req.body.district){
         obj.district = req.body.district
     }
