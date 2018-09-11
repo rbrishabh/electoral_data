@@ -586,7 +586,7 @@ function print(printData) {
         + "<th>" + "Block"+ "</th>"
         + "<th>" + "District"+ "</th>"
         + "<th>" + "State"+ "</th>"
-        + "<th>" + "History"+ "</th>"
+        + "<th>" + "Admin Activity"+ "</th>"
         // + "<th>" + "Block Added Today"+ "</th>"
         // + "<th>" + "Block Added Total"+ "</th>"
         // + "<th>" + "Block Edited Today"+ "</th>"
@@ -681,7 +681,7 @@ function print(printData) {
             + "<th>" + printData.civilian[x].block+ "</th>"
             + "<th>" + printData.civilian[x].district+ "</th>"
             + "<th>" + printData.civilian[x].state+ "</th>"
-            + "<th>" + "<button class='btn btn-default' title='History' value='"+printData.civilian[x].email  +"' onclick='getHistory(value)' data-toggle='modal' data-target='#his'>View Details</button>" + "</th>"
+            + "<th>" + "<button class='btn btn-default' title='Admin Activity' value='"+printData.civilian[x].email  +"' onclick='getHistory(value)' data-toggle='modal' data-target='#his'>View Activity</button>" + "</th>"
 
             // + "<th>" + printData.civilian[x].blockToday+ "</th>"
             // + "<th>" + printData.civilian[x].blockTotal+ "</th>"
