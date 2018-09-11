@@ -1173,7 +1173,19 @@ app.post("/editFormSubmitUser", (req,res)=>{
             {$set:obj}).then((civilian)=>{
            res.send("Data Succesfully Saved.");
             },(e)=>{
-            res.send("Error! Please check all values and try again.")
+                var err = e.errmsg;
+                if(err.indexOf("email_1")!=-1){
+                    res.send("Error! Email Already Exists.")
+                }
+
+               else if(err.indexOf("mobile_1")!=-1){
+                    res.send("Error! Mobile already exists.")
+                }
+                else{
+                    res.send("Something went wrong, please try again.")
+                }
+
+
         }).catch((e)=>{
             res.send("Error! Please check all values and try again.")
         });
