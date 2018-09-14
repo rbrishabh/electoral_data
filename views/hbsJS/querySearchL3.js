@@ -724,7 +724,7 @@ function print(printData) {
         '</ul>'
         +
 
-        '<button class="btn btn-primary pull-right disableButtonMessage" data-toggle="modal" data-target="#myModal" id="msgbtn">Message</button>' +
+
         '<button class="btn btn-primary pull-right disableButtonPrint" onclick="printData(); printDec(); ">Print</button>';
     $(document).ready(function () {
 

@@ -21,13 +21,16 @@
     <link href="/materialkit.css" rel="stylesheet"/>
     <link rel="stylesheet" href="/inputtype.css">
     <link rel="stylesheet" href="/style.css">
+    <script src="/userRightSettings.js"></script>
     <script src="/querySearchL1.js"></script>
     s<script src="/areaAccessSearch.js"></script>
     <script src="/address.js"></script>
     <script src="/addressAdmin.js"></script>
     <script src="/authenticationAddUser.js"></script>
     <script src="/searchAddressEdit.js"></script>
-    <script src="/userRightSettings.js"></script>
+    <script src="/searchAddressEditRights.js"></script>
+    <script src="/notification.js"></script>
+
     <style>
 
         .spin-btn{
@@ -100,7 +103,7 @@
 
 
                         <li>
-                            <a href="#">Change Password</a>
+                            <a href="/changePassword">Change Password</a>
                         </li>
                         <li>
                             <a href="/editProfile">Edit Profile</a>
@@ -114,9 +117,9 @@
 
                                 <li class="active"><a href="/userSearch">List of Admins</a></li>
                                 <li><a href="/blockedUsers">List of Blocked Users/Admins</a></li>
-                                <li><a href="/mobileReq">List Of Change Mobile User/Admin</a></li>
+                                <li><a href="/mobileReq">List Of Change Mobile User/Admin -<span id="mobileReqCount" style="color: red"> 0</span></a></li>
                                 <li><a href="/todayAdd">Admin Activity</a>
-                                <li><a href="/printmessagerequest">List Of Print/Message Request</a></li>
+                                <li><a href="/printmessagerequest">List Of Print/Message Request -<span id="messageReqCount" style="color: red"> 0</span></a></li>
                                 <li id="authCheckAddress"> <a href="/addressSettings">Modify Block/Village</a></li>
 
                             </ul>
@@ -134,6 +137,33 @@
                             </ul>
                         </li>
                         <!------/Request Menu item---------------->
+
+                        <!------M/P Menu item---------------->
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle fa fa-envelope" title="Messages/Print left" data-toggle="dropdown" aria-expanded="true">
+                                <b class="caret"></b>
+                                <div class="ripple-container"></div></a>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li><br></li>
+                                <li style="width: 340px; color: #333 !important; padding-left: 20px; ">
+                                    <i class="fa fa-envelope fa-2x" style="color: darkorange;"> </i> &nbsp; <strong style="color: brown;"> &nbsp; &nbsp;Messages - <span id="messageNoti"> 0</span> Left</strong>
+
+
+
+                                </li>
+                                <li><hr></li>
+
+                                <li style="width: 340px; color: #333 !important; padding-left: 20px; ">
+                                    <i class="fa fa-print fa-2x text-success"> </i> &nbsp; <strong style="color: brown;"> &nbsp; &nbsp;Print - <span id="printNoti">0</span>  Left</strong>
+
+
+
+                                </li>
+                                <li><br></li>
+
+                            </ul>
+                        </li>
+                        <!------M/P Menu item---------------->
                         <li>
                             <a class="btn btn-primary btn-sm" style="margin-top: 10px;" href="/logout">Logout</a>
                         </li>
@@ -573,7 +603,7 @@
             </div>
             <div class="modal-body">
                 <textarea class="form-control" rows="5" id="comment" style="border: 1px solid #ddd; border-bottom: none; border-radius: 4px;"></textarea>
-                <button type="button" id="msgsend" class="btn btn-primary pull-right" data-dismiss="modal">Message</button>
+                <button type="button" disabled id="msgsend" class="btn btn-primary pull-right" data-dismiss="modal">Message</button>
 
 
             </div>
@@ -1183,14 +1213,14 @@
                                     <div class="col-md-3" id="stateRad">
                                         <div class="checkbox pull-left" style="margin-left: -15px; margin-right: -20px; margin-bottom: 20px;">
                                             <label>
-                                                <input type="radio" id="stateRadio" required onclick="checkRadio()" value="state" name="optionsRadio">
+                                                <input type="radio" id="stateRadio"  onclick="checkRadio()" value="state" name="optionsRadio">
                                                 <strong>State</strong>
                                             </label>
                                         </div></div>
                                     <div class="col-md-3" id="districtRad">
                                         <div class="checkbox pull-left" style="margin-left: -15px; margin-right: -20px; margin-bottom: 20px;">
                                             <label>
-                                                <input type="radio" id="districtRadio" required onchange="checkRadio()" value="district" name="optionsRadio">
+                                                <input type="radio" id="districtRadio"  onchange="checkRadio()" value="district" name="optionsRadio">
                                                 <strong>District</strong>
                                             </label>
                                         </div>
@@ -1198,7 +1228,7 @@
                                     <div class="col-md-3" id="blockRad">
                                         <div class="checkbox pull-left" style="margin-left: -15px; margin-right: -20px; margin-bottom: 20px;">
                                             <label>
-                                                <input type="radio" id="blockRadio" required onchange="checkRadio()" value="block" name="optionsRadio">
+                                                <input type="radio" id="blockRadio"  onchange="checkRadio()" value="block" name="optionsRadio">
                                                 <strong>Block</strong>
                                             </label>
                                         </div>
@@ -1206,7 +1236,7 @@
                                     <div class="col-md-3" id="villageRad">
                                         <div class="checkbox pull-left" style="margin-left: -15px; margin-right: -20px; margin-bottom: 20px;">
                                             <label>
-                                                <input type="radio" name="optionsRadio" required onchange="checkRadio()" value="village" id="villageRadio">
+                                                <input type="radio" name="optionsRadio"  onchange="checkRadio()" value="village" id="villageRadio">
                                                 <strong>Village</strong>
                                             </label>
                                         </div>
@@ -1220,14 +1250,15 @@
 
                                         <div class="form-group label-floating">
                                             <label class="control-label">State</label>
-                                            <input type="text" required readonly name="state" id="stateLEditAdmin" value="" class="form-control">
+                                            <input type="text"  readonly name="state" id="stateLEditAdmin" value="" class="form-control">
                                         </div>
 
                                     </div>
+                                    <input type="hidden" id="levelEdit" value="">
                                     <div id="stateHEditAdmin"  class="col-md-3" style="margin: 0px !important;">
                                         <div  class="form-group label-floating">
                                             <label class="control-label">State</label>
-                                            <select name="state" required id="stateEditAdmin" class="form-control">
+                                            <select name="state"  id="stateEditAdmin" class="form-control">
                                                 <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
                                                 <option value="Andhra Pradesh">Andhra Pradesh</option>
                                                 <option value="Arunachal Pradesh">Arunachal Pradesh</option>
@@ -1272,14 +1303,14 @@
 
                                         <div class="form-group label-floating">
                                             <label class="control-label">District</label>
-                                            <input type="text" required readonly name="district" id="districtLEditAdmin" value="" class="form-control">
+                                            <input type="text"  readonly name="district" id="districtLEditAdmin" value="" class="form-control">
                                         </div>
 
                                     </div>
                                     <div id="districtHEditAdmin" class="col-md-3" style="margin: 0px !important;">
                                         <div   class="form-group label-floating">
                                             <label class="control-label">District</label>
-                                            <select  name="district" id="districtEditAdmin"  onchange="getBlock()"  class="form-control">
+                                            <select  name="district" id="districtEditAdmin" onchange="getBlock()"  class="form-control">
                                             </select>
                                         </div>
                                     </div>
@@ -1291,14 +1322,14 @@
 
                                         <div class="form-group label-floating">
                                             <label class="control-label">Block</label>
-                                            <input type="text" readonly name="block" required id="blockLEditAdmin" value="" class="form-control">
+                                            <input type="text" readonly name="block"  id="blockLEditAdmin" value="" class="form-control">
                                         </div>
 
                                     </div>
                                     <div id="blockHEditAdmin" class="col-md-3" style="margin: 0px !important;">
                                         <div   class="form-group label-floating">
                                             <label class="control-label">Block/Nagar palika</label>
-                                            <select  name="block" id="blockEditAdmin"  onchange="getVillage()" class="form-control">
+                                            <select  name="block" id="blockEditAdmin" onfocus="getEditRightBlock()" onchange="getVillage()" class="form-control">
                                             </select>
                                         </div>
                                     </div>
@@ -1310,14 +1341,14 @@
 
                                         <div class="form-group label-floating">
                                             <label class="control-label">Village</label>
-                                            <input type="text" readonly required name="village" id="villageLEditAdmin" value="" class="form-control">
+                                            <input type="text" readonly  name="village" id="villageLEditAdmin" value="" class="form-control">
                                         </div>
 
                                     </div>
                                     <div  id="villageHEditAdmin" class="col-md-3" style="margin: 0px !important;">
                                         <div   class="form-group label-floating">
                                             <label class="control-label">Village</label>
-                                            <select name="village" id="villageEditAdmin"  class="form-control">
+                                            <select name="village" id="villageEditAdmin" onfocus="getEditRightVillage()"  class="form-control">
                                             </select>
                                         </div>
 
@@ -1337,7 +1368,7 @@
                 <div class="row">
                     <div class="col-md-12">
 
-                        <button type="submit" class="btn btn-primary pull-right"  onclick="showModel()" >Submit</button>
+                        <button type="submit" class="btn btn-primary pull-right">Submit</button>
                     </div>
                     </div>
                 </form>
@@ -1602,6 +1633,8 @@
 
     </script>
 <script>
+    document.getElementById('levelEdit').value='{{level}}';
+
     if('{{level}}'==='village'){
         document.getElementById('stateRadio').disabled = true;
         document.getElementById('districtRadio').disabled = true;

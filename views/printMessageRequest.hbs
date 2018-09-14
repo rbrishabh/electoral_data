@@ -26,6 +26,7 @@
     <script src="/areaAccessSearch.js"></script>
     <script src="/address.js"></script>
     <script src="/addressAdmin.js"></script>
+    <script src="/notification.js"></script>
     <script src="/authenticationAddUser.js"></script>
 
     <script src="/userRightSettings.js"></script>
@@ -101,7 +102,7 @@
 
 
                         <li>
-                            <a href="#">Change Password</a>
+                            <a href="/changePassword">Change Password</a>
                         </li>
                         <li>
                             <a href="/editProfile">Edit Profile</a>
@@ -115,9 +116,9 @@
 
                                 <li><a href="/userSearch">List of Admins</a></li>
                                 <li><a href="/blockedUsers">List of Blocked Users/Admins</a></li>
-                                <li><a href="/mobileReq">List Of Change Mobile User/Admin</a></li>
+                                <li><a href="/mobileReq">List Of Change Mobile User/Admin -<span id="mobileReqCount" style="color: red"> 0</span></a></li>
                                 <li><a href="/todayAdd">Admin Activity</a></li>
-                                <li class="active"><a href="/printmessagerequest">List of Print/Message Request</a></li>
+                                <li class="active"><a href="/printmessagerequest">List of Print/Message Request -<span id="messageReqCount" style="color: red"> 0</span></a></li>
                                 <li id="authCheckAddress"> <a href="/addressSettings">Modify Block/Village</a></li>
 
                             </ul>
@@ -135,6 +136,33 @@
                             </ul>
                         </li>
                         <!------/Request Menu item---------------->
+
+                        <!------M/P Menu item---------------->
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle fa fa-envelope" title="Messages/Print left" data-toggle="dropdown" aria-expanded="true">
+                                <b class="caret"></b>
+                                <div class="ripple-container"></div></a>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li><br></li>
+                                <li style="width: 340px; color: #333 !important; padding-left: 20px; ">
+                                    <i class="fa fa-envelope fa-2x" style="color: darkorange;"> </i> &nbsp; <strong style="color: brown;"> &nbsp; &nbsp;Messages - <span id="messageNoti"> 0</span> Left</strong>
+
+
+
+                                </li>
+                                <li><hr></li>
+
+                                <li style="width: 340px; color: #333 !important; padding-left: 20px; ">
+                                    <i class="fa fa-print fa-2x text-success"> </i> &nbsp; <strong style="color: brown;"> &nbsp; &nbsp;Print - <span id="printNoti">0</span>  Left</strong>
+
+
+
+                                </li>
+                                <li><br></li>
+
+                            </ul>
+                        </li>
+                        <!------M/P Menu item---------------->
                         <li>
                             <a class="btn btn-primary btn-sm" style="margin-top: 10px;" href="/logout">Logout</a>
                         </li>
@@ -1018,7 +1046,7 @@
 
 <div class="bgblack" id="model">
     <div class="model" >
-        Data Succesfully Saved !
+       Succesfully granted!
         <br>
         <button class="btn btn-xs btn-danger" onclick="showModel()"  data-dismiss="modal">Close</button>
     </div>

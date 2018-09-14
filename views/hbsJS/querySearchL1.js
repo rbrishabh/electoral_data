@@ -171,51 +171,56 @@ function printingToEditRights(value) {
     }if(value.addressAED=="on") {
         $('#addressAED').prop('checked', true);
     }
+    if(value.level){
+        if(value.level==="state"){
+            $("#stateRadio").prop("checked", true);
+          checkRadio();
+        }
+        if(value.level==="district"){
+            $("#districtRadio").prop("checked", true);
+            checkRadio();
+        }
+        if(value.level==="block"){
+            $("#blockRadio").prop("checked", true);
+            checkRadio();
+        }
+        if(value.level==="village"){
+            $("#villageRadio").prop("checked", true);
+            checkRadio();
+        }
+    }
     if(value.state){
-        $("#stateE").val(value.state);
-        $("#stateLE").val(value.state);
+        $("#stateEditAdmin").val(value.state);
+        $("#stateLEditAdmin").val(value.state);
 
     }
     if(value.district){
-        $("#districtE").val(value.district);
-        $("#districtLE").val(value.district);
+        $("#districtEditAdmin").val(value.district);
+        $("#districtLEditAdmin").val(value.district);
 
     }
     if(value.block){
         console.log(value.block)
-        $('#blockE').append($('<option>', {
+        $('#blockEditAdmin').append($('<option>', {
             value: value.block,
             text: value.block,
             selected: true
         }));
 
-        $("#blockLE").val(value.block);
+        $("#blockLEditAdmin").val(value.block);
 
     }
     if(value.village){
-        $('#villageE').append($('<option>', {
+        $('#villageEditAdmin').append($('<option>', {
             value: value.village,
             text: value.village,
             selected: true
         }));
 
-        $("#villageLE").val(value.village);
+        $("#villageLEditAdmin").val(value.village);
 
     }
-    if(value.level){
-        if(value.level==="state"){
-            $("#stateRadio").prop("checked", true);
-        }
-        if(value.level==="district"){
-            $("#districtRadio").prop("checked", true);
-        }
-        if(value.level==="block"){
-            $("#blockRadio").prop("checked", true);
-        }
-        if(value.level==="village"){
-            $("#villageRadio").prop("checked", true);
-        }
-    }
+
 
 
 }
@@ -419,7 +424,12 @@ $("#editFormRights").submit(function(event) {
         ourRequest.open('POST', url, true);
 
 
-            document.getElementById("model").style.display = "block";
+    ourRequest.onload = function(){
+        var response = ourRequest.responseText;
+        console.log(response);
+        document.getElementById('editAdminResponse').innerText=response;
+        document.getElementById("model").style.display = "block";
+    }
 
 
 
@@ -800,6 +810,20 @@ function print(printData) {
         '<button class="btn btn-primary pull-right disableButtonPrint" onclick="printData(); printDec(); ">Print</button>';
     $(document).ready(function () {
 
+
+        $('#msgbtn').click(function (e) {
+
+            if ($('input[type=checkbox]').is(':checked')) {
+                $('#msgsend').prop('disabled', false);
+            } else {
+                $('#msgsend').prop('disabled', true);
+            }
+            e.preventDefault();
+        });
+
+
+
+
         var listInput = [];
         $('#msgsend').click(function (e) {
             if ($('input[type=checkbox]').is(':checked')) {
@@ -841,6 +865,8 @@ function print(printData) {
             }
             e.preventDefault();
         });
+
+
 
     });
 

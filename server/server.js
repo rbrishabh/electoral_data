@@ -76,6 +76,28 @@ app.get('/civilCount', authenticated, (req,res)=> {
     });
 });
 
+app.get('/notification', authenticate, (req,res)=> {
+
+    var user = req.session.userId;
+    Users.findById(user).then((user)=>{
+        Users.find({mobileReq : true}).count().then((mobileReqCount)=>{
+            var mobileReqCount =  mobileReqCount.toString();
+            Users.find({$or: [ { messageRequest:true }, { printRequest:true } ]}).count().then((messageReqCount)=>{
+                var messageReqCount =  messageReqCount.toString();
+
+                      var messageNoti = user.messageRights;
+                      var printNoti = user.printRightsL;
+                        res.send({mobileReqCount, messageReqCount, messageNoti, printNoti});
+            });
+        });
+    },(e)=>{
+        res.send();
+    }).catch((e)=>{
+        res.send();
+    });
+
+});
+
 
 app.get('/addressCount', authenticated, (req,res)=> {
 
@@ -678,10 +700,21 @@ if(tokenValidates) {
             message: "Data Succesfully Added!"
         });
     }, (e)=>{
+        var err = e.errmsg;
+        if(err.indexOf("email_1")!=-1){
+           var message = "Error! Email Already Exists.";
+        }
+
+        else if(err.indexOf("mobile_1")!=-1){
+            var message = "Error! Mobile already exists.";
+        }
+        else{
+            var message = "Something went wrong, please try again."
+        }
 
         res.render('newCivilAdd.hbs', {
             pageReturn: "1",
-            message:"Something went wrong. Please try again."
+            message:message
 
         });
     }).catch((e)=>{
@@ -806,7 +839,17 @@ app.post('/queryAddedCivilAuth', authenticate, function (req, res) {
 
 
         }, (e)=>{
+            var err = e.errmsg;
+            if(err.indexOf("email_1")!=-1){
+                var message = "Error! Email Already Exists.";
+            }
 
+            else if(err.indexOf("mobile_1")!=-1){
+                var message = "Error! Mobile already exists.";
+            }
+            else{
+                var message = "Something went wrong, please try again."
+            }
             var user = req.session.userId;
             var obj = {};
             Users.findById(user).then((user) => {
@@ -831,13 +874,24 @@ app.post('/queryAddedCivilAuth', authenticate, function (req, res) {
                 obj.editC = user.citizenEdit
                 obj.superAdmin = user.superAdmin
 
-                obj.message = "Mobile/Email already exists.";
+                obj.message = message;
                 obj.pageReturn = "1"
                 res.render('queryAdd.hbs', obj);
             }, (e) => {
                 res.send(e);
             });
         }).catch((e)=>{
+            var err = e.errmsg;
+            if(err.indexOf("email_1")!=-1){
+                var message = "Error! Email Already Exists.";
+            }
+
+            else if(err.indexOf("mobile_1")!=-1){
+                var message = "Error! Mobile already exists.";
+            }
+            else{
+                var message = "Something went wrong, please try again."
+            }
             var user = req.session.userId;
             var obj = {};
             Users.findById(user).then((user) => {
@@ -863,7 +917,7 @@ app.post('/queryAddedCivilAuth', authenticate, function (req, res) {
                 obj.editC = user.citizenEdit
                 obj.superAdmin = user.superAdmin
 
-                obj.message =  "Mobile/Email already exists.";
+                obj.message = message;
                 obj.pageReturn = "1"
                 res.render('queryAdd.hbs', obj);
             }, (e) => {
@@ -1170,10 +1224,27 @@ app.post("/editFormSubmit", (req,res)=>{
             time: time
         }
 
-        civilian.update({"mobile": obj.mobile},
+        civilian.update({_id: updateObj.citizenId},
             {$set:obj}).then((civilian)=>{
-           //done
-            });
+           res.send('Succesfully Saved');
+            },(e)=>{
+
+            var err = e.errmsg;
+            if(err.indexOf("email_1")!=-1){
+                res.send("Error! Email Already Exists.")
+            }
+
+            else if(err.indexOf("mobile_1")!=-1){
+                res.send("Error! Mobile already exists.")
+            }
+            else{
+                res.send("Something went wrong, please try again.")
+            }
+
+
+        }).catch((e)=>{
+            res.send(e);
+        });
 
 
         }, (e) => {
@@ -1281,6 +1352,7 @@ app.post("/editFormSubmitUser", (req,res)=>{
 
 
 app.post("/editFormRightsSubmitUser", (req,res)=>{
+
     var date = moment().utcOffset("+05:30").format('DD-MM-YYYY');
     var time = moment().utcOffset("+05:30").format();
     var user = req.session.userId;
@@ -1361,9 +1433,10 @@ app.post("/editFormRightsSubmitUser", (req,res)=>{
         obj.createdBy = createdBy;
         obj.dateTime = date;
         obj.time = time;
-       
+       console.log(obj);
         Users.update({"email": email},
             {$set:obj}).then((civilian)=>{
+                res.send("Successful!");
            //done
             });
         // Users.find().then((user)=>{
@@ -1634,7 +1707,8 @@ app.get('/getOTP1/:mobile', (req,res)=>{
         if(error) {
 
         }
-    });    //console.log(url);
+    });
+    // console.log(url);
     res.send({'message':'OTP sending'});
 });
 app.get('/getOTPReg/:mobile', (req,res)=>{
@@ -1707,6 +1781,77 @@ app.post('/',authenticated, (req,res)=> {
         }
 
 }
+
+});
+
+
+app.post('/changePasswordNow', (req,res)=> {
+// console.log('reached here');
+    var otp = req.body.otp;
+
+    if(req.body.otp) {
+        tokenValidates = speakeasy.totp.verify({
+            secret: secret.base32,
+            encoding: 'base32',
+            token: otp,
+            window: 6
+        });
+        if (!tokenValidates) {
+            res.render('change_Password.hbs', {
+                pageTitle: "Registration unsuccessful.",
+                message: "Incorrect OTP"
+            });
+        } else {
+
+            if (req.body.password !== req.body.confirm) {
+                res.render('change_Password.hbs', {
+                    pageTitle: "Registration unsuccessful.",
+                    message: "Passwords do not match! Please try again."
+                });
+            } else {
+                var body = _.pick(req.body, ['mobile', 'oldPassword', 'password']);
+                // console.log(body);
+                var mobile = body.mobile;
+                var password = body.password;
+                var oldPassword = body.oldPassword;
+                Users.find({mobile: mobile}).then((user) => {
+                    // console.log(user, '1');
+                    var email = user.email;
+                    if (oldPassword) {
+                        Users.remove({"email": email}).then((user1)=>{
+                           //removed
+                            user[0].password = password;
+                            var userNew = new Users(user[0]);
+                            userNew.save().then((user)=>{
+                                // console.log(user);
+                                if (req.session) {
+                                    // delete session object
+                                    req.session.destroy(function(err) {
+                                        if(err) {
+                                            return next(err);
+                                        } else {
+                                            return res.redirect('/');
+                                        }
+
+                                    });
+                                }
+                                else res.redirect('/');
+
+                            });
+                        });
+
+
+                    }
+
+                }).catch((e) => {
+                    console.log(e);
+                    res.render('change_Password.hbs', {
+                        message: 'Old Password incorrect'
+                    });
+                });
+            }
+        }
+    }
 
 });
 app.get('/querysearch6/:village', (req,res)=>{
@@ -3250,8 +3395,20 @@ if(req.body.password !== req.body.confirm){
             });
         }, (e) => {
 
+
             var user = req.session.userId;
             var obj = {};
+            var err = e.errmsg;
+            if(err.indexOf("email_1")!=-1){
+                obj.message = "Error! Email Already Exists."
+            }
+
+            else if(err.indexOf("mobile_1")!=-1){
+                obj.message = "Error! Mobile Already Exists."
+            }
+            else{
+                obj.message = "Error! Try Again"
+            }
             Users.findById(user).then((user) => {
                 //console.log(user);
                 if (user.state) {
@@ -3274,7 +3431,7 @@ if(req.body.password !== req.body.confirm){
                 obj.editC = user.citizenEdit
                 obj.superAdmin = user.superAdmin
 
-                obj.message = "Mobile/Email already exists.";
+
                 obj.pageReturn = "1"
                 obj.name = req.body.name;
                 res.render('registration.hbs', obj);
@@ -3284,6 +3441,17 @@ if(req.body.password !== req.body.confirm){
         }).catch((e) => {
             var user = req.session.userId;
             var obj = {};
+            var err = e.errmsg;
+            if(err.indexOf("email_1")!=-1){
+                obj.message = "Error! Email Already Exists."
+            }
+
+            else if(err.indexOf("mobile_1")!=-1){
+                obj.message = "Error! Mobile Already Exists."
+            }
+            else{
+                obj.message = "Error! Try Again"
+            }
             Users.findById(user).then((user) => {
                 //console.log(user);
                 if (user.state) {
@@ -3307,7 +3475,7 @@ if(req.body.password !== req.body.confirm){
                 obj.editC = user.citizenEdit
                 obj.superAdmin = user.superAdmin
 
-                obj.message = "Mobile/Email already exists.";
+
                 obj.pageReturn = "1"
                 res.render('registration.hbs', obj);
             }, (e) => {
@@ -3404,6 +3572,44 @@ app.get('/editProfile', authenticate, (req,res)=>{
         obj.editC = user.citizenEdit;
         obj.superAdmin = user.superAdmin
         res.render('editProfile.hbs', obj);
+    },(e)=>{
+        res.send(e);
+    }).catch((e)=>{
+        res.send(e);
+    });
+
+});
+
+app.get('/changePassword', authenticate, (req,res)=>{
+    var user = req.session.userId;
+    var obj = {};
+    Users.findById(user).then((user) => {
+
+      obj.email= user.email;
+      obj.name = user.name;
+      obj.middleName = user.middleName;
+      obj.lastName=user.lastName;
+      obj.mobile = user.mobile;
+      obj.age = user.age;
+      obj.gender = user.gender;
+      obj.mark = user.mark;
+      obj.occupation= user.occupation;
+        obj.occOther= user.occOther;
+      obj.stateOwn = user.stateOwn;
+      obj.districtOwn = user.districtOwn;
+      obj.villageOwn = user.villageOwn;
+      obj.blockOwn = user.blockOwn;
+      obj.pinOwn = user.pinOwn;
+      obj.level = user.level;
+      obj.notes = user.notes;
+      obj.messageRights = user.messageRights;
+      obj.printRightsL = user.printRightsL;
+        obj.addC = user.citizenAdd;
+        obj.aedAddress = user.addressAED;
+        obj.addA = user.adminAdd;
+        obj.editC = user.citizenEdit;
+        obj.superAdmin = user.superAdmin
+        res.render('change_password.hbs', obj);
     },(e)=>{
         res.send(e);
     }).catch((e)=>{

@@ -590,8 +590,8 @@ function print(printData) {
         + "<th>" + "<b>Pin Code</b>" + "</th>"
         + "<th>" + "Mobile"+ "</th>"
         + "<th>" + "<b>Select</b>" + "</th>"
-        + "<th>" + "<b>View/Edit</b>" + "</th>"
-        + "<th>" + "<b>Block</b>" + "</th>"
+
+        + "<th>" + "<b>Unblock</b>" + "</th>"
 
         + "</b></tr>"
 
@@ -683,7 +683,7 @@ function print(printData) {
             + "<th>" + printData.civilian[x].pin+ "</th>"
             + "<th>" + printData.civilian[x].mobile + "</th>"
             + "<th>" + "<input type='checkbox' data-value = "+ printData.civilian[x].mobile + "-"+ printData.civilian[x].name+ "-"+ printData.civilian[x].middleName+ "-"+ printData.civilian[x].lastName +">" + "</th>"
-            + "<th>" + "<button class='btn btn-default fa fa-pencil-square-o' id='editCitizen' title='Edit Admin Profile' data-toggle='modal' data-target='#myModalEdit' value=" + printData.civilian[x]._id +  " onclick='printToEdit(value)' ></button>" + "</th>"
+
 
             + "<th>" + "<button class='btn btn-default disableButtonBlock' title='Block' value= "+ printData.civilian[x].mobile+" onclick='unblockHim(value)'>UnBlock</button>" + "</th>"
 
@@ -708,7 +708,7 @@ function print(printData) {
         '</ul>'
         +
 
-        '<button class="btn btn-primary pull-right disableButtonMessage" data-toggle="modal" data-target="#myModal" id="msgbtn">Message</button>' +
+
         '<button class="btn btn-primary pull-right disableButtonPrint" onclick="printData(); printDec(); ">Print</button>';
     $(document).ready(function () {
 

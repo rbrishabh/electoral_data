@@ -17,7 +17,8 @@ ageArray = [];
 
 
 function printToEdit (value){
-    var url = urlFinal + 'valueForEdit/'+value
+    document.getElementById('citizenId').value=value;
+    var url = urlFinal + 'valueForEdit/'+value;
     var ourRequest = new XMLHttpRequest();
     ourRequest.open('GET', url, true);
     ourRequest.onload = function () {
@@ -306,14 +307,12 @@ $(document).ready(function() {
         var ourRequest = new XMLHttpRequest();
         ourRequest.open('POST', url, true);
 
-
+        ourRequest.onload = function(){
+            var response = ourRequest.responseText;
+            console.log(response);
+            document.getElementById('editCitizenResponse').innerText=response;
             document.getElementById("model").style.display = "block";
-
-
-
-
-
-
+        };
         ourRequest.send();
 
     });
@@ -704,6 +703,21 @@ if(printData.civilian[x].name== undefined){
         '<button class="btn btn-primary pull-right disableButtonMessage" data-toggle="modal" data-target="#myModal" id="msgbtn">Message</button>' +
         '<button class="btn btn-primary pull-right disableButtonPrint" onclick="printData(); printDec(); ">Print</button>';
     $(document).ready(function () {
+
+
+        $('#msgbtn').click(function (e) {
+
+            if ($('input[type=checkbox]').is(':checked')) {
+                $('#msgsend').prop('disabled', false);
+            } else {
+                $('#msgsend').prop('disabled', true);
+            }
+            e.preventDefault();
+        });
+
+
+
+
 
         var listInput = [];
         $('#msgsend').click(function (e) {

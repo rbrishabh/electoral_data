@@ -690,7 +690,7 @@ function print(printData) {
             + "<th>" + printData.civilian[x].printRightsL+ "</th>"
             + "<th>" + printData.civilian[x].messageRequest+ "</th>"
             + "<th>" + printData.civilian[x].printRequest+ "</th>"
-            + "<th>" + "<button class='btn btn-default fa fa-cogs disableButtonEdit' title='Edit Admin Rights' id='editCitizen2'  data-toggle='modal' data-target='#myModal2'  value= "+ printData.civilian[x].email +  " onclick='printToEditRights(value)' ></button>" + "</th>"
+            + "<th>" + "<button class='btn btn-default fa fa-check-circle disableButtonEdit' title='Grant Request' id='editCitizen2'  data-toggle='modal' data-target='#myModal2'  value= "+ printData.civilian[x].email +  " onclick='printToEditRights(value)' ></button>" + "</th>"
             +"</tr>";
 
         i++
@@ -711,7 +711,7 @@ function print(printData) {
         '</ul>'
         +
 
-        '<button class="btn btn-primary pull-right disableButtonMessage" data-toggle="modal" data-target="#myModal" id="msgbtn">Message</button>' +
+
         '<button class="btn btn-primary pull-right disableButtonPrint" onclick="printData(); printDec(); ">Print</button>';
     $(document).ready(function () {
 
