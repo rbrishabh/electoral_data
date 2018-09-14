@@ -3,6 +3,7 @@ const hbs = require('hbs');
 const bodyParser = require('body-parser');
  var {mongoose,db} = require('./db/mongoose');
  var {civilian} = require('./models/civilian');
+ var {mark} = require('./models/mark');
 var {address} = require('./models/address');
  const bcrypt = require('bcryptjs');
 const _ = require('lodash');
@@ -1708,7 +1709,7 @@ app.get('/getOTP1/:mobile', (req,res)=>{
 
         }
     });
-    // console.log(url);
+    console.log(url);
     res.send({'message':'OTP sending'});
 });
 app.get('/getOTPReg/:mobile', (req,res)=>{
@@ -1809,8 +1810,8 @@ app.post('/changePasswordNow', (req,res)=> {
                     message: "Passwords do not match! Please try again."
                 });
             } else {
-                var body = _.pick(req.body, ['mobile', 'oldPassword', 'password']);
-                // console.log(body);
+                var body = _.pick(req.body, ['mobile', 'oldPassword', 'password','confirm']);
+                console.log(body);
                 var mobile = body.mobile;
                 var password = body.password;
                 var oldPassword = body.oldPassword;
@@ -3193,6 +3194,66 @@ app.get('/district/:district/state/:state/block/:block', (req,res)=>{
     });
 
 });
+
+
+app.get('/mark', (req,res)=>{
+    mark.find().then((mark)=>{
+        if(!mark){
+            res.send();
+        } else {
+            //console.log(address)
+            res.status(200).send({mark});
+        }
+    },(e)=>{
+        res.status(400).send();
+    }).catch((e)=>{
+        res.status(400).send();
+    });
+});
+
+app.get('/newMarkAddPage', authenticate, (req,res)=>{
+    var user = req.session.userId;
+    Users.findById(user).then((user)=>{
+        console.log(user);
+        if(user.superAdmin == true){
+         res.render("markForm.hbs");
+        }  else {
+            res.sendStatus(401);
+        }
+    });
+});
+
+app.post('/newMarkAdd',authenticate,(req,res)=>{
+    var user = req.session.userId;
+    Users.findById(user).then((user)=>{
+       if(user.superAdmin == true){
+
+           var data = req.query.array;
+           var toEdit = JSON.parse(data);
+               var updateObj = {};
+
+               for (var i = 0; i < toEdit.length; i++) {
+                   updateObj[toEdit[i].name] = toEdit[i].value;
+               }
+           var obj = {
+
+               name: updateObj.name,
+               value: updateObj.value
+           };
+               console.log(obj)
+               var markNew = new mark(obj);
+           markNew.save().then((mark)=>{
+              res.send('Success');
+           },(e)=>{
+               res.send('Duplicate Value');
+           });
+       }  else {
+           res.send('Unauthorised');
+       }
+    });
+});
+
+
 app.get('/forgot',authenticated, (req,res)=> {
     res.render('forgotPass.hbs', {
         pageTitle : "Reset password"
