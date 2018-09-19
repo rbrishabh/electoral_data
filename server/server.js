@@ -1798,14 +1798,14 @@ app.post('/changePasswordNow', (req,res)=> {
             window: 6
         });
         if (!tokenValidates) {
-            res.render('change_Password.hbs', {
+            res.render('change_password.hbs', {
                 pageTitle: "Registration unsuccessful.",
                 message: "Incorrect OTP"
             });
         } else {
 
             if (req.body.password !== req.body.confirm) {
-                res.render('change_Password.hbs', {
+                res.render('change_password.hbs', {
                     pageTitle: "Registration unsuccessful.",
                     message: "Passwords do not match! Please try again."
                 });
@@ -1846,7 +1846,7 @@ app.post('/changePasswordNow', (req,res)=> {
 
                 }).catch((e) => {
                     console.log(e);
-                    res.render('change_Password.hbs', {
+                    res.render('change_password.hbs', {
                         message: 'Old Password incorrect'
                     });
                 });
