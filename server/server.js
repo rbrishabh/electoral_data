@@ -1429,7 +1429,29 @@ app.post("/editFormRightsSubmitUser", (req,res)=>{
             obj.printRightsL = '0';
         }
         if(updateObj.optionsRadio){
-            obj.level = updateObj.optionsRadio
+            obj.level = updateObj.optionsRadio;
+            if(obj.level == "state"){
+                Users.update({"email": email},
+                    {$set:{district:"", block: "", village:""}}).then((civilian)=>{
+
+                    //done
+                });
+            }
+            if(obj.level == "block"){
+                Users.update({"email": email},
+                    {$set:{village:""}}).then((civilian)=>{
+
+                    //done
+                });
+            }
+            if(obj.level == "district"){
+                Users.update({"email": email},
+                    {$set:{block: "", village:""}}).then((civilian)=>{
+
+                    //done
+                });
+            }
+
         }
         obj.createdBy = createdBy;
         obj.dateTime = date;
