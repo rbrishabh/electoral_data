@@ -3253,6 +3253,63 @@ app.post('/newMarkAdd',authenticate,(req,res)=>{
     });
 });
 
+app.post('/deleteAdmin',authenticate,(req,res)=>{
+    var user = req.session.userId;
+    Users.findById(user).then((user)=>{
+        if(user.superAdmin == true){
+
+            var data = req.query.array;
+            var toEdit = JSON.parse(data);
+            var updateObj = {};
+
+            for (var i = 0; i < toEdit.length; i++) {
+                updateObj[toEdit[i].name] = toEdit[i].value;
+            }
+            var obj = {
+
+                delAdmin: updateObj.delAdmin
+
+            };
+            console.log(obj)
+            Users.deleteOne({ email: obj.delAdmin }).then((del)=>{
+                res.send('Deleted');
+                }
+                ,(e)=>{
+                res.send('Id does not exist');
+            });
+        }  else {
+            res.send('Unauthorised');
+        }
+    });
+});
+
+app.post('/deleteAdminCitizen',authenticate,(req,res)=>{
+    var user = req.session.userId;
+    Users.findById(user).then((user)=>{
+        if(user.superAdmin == true){
+
+            var data = req.query.array;
+            var toEdit = JSON.parse(data);
+            var updateObj = {};
+
+            for (var i = 0; i < toEdit.length; i++) {
+                updateObj[toEdit[i].name] = toEdit[i].value;
+            }
+            var obj = {
+
+                deleteAdminCitizen: updateObj.delAdminCitizen
+            };
+            console.log(obj)
+                civilian.deleteMany({createdBy: obj.deleteAdminCitizen}).then((done)=>{
+                res.send('Successfully Deleted');
+            },(e)=>{
+                res.send('ID does not exist');
+            });
+        }  else {
+            res.send('Unauthorised');
+        }
+    });
+});
 
 app.get('/forgot',authenticated, (req,res)=> {
     res.render('forgotPass.hbs', {
