@@ -1367,9 +1367,26 @@ app.post("/editFormRightsSubmitUser", (req,res)=>{
         for (var i = 0; i < toEdit.length; i++) {
             updateObj[toEdit[i].name] = toEdit[i].value;
         }
-
+        if(!obj.citizenAdd){
+            obj.citizenAdd = "off";
+        }
+        if(!obj.citizenEdit){
+            obj.citizenEdit = "off";
+        }
+        if(!obj.adminBlock){
+            obj.adminBlock = "off";
+        }
+        if(!obj.adminAdd){
+            obj.adminAdd = "off";
+        }
+        if(!obj.adminEdit){
+            obj.adminEdit = "off";
+        }
+       if (!obj.addressAED){
+            obj.addressAED = "off";
+        }
         var email = updateObj.emailRights;
-        //console.log(updateObj);
+        console.log(updateObj);
         if(updateObj.state){
             obj.state = updateObj.state
         }
@@ -1398,7 +1415,7 @@ app.post("/editFormRightsSubmitUser", (req,res)=>{
             obj.adminEdit = updateObj.adminEdit
         }
         if(updateObj.addressAED){
-            obj.addressEAD = updateObj.addressEAD
+            obj.addressAED = updateObj.addressAED
         }
         if(updateObj.messageRights) {
             obj.messageRights = updateObj.messageRights;
@@ -3394,7 +3411,7 @@ app.post('/addedAdmin', authenticate, (req,res)=>{
         obj.adminEdit = req.body.adminEdit
     }
     if(req.body.addressAED){
-        obj.addressEAD = req.body.addressEAD
+        obj.addressAED = req.body.addressAED
     }
     if(req.body.messageRights) {
         obj.messageRights = req.body.messageRights;

@@ -155,7 +155,7 @@ function printingToEditRights(value) {
         $("#myRange").val(value.messageRights);
 
     }if(value.printRightsL){
-        $("#myRange1").val(value.messageRights);
+        $("#myRange1").val(value.printRightsL);
 
     }
     if(value.citizenAdd=="on") {
