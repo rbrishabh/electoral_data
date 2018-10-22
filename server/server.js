@@ -1856,7 +1856,7 @@ app.post('/changePasswordNow', (req,res)=> {
                 var oldPassword = body.oldPassword;
                 Users.find({mobile: mobile}).then((user) => {
                     // console.log(user, '1');
-                    var email = user.email;
+                    var email = user[0].email;
                     if (oldPassword) {
                         Users.remove({"email": email}).then((user1)=>{
                            //removed
