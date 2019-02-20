@@ -1,11 +1,11 @@
 const express = require('express');
 const hbs = require('hbs');
 const bodyParser = require('body-parser');
- var {mongoose,db} = require('./db/mongoose');
- var {civilian} = require('./models/civilian');
- var {mark} = require('./models/mark');
+var {mongoose,db} = require('./db/mongoose');
+var {civilian} = require('./models/civilian');
+var {mark} = require('./models/mark');
 var {address} = require('./models/address');
- const bcrypt = require('bcryptjs');
+const bcrypt = require('bcryptjs');
 const _ = require('lodash');
 const session = require('express-session')
 var MongoStore = require('connect-mongo')(session)
@@ -86,9 +86,9 @@ app.get('/notification', authenticate, (req,res)=> {
             Users.find({$or: [ { messageRequest:true }, { printRequest:true } ]}).count().then((messageReqCount)=>{
                 var messageReqCount =  messageReqCount.toString();
 
-                      var messageNoti = user.messageRights;
-                      var printNoti = user.printRightsL;
-                        res.send({mobileReqCount, messageReqCount, messageNoti, printNoti});
+                var messageNoti = user.messageRights;
+                var printNoti = user.printRightsL;
+                res.send({mobileReqCount, messageReqCount, messageNoti, printNoti});
             });
         });
     },(e)=>{
@@ -106,18 +106,18 @@ app.get('/addressCount', authenticated, (req,res)=> {
         var blockLength = block.length;
         address.distinct("village").then((village)=> {
             var villageLength = village.length;
-address.find({block: { $exists: true }, dateTimeBlock:moment().utcOffset("+05:30").format('DD-MM-YYYY')}).then((blockToday)=>{
+            address.find({block: { $exists: true }, dateTimeBlock:moment().utcOffset("+05:30").format('DD-MM-YYYY')}).then((blockToday)=>{
 
-    var blockToday = blockToday.length;
-    address.find({village: { $exists: true }, dateTimeVillage:moment().utcOffset("+05:30").format('DD-MM-YYYY')}).then((villageToday)=>{
-        var villageToday = villageToday.length;
-        res.send({villageToday, blockLength,villageLength, blockToday});
+                var blockToday = blockToday.length;
+                address.find({village: { $exists: true }, dateTimeVillage:moment().utcOffset("+05:30").format('DD-MM-YYYY')}).then((villageToday)=>{
+                    var villageToday = villageToday.length;
+                    res.send({villageToday, blockLength,villageLength, blockToday});
+                });
+            });
+
+        });
+
     });
-});
-
-        });
-
-        });
 });
 
 app.get('/addressSettings', authenticate, (req,res)=> {
@@ -254,8 +254,8 @@ app.post('/delVillage/:district/:state/:block/:village', (req,res)=>{
     var state = req.params.state;
     var block = req.params.block;
     address.remove({'district': district, 'state':state, 'block':block, 'village':village}).then((a)=>{
-    res.send('1');
-        }, (e)=>{
+        res.send('1');
+    }, (e)=>{
         res.send("0");
     }).catch((e)=>{
         res.send("0");
@@ -346,7 +346,7 @@ app.get('/superAdmin',authenticate,(req,res)=> {
 
 app.get('/registrationElectoral',authenticate,(req,res)=> {
     var user = req.session.userId;
-var obj ={};
+    var obj ={};
     Users.findById(user).then((user) => {
 
         if(user.adminAdd=="on"){
@@ -359,9 +359,9 @@ var obj ={};
 
             res.render('registration.hbs', obj)
         }
-         else {
-         res.sendStatus(401);
-         }
+        else {
+            res.sendStatus(401);
+        }
     });
 });
 
@@ -395,8 +395,8 @@ app.get('/queryAdd',authenticate,(req,res)=> {
 
             res.render('queryAdd.hbs', obj)
         }
-      else
-          res.sendStatus(401);
+        else
+            res.sendStatus(401);
     });
 });
 
@@ -425,15 +425,15 @@ app.get('/querySearch',authenticate,(req,res)=> {
         }
 
 
-            obj.level = user.level
-            obj.message= user.messageRights
-            obj.print= user.printRightsL
-            obj.addC = user.citizenAdd
+        obj.level = user.level
+        obj.message= user.messageRights
+        obj.print= user.printRightsL
+        obj.addC = user.citizenAdd
         obj.aedAddress = user.addressAED
         obj.addA = user.adminAdd
-            obj.editC= user.citizenEdit
+        obj.editC= user.citizenEdit
         obj.superAdmin = user.superAdmin
-            obj.blockA = user.adminBlock
+        obj.blockA = user.adminBlock
 
         res.render('querySearchNew.hbs', obj);
     });
@@ -460,17 +460,17 @@ app.get('/userSearch',authenticate,(req,res)=> {
         }
 
 
-            obj.level = user.level;
-            obj.message= user.messageRights;
-            obj.print= user.printRightsL;
-            obj.printOthers= user.printRights;
+        obj.level = user.level;
+        obj.message= user.messageRights;
+        obj.print= user.printRightsL;
+        obj.printOthers= user.printRights;
 
-            obj.addC = user.citizenAdd;
+        obj.addC = user.citizenAdd;
         obj.aedAddress = user.addressAED;
         obj.addA = user.adminAdd;
-            obj.editC= user.citizenEdit;
+        obj.editC= user.citizenEdit;
         obj.superAdmin = user.superAdmin
-            obj.editA= user.adminEdit;
+        obj.editA= user.adminEdit;
         obj.blockA = user.adminBlock;
         //console.log(obj);
 
@@ -497,17 +497,17 @@ app.get('/todayAdd',authenticate,(req,res)=> {
         }
 
 
-            obj.level = user.level;
-            obj.message= user.messageRights;
-            obj.print= user.printRightsL;
-            obj.printOthers= user.printRights;
+        obj.level = user.level;
+        obj.message= user.messageRights;
+        obj.print= user.printRightsL;
+        obj.printOthers= user.printRights;
 
-            obj.addC = user.citizenAdd;
+        obj.addC = user.citizenAdd;
         obj.aedAddress = user.addressAED;
         obj.addA = user.adminAdd;
-            obj.editC= user.citizenEdit;
+        obj.editC= user.citizenEdit;
         obj.superAdmin = user.superAdmin
-            obj.editA= user.adminEdit;
+        obj.editA= user.adminEdit;
         obj.blockA = user.adminBlock;
         //console.log(obj);
 
@@ -535,17 +535,17 @@ app.get('/mobileReq',authenticate,(req,res)=> {
         }
 
 
-            obj.level = user.level;
-            obj.message= user.messageRights;
-            obj.print= user.printRightsL;
-            obj.printOthers= user.printRights;
+        obj.level = user.level;
+        obj.message= user.messageRights;
+        obj.print= user.printRightsL;
+        obj.printOthers= user.printRights;
 
-            obj.addC = user.citizenAdd;
+        obj.addC = user.citizenAdd;
         obj.aedAddress = user.addressAED;
         obj.addA = user.adminAdd;
-            obj.editC= user.citizenEdit;
+        obj.editC= user.citizenEdit;
         obj.superAdmin = user.superAdmin
-            obj.editA= user.adminEdit;
+        obj.editA= user.adminEdit;
         obj.blockA = user.adminBlock;
         //console.log(obj);
 
@@ -574,17 +574,17 @@ app.get('/printMessageRequest',authenticate,(req,res)=> {
         }
 
 
-            obj.level = user.level;
-            obj.message= user.messageRights;
-            obj.print= user.printRightsL;
-            obj.printOthers= user.printRights;
+        obj.level = user.level;
+        obj.message= user.messageRights;
+        obj.print= user.printRightsL;
+        obj.printOthers= user.printRights;
 
-            obj.addC = user.citizenAdd;
+        obj.addC = user.citizenAdd;
         obj.aedAddress = user.addressAED;
         obj.addA = user.adminAdd;
-            obj.editC= user.citizenEdit;
+        obj.editC= user.citizenEdit;
         obj.superAdmin = user.superAdmin
-            obj.editA= user.adminEdit;
+        obj.editA= user.adminEdit;
         obj.blockA = user.adminBlock;
         //console.log(obj);
 
@@ -612,17 +612,17 @@ app.get('/blockedUsers',authenticate,(req,res)=> {
         }
 
 
-            obj.level = user.level;
-            obj.message= user.messageRights;
-            obj.print= user.printRightsL;
-            obj.printOthers= user.printRights;
+        obj.level = user.level;
+        obj.message= user.messageRights;
+        obj.print= user.printRightsL;
+        obj.printOthers= user.printRights;
 
-            obj.addC = user.citizenAdd;
+        obj.addC = user.citizenAdd;
         obj.aedAddress = user.addressAED;
         obj.addA = user.adminAdd;
-            obj.editC= user.citizenEdit;
+        obj.editC= user.citizenEdit;
         obj.superAdmin = user.superAdmin
-            obj.editA= user.adminEdit;
+        obj.editA= user.adminEdit;
         obj.blockA = user.adminBlock;
         //console.log(obj);
 
@@ -661,77 +661,77 @@ app.post('/queryAddedCivil', function (req, res) {
     }
 
 
-if(tokenValidates) {
-    var date = moment().utcOffset("+05:30").format('DD-MM-YYYY');
-    var time = moment().utcOffset("+05:30").format();
+    if(tokenValidates) {
+        var date = moment().utcOffset("+05:30").format('DD-MM-YYYY');
+        var time = moment().utcOffset("+05:30").format();
 
-    var newCivilian = new civilian({
-        title : req.body.title,
-        name: req.body.firstName,
-        middleName: req.body.middleName,
-        lastName: req.body.lastName,
-        relation: req.body.optionsRadios,
-        relationTitle: req.body.relationTitle,
-        relationName: req.body.relationFirst,
-        relationMiddle: req.body.relationMiddle,
-        relationLast: req.body.relationLast,
-        mobile: req.body.mobile,
-        secondMobile: req.body.secondMobile,
-        thirdMobile: req.body.thirdMobile,
-        email: req.body.email,
-        age: age,
-        gender: req.body.gender,
-        profession: req.body.occ,
-        professionOther: req.body.occOther,
-        village: req.body.village,
-        block: req.body.block,
-        district: req.body.district,
-        state: req.body.state,
-        pin: req.body.pin,
-        mark: req.body.mark,
-        validationCheck :  'true',
-        dateTime: date,
-        createdBy: 'local@genesis-in.com',
-        time:time
-    });
+        var newCivilian = new civilian({
+            title : req.body.title,
+            name: req.body.firstName,
+            middleName: req.body.middleName,
+            lastName: req.body.lastName,
+            relation: req.body.optionsRadios,
+            relationTitle: req.body.relationTitle,
+            relationName: req.body.relationFirst,
+            relationMiddle: req.body.relationMiddle,
+            relationLast: req.body.relationLast,
+            mobile: req.body.mobile,
+            secondMobile: req.body.secondMobile,
+            thirdMobile: req.body.thirdMobile,
+            email: req.body.email,
+            age: age,
+            gender: req.body.gender,
+            profession: req.body.occ,
+            professionOther: req.body.occOther,
+            village: req.body.village,
+            block: req.body.block,
+            district: req.body.district,
+            state: req.body.state,
+            pin: req.body.pin,
+            mark: req.body.mark,
+            validationCheck :  'true',
+            dateTime: date,
+            createdBy: 'local@genesis-in.com',
+            time:time
+        });
 
-    newCivilian.save().then((doc)=>{
+        newCivilian.save().then((doc)=>{
+            res.render('newCivilAdd.hbs', {
+                pageReturn: "1",
+                message: "Data Succesfully Added!"
+            });
+        }, (e)=>{
+            var err = e.errmsg;
+            if(err.indexOf("email_1")!=-1){
+                var message = "Error! Email Already Exists.";
+            }
+
+            else if(err.indexOf("mobile_1")!=-1){
+                var message = "Error! Mobile already exists.";
+            }
+            else{
+                var message = "Something went wrong, please try again."
+            }
+
+            res.render('newCivilAdd.hbs', {
+                pageReturn: "1",
+                message:message
+
+            });
+        }).catch((e)=>{
+            res.render('newCivilAdd.hbs', {
+                pageReturn: "1",
+                message:"Something went wrong. Please try again."
+
+            });
+        });
+
+    }
+    else {
         res.render('newCivilAdd.hbs', {
             pageReturn: "1",
-            message: "Data Succesfully Added!"
+            message: "The OTP you entered was incorrect!"
         });
-    }, (e)=>{
-        var err = e.errmsg;
-        if(err.indexOf("email_1")!=-1){
-           var message = "Error! Email Already Exists.";
-        }
-
-        else if(err.indexOf("mobile_1")!=-1){
-            var message = "Error! Mobile already exists.";
-        }
-        else{
-            var message = "Something went wrong, please try again."
-        }
-
-        res.render('newCivilAdd.hbs', {
-            pageReturn: "1",
-            message:message
-
-        });
-    }).catch((e)=>{
-        res.render('newCivilAdd.hbs', {
-            pageReturn: "1",
-            message:"Something went wrong. Please try again."
-
-        });
-    });
-
-}
-else {
-    res.render('newCivilAdd.hbs', {
-        pageReturn: "1",
-        message: "The OTP you entered was incorrect!"
-    });
     }
 
 
@@ -771,7 +771,7 @@ app.post('/queryAddedCivilAuth', authenticate, function (req, res) {
     var time = moment().utcOffset("+05:30").format();
     var user = req.session.userId;
     Users.findById(user).then((user) => {
-    var createdBy = user.email;
+        var createdBy = user.email;
 
 
         var newCivilian = new civilian({
@@ -929,8 +929,8 @@ app.post('/queryAddedCivilAuth', authenticate, function (req, res) {
     }, (e) => {
         res.send(e);
     }).catch((e)=>{
-    res.send(e);
-});
+        res.send(e);
+    });
 });
 
 
@@ -1057,9 +1057,9 @@ app.get('/valueForBlock/:mobile', (req,res)=> {
         if(!user){
             res.send();
         } else {
-        var email = user[0].email;
-        email = email + "##";
-        //console.log(email);
+            var email = user[0].email;
+            email = email + "##";
+            //console.log(email);
             Users.update({"mobile":mobile},
                 {$set:{"email": email, "blocked": true}}).then((civilian)=>{
                 //done
@@ -1077,9 +1077,9 @@ app.get('/valueForUnBlock/:mobile', (req,res)=> {
         if(!user){
             res.send();
         } else {
-        var email = user[0].email;
-        email = email.slice(0, - 2);;
-        //console.log(email);
+            var email = user[0].email;
+            email = email.slice(0, - 2);;
+            //console.log(email);
             Users.update({"mobile":mobile},
                 {$set:{"email": email, "blocked": false}}).then((civilian)=>{
                 //done
@@ -1094,10 +1094,10 @@ app.get('/valueForUnBlock/:mobile', (req,res)=> {
 app.get('/newMessageRequest', (req,res)=> {
     var user = req.session.userId;
     Users.findById(user).then((user) => {
-      var obj = {};
-      obj.messageRequest = true;
-      obj.mobile = user.mobile;
-      var mobile = user.mobile;
+        var obj = {};
+        obj.messageRequest = true;
+        obj.mobile = user.mobile;
+        var mobile = user.mobile;
 
 
         Users.update({"mobile":mobile},
@@ -1107,7 +1107,7 @@ app.get('/newMessageRequest', (req,res)=> {
     },(e)=>{
         res.send();
     }).catch((e)=>{
-       res.send();
+        res.send();
     });
 
 });
@@ -1146,9 +1146,9 @@ app.get('/acceptedReq/:email', (req,res)=> {
         if(!user){
             res.send();
         } else {
-      obj={};
-      obj.mobile = user[0].reqMobile;
-      obj.mobileReq= false;
+            obj={};
+            obj.mobile = user[0].reqMobile;
+            obj.mobileReq= false;
 
             Users.update({"email":email},
                 {$set:obj}).then((civilian)=>{
@@ -1170,9 +1170,9 @@ app.get('/rejectedReq/:email', (req,res)=> {
         if(!user){
             res.send();
         } else {
-      obj={};
+            obj={};
 
-      obj.mobileReq = false;
+            obj.mobileReq = false;
             Users.update({"email":email},
                 {$set:obj}).then((civilian)=>{
                 //done
@@ -1227,8 +1227,8 @@ app.post("/editFormSubmit", (req,res)=>{
 
         civilian.update({_id: updateObj.citizenId},
             {$set:obj}).then((civilian)=>{
-           res.send('Succesfully Saved');
-            },(e)=>{
+            res.send('Succesfully Saved');
+        },(e)=>{
 
             var err = e.errmsg;
             if(err.indexOf("email_1")!=-1){
@@ -1248,7 +1248,7 @@ app.post("/editFormSubmit", (req,res)=>{
         });
 
 
-        }, (e) => {
+    }, (e) => {
         res.send(e);
     }).catch((e)=>{
         res.send(e);
@@ -1297,19 +1297,19 @@ app.post("/editFormSubmitUser", (req,res)=>{
 
         Users.update({"_id": updateObj.idToUpdate },
             {$set:obj}).then((civilian)=>{
-           res.send("Data Succesfully Saved.");
-            },(e)=>{
-                var err = e.errmsg;
-                if(err.indexOf("email_1")!=-1){
-                    res.send("Error! Email Already Exists.")
-                }
+            res.send("Data Succesfully Saved.");
+        },(e)=>{
+            var err = e.errmsg;
+            if(err.indexOf("email_1")!=-1){
+                res.send("Error! Email Already Exists.")
+            }
 
-               else if(err.indexOf("mobile_1")!=-1){
-                    res.send("Error! Mobile already exists.")
-                }
-                else{
-                    res.send("Something went wrong, please try again.")
-                }
+            else if(err.indexOf("mobile_1")!=-1){
+                res.send("Error! Mobile already exists.")
+            }
+            else{
+                res.send("Something went wrong, please try again.")
+            }
 
 
         }).catch((e)=>{
@@ -1344,7 +1344,7 @@ app.post("/editFormSubmitUser", (req,res)=>{
         //     res.send(JSON.stringify(obj));
         // });
 
-        }, (e) => {
+    }, (e) => {
         res.send(e);
     }).catch((e)=>{
         res.send(e);
@@ -1382,7 +1382,7 @@ app.post("/editFormRightsSubmitUser", (req,res)=>{
         if(!obj.adminEdit){
             obj.adminEdit = "off";
         }
-       if (!obj.addressAED){
+        if (!obj.addressAED){
             obj.addressAED = "off";
         }
         var email = updateObj.emailRights;
@@ -1473,12 +1473,12 @@ app.post("/editFormRightsSubmitUser", (req,res)=>{
         obj.createdBy = createdBy;
         obj.dateTime = date;
         obj.time = time;
-       console.log(obj);
+        console.log(obj);
         Users.update({"email": email},
             {$set:obj}).then((civilian)=>{
-                res.send("Successful!");
-           //done
-            });
+            res.send("Successful!");
+            //done
+        });
         // Users.find().then((user)=>{
         //     var obj = {
         //         civilian : []
@@ -1508,7 +1508,7 @@ app.post("/editFormRightsSubmitUser", (req,res)=>{
         //     res.send(JSON.stringify(obj));
         // });
 
-        }, (e) => {
+    }, (e) => {
         res.send(e);
     }).catch((e)=>{
         res.send(e);
@@ -1537,15 +1537,15 @@ app.post("/editFormRightsSubmitUserMP", (req,res)=>{
             //console.log(no);
             Users.findById(user).then((user) => {
                 var mobile = user.mobile;
-               // console.log(user.messageRights);
+                // console.log(user.messageRights);
                 if (user.messageRights > 0 && !isNaN(user.messageRights)) {
                     var messageRights = user.messageRights - no;
 
-                        obj1.messageRights = messageRights;
-                        Users.update({"mobile": mobile},
-                            {$set: obj1}).then((user) => {
-                            // console.log(user);
-                        });
+                    obj1.messageRights = messageRights;
+                    Users.update({"mobile": mobile},
+                        {$set: obj1}).then((user) => {
+                        // console.log(user);
+                    });
 
                     Users.find({"email": email}).then((userCur) => {
 
@@ -1558,10 +1558,10 @@ app.post("/editFormRightsSubmitUserMP", (req,res)=>{
 
                         messageRightsUpdate = Number(updateObj.messageRights) + messagePrevious;
 
-                       Users.update({"email":email},
-                           {$set: {"messageRights":messageRightsUpdate}}).then((user) => {
-                           // console.log(user);
-                       });
+                        Users.update({"email":email},
+                            {$set: {"messageRights":messageRightsUpdate}}).then((user) => {
+                            // console.log(user);
+                        });
                     });
 
                 }
@@ -1571,20 +1571,20 @@ app.post("/editFormRightsSubmitUserMP", (req,res)=>{
         }
         if(updateObj.printRights){
 
-                Users.find({"email": email}).then((user) => {
-                          var updatePrint = {};
-                    var previousPrintRights = Number(user[0].printRightsL);
+            Users.find({"email": email}).then((user) => {
+                var updatePrint = {};
+                var previousPrintRights = Number(user[0].printRightsL);
 
-                    updatePrint.printRightsL = Number(updateObj.printRights)+previousPrintRights;
+                updatePrint.printRightsL = Number(updateObj.printRights)+previousPrintRights;
 
-                    if(previousPrintRights<updateObj.printRights){
-                        updatePrint.printRights = updatePrint.printRightsL;
-                    }
-                    Users.update({"email":email},
-                        {$set: updatePrint}).then((user) => {
-                        // console.log(user);
-                    });
+                if(previousPrintRights<updateObj.printRights){
+                    updatePrint.printRights = updatePrint.printRightsL;
+                }
+                Users.update({"email":email},
+                    {$set: updatePrint}).then((user) => {
+                    // console.log(user);
                 });
+            });
 
 
         } else{
@@ -1593,14 +1593,14 @@ app.post("/editFormRightsSubmitUserMP", (req,res)=>{
         }
 
         obj.messageRequest = false;
-         obj.printRequest = false;
+        obj.printRequest = false;
 
         Users.update({"email": email},
             {$set:obj}).then((civilian)=>{
-           //done
-            });
+            //done
+        });
 
-        }, (e) => {
+    }, (e) => {
         res.send(e);
     }).catch((e)=>{
         res.send(e);
@@ -1615,24 +1615,24 @@ app.get('/getNumber/:email', (req,res)=>{
     Users.find({
         email:email,
     }).then((user)=>{
-        var mobileNumber={};
-           mobileNumber.number = user[0].mobile;
+            var mobileNumber={};
+            mobileNumber.number = user[0].mobile;
 
-        secret = speakeasy.generateSecret({length: 6});
+            secret = speakeasy.generateSecret({length: 6});
 
-        var token = speakeasy.totp({
-            secret: secret.base32,
-            encoding: 'base32'
-        });
-        var url = 'http://bhashsms.com/api/sendmsg.php?user=genesissms&pass=123456&sender=GENSIS&phone=' + mobileNumber.number + '&text=' + token + ' is your One Time Password for authenticating Electoral System.&priority=ndnd&stype=normal'
-        request({url:url}, (error, response, body)=>{
-            if(error) {
+            var token = speakeasy.totp({
+                secret: secret.base32,
+                encoding: 'base32'
+            });
+            var url = 'http://bhashsms.com/api/sendmsg.php?user=genesissms&pass=123456&sender=GENSIS&phone=' + mobileNumber.number + '&text=' + token + ' is your One Time Password for authenticating Electoral System.&priority=ndnd&stype=normal'
+            request({url:url}, (error, response, body)=>{
+                if(error) {
 
-            }
-        });
-        //console.log(url);
-        res.send({'message':'OTP sending'});
-    },
+                }
+            });
+            //console.log(url);
+            res.send({'message':'OTP sending'});
+        },
         (e)=>{
             res.send({'message':'Incorrect Email!'});
 
@@ -1685,7 +1685,7 @@ app.get('/message', (req,res)=>{
     });
 
 
-     //console.log(arr1, message);
+    //console.log(arr1, message);
 });
 
 
@@ -1694,7 +1694,7 @@ app.get('/message', (req,res)=>{
 
 app.get('/checkMobile/:mobile', (req,res)=> {
     //console.log('started running afadaf')
-var mobile = req.params.mobile;
+    var mobile = req.params.mobile;
     civilian.find({mobile:mobile}).count().then((count)=>{
         if(count>0){
             //console.log('its more than 0')
@@ -1789,8 +1789,8 @@ app.post('/',authenticated, (req,res)=> {
                 message: 'Password incorrect'
             });
         });
-         }
- else if(otp) {
+    }
+    else if(otp) {
         //console.log(otp);
         tokenValidates = speakeasy.totp.verify({
             secret: secret.base32,
@@ -1820,7 +1820,7 @@ app.post('/',authenticated, (req,res)=> {
             });
         }
 
-}
+    }
 
 });
 
@@ -1859,7 +1859,7 @@ app.post('/changePasswordNow', (req,res)=> {
                     var email = user[0].email;
                     if (oldPassword) {
                         Users.remove({"email": email}).then((user1)=>{
-                           //removed
+                            //removed
                             user[0].password = password;
                             var userNew = new Users(user[0]);
                             userNew.save().then((user)=>{
@@ -1975,11 +1975,11 @@ app.get('/querysearch9/:state', (req,res)=>{
 });
 
 app.get('/initialSearch/state/:state/district/:district/block/:block/village/:village', (req,res)=>{
- //console.log('reached here');
- var query = {};
+    //console.log('reached here');
+    var query = {};
 
     if(req.params.state != "00") {
-     query.state = req.params.state;
+        query.state = req.params.state;
     }
     if(req.params.district!="00"){
         query.district = req.params.district
@@ -2008,8 +2008,8 @@ app.get('/initialSearch/state/:state/district/:district/block/:block/village/:vi
 });
 
 app.get('/initialSearch1/state/:state/district/:district/block/:block/village/:village', (req,res)=>{
- //console.log('reached here asfjlfjb');
- var query = {};
+    //console.log('reached here asfjlfjb');
+    var query = {};
     var userNE = req.session.userId;
 
     Users.findById(userNE).then((userNE) => {
@@ -2031,7 +2031,7 @@ app.get('/initialSearch1/state/:state/district/:district/block/:block/village/:v
             query.level ={$ne:userNE.level};
         }
         query.superAdmin = false;
-         // console.log(query)
+        // console.log(query)
 
         Users.find(query).then((user)=>{
             if(!user){
@@ -2154,7 +2154,7 @@ app.get('/initialSearch2/state/:state/district/:district/block/:block/village/:v
 });
 
 app.get('/initialSearch3/state/:state/district/:district/block/:block/village/:village', (req,res)=>{
- //console.log('reached here asfjlfjb');
+    //console.log('reached here asfjlfjb');
     var userNE = req.session.userId;
     Users.findById(userNE).then((userNE) => {
         var query = {};
@@ -2231,7 +2231,7 @@ app.get('/initialSearch3/state/:state/district/:district/block/:block/village/:v
 app.get('/getHistory/:email',(req,res)=>{
     var email = req.params.email;
     address.find({block: { $exists: true }, dateTimeBlock:moment().utcOffset("+05:30").format('DD-MM-YYYY'), addedByBlock: email}).count().then((countTotal)=>{
-      var blockToday = countTotal
+        var blockToday = countTotal
         address.find({village: { $exists: true }, dateTimeVillage:moment().utcOffset("+05:30").format('DD-MM-YYYY'), addedByVillage: email}).count().then((countTotal)=>{
             var villageToday = countTotal
 
@@ -2297,8 +2297,8 @@ app.get('/getHistory/:email',(req,res)=>{
 
 
 app.get('/initialSearch4/state/:state/district/:district/block/:block/village/:village', (req,res)=>{
- //console.log('reached here asfjlfjb');
- var query = {};
+    //console.log('reached here asfjlfjb');
+    var query = {};
     var userNE = req.session.userId;
 
     Users.findById(userNE).then((userNE) => {
@@ -2361,10 +2361,10 @@ app.get('/initialSearch4/state/:state/district/:district/block/:block/village/:v
         });
 
     },(e)=>{
-            res.send();
-        }).catch((e)=>{
-            res.send();
-        });
+        res.send();
+    }).catch((e)=>{
+        res.send();
+    });
 
 });
 
@@ -2423,7 +2423,7 @@ app.get('/initialSearch5/state/:state/district/:district/block/:block/village/:v
                             printRightsL: user[i].printRightsL,
                             messageRequest: user[i].messageRequest,
                             printRequest: user[i].printRequest
-                            });
+                        });
                 }
                 //console.log(obj)
                 res.send(JSON.stringify(obj));
@@ -2463,7 +2463,7 @@ app.get('/buttonSearch/:state/:district/:block/:village/:pin/:firstName/:middleN
         query.pin= req.params.pin
     }
     if(req.params.firstName!="00"){
-       query.name= req.params.firstName
+        query.name= req.params.firstName
 
 
     }
@@ -2472,7 +2472,7 @@ app.get('/buttonSearch/:state/:district/:block/:village/:pin/:firstName/:middleN
 
     }
     if(req.params.lastName!="00"){
-       query.lastName= req.params.lastName
+        query.lastName= req.params.lastName
 
     }
     if(req.params.minage!="00" && req.params.maxage == "00"){
@@ -2483,7 +2483,7 @@ app.get('/buttonSearch/:state/:district/:block/:village/:pin/:firstName/:middleN
     }
     if(req.params.minage!="00" && req.params.maxage != "00"){
         query.age= {$lte: req.params.maxage, $gte: req.params.minage}
-        }
+    }
     if(req.params.occ!="00"){
         query.profession= req.params.occ
     }
@@ -3181,7 +3181,7 @@ app.get('/buttonSearch5/:state/:district/:block/:village/:pin/:firstName/:middle
 
 app.get('/state/:state', (req,res)=>{
 
-   //console.log(req.params.state);
+    //console.log(req.params.state);
     var state = req.params.state;
     address.distinct("district",{state:state}).then((address)=>{
         if(!address){
@@ -3255,7 +3255,7 @@ app.get('/newMarkAddPage', authenticate, (req,res)=>{
     Users.findById(user).then((user)=>{
         console.log(user);
         if(user.superAdmin == true){
-         res.render("markForm.hbs");
+            res.render("markForm.hbs");
         }  else {
             res.sendStatus(401);
         }
@@ -3265,30 +3265,30 @@ app.get('/newMarkAddPage', authenticate, (req,res)=>{
 app.post('/newMarkAdd',authenticate,(req,res)=>{
     var user = req.session.userId;
     Users.findById(user).then((user)=>{
-       if(user.superAdmin == true){
+        if(user.superAdmin == true){
 
-           var data = req.query.array;
-           var toEdit = JSON.parse(data);
-               var updateObj = {};
+            var data = req.query.array;
+            var toEdit = JSON.parse(data);
+            var updateObj = {};
 
-               for (var i = 0; i < toEdit.length; i++) {
-                   updateObj[toEdit[i].name] = toEdit[i].value;
-               }
-           var obj = {
+            for (var i = 0; i < toEdit.length; i++) {
+                updateObj[toEdit[i].name] = toEdit[i].value;
+            }
+            var obj = {
 
-               name: updateObj.name,
-               value: updateObj.value
-           };
-               console.log(obj)
-               var markNew = new mark(obj);
-           markNew.save().then((mark)=>{
-              res.send('Success');
-           },(e)=>{
-               res.send('Duplicate Value');
-           });
-       }  else {
-           res.send('Unauthorised');
-       }
+                name: updateObj.name,
+                value: updateObj.value
+            };
+            console.log(obj)
+            var markNew = new mark(obj);
+            markNew.save().then((mark)=>{
+                res.send('Success');
+            },(e)=>{
+                res.send('Duplicate Value');
+            });
+        }  else {
+            res.send('Unauthorised');
+        }
     });
 });
 
@@ -3311,11 +3311,11 @@ app.post('/deleteAdmin',authenticate,(req,res)=>{
             };
             console.log(obj)
             Users.deleteOne({ email: obj.delAdmin }).then((del)=>{
-                res.send('Deleted');
+                    res.send('Deleted');
                 }
                 ,(e)=>{
-                res.send('Id does not exist');
-            });
+                    res.send('Id does not exist');
+                });
         }  else {
             res.send('Unauthorised');
         }
@@ -3339,7 +3339,7 @@ app.post('/deleteAdminCitizen',authenticate,(req,res)=>{
                 deleteAdminCitizen: updateObj.delAdminCitizen
             };
             console.log(obj)
-                civilian.deleteMany({createdBy: obj.deleteAdminCitizen}).then((done)=>{
+            civilian.deleteMany({createdBy: obj.deleteAdminCitizen}).then((done)=>{
                 res.send('Successfully Deleted');
             },(e)=>{
                 res.send('ID does not exist');
@@ -3357,7 +3357,7 @@ app.get('/forgot',authenticated, (req,res)=> {
 });
 
 app.post('/forgot', (req,res)=>{
-   res.redirect('/change_password');
+    res.redirect('/change_password');
 });
 
 app.post('/change_password', (req,res)=>{
@@ -3428,7 +3428,7 @@ app.post('/addedAdmin', authenticate, (req,res)=>{
                 Users.update({"mobile": mobile},
                     {$set: obj1}).then((user) => {
                     //console.log(user);
-                    });
+                });
             }
         });
     } else{
@@ -3446,8 +3446,8 @@ app.post('/addedAdmin', authenticate, (req,res)=>{
     }
     Users.update({"email": req.body.email},
         {$set:obj}).then((user)=>{
-    res.redirect('/querySearch');
-            }, (e)=>{
+        res.redirect('/querySearch');
+    }, (e)=>{
         res.send('0');
     }).catch((e)=>{
         res.send('0');
@@ -3468,7 +3468,7 @@ app.get('/printDecrement', (req,res)=>{
             obj.printRightsL = printRightsL;
             Users.update({"mobile": mobile},
                 {$set:obj}).then((user)=>{
-                    res.send({printRightsL});
+                res.send({printRightsL});
             });
         }
         else {
@@ -3482,7 +3482,7 @@ app.get('/printDecrement', (req,res)=>{
 
 
 app.post('/registrationElectoralData' , authenticate, (req, res) => {
-var otp = req.body.otp;
+    var otp = req.body.otp;
     //console.log(otp);
     if(req.body.otp){
         tokenValidates = speakeasy.totp.verify({
@@ -3498,154 +3498,154 @@ var otp = req.body.otp;
     }
 
 
-if(req.body.password !== req.body.confirm){
+    if(req.body.password !== req.body.confirm){
         res.render('registration.hbs', {
             pageTitle: "Registration unsuccessful.",
             message: "Passwords do not match! Please try again."
         });
     } else {
-    var user1 = req.session.userId;
-    Users.findById(user1).then((user1) => {
+        var user1 = req.session.userId;
+        Users.findById(user1).then((user1) => {
 
-        var body = _.pick(req.body, ['email', 'name', 'middleName', 'mobile', 'lastName', 'age', 'gender', 'mark', 'occupation', 'occOther', 'notes', 'password', 'stateOwn', 'districtOwn', 'blockOwn', 'villageOwn', 'pinOwn', 'verifiedMobile']);
-        body.dateTime = moment().utcOffset("+05:30").format('DD-MM-YYYY');
-        body.time = moment().utcOffset("+05:30").format();
+            var body = _.pick(req.body, ['email', 'name', 'middleName', 'mobile', 'lastName', 'age', 'gender', 'mark', 'occupation', 'occOther', 'notes', 'password', 'stateOwn', 'districtOwn', 'blockOwn', 'villageOwn', 'pinOwn', 'verifiedMobile']);
+            body.dateTime = moment().utcOffset("+05:30").format('DD-MM-YYYY');
+            body.time = moment().utcOffset("+05:30").format();
 
-        body.createdBy = user1.email;
-        var user = new Users(body);
-        user.save().then(() => {
-            var obj = {};
-            Users.findById(user1).then((user1) => {
-                //console.log(user1);
-                if (user1.state) {
-                    obj.state = user1.state
-                }
-                if (user1.village) {
-                    obj.village = user1.village
-                }
-                if (user1.block) {
-                    obj.block = user1.block
-                }
-                if (user1.district) {
-                    obj.district = user1.district
-                }
+            body.createdBy = user1.email;
+            var user = new Users(body);
+            user.save().then(() => {
+                var obj = {};
+                Users.findById(user1).then((user1) => {
+                    //console.log(user1);
+                    if (user1.state) {
+                        obj.state = user1.state
+                    }
+                    if (user1.village) {
+                        obj.village = user1.village
+                    }
+                    if (user1.block) {
+                        obj.block = user1.block
+                    }
+                    if (user1.district) {
+                        obj.district = user1.district
+                    }
 
-                obj.level = user1.level
-                obj.addC = user1.citizenAdd
-                obj.editC = user1.citizenEdit
-                obj.superAdmin = user1.superAdmin
-                obj.editA = user1.adminEdit
-                obj.blockA = user1.adminBlock
-                obj.aedAddress = user1.addressAED
-                obj.addA = user1.adminAdd
-                obj.name = req.body.name
-                obj.email = req.body.email
-                obj.message = user1.messageRights
-                obj.print = user1.printRights
+                    obj.level = user1.level
+                    obj.addC = user1.citizenAdd
+                    obj.editC = user1.citizenEdit
+                    obj.superAdmin = user1.superAdmin
+                    obj.editA = user1.adminEdit
+                    obj.blockA = user1.adminBlock
+                    obj.aedAddress = user1.addressAED
+                    obj.addA = user1.adminAdd
+                    obj.name = req.body.name
+                    obj.email = req.body.email
+                    obj.message = user1.messageRights
+                    obj.print = user1.printRights
 
-                res.render('registrationS.hbs', obj);
+                    res.render('registrationS.hbs', obj);
 
+                }, (e) => {
+                    res.send(e);
+                }).catch((e) => {
+                    res.send(e);
+                });
             }, (e) => {
-                res.send(e);
+
+
+                var user = req.session.userId;
+                var obj = {};
+                var err = e.errmsg;
+                if(err.indexOf("email_1")!=-1){
+                    obj.message = "Error! Email Already Exists."
+                }
+
+                else if(err.indexOf("mobile_1")!=-1){
+                    obj.message = "Error! Mobile Already Exists."
+                }
+                else{
+                    obj.message = "Error! Try Again"
+                }
+                Users.findById(user).then((user) => {
+                    //console.log(user);
+                    if (user.state) {
+                        obj.state = user.state
+                    }
+                    if (user.village) {
+                        obj.village = user.village
+                    }
+                    if (user.block) {
+                        obj.block = user.block
+                    }
+                    if (user.district) {
+                        obj.district = user.district
+                    }
+
+                    obj.level = user.level
+                    obj.addC = user.citizenAdd
+                    obj.aedAddress = user.addressAED
+                    obj.addA = user.adminAdd
+                    obj.editC = user.citizenEdit
+                    obj.superAdmin = user.superAdmin
+
+
+                    obj.pageReturn = "1"
+                    obj.name = req.body.name;
+                    res.render('registration.hbs', obj);
+                }, (e) => {
+                    res.send(e);
+                });
             }).catch((e) => {
-                res.send(e);
+                var user = req.session.userId;
+                var obj = {};
+                var err = e.errmsg;
+                if(err.indexOf("email_1")!=-1){
+                    obj.message = "Error! Email Already Exists."
+                }
+
+                else if(err.indexOf("mobile_1")!=-1){
+                    obj.message = "Error! Mobile Already Exists."
+                }
+                else{
+                    obj.message = "Error! Try Again"
+                }
+                Users.findById(user).then((user) => {
+                    //console.log(user);
+                    if (user.state) {
+                        obj.state = user.state
+                    }
+                    if (user.village) {
+                        obj.village = user.village
+                    }
+                    if (user.block) {
+                        obj.block = user.block
+                    }
+                    if (user.district) {
+                        obj.district = user.district
+                    }
+
+
+                    obj.level = user.level
+                    obj.addC = user.citizenAdd
+                    obj.aedAddress = user.addressAED
+                    obj.addA = user.adminAdd
+                    obj.editC = user.citizenEdit
+                    obj.superAdmin = user.superAdmin
+
+
+                    obj.pageReturn = "1"
+                    res.render('registration.hbs', obj);
+                }, (e) => {
+                    res.send(e);
+                });
             });
+
         }, (e) => {
-
-
-            var user = req.session.userId;
-            var obj = {};
-            var err = e.errmsg;
-            if(err.indexOf("email_1")!=-1){
-                obj.message = "Error! Email Already Exists."
-            }
-
-            else if(err.indexOf("mobile_1")!=-1){
-                obj.message = "Error! Mobile Already Exists."
-            }
-            else{
-                obj.message = "Error! Try Again"
-            }
-            Users.findById(user).then((user) => {
-                //console.log(user);
-                if (user.state) {
-                    obj.state = user.state
-                }
-                if (user.village) {
-                    obj.village = user.village
-                }
-                if (user.block) {
-                    obj.block = user.block
-                }
-                if (user.district) {
-                    obj.district = user.district
-                }
-
-                obj.level = user.level
-                obj.addC = user.citizenAdd
-                obj.aedAddress = user.addressAED
-                obj.addA = user.adminAdd
-                obj.editC = user.citizenEdit
-                obj.superAdmin = user.superAdmin
-
-
-                obj.pageReturn = "1"
-                obj.name = req.body.name;
-                res.render('registration.hbs', obj);
-            }, (e) => {
-                res.send(e);
-            });
+            res.send('0');
         }).catch((e) => {
-            var user = req.session.userId;
-            var obj = {};
-            var err = e.errmsg;
-            if(err.indexOf("email_1")!=-1){
-                obj.message = "Error! Email Already Exists."
-            }
-
-            else if(err.indexOf("mobile_1")!=-1){
-                obj.message = "Error! Mobile Already Exists."
-            }
-            else{
-                obj.message = "Error! Try Again"
-            }
-            Users.findById(user).then((user) => {
-                //console.log(user);
-                if (user.state) {
-                    obj.state = user.state
-                }
-                if (user.village) {
-                    obj.village = user.village
-                }
-                if (user.block) {
-                    obj.block = user.block
-                }
-                if (user.district) {
-                    obj.district = user.district
-                }
-
-
-                obj.level = user.level
-                obj.addC = user.citizenAdd
-                obj.aedAddress = user.addressAED
-                obj.addA = user.adminAdd
-                obj.editC = user.citizenEdit
-                obj.superAdmin = user.superAdmin
-
-
-                obj.pageReturn = "1"
-                res.render('registration.hbs', obj);
-            }, (e) => {
-                res.send(e);
-            });
+            res.send('0');
         });
-
-    }, (e) => {
-        res.send('0');
-    }).catch((e) => {
-        res.send('0');
-    });
-}
+    }
 });
 
 
@@ -3653,28 +3653,28 @@ app.post('/editAdminProfile' , authenticate, (req, res) => {
 
     var user1 = req.session.userId;
     Users.findById(user1).then((user1) => {
-         if(req.body.mobile){
-             // console.log(req.body.mobile);
-             Users.find({"mobile": req.body.mobile}).count().then((result)=>{
-             // console.log(result);
-                 if(result==0){
-                     // console.log(req.body.mobile);
-                     // console.log('if runnuninin admin')
-                     var obj = {};
-                     obj.reqMobile = req.body.mobile;
-                     obj.mobileReq = true;
-                     // console.log(obj, 'this is the objj')
-                     Users.update({"email": req.body.email},
-                         {$set: obj}).then((user) => {
-                         //done
-                     });
-                 }
-             },(e)=>{
-                 res.send();
-             }).catch((e)=>{
-                 res.send();
-             });
-         }
+        if(req.body.mobile){
+            // console.log(req.body.mobile);
+            Users.find({"mobile": req.body.mobile}).count().then((result)=>{
+                // console.log(result);
+                if(result==0){
+                    // console.log(req.body.mobile);
+                    // console.log('if runnuninin admin')
+                    var obj = {};
+                    obj.reqMobile = req.body.mobile;
+                    obj.mobileReq = true;
+                    // console.log(obj, 'this is the objj')
+                    Users.update({"email": req.body.email},
+                        {$set: obj}).then((user) => {
+                        //done
+                    });
+                }
+            },(e)=>{
+                res.send();
+            }).catch((e)=>{
+                res.send();
+            });
+        }
         var body = _.pick(req.body, ['email', 'name', 'middleName', 'lastName', 'age', 'gender', 'mark', 'occupation', 'occOther', 'stateOwn', 'districtOwn', 'blockOwn', 'villageOwn', 'pinOwn']);
 
         Users.update({"email": req.body.email},
@@ -3704,25 +3704,25 @@ app.get('/editProfile', authenticate, (req,res)=>{
     var obj = {};
     Users.findById(user).then((user) => {
 
-      obj.email= user.email;
-      obj.name = user.name;
-      obj.middleName = user.middleName;
-      obj.lastName=user.lastName;
-      obj.mobile = user.mobile;
-      obj.age = user.age;
-      obj.gender = user.gender;
-      obj.mark = user.mark;
-      obj.occupation= user.occupation;
+        obj.email= user.email;
+        obj.name = user.name;
+        obj.middleName = user.middleName;
+        obj.lastName=user.lastName;
+        obj.mobile = user.mobile;
+        obj.age = user.age;
+        obj.gender = user.gender;
+        obj.mark = user.mark;
+        obj.occupation= user.occupation;
         obj.occOther= user.occOther;
-      obj.stateOwn = user.stateOwn;
-      obj.districtOwn = user.districtOwn;
-      obj.villageOwn = user.villageOwn;
-      obj.blockOwn = user.blockOwn;
-      obj.pinOwn = user.pinOwn;
-      obj.level = user.level;
-      obj.notes = user.notes;
-      obj.messageRights = user.messageRights;
-      obj.printRightsL = user.printRightsL;
+        obj.stateOwn = user.stateOwn;
+        obj.districtOwn = user.districtOwn;
+        obj.villageOwn = user.villageOwn;
+        obj.blockOwn = user.blockOwn;
+        obj.pinOwn = user.pinOwn;
+        obj.level = user.level;
+        obj.notes = user.notes;
+        obj.messageRights = user.messageRights;
+        obj.printRightsL = user.printRightsL;
         obj.addC = user.citizenAdd;
         obj.aedAddress = user.addressAED;
         obj.addA = user.adminAdd;
@@ -3742,25 +3742,25 @@ app.get('/changePassword', authenticate, (req,res)=>{
     var obj = {};
     Users.findById(user).then((user) => {
 
-      obj.email= user.email;
-      obj.name = user.name;
-      obj.middleName = user.middleName;
-      obj.lastName=user.lastName;
-      obj.mobile = user.mobile;
-      obj.age = user.age;
-      obj.gender = user.gender;
-      obj.mark = user.mark;
-      obj.occupation= user.occupation;
+        obj.email= user.email;
+        obj.name = user.name;
+        obj.middleName = user.middleName;
+        obj.lastName=user.lastName;
+        obj.mobile = user.mobile;
+        obj.age = user.age;
+        obj.gender = user.gender;
+        obj.mark = user.mark;
+        obj.occupation= user.occupation;
         obj.occOther= user.occOther;
-      obj.stateOwn = user.stateOwn;
-      obj.districtOwn = user.districtOwn;
-      obj.villageOwn = user.villageOwn;
-      obj.blockOwn = user.blockOwn;
-      obj.pinOwn = user.pinOwn;
-      obj.level = user.level;
-      obj.notes = user.notes;
-      obj.messageRights = user.messageRights;
-      obj.printRightsL = user.printRightsL;
+        obj.stateOwn = user.stateOwn;
+        obj.districtOwn = user.districtOwn;
+        obj.villageOwn = user.villageOwn;
+        obj.blockOwn = user.blockOwn;
+        obj.pinOwn = user.pinOwn;
+        obj.level = user.level;
+        obj.notes = user.notes;
+        obj.messageRights = user.messageRights;
+        obj.printRightsL = user.printRightsL;
         obj.addC = user.citizenAdd;
         obj.aedAddress = user.addressAED;
         obj.addA = user.adminAdd;
