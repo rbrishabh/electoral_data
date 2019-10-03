@@ -3,17 +3,17 @@
 const express = require('express');
 const hbs = require('hbs');
 const bodyParser = require('body-parser');
-var {mongoose,db} = require('./db/mongoose');
-var {civilian} = require('./models/civilian');
-var {mark} = require('./models/mark');
-var {address} = require('./models/address');
+let {mongoose,db} = require('./db/mongoose');
+let {civilian} = require('./models/civilian');
+let {mark} = require('./models/mark');
+let {address} = require('./models/address');
 const bcrypt = require('bcryptjs');
 const _ = require('lodash');
 const session = require('express-session')
-var MongoStore = require('connect-mongo')(session)
-var speakeasy = require('speakeasy');
+let MongoStore = require('connect-mongo')(session)
+let speakeasy = require('speakeasy');
 const request = require('request');
-var getAge = require('get-age')
+let getAge = require('get-age')
 const moment = require('moment');
 value = {};
 
@@ -24,7 +24,7 @@ const fs = require('fs');
 
 
 const app = express();
-var toHttps = require('express-to-https').basic;
+let toHttps = require('express-to-https').basic;
 
 app.use(toHttps);
 
